@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5493DA341A64A9BD00FB10ED /* ARGraphPointsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA2F1A64A9BD00FB10ED /* ARGraphPointsLayer.m */; };
+		5493DA351A64A9BD00FB10ED /* ARMeanLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA311A64A9BD00FB10ED /* ARMeanLineLayer.m */; };
+		5493DA361A64A9BD00FB10ED /* ARMinMaxLabelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA331A64A9BD00FB10ED /* ARMinMaxLabelLayer.m */; };
 		E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */; };
 		E7B2A6361A64A44D00FD402E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6341A64A44D00FD402E /* Info.plist */; };
 		E7B2A6371A64A44D00FD402E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6351A64A44D00FD402E /* main.m */; };
@@ -18,9 +21,6 @@
 		E7B2A6481A64A46C00FD402E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6451A64A46C00FD402E /* Main.storyboard */; };
 		E7B2A6531A64A47C00FD402E /* ARGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64A1A64A47C00FD402E /* ARGraph.m */; };
 		E7B2A6541A64A47C00FD402E /* ARGraphDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */; };
-		E7B2A6551A64A47C00FD402E /* ARGraphPointsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64E1A64A47C00FD402E /* ARGraphPointsLayer.m */; };
-		E7B2A6561A64A47C00FD402E /* ARMeanLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6501A64A47C00FD402E /* ARMeanLineLayer.m */; };
-		E7B2A6571A64A47C00FD402E /* ARMinMaxLabelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6521A64A47C00FD402E /* ARMinMaxLabelLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +34,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5493DA2E1A64A9BD00FB10ED /* ARGraphPointsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphPointsLayer.h; path = Private/ARGraphPointsLayer.h; sourceTree = "<group>"; };
+		5493DA2F1A64A9BD00FB10ED /* ARGraphPointsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphPointsLayer.m; path = Private/ARGraphPointsLayer.m; sourceTree = "<group>"; };
+		5493DA301A64A9BD00FB10ED /* ARMeanLineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMeanLineLayer.h; path = Private/ARMeanLineLayer.h; sourceTree = "<group>"; };
+		5493DA311A64A9BD00FB10ED /* ARMeanLineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARMeanLineLayer.m; path = Private/ARMeanLineLayer.m; sourceTree = "<group>"; };
+		5493DA321A64A9BD00FB10ED /* ARMinMaxLabelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMinMaxLabelLayer.h; path = Private/ARMinMaxLabelLayer.h; sourceTree = "<group>"; };
+		5493DA331A64A9BD00FB10ED /* ARMinMaxLabelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARMinMaxLabelLayer.m; path = Private/ARMinMaxLabelLayer.m; sourceTree = "<group>"; };
 		E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGraphsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGraphsDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C71A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,12 +59,6 @@
 		E7B2A64A1A64A47C00FD402E /* ARGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraph.m; sourceTree = "<group>"; };
 		E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphDataPoint.h; sourceTree = "<group>"; };
 		E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphDataPoint.m; sourceTree = "<group>"; };
-		E7B2A64D1A64A47C00FD402E /* ARGraphPointsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphPointsLayer.h; sourceTree = "<group>"; };
-		E7B2A64E1A64A47C00FD402E /* ARGraphPointsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphPointsLayer.m; sourceTree = "<group>"; };
-		E7B2A64F1A64A47C00FD402E /* ARMeanLineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMeanLineLayer.h; sourceTree = "<group>"; };
-		E7B2A6501A64A47C00FD402E /* ARMeanLineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARMeanLineLayer.m; sourceTree = "<group>"; };
-		E7B2A6511A64A47C00FD402E /* ARMinMaxLabelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMinMaxLabelLayer.h; sourceTree = "<group>"; };
-		E7B2A6521A64A47C00FD402E /* ARMinMaxLabelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARMinMaxLabelLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +79,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5493DA2D1A64A9AB00FB10ED /* Private */ = {
+			isa = PBXGroup;
+			children = (
+				5493DA2E1A64A9BD00FB10ED /* ARGraphPointsLayer.h */,
+				5493DA2F1A64A9BD00FB10ED /* ARGraphPointsLayer.m */,
+				5493DA301A64A9BD00FB10ED /* ARMeanLineLayer.h */,
+				5493DA311A64A9BD00FB10ED /* ARMeanLineLayer.m */,
+				5493DA321A64A9BD00FB10ED /* ARMinMaxLabelLayer.h */,
+				5493DA331A64A9BD00FB10ED /* ARMinMaxLabelLayer.m */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
 		E7B2A5A01A64874C00FD402E = {
 			isa = PBXGroup;
 			children = (
+				E7B2A5E31A64879200FD402E /* ARGraphs */,
 				E7B2A5AB1A64874C00FD402E /* ARGraphsDemo */,
 				E7B2A5C51A64874C00FD402E /* ARGraphsTests */,
 				E7B2A5AA1A64874C00FD402E /* Products */,
@@ -109,7 +123,6 @@
 				E7B2A6411A64A46200FD402E /* Images.xcassets */,
 				E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */,
 				E7B2A6451A64A46C00FD402E /* Main.storyboard */,
-				E7B2A5E31A64879200FD402E /* Graphs */,
 				E7B2A5AC1A64874C00FD402E /* Supporting Files */,
 			);
 			name = ARGraphsDemo;
@@ -142,21 +155,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E7B2A5E31A64879200FD402E /* Graphs */ = {
+		E7B2A5E31A64879200FD402E /* ARGraphs */ = {
 			isa = PBXGroup;
 			children = (
 				E7B2A6491A64A47C00FD402E /* ARGraph.h */,
 				E7B2A64A1A64A47C00FD402E /* ARGraph.m */,
 				E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */,
 				E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */,
-				E7B2A64D1A64A47C00FD402E /* ARGraphPointsLayer.h */,
-				E7B2A64E1A64A47C00FD402E /* ARGraphPointsLayer.m */,
-				E7B2A64F1A64A47C00FD402E /* ARMeanLineLayer.h */,
-				E7B2A6501A64A47C00FD402E /* ARMeanLineLayer.m */,
-				E7B2A6511A64A47C00FD402E /* ARMinMaxLabelLayer.h */,
-				E7B2A6521A64A47C00FD402E /* ARMinMaxLabelLayer.m */,
+				5493DA2D1A64A9AB00FB10ED /* Private */,
 			);
-			name = Graphs;
+			path = ARGraphs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,13 +270,13 @@
 			files = (
 				E7B2A6541A64A47C00FD402E /* ARGraphDataPoint.m in Sources */,
 				E7B2A63E1A64A45A00FD402E /* AppDelegate.m in Sources */,
-				E7B2A6551A64A47C00FD402E /* ARGraphPointsLayer.m in Sources */,
+				5493DA341A64A9BD00FB10ED /* ARGraphPointsLayer.m in Sources */,
 				E7B2A6371A64A44D00FD402E /* main.m in Sources */,
 				E7B2A6531A64A47C00FD402E /* ARGraph.m in Sources */,
-				E7B2A6561A64A47C00FD402E /* ARMeanLineLayer.m in Sources */,
+				5493DA351A64A9BD00FB10ED /* ARMeanLineLayer.m in Sources */,
 				E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */,
 				E7B2A63F1A64A45A00FD402E /* ARGraphSettingsTableViewController.m in Sources */,
-				E7B2A6571A64A47C00FD402E /* ARMinMaxLabelLayer.m in Sources */,
+				5493DA361A64A9BD00FB10ED /* ARMinMaxLabelLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

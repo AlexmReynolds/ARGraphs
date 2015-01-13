@@ -431,7 +431,7 @@
 				INFOPLIST_FILE = ARGraphsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = ARGraphsDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphs.app/ARGraphs";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphsDemo.app/ARGraphsDemo";
 			};
 			name = Debug;
 		};
@@ -446,7 +446,7 @@
 				INFOPLIST_FILE = ARGraphsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = ARGraphsDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphs.app/ARGraphs";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphsDemo.app/ARGraphsDemo";
 			};
 			name = Release;
 		};

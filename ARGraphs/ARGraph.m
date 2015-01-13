@@ -189,7 +189,7 @@
 - (NSString *)xAxisTitle
 {
     if(_xAxisTitle == nil){
-        if([self.dataSource respondsToSelector:@selector(argraphTitleForXAxis:)]){
+        if([self.dataSource respondsToSelector:@selector(ARGraphTitleForXAxis:)]){
             _xAxisTitle = [self.dataSource ARGraphTitleForXAxis:self];
         }else {
             nil;

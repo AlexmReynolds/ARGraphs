@@ -30,6 +30,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.chart.showMeanLine = self.settingsTable.showMean;
+    self.chart.showMinMaxLines = self.settingsTable.showMinMax;
+    self.chart.showDots = self.settingsTable.showDots;
+    self.chart.showXLegend = self.settingsTable.showXLegend;
+    self.chart.showYLegend = self.settingsTable.showYLegend;
+    self.chart.tintColor = self.settingsTable.chartColor;
+    self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
     self.chart.dataSource = self;
 }
 
@@ -96,6 +104,7 @@
     self.chart.showXLegend = self.settingsTable.showXLegend;
     self.chart.showYLegend = self.settingsTable.showYLegend;
     self.chart.tintColor = self.settingsTable.chartColor;
+    self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
 
     [self.chart reloadData];
 }

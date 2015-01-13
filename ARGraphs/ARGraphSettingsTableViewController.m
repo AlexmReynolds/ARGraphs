@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UISwitch *showMinMaxSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *showXLegendSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *showYLegendSwitch;
+@property (weak, nonatomic) IBOutlet UISwitch *showCurvedLineSwitch;
 @property (weak, nonatomic) IBOutlet UITextField *titleField;
 @property (weak, nonatomic) IBOutlet UITextField *subTitleField;
 @property (weak, nonatomic) IBOutlet UITextField *redTintValue;
@@ -60,6 +61,12 @@
     return self.showYLegendSwitch.on;
 
 }
+
+- (BOOL)showCurvedLine{
+    return self.showCurvedLineSwitch.on;
+    
+}
+
 - (NSString *)titleText
 {
     return self.titleField.text;
@@ -163,27 +170,42 @@
 }
 */
 - (IBAction)subtitleChanged:(id)sender {
-    if([self.delegate respondsToSelector:@selector(settingsChanged)]){
-        [self.delegate settingsChanged];
-    }
+    [self settingWasChanged];
+
 }
 - (IBAction)titleChanged:(id)sender {
-    if([self.delegate respondsToSelector:@selector(settingsChanged)]){
-        [self.delegate settingsChanged];
-    }
+    [self settingWasChanged];
+
 }
 
 - (IBAction)minMaxLabels:(id)sender {
-    if([self.delegate respondsToSelector:@selector(settingsChanged)]){
-        [self.delegate settingsChanged];
-    }
+    [self settingWasChanged];
+
 }
 - (IBAction)meanLabels:(id)sender {
-    if([self.delegate respondsToSelector:@selector(settingsChanged)]){
-        [self.delegate settingsChanged];
-    }
+    [self settingWasChanged];
+
 }
+- (IBAction)showXLegendChanged:(id)sender {
+    [self settingWasChanged];
+
+}
+- (IBAction)showYLegendChanged:(id)sender {
+    [self settingWasChanged];
+
+}
+
+- (IBAction)curveChanged:(id)sender {
+    [self settingWasChanged];
+
+}
+
 - (IBAction)colorChanged:(id)sender {
+    [self settingWasChanged];
+}
+
+- (void)settingWasChanged
+{
     if([self.delegate respondsToSelector:@selector(settingsChanged)]){
         [self.delegate settingsChanged];
     }

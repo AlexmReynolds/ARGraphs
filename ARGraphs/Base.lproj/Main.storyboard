@@ -235,7 +235,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="opg-ll-qje">
                                                     <rect key="frame" x="536" y="4" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="meanLabels:" destination="JtE-Cw-byw" eventType="valueChanged" id="USn-05-dgq"/>
+                                                        <action selector="showXLegendChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="r58-X0-7TZ"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show X Legend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H2-7W-T1X">
@@ -264,7 +264,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6Q-4U-VW3">
                                                     <rect key="frame" x="536" y="4" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="meanLabels:" destination="JtE-Cw-byw" eventType="valueChanged" id="sCv-lk-dhY"/>
+                                                        <action selector="showYLegendChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="vH9-s3-nf5"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Y Legend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jah-Ii-sfa">
@@ -282,6 +282,35 @@
                                                 <constraint firstItem="b6Q-4U-VW3" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="jah-Ii-sfa" secondAttribute="trailing" constant="10" id="Z1B-0F-m8q"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="jah-Ii-sfa" secondAttribute="bottom" constant="4" id="iMN-5E-0rQ"/>
                                                 <constraint firstItem="jah-Ii-sfa" firstAttribute="leading" secondItem="P0p-tE-82c" secondAttribute="leadingMargin" id="tyA-Zr-0WO"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Qfo-1O-x5o">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qfo-1O-x5o" id="Z8v-wq-NJF">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xYf-Ar-8z5">
+                                                    <rect key="frame" x="536" y="4" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="curveChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="7Ep-CD-DMp"/>
+                                                    </connections>
+                                                </switch>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Curved Plot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRM-wI-NH2">
+                                                    <rect key="frame" x="8" y="11" width="125.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="hRM-wI-NH2" secondAttribute="bottom" constant="4" id="2hY-w7-APp"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="xYf-Ar-8z5" secondAttribute="bottom" constant="1" id="AIp-wd-cR8"/>
+                                                <constraint firstItem="hRM-wI-NH2" firstAttribute="leading" secondItem="Z8v-wq-NJF" secondAttribute="leadingMargin" id="FrT-7Q-Eoz"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="xYf-Ar-8z5" secondAttribute="trailing" constant="7" id="Zr8-ar-Pkx"/>
+                                                <constraint firstItem="xYf-Ar-8z5" firstAttribute="top" secondItem="Z8v-wq-NJF" secondAttribute="topMargin" constant="-4" id="ghd-Qa-z0j"/>
+                                                <constraint firstItem="xYf-Ar-8z5" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hRM-wI-NH2" secondAttribute="trailing" constant="10" id="kku-YS-id4"/>
+                                                <constraint firstItem="hRM-wI-NH2" firstAttribute="top" secondItem="Z8v-wq-NJF" secondAttribute="topMargin" constant="3" id="pyd-NG-1vn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -394,6 +423,7 @@
                         <outlet property="blueTintValue" destination="tNI-qv-Cfc" id="xAz-Qz-q6B"/>
                         <outlet property="greenTintValue" destination="JGV-8B-gqn" id="gbL-Iy-Bto"/>
                         <outlet property="redTintValue" destination="qN2-OF-UCo" id="1rW-2p-dV3"/>
+                        <outlet property="showCurvedLineSwitch" destination="xYf-Ar-8z5" id="knV-Bo-KGJ"/>
                         <outlet property="showDotsSwitch" destination="pVq-wu-SZC" id="Qev-G4-Bxr"/>
                         <outlet property="showMeanSwitch" destination="Nnm-Ec-BC9" id="bh5-et-eyl"/>
                         <outlet property="showMinMaxSwitch" destination="W5E-v7-I1A" id="JXq-T2-MIG"/>

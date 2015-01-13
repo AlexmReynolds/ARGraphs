@@ -22,6 +22,8 @@
 @property (nonatomic) BOOL showMinMax;
 @property (nonatomic) BOOL showYLegend;
 @property (nonatomic) BOOL showXLegend;
+@property (nonatomic) BOOL showCurvedLine;
+
 @property (strong, nonatomic) NSString *titleText;
 @property (strong, nonatomic) NSString *subTitleText;
 @property (nonatomic, strong) UIColor *chartColor;

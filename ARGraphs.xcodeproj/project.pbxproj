@@ -1,0 +1,473 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E7B2A5AF1A64874C00FD402E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5AE1A64874C00FD402E /* main.m */; };
+		E7B2A5B21A64874C00FD402E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5B11A64874C00FD402E /* AppDelegate.m */; };
+		E7B2A5B81A64874C00FD402E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A5B61A64874C00FD402E /* Main.storyboard */; };
+		E7B2A5BA1A64874C00FD402E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A5B91A64874C00FD402E /* Images.xcassets */; };
+		E7B2A5BD1A64874C00FD402E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A5BB1A64874C00FD402E /* LaunchScreen.xib */; };
+		E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */; };
+		E7B2A5EF1A6487A500FD402E /* ARGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5E51A6487A500FD402E /* ARGraph.m */; };
+		E7B2A5F01A6487A500FD402E /* ARGraphDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5E71A6487A500FD402E /* ARGraphDataPoint.m */; };
+		E7B2A5F11A6487A500FD402E /* ARGraphPointsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5E91A6487A500FD402E /* ARGraphPointsLayer.m */; };
+		E7B2A5F31A6487A500FD402E /* ARMeanLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5EC1A6487A500FD402E /* ARMeanLineLayer.m */; };
+		E7B2A5F41A6487A500FD402E /* ARMinMaxLabelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5EE1A6487A500FD402E /* ARMinMaxLabelLayer.m */; };
+		E7B2A5FE1A64892100FD402E /* ARGraphSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5FC1A64892100FD402E /* ARGraphSettingsTableViewController.m */; };
+		E7B2A6021A648DB100FD402E /* ARGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6011A648DB100FD402E /* ARGraphViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E7B2A5C31A64874C00FD402E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7B2A5A11A64874C00FD402E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7B2A5A81A64874C00FD402E;
+			remoteInfo = ARGraphs;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E7B2A5A91A64874C00FD402E /* ARGraphs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGraphs.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7B2A5AD1A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7B2A5AE1A64874C00FD402E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E7B2A5B01A64874C00FD402E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E7B2A5B11A64874C00FD402E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E7B2A5B71A64874C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E7B2A5B91A64874C00FD402E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E7B2A5BC1A64874C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		E7B2A5C21A64874C00FD402E /* ARGraphsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGraphsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7B2A5C71A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARGraphsTests.m; sourceTree = "<group>"; };
+		E7B2A5E41A6487A500FD402E /* ARGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraph.h; path = ARGraphs/ARGraph.h; sourceTree = "<group>"; };
+		E7B2A5E51A6487A500FD402E /* ARGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraph.m; path = ARGraphs/ARGraph.m; sourceTree = "<group>"; };
+		E7B2A5E61A6487A500FD402E /* ARGraphDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphDataPoint.h; path = ARGraphs/ARGraphDataPoint.h; sourceTree = "<group>"; };
+		E7B2A5E71A6487A500FD402E /* ARGraphDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphDataPoint.m; path = ARGraphs/ARGraphDataPoint.m; sourceTree = "<group>"; };
+		E7B2A5E81A6487A500FD402E /* ARGraphPointsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphPointsLayer.h; path = ARGraphs/ARGraphPointsLayer.h; sourceTree = "<group>"; };
+		E7B2A5E91A6487A500FD402E /* ARGraphPointsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphPointsLayer.m; path = ARGraphs/ARGraphPointsLayer.m; sourceTree = "<group>"; };
+		E7B2A5EB1A6487A500FD402E /* ARMeanLineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMeanLineLayer.h; path = ARGraphs/ARMeanLineLayer.h; sourceTree = "<group>"; };
+		E7B2A5EC1A6487A500FD402E /* ARMeanLineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARMeanLineLayer.m; path = ARGraphs/ARMeanLineLayer.m; sourceTree = "<group>"; };
+		E7B2A5ED1A6487A500FD402E /* ARMinMaxLabelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMinMaxLabelLayer.h; path = ARGraphs/ARMinMaxLabelLayer.h; sourceTree = "<group>"; };
+		E7B2A5EE1A6487A500FD402E /* ARMinMaxLabelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARMinMaxLabelLayer.m; path = ARGraphs/ARMinMaxLabelLayer.m; sourceTree = "<group>"; };
+		E7B2A5FB1A64892100FD402E /* ARGraphSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphSettingsTableViewController.h; sourceTree = "<group>"; };
+		E7B2A5FC1A64892100FD402E /* ARGraphSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphSettingsTableViewController.m; sourceTree = "<group>"; };
+		E7B2A6001A648DB100FD402E /* ARGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphViewController.h; sourceTree = "<group>"; };
+		E7B2A6011A648DB100FD402E /* ARGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E7B2A5A61A64874C00FD402E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7B2A5BF1A64874C00FD402E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E7B2A5A01A64874C00FD402E = {
+			isa = PBXGroup;
+			children = (
+				E7B2A5AB1A64874C00FD402E /* ARGraphs */,
+				E7B2A5C51A64874C00FD402E /* ARGraphsTests */,
+				E7B2A5AA1A64874C00FD402E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E7B2A5AA1A64874C00FD402E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E7B2A5A91A64874C00FD402E /* ARGraphs.app */,
+				E7B2A5C21A64874C00FD402E /* ARGraphsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E7B2A5AB1A64874C00FD402E /* ARGraphs */ = {
+			isa = PBXGroup;
+			children = (
+				E7B2A5B01A64874C00FD402E /* AppDelegate.h */,
+				E7B2A5B11A64874C00FD402E /* AppDelegate.m */,
+				E7B2A5FB1A64892100FD402E /* ARGraphSettingsTableViewController.h */,
+				E7B2A5FC1A64892100FD402E /* ARGraphSettingsTableViewController.m */,
+				E7B2A6001A648DB100FD402E /* ARGraphViewController.h */,
+				E7B2A6011A648DB100FD402E /* ARGraphViewController.m */,
+				E7B2A5B61A64874C00FD402E /* Main.storyboard */,
+				E7B2A5E31A64879200FD402E /* Graphs */,
+				E7B2A5B91A64874C00FD402E /* Images.xcassets */,
+				E7B2A5BB1A64874C00FD402E /* LaunchScreen.xib */,
+				E7B2A5AC1A64874C00FD402E /* Supporting Files */,
+			);
+			path = ARGraphs;
+			sourceTree = "<group>";
+		};
+		E7B2A5AC1A64874C00FD402E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E7B2A5AD1A64874C00FD402E /* Info.plist */,
+				E7B2A5AE1A64874C00FD402E /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E7B2A5C51A64874C00FD402E /* ARGraphsTests */ = {
+			isa = PBXGroup;
+			children = (
+				E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */,
+				E7B2A5C61A64874C00FD402E /* Supporting Files */,
+			);
+			path = ARGraphsTests;
+			sourceTree = "<group>";
+		};
+		E7B2A5C61A64874C00FD402E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E7B2A5C71A64874C00FD402E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E7B2A5E31A64879200FD402E /* Graphs */ = {
+			isa = PBXGroup;
+			children = (
+				E7B2A5E41A6487A500FD402E /* ARGraph.h */,
+				E7B2A5E51A6487A500FD402E /* ARGraph.m */,
+				E7B2A5E61A6487A500FD402E /* ARGraphDataPoint.h */,
+				E7B2A5E71A6487A500FD402E /* ARGraphDataPoint.m */,
+				E7B2A5E81A6487A500FD402E /* ARGraphPointsLayer.h */,
+				E7B2A5E91A6487A500FD402E /* ARGraphPointsLayer.m */,
+				E7B2A5EB1A6487A500FD402E /* ARMeanLineLayer.h */,
+				E7B2A5EC1A6487A500FD402E /* ARMeanLineLayer.m */,
+				E7B2A5ED1A6487A500FD402E /* ARMinMaxLabelLayer.h */,
+				E7B2A5EE1A6487A500FD402E /* ARMinMaxLabelLayer.m */,
+			);
+			name = Graphs;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E7B2A5A81A64874C00FD402E /* ARGraphs */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7B2A5CC1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphs" */;
+			buildPhases = (
+				E7B2A5A51A64874C00FD402E /* Sources */,
+				E7B2A5A61A64874C00FD402E /* Frameworks */,
+				E7B2A5A71A64874C00FD402E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ARGraphs;
+			productName = ARGraphs;
+			productReference = E7B2A5A91A64874C00FD402E /* ARGraphs.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E7B2A5C11A64874C00FD402E /* ARGraphsTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E7B2A5CF1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsTests" */;
+			buildPhases = (
+				E7B2A5BE1A64874C00FD402E /* Sources */,
+				E7B2A5BF1A64874C00FD402E /* Frameworks */,
+				E7B2A5C01A64874C00FD402E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E7B2A5C41A64874C00FD402E /* PBXTargetDependency */,
+			);
+			name = ARGraphsTests;
+			productName = ARGraphsTests;
+			productReference = E7B2A5C21A64874C00FD402E /* ARGraphsTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E7B2A5A11A64874C00FD402E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Alex Reynolds";
+				TargetAttributes = {
+					E7B2A5A81A64874C00FD402E = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+					E7B2A5C11A64874C00FD402E = {
+						CreatedOnToolsVersion = 6.1.1;
+						TestTargetID = E7B2A5A81A64874C00FD402E;
+					};
+				};
+			};
+			buildConfigurationList = E7B2A5A41A64874C00FD402E /* Build configuration list for PBXProject "ARGraphs" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E7B2A5A01A64874C00FD402E;
+			productRefGroup = E7B2A5AA1A64874C00FD402E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E7B2A5A81A64874C00FD402E /* ARGraphs */,
+				E7B2A5C11A64874C00FD402E /* ARGraphsTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E7B2A5A71A64874C00FD402E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7B2A5B81A64874C00FD402E /* Main.storyboard in Resources */,
+				E7B2A5BD1A64874C00FD402E /* LaunchScreen.xib in Resources */,
+				E7B2A5BA1A64874C00FD402E /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7B2A5C01A64874C00FD402E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E7B2A5A51A64874C00FD402E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7B2A5F01A6487A500FD402E /* ARGraphDataPoint.m in Sources */,
+				E7B2A5F11A6487A500FD402E /* ARGraphPointsLayer.m in Sources */,
+				E7B2A5F31A6487A500FD402E /* ARMeanLineLayer.m in Sources */,
+				E7B2A5B21A64874C00FD402E /* AppDelegate.m in Sources */,
+				E7B2A6021A648DB100FD402E /* ARGraphViewController.m in Sources */,
+				E7B2A5FE1A64892100FD402E /* ARGraphSettingsTableViewController.m in Sources */,
+				E7B2A5EF1A6487A500FD402E /* ARGraph.m in Sources */,
+				E7B2A5F41A6487A500FD402E /* ARMinMaxLabelLayer.m in Sources */,
+				E7B2A5AF1A64874C00FD402E /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E7B2A5BE1A64874C00FD402E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E7B2A5C41A64874C00FD402E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7B2A5A81A64874C00FD402E /* ARGraphs */;
+			targetProxy = E7B2A5C31A64874C00FD402E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E7B2A5B61A64874C00FD402E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7B2A5B71A64874C00FD402E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E7B2A5BB1A64874C00FD402E /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7B2A5BC1A64874C00FD402E /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E7B2A5CA1A64874C00FD402E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E7B2A5CB1A64874C00FD402E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E7B2A5CD1A64874C00FD402E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ARGraphs/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E7B2A5CE1A64874C00FD402E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ARGraphs/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E7B2A5D01A64874C00FD402E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ARGraphsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphs.app/ARGraphs";
+			};
+			name = Debug;
+		};
+		E7B2A5D11A64874C00FD402E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ARGraphsTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphs.app/ARGraphs";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E7B2A5A41A64874C00FD402E /* Build configuration list for PBXProject "ARGraphs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7B2A5CA1A64874C00FD402E /* Debug */,
+				E7B2A5CB1A64874C00FD402E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E7B2A5CC1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphs" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7B2A5CD1A64874C00FD402E /* Debug */,
+				E7B2A5CE1A64874C00FD402E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E7B2A5CF1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7B2A5D01A64874C00FD402E /* Debug */,
+				E7B2A5D11A64874C00FD402E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E7B2A5A11A64874C00FD402E /* Project object */;
+}

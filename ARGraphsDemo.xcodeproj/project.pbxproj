@@ -7,19 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E7B2A5AF1A64874C00FD402E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5AE1A64874C00FD402E /* main.m */; };
-		E7B2A5B21A64874C00FD402E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5B11A64874C00FD402E /* AppDelegate.m */; };
-		E7B2A5B81A64874C00FD402E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A5B61A64874C00FD402E /* Main.storyboard */; };
-		E7B2A5BA1A64874C00FD402E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A5B91A64874C00FD402E /* Images.xcassets */; };
-		E7B2A5BD1A64874C00FD402E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A5BB1A64874C00FD402E /* LaunchScreen.xib */; };
 		E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */; };
-		E7B2A5EF1A6487A500FD402E /* ARGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5E51A6487A500FD402E /* ARGraph.m */; };
-		E7B2A5F01A6487A500FD402E /* ARGraphDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5E71A6487A500FD402E /* ARGraphDataPoint.m */; };
-		E7B2A5F11A6487A500FD402E /* ARGraphPointsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5E91A6487A500FD402E /* ARGraphPointsLayer.m */; };
-		E7B2A5F31A6487A500FD402E /* ARMeanLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5EC1A6487A500FD402E /* ARMeanLineLayer.m */; };
-		E7B2A5F41A6487A500FD402E /* ARMinMaxLabelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5EE1A6487A500FD402E /* ARMinMaxLabelLayer.m */; };
-		E7B2A5FE1A64892100FD402E /* ARGraphSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5FC1A64892100FD402E /* ARGraphSettingsTableViewController.m */; };
-		E7B2A6021A648DB100FD402E /* ARGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6011A648DB100FD402E /* ARGraphViewController.m */; };
+		E7B2A6361A64A44D00FD402E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6341A64A44D00FD402E /* Info.plist */; };
+		E7B2A6371A64A44D00FD402E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6351A64A44D00FD402E /* main.m */; };
+		E7B2A63E1A64A45A00FD402E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6391A64A45A00FD402E /* AppDelegate.m */; };
+		E7B2A63F1A64A45A00FD402E /* ARGraphSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A63B1A64A45A00FD402E /* ARGraphSettingsTableViewController.m */; };
+		E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */; };
+		E7B2A6421A64A46200FD402E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6411A64A46200FD402E /* Images.xcassets */; };
+		E7B2A6471A64A46C00FD402E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */; };
+		E7B2A6481A64A46C00FD402E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6451A64A46C00FD402E /* Main.storyboard */; };
+		E7B2A6531A64A47C00FD402E /* ARGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64A1A64A47C00FD402E /* ARGraph.m */; };
+		E7B2A6541A64A47C00FD402E /* ARGraphDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */; };
+		E7B2A6551A64A47C00FD402E /* ARGraphPointsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64E1A64A47C00FD402E /* ARGraphPointsLayer.m */; };
+		E7B2A6561A64A47C00FD402E /* ARMeanLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6501A64A47C00FD402E /* ARMeanLineLayer.m */; };
+		E7B2A6571A64A47C00FD402E /* ARMinMaxLabelLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6521A64A47C00FD402E /* ARMinMaxLabelLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,31 +34,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E7B2A5A91A64874C00FD402E /* ARGraphs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGraphs.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7B2A5AD1A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7B2A5AE1A64874C00FD402E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		E7B2A5B01A64874C00FD402E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		E7B2A5B11A64874C00FD402E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E7B2A5B71A64874C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E7B2A5B91A64874C00FD402E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		E7B2A5BC1A64874C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		E7B2A5C21A64874C00FD402E /* ARGraphsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGraphsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGraphsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGraphsDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C71A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARGraphsTests.m; sourceTree = "<group>"; };
-		E7B2A5E41A6487A500FD402E /* ARGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraph.h; path = ARGraphs/ARGraph.h; sourceTree = "<group>"; };
-		E7B2A5E51A6487A500FD402E /* ARGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraph.m; path = ARGraphs/ARGraph.m; sourceTree = "<group>"; };
-		E7B2A5E61A6487A500FD402E /* ARGraphDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphDataPoint.h; path = ARGraphs/ARGraphDataPoint.h; sourceTree = "<group>"; };
-		E7B2A5E71A6487A500FD402E /* ARGraphDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphDataPoint.m; path = ARGraphs/ARGraphDataPoint.m; sourceTree = "<group>"; };
-		E7B2A5E81A6487A500FD402E /* ARGraphPointsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphPointsLayer.h; path = ARGraphs/ARGraphPointsLayer.h; sourceTree = "<group>"; };
-		E7B2A5E91A6487A500FD402E /* ARGraphPointsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphPointsLayer.m; path = ARGraphs/ARGraphPointsLayer.m; sourceTree = "<group>"; };
-		E7B2A5EB1A6487A500FD402E /* ARMeanLineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMeanLineLayer.h; path = ARGraphs/ARMeanLineLayer.h; sourceTree = "<group>"; };
-		E7B2A5EC1A6487A500FD402E /* ARMeanLineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARMeanLineLayer.m; path = ARGraphs/ARMeanLineLayer.m; sourceTree = "<group>"; };
-		E7B2A5ED1A6487A500FD402E /* ARMinMaxLabelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMinMaxLabelLayer.h; path = ARGraphs/ARMinMaxLabelLayer.h; sourceTree = "<group>"; };
-		E7B2A5EE1A6487A500FD402E /* ARMinMaxLabelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARMinMaxLabelLayer.m; path = ARGraphs/ARMinMaxLabelLayer.m; sourceTree = "<group>"; };
-		E7B2A5FB1A64892100FD402E /* ARGraphSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphSettingsTableViewController.h; sourceTree = "<group>"; };
-		E7B2A5FC1A64892100FD402E /* ARGraphSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphSettingsTableViewController.m; sourceTree = "<group>"; };
-		E7B2A6001A648DB100FD402E /* ARGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphViewController.h; sourceTree = "<group>"; };
-		E7B2A6011A648DB100FD402E /* ARGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphViewController.m; sourceTree = "<group>"; };
+		E7B2A6341A64A44D00FD402E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ARGraphsDemo/Info.plist; sourceTree = SOURCE_ROOT; };
+		E7B2A6351A64A44D00FD402E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ARGraphsDemo/main.m; sourceTree = SOURCE_ROOT; };
+		E7B2A6381A64A45A00FD402E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ARGraphsDemo/AppDelegate.h; sourceTree = SOURCE_ROOT; };
+		E7B2A6391A64A45A00FD402E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ARGraphsDemo/AppDelegate.m; sourceTree = SOURCE_ROOT; };
+		E7B2A63A1A64A45A00FD402E /* ARGraphSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphSettingsTableViewController.h; path = ARGraphsDemo/ARGraphSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
+		E7B2A63B1A64A45A00FD402E /* ARGraphSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphSettingsTableViewController.m; path = ARGraphsDemo/ARGraphSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
+		E7B2A63C1A64A45A00FD402E /* ARGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphViewController.h; path = ARGraphsDemo/ARGraphViewController.h; sourceTree = SOURCE_ROOT; };
+		E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphViewController.m; path = ARGraphsDemo/ARGraphViewController.m; sourceTree = SOURCE_ROOT; };
+		E7B2A6411A64A46200FD402E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ARGraphsDemo/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		E7B2A6441A64A46C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ARGraphsDemo/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		E7B2A6461A64A46C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ARGraphsDemo/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		E7B2A6491A64A47C00FD402E /* ARGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraph.h; sourceTree = "<group>"; };
+		E7B2A64A1A64A47C00FD402E /* ARGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraph.m; sourceTree = "<group>"; };
+		E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphDataPoint.h; sourceTree = "<group>"; };
+		E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphDataPoint.m; sourceTree = "<group>"; };
+		E7B2A64D1A64A47C00FD402E /* ARGraphPointsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphPointsLayer.h; sourceTree = "<group>"; };
+		E7B2A64E1A64A47C00FD402E /* ARGraphPointsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphPointsLayer.m; sourceTree = "<group>"; };
+		E7B2A64F1A64A47C00FD402E /* ARMeanLineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMeanLineLayer.h; sourceTree = "<group>"; };
+		E7B2A6501A64A47C00FD402E /* ARMeanLineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARMeanLineLayer.m; sourceTree = "<group>"; };
+		E7B2A6511A64A47C00FD402E /* ARMinMaxLabelLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARMinMaxLabelLayer.h; sourceTree = "<group>"; };
+		E7B2A6521A64A47C00FD402E /* ARMinMaxLabelLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARMinMaxLabelLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +82,7 @@
 		E7B2A5A01A64874C00FD402E = {
 			isa = PBXGroup;
 			children = (
-				E7B2A5AB1A64874C00FD402E /* ARGraphs */,
+				E7B2A5AB1A64874C00FD402E /* ARGraphsDemo */,
 				E7B2A5C51A64874C00FD402E /* ARGraphsTests */,
 				E7B2A5AA1A64874C00FD402E /* Products */,
 			);
@@ -90,35 +91,36 @@
 		E7B2A5AA1A64874C00FD402E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E7B2A5A91A64874C00FD402E /* ARGraphs.app */,
-				E7B2A5C21A64874C00FD402E /* ARGraphsTests.xctest */,
+				E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */,
+				E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E7B2A5AB1A64874C00FD402E /* ARGraphs */ = {
+		E7B2A5AB1A64874C00FD402E /* ARGraphsDemo */ = {
 			isa = PBXGroup;
 			children = (
-				E7B2A5B01A64874C00FD402E /* AppDelegate.h */,
-				E7B2A5B11A64874C00FD402E /* AppDelegate.m */,
-				E7B2A5FB1A64892100FD402E /* ARGraphSettingsTableViewController.h */,
-				E7B2A5FC1A64892100FD402E /* ARGraphSettingsTableViewController.m */,
-				E7B2A6001A648DB100FD402E /* ARGraphViewController.h */,
-				E7B2A6011A648DB100FD402E /* ARGraphViewController.m */,
-				E7B2A5B61A64874C00FD402E /* Main.storyboard */,
+				E7B2A6381A64A45A00FD402E /* AppDelegate.h */,
+				E7B2A6391A64A45A00FD402E /* AppDelegate.m */,
+				E7B2A63A1A64A45A00FD402E /* ARGraphSettingsTableViewController.h */,
+				E7B2A63B1A64A45A00FD402E /* ARGraphSettingsTableViewController.m */,
+				E7B2A63C1A64A45A00FD402E /* ARGraphViewController.h */,
+				E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */,
+				E7B2A6411A64A46200FD402E /* Images.xcassets */,
+				E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */,
+				E7B2A6451A64A46C00FD402E /* Main.storyboard */,
 				E7B2A5E31A64879200FD402E /* Graphs */,
-				E7B2A5B91A64874C00FD402E /* Images.xcassets */,
-				E7B2A5BB1A64874C00FD402E /* LaunchScreen.xib */,
 				E7B2A5AC1A64874C00FD402E /* Supporting Files */,
 			);
+			name = ARGraphsDemo;
 			path = ARGraphs;
 			sourceTree = "<group>";
 		};
 		E7B2A5AC1A64874C00FD402E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				E7B2A5AD1A64874C00FD402E /* Info.plist */,
-				E7B2A5AE1A64874C00FD402E /* main.m */,
+				E7B2A6341A64A44D00FD402E /* Info.plist */,
+				E7B2A6351A64A44D00FD402E /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -143,16 +145,16 @@
 		E7B2A5E31A64879200FD402E /* Graphs */ = {
 			isa = PBXGroup;
 			children = (
-				E7B2A5E41A6487A500FD402E /* ARGraph.h */,
-				E7B2A5E51A6487A500FD402E /* ARGraph.m */,
-				E7B2A5E61A6487A500FD402E /* ARGraphDataPoint.h */,
-				E7B2A5E71A6487A500FD402E /* ARGraphDataPoint.m */,
-				E7B2A5E81A6487A500FD402E /* ARGraphPointsLayer.h */,
-				E7B2A5E91A6487A500FD402E /* ARGraphPointsLayer.m */,
-				E7B2A5EB1A6487A500FD402E /* ARMeanLineLayer.h */,
-				E7B2A5EC1A6487A500FD402E /* ARMeanLineLayer.m */,
-				E7B2A5ED1A6487A500FD402E /* ARMinMaxLabelLayer.h */,
-				E7B2A5EE1A6487A500FD402E /* ARMinMaxLabelLayer.m */,
+				E7B2A6491A64A47C00FD402E /* ARGraph.h */,
+				E7B2A64A1A64A47C00FD402E /* ARGraph.m */,
+				E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */,
+				E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */,
+				E7B2A64D1A64A47C00FD402E /* ARGraphPointsLayer.h */,
+				E7B2A64E1A64A47C00FD402E /* ARGraphPointsLayer.m */,
+				E7B2A64F1A64A47C00FD402E /* ARMeanLineLayer.h */,
+				E7B2A6501A64A47C00FD402E /* ARMeanLineLayer.m */,
+				E7B2A6511A64A47C00FD402E /* ARMinMaxLabelLayer.h */,
+				E7B2A6521A64A47C00FD402E /* ARMinMaxLabelLayer.m */,
 			);
 			name = Graphs;
 			sourceTree = "<group>";
@@ -160,9 +162,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E7B2A5A81A64874C00FD402E /* ARGraphs */ = {
+		E7B2A5A81A64874C00FD402E /* ARGraphsDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7B2A5CC1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphs" */;
+			buildConfigurationList = E7B2A5CC1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsDemo" */;
 			buildPhases = (
 				E7B2A5A51A64874C00FD402E /* Sources */,
 				E7B2A5A61A64874C00FD402E /* Frameworks */,
@@ -172,14 +174,14 @@
 			);
 			dependencies = (
 			);
-			name = ARGraphs;
+			name = ARGraphsDemo;
 			productName = ARGraphs;
-			productReference = E7B2A5A91A64874C00FD402E /* ARGraphs.app */;
+			productReference = E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E7B2A5C11A64874C00FD402E /* ARGraphsTests */ = {
+		E7B2A5C11A64874C00FD402E /* ARGraphsDemoTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E7B2A5CF1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsTests" */;
+			buildConfigurationList = E7B2A5CF1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsDemoTests" */;
 			buildPhases = (
 				E7B2A5BE1A64874C00FD402E /* Sources */,
 				E7B2A5BF1A64874C00FD402E /* Frameworks */,
@@ -190,9 +192,9 @@
 			dependencies = (
 				E7B2A5C41A64874C00FD402E /* PBXTargetDependency */,
 			);
-			name = ARGraphsTests;
+			name = ARGraphsDemoTests;
 			productName = ARGraphsTests;
-			productReference = E7B2A5C21A64874C00FD402E /* ARGraphsTests.xctest */;
+			productReference = E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -213,7 +215,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E7B2A5A41A64874C00FD402E /* Build configuration list for PBXProject "ARGraphs" */;
+			buildConfigurationList = E7B2A5A41A64874C00FD402E /* Build configuration list for PBXProject "ARGraphsDemo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -226,8 +228,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E7B2A5A81A64874C00FD402E /* ARGraphs */,
-				E7B2A5C11A64874C00FD402E /* ARGraphsTests */,
+				E7B2A5A81A64874C00FD402E /* ARGraphsDemo */,
+				E7B2A5C11A64874C00FD402E /* ARGraphsDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -237,9 +239,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7B2A5B81A64874C00FD402E /* Main.storyboard in Resources */,
-				E7B2A5BD1A64874C00FD402E /* LaunchScreen.xib in Resources */,
-				E7B2A5BA1A64874C00FD402E /* Images.xcassets in Resources */,
+				E7B2A6421A64A46200FD402E /* Images.xcassets in Resources */,
+				E7B2A6471A64A46C00FD402E /* LaunchScreen.xib in Resources */,
+				E7B2A6361A64A44D00FD402E /* Info.plist in Resources */,
+				E7B2A6481A64A46C00FD402E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,15 +260,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E7B2A5F01A6487A500FD402E /* ARGraphDataPoint.m in Sources */,
-				E7B2A5F11A6487A500FD402E /* ARGraphPointsLayer.m in Sources */,
-				E7B2A5F31A6487A500FD402E /* ARMeanLineLayer.m in Sources */,
-				E7B2A5B21A64874C00FD402E /* AppDelegate.m in Sources */,
-				E7B2A6021A648DB100FD402E /* ARGraphViewController.m in Sources */,
-				E7B2A5FE1A64892100FD402E /* ARGraphSettingsTableViewController.m in Sources */,
-				E7B2A5EF1A6487A500FD402E /* ARGraph.m in Sources */,
-				E7B2A5F41A6487A500FD402E /* ARMinMaxLabelLayer.m in Sources */,
-				E7B2A5AF1A64874C00FD402E /* main.m in Sources */,
+				E7B2A6541A64A47C00FD402E /* ARGraphDataPoint.m in Sources */,
+				E7B2A63E1A64A45A00FD402E /* AppDelegate.m in Sources */,
+				E7B2A6551A64A47C00FD402E /* ARGraphPointsLayer.m in Sources */,
+				E7B2A6371A64A44D00FD402E /* main.m in Sources */,
+				E7B2A6531A64A47C00FD402E /* ARGraph.m in Sources */,
+				E7B2A6561A64A47C00FD402E /* ARMeanLineLayer.m in Sources */,
+				E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */,
+				E7B2A63F1A64A45A00FD402E /* ARGraphSettingsTableViewController.m in Sources */,
+				E7B2A6571A64A47C00FD402E /* ARMinMaxLabelLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,26 +285,26 @@
 /* Begin PBXTargetDependency section */
 		E7B2A5C41A64874C00FD402E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = E7B2A5A81A64874C00FD402E /* ARGraphs */;
+			target = E7B2A5A81A64874C00FD402E /* ARGraphsDemo */;
 			targetProxy = E7B2A5C31A64874C00FD402E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		E7B2A5B61A64874C00FD402E /* Main.storyboard */ = {
+		E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				E7B2A5B71A64874C00FD402E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E7B2A5BB1A64874C00FD402E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E7B2A5BC1A64874C00FD402E /* Base */,
+				E7B2A6441A64A46C00FD402E /* Base */,
 			);
 			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+		E7B2A6451A64A46C00FD402E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E7B2A6461A64A46C00FD402E /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -389,9 +392,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ARGraphs/Info.plist;
+				INFOPLIST_FILE = ARGraphsDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ARGraphsDemo;
 			};
 			name = Debug;
 		};
@@ -399,9 +402,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ARGraphs/Info.plist;
+				INFOPLIST_FILE = ARGraphsDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ARGraphsDemo;
 			};
 			name = Release;
 		};
@@ -419,7 +422,7 @@
 				);
 				INFOPLIST_FILE = ARGraphsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ARGraphsDemoTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphs.app/ARGraphs";
 			};
 			name = Debug;
@@ -434,7 +437,7 @@
 				);
 				INFOPLIST_FILE = ARGraphsTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = ARGraphsDemoTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphs.app/ARGraphs";
 			};
 			name = Release;
@@ -442,7 +445,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E7B2A5A41A64874C00FD402E /* Build configuration list for PBXProject "ARGraphs" */ = {
+		E7B2A5A41A64874C00FD402E /* Build configuration list for PBXProject "ARGraphsDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E7B2A5CA1A64874C00FD402E /* Debug */,
@@ -451,21 +454,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E7B2A5CC1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphs" */ = {
+		E7B2A5CC1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E7B2A5CD1A64874C00FD402E /* Debug */,
 				E7B2A5CE1A64874C00FD402E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		E7B2A5CF1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsTests" */ = {
+		E7B2A5CF1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsDemoTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E7B2A5D01A64874C00FD402E /* Debug */,
 				E7B2A5D11A64874C00FD402E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

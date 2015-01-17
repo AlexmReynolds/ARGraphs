@@ -6,22 +6,22 @@
 //  Copyright (c) 2015 Cyclr. All rights reserved.
 //
 
-#import "ARMinMaxLabelLayer.h"
+#import "ARYMinMaxLayer.h"
 #import "ARGraphDataPoint.h"
 #import <UIKit/UIKit.h>
 
-@interface ARMinMaxLabelLayer()
+@interface ARYMinMaxLayer()
 
 @property (nonatomic, strong) CATextLayer *minTextLayer;
 @property (nonatomic, strong) CATextLayer *maxTextLayer;
 
 @end
 
-@implementation ARMinMaxLabelLayer
+@implementation ARYMinMaxLayer
 
 + (instancetype)layer
 {
-    ARMinMaxLabelLayer *layer = [super layer];
+    ARYMinMaxLayer *layer = [super layer];
     [layer addSublayer:layer.minTextLayer];
     [layer addSublayer:layer.maxTextLayer];
     
@@ -47,76 +47,82 @@
     [self setNeedsDisplay];
 }
 
-- (void)setMaxDataPoint:(ARGraphDataPoint *)maxDataPoint
+- (void)setYMax:(NSInteger)yMax
 {
-    _maxDataPoint = maxDataPoint;
-    [self.maxTextLayer setString:[NSString stringWithFormat:@"%ld",(long)maxDataPoint.yValue]];
+    _yMax = yMax;
+    [self.maxTextLayer setString:[NSString stringWithFormat:@"%ld",(long)yMax]];
 
 }
 
-- (void)setMinDataPoint:(ARGraphDataPoint *)minDataPoint
+- (void)setYMin:(NSInteger)yMin
 {
-    _minDataPoint = minDataPoint;
-    [self.minTextLayer setString:[NSString stringWithFormat:@"%ld",(long)minDataPoint.yValue]];
+    _yMin = yMin;
+    [self.minTextLayer setString:[NSString stringWithFormat:@"%ld",(long)yMin]];
     
 }
 
-- (CGFloat)yPositionForDataPoint:(ARGraphDataPoint*)dataPoint inHeight:(CGFloat)height
+- (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height
 {
-    CGFloat range = self.maxDataPoint.yValue - self.minDataPoint.yValue;
+    CGFloat range = self.yMax - self.yMin;
     CGFloat availableHeight = height - self.topPadding - self.bottomPadding;
-    CGFloat normalizedDataPointYValue = dataPoint.yValue - self.minDataPoint.yValue;
+    CGFloat normalizedDataPointYValue = dataPoint - self.yMin;
+
     CGFloat percentageOfDataPointToRange =  (normalizedDataPointYValue / range);
     CGFloat inversePercentage = 1.0 - percentageOfDataPointToRange; // Must invert because the greater the value the higher we want it on the chart which is a smaller y value on a iOS coordinate system
-    return self.topPadding + inversePercentage * availableHeight;
+    if(range == 0){
+        return NSNotFound;
+    }else{
+        return self.topPadding + inversePercentage * availableHeight;
+    }
 }
 
 - (void)layoutSublayers
 {
-    if(self.minDataPoint == nil || self.maxDataPoint == nil){
-        return;
-    }
     self.minTextLayer.frame = [self frameforMinLabel];
     self.maxTextLayer.frame = [self frameforMaxLabel];
 }
 
 - (CGRect)frameforMinLabel
 {
-    CGRect rect = [self.minTextLayer.string boundingRectWithSize:self.minTextLayer.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
+    CGRect rect = [self.minTextLayer.string boundingRectWithSize:self.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
     rect.origin.x = self.bounds.size.width - rect.size.width - 8;
-    rect.origin.y = [self yPositionForDataPoint:self.minDataPoint inHeight:self.bounds.size.height] - rect.size.height;
+    rect.origin.y = [self yPositionForYDataPoint:self.yMin inHeight:self.bounds.size.height] - rect.size.height;
+    if(rect.origin.y == NSNotFound){
+        rect = CGRectZero;
+    }
     return rect;
 
 }
 
 - (CGRect)frameforMaxLabel
 {
-    CGRect rect = [self.maxTextLayer.string boundingRectWithSize:self.maxTextLayer.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
-    
+    CGRect rect = [self.maxTextLayer.string boundingRectWithSize:self.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
     rect.origin.x = self.bounds.size.width - rect.size.width - 8;
-    rect.origin.y = [self yPositionForDataPoint:self.maxDataPoint inHeight:self.bounds.size.height];
-    
+    rect.origin.y = [self yPositionForYDataPoint:self.yMax inHeight:self.bounds.size.height];
+    if(rect.origin.y == NSNotFound){
+        rect = CGRectZero;
+    }
     return rect;
 }
 
 - (void)drawInContext:(CGContextRef)ctx
 {
-    if(self.minDataPoint == nil || self.maxDataPoint == nil){
-        return;
-    }
     CGContextSetStrokeColorWithColor(ctx, self.lineColor);
-    CGFloat minY = [self yPositionForDataPoint:self.minDataPoint inHeight:self.bounds.size.height];
-    CGFloat maxY = [self yPositionForDataPoint:self.maxDataPoint inHeight:self.bounds.size.height];
-
     CGContextSetLineWidth(ctx, 1.0);
+
+    CGFloat minY = [self yPositionForYDataPoint:self.yMin inHeight:self.bounds.size.height];
+    CGFloat maxY = [self yPositionForYDataPoint:self.yMax inHeight:self.bounds.size.height];
+
+    if(minY != NSNotFound){
+        CGContextMoveToPoint(ctx, 0, minY);
+        CGContextAddLineToPoint(ctx, self.bounds.size.width, minY);
+    }
     
-    CGContextMoveToPoint(ctx, 0, minY);
-    CGContextAddLineToPoint(ctx, self.bounds.size.width, minY);
-    
-    
-    CGContextMoveToPoint(ctx, 0, maxY);
-    CGContextAddLineToPoint(ctx, self.bounds.size.width, maxY);
-    
+    if(maxY != NSNotFound){
+        CGContextMoveToPoint(ctx, 0, maxY);
+        CGContextAddLineToPoint(ctx, self.bounds.size.width, maxY);
+    }
+
     CGContextStrokePath(ctx);
 }
 

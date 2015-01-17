@@ -12,11 +12,16 @@
 @interface ARGraphViewController ()<ARGraphDataSource, ARGraphTableSettingsDelegate>
 @property (weak, nonatomic) IBOutlet ARGraph *chart;
 @property (nonatomic, weak) ARGraphSettingsTableViewController *settingsTable;
+
+@property (nonatomic,strong) NSMutableArray *graphDataPoints;
+
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 @implementation ARGraphViewController
 
 - (void)viewDidLoad {
+    self.graphDataPoints = [[NSMutableArray alloc] init];
     self.settingsTable = [self.childViewControllers lastObject];
     self.settingsTable.delegate = self;
     [super viewDidLoad];
@@ -39,6 +44,9 @@
     self.chart.tintColor = self.settingsTable.chartColor;
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
     self.chart.dataSource = self;
+    
+    self.timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 /*
@@ -50,38 +58,15 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)createDataPoint
+{
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:1 y:self.graphDataPoints.count]];
+    [self.chart appendDataPoint:[self.graphDataPoints lastObject]];
+}
 
 - (NSArray*)ARGraphDataPoints:(ARGraph *)graph
 {
-    NSArray *data = @[
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)],
-                      [[ARGraphDataPoint alloc] initWithX:arc4random_uniform(30) y:arc4random_uniform(30)]
-                      
-                      ];
-    return data;
+    return self.graphDataPoints;
 }
 
 - (NSString *)subTitleForGraph:(ARGraph *)graph

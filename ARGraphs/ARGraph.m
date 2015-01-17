@@ -8,8 +8,9 @@
 
 #import "ARGraph.h"
 #import "ARGraphPointsLayer.h"
-#import "ARMinMaxLabelLayer.h"
+#import "ARYMinMaxLayer.h"
 #import "ARMeanLineLayer.h"
+#import "ARGraphDataPointUtility.h"
 
 @interface ARGraph ()
 
@@ -28,13 +29,15 @@
 
 @property (nonatomic, strong) CAGradientLayer *background;
 @property (nonatomic, strong) ARGraphPointsLayer *pointsLayer;
-@property (nonatomic, strong) ARMinMaxLabelLayer *minMaxLayer;
+@property (nonatomic, strong) ARYMinMaxLayer *minMaxLayer;
 @property (nonatomic, strong) ARMeanLineLayer *meanLayer;
 
 
 @property (nonatomic) NSUInteger dataCount;
 @property (nonatomic, strong) NSArray *dataPoints;
 @property (nonatomic, strong) NSString *xAxisTitle;
+
+@property (nonatomic, strong) ARGraphDataPointUtility *dataPointUtility;
 
 @end
 
@@ -44,9 +47,8 @@
 {
     self = [super initWithCoder:aDecoder];
     if(self){
-        //[[NSBundle mainBundle] loadNibNamed:@"CYCGraphView" owner:self options:nil];
-        //_view.frame = self.bounds;
-        //[self addSubview:_view];
+        self.dataPointUtility = [[ARGraphDataPointUtility alloc] init];
+        
         self.labelColor = [UIColor whiteColor];
         self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
         
@@ -58,7 +60,7 @@
         _pointsLayer.frame = self.bounds;
         [self.layer addSublayer:_pointsLayer];
         
-        _minMaxLayer = [ARMinMaxLabelLayer layer];
+        _minMaxLayer = [ARYMinMaxLayer layer];
         _minMaxLayer.frame = self.bounds;
         
         [self.layer addSublayer:_minMaxLayer];
@@ -93,6 +95,9 @@
 - (void)setDataSource:(id<ARGraphDataSource>)dataSource
 {
     _dataSource = dataSource;
+    _dataPoints = [[self.dataSource ARGraphDataPoints:self] copy];
+    _dataPointUtility.datapoints = _dataPoints;
+    
     self.titleHeightConstraint.constant = [self sizeOfText:self.titleLabel.text preferredFontForTextStyle:UIFontTextStyleHeadline].height + 8;
     
     [self layoutIfNeeded];
@@ -202,12 +207,13 @@
     return self.dataPoints.count;
 }
 
-- (NSArray*)dataPoints
+- (void)appendDataPoint:(ARGraphDataPoint *)dataPoint
 {
-    if(_dataPoints == nil){
-        _dataPoints = [self.dataSource ARGraphDataPoints:self];
-    }
-    return _dataPoints;
+    NSMutableArray *temp = [NSMutableArray arrayWithArray:self.dataPoints];
+    [temp addObject:dataPoint];
+    self.dataPoints = temp;
+    [self.dataPointUtility appendDataPoint:dataPoint];
+    [self reloadData];
 }
 
 - (UIColor *)labelColor
@@ -244,12 +250,11 @@
     _pointsLayer.frame = pointsLayerFrame;
     _minMaxLayer.frame = pointsLayerFrame;
     _meanLayer.frame = pointsLayerFrame;
+    _background.frame = self.bounds;
 }
-
 
 - (void)reloadData
 {
-    _dataCount = NSNotFound;
     if(self.showXLegend){
         [self setupXLegend];
     }
@@ -259,21 +264,21 @@
     }
     if([self.dataSource respondsToSelector:@selector(subTitleForGraph:)]){
         self.subtitleLabel.text = [self.dataSource subTitleForGraph:self] ?: @"";
-
     }
-    
-    self.minMaxLayer.minDataPoint = [self minDataPoint];
-    self.minMaxLayer.maxDataPoint = [self maxDataPoint];
+    NSInteger yMin = [[self dataPointUtility] yMin];
+    NSInteger yMax = [[self dataPointUtility] yMax];
+    self.minMaxLayer.yMin = yMin;
+    self.minMaxLayer.yMax = yMax;
     [self.minMaxLayer setNeedsDisplay];
     
-    self.pointsLayer.minDataPoint = [self minDataPoint];
-    self.pointsLayer.maxDataPoint = [self maxDataPoint];
+    self.pointsLayer.yMin = yMin;
+    self.pointsLayer.yMax = yMax;
     self.pointsLayer.dataPoints = self.dataPoints;
     [self.pointsLayer setNeedsDisplay];
     
-    self.meanLayer.minDataPoint = [self minDataPoint];
-    self.meanLayer.maxDataPoint = [self maxDataPoint];
-    self.meanLayer.mean = [self meanDataPoint];
+    self.meanLayer.yMin = yMin;
+    self.meanLayer.yMax = yMax;
+    self.meanLayer.yMean = [[self dataPointUtility] yMean];
     [self.meanLayer setNeedsDisplay];
 
 
@@ -309,57 +314,6 @@
     frame.origin.x = centerPoint - frame.size.width/2;
     label.frame = frame;
     return label;
-}
-
-#pragma mark - Helpers
-
-- (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width
-{
-    CGFloat itemWidth = width/total;
-    return index * itemWidth + itemWidth/2;
-}
-
-
-- (ARGraphDataPoint *)minDataPoint
-{
-    ARGraphDataPoint __block *minDP = nil;
-    CGFloat __block value = CGFLOAT_MAX;
-    [self.dataPoints enumerateObjectsUsingBlock:^(ARGraphDataPoint *dp, NSUInteger idx, BOOL *stop) {
-        if(dp.yValue < value){
-            minDP = dp;
-            value = dp.yValue;
-        }
-    }];
-    
-    return minDP;
-}
-
-- (ARGraphDataPoint *)maxDataPoint
-{
-    ARGraphDataPoint __block *maxDP = nil;
-    CGFloat __block value = CGFLOAT_MIN;
-    [self.dataPoints enumerateObjectsUsingBlock:^(ARGraphDataPoint *dp, NSUInteger idx, BOOL *stop) {
-        if(dp.yValue > value){
-            maxDP = dp;
-            value = dp.yValue;
-
-        }
-    }];
-
-    return maxDP;
-}
-
-- (CGFloat)meanDataPoint
-{
-    CGFloat __block sum = 0;
-    [self.dataPoints enumerateObjectsUsingBlock:^(ARGraphDataPoint *dp, NSUInteger idx, BOOL *stop) {
-        sum += dp.yValue;
-    }];
-    if(sum){
-        return sum / self.dataCount;
-    }else {
-        return sum;
-    }
 }
 
 #pragma mark - View Creation
@@ -486,6 +440,12 @@
 }
 
 #pragma mark - Helpers
+
+- (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width
+{
+    CGFloat itemWidth = width/total;
+    return index * itemWidth + itemWidth/2;
+}
 
 - (CGSize)sizeOfText:(NSString*)text preferredFontForTextStyle:(NSString*)style {
     UIFont *font = [UIFont preferredFontForTextStyle:style];

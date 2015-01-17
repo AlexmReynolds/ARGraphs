@@ -7,8 +7,17 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-@class ARGraphDataPoint;
+
 @interface ARGraphPointsLayer : CALayer
+
+#pragma mark - Data Properties
+
+@property (nonatomic) NSArray *dataPoints;
+@property (nonatomic) NSInteger yMax;
+@property (nonatomic) NSInteger yMin;
+@property (nonatomic) NSInteger xMax;
+@property (nonatomic) NSInteger xMin;
+
 
 @property (nonatomic) CGFloat dotRadius;
 @property (nonatomic) CGFloat lineWidth;
@@ -17,9 +26,6 @@
 @property (nonatomic) BOOL shouldSmooth;
 @property (nonatomic) BOOL showDots;
 
-@property (nonatomic) NSArray *dataPoints;
-@property (nonatomic) ARGraphDataPoint *minDataPoint;
-@property (nonatomic) ARGraphDataPoint *maxDataPoint;
 @property (nonatomic) CGColorRef lineColor;
 
 

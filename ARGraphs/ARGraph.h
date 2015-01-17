@@ -26,7 +26,16 @@
 @property (nonatomic) BOOL showYLegend;
 @property (nonatomic) BOOL showXLegend;
 @property (nonatomic) BOOL showOnlyMinMaxYLegend;
+
+
+
+// This does a full reload. Very bad for perfromance if chart is live updating. User AppendDataPoint instead
 - (void)reloadData;
+
+// This will live update the chart and good if data set is constantly growing
+- (void)appendDataPoint:(ARGraphDataPoint*)dataPoint;
+
+
 
 //Chart options
 // if showDots is true then dotRadius will be used for the dot size

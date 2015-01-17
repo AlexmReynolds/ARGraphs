@@ -28,9 +28,9 @@
     return layer;
 }
 
-- (void)setMean:(CGFloat)mean
+- (void)setYMean:(CGFloat)yMean
 {
-    _mean = mean;
+    _yMean = yMean;
     [self setNeedsDisplay];
 }
 
@@ -40,28 +40,33 @@
     [self setNeedsDisplay];
 }
 
-- (CGFloat)yPositionForDataPointValue:(CGFloat)value inHeight:(CGFloat)height
+- (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height
 {
-    CGFloat range = self.maxDataPoint.yValue - self.minDataPoint.yValue;
+    CGFloat range = self.yMax - self.yMin;
     CGFloat availableHeight = height - self.topPadding - self.bottomPadding;
-    CGFloat normalizedDataPointYValue = value - self.minDataPoint.yValue;
+    CGFloat normalizedDataPointYValue = dataPoint - self.yMin;
+    
     CGFloat percentageOfDataPointToRange =  (normalizedDataPointYValue / range);
     CGFloat inversePercentage = 1.0 - percentageOfDataPointToRange; // Must invert because the greater the value the higher we want it on the chart which is a smaller y value on a iOS coordinate system
-    return self.topPadding + inversePercentage * availableHeight;
+    if(range == 0){
+        return NSNotFound;
+    }else{
+        return self.topPadding + inversePercentage * availableHeight;
+    }
 }
 
 - (void)drawInContext:(CGContextRef)ctx
 {
-    if(self.minDataPoint == nil || self.maxDataPoint == nil){
-        return;
-    }
     CGFloat dashLengths[] = {4, 2};
     CGContextSetLineDash(ctx, 0, dashLengths, 2);
     CGContextSetLineWidth(ctx, 1.0);
     CGContextSetStrokeColorWithColor(ctx, self.lineColor);
-    CGFloat yPosition = [self yPositionForDataPointValue:self.mean inHeight:self.bounds.size.height];
-    CGContextMoveToPoint(ctx, 0, yPosition);
-    CGContextAddLineToPoint(ctx, self.bounds.size.width, yPosition);
+    CGFloat yPosition = [self yPositionForYDataPoint:self.yMean inHeight:self.bounds.size.height];
+    if(yPosition != NSNotFound){
+        CGContextMoveToPoint(ctx, 0, yPosition);
+        CGContextAddLineToPoint(ctx, self.bounds.size.width, yPosition);
+    }
+
     
     CGContextStrokePath(ctx);
 

@@ -7,12 +7,12 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-@class ARGraphDataPoint;
 
 @interface ARMeanLineLayer : CALayer
-@property (nonatomic) ARGraphDataPoint *minDataPoint;
-@property (nonatomic) ARGraphDataPoint *maxDataPoint;
-@property (nonatomic) CGFloat mean;
+
+@property (nonatomic) NSInteger yMax;
+@property (nonatomic) NSInteger yMin;
+@property (nonatomic) CGFloat yMean;
 
 @property (nonatomic) CGColorRef lineColor;
 

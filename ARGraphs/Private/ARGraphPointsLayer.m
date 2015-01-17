@@ -142,7 +142,7 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 {
     ARGraphDataPoint *dp = [self.dataPoints objectAtIndex:index];
     CGFloat xVal = [self xPositionForDataPointIndex:index totalPoints:total inWidth:self.bounds.size.width];
-    CGFloat yVal = [self yPositionForDataPoint:dp inHeight:self.bounds.size.height];
+    CGFloat yVal = [self yPositionForYDataPoint:dp.yValue inHeight:self.bounds.size.height];
     return CGPointMake(xVal, yVal);
 }
 
@@ -153,14 +153,19 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     return self.leftPadding + index * itemWidth + itemWidth/2;
 }
 
-- (CGFloat)yPositionForDataPoint:(ARGraphDataPoint*)dataPoint inHeight:(CGFloat)height
+- (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height
 {
-    CGFloat range = self.maxDataPoint.yValue - self.minDataPoint.yValue;
-    CGFloat availableHeight = height - self.topPadding - self.topPadding;
-    CGFloat normalizedDataPointYValue = dataPoint.yValue - self.minDataPoint.yValue;
+    CGFloat range = self.yMax - self.yMin;
+    CGFloat availableHeight = height - self.topPadding - self.bottomPadding;
+    CGFloat normalizedDataPointYValue = dataPoint - self.yMin;
+    
     CGFloat percentageOfDataPointToRange =  (normalizedDataPointYValue / range);
     CGFloat inversePercentage = 1.0 - percentageOfDataPointToRange; // Must invert because the greater the value the higher we want it on the chart which is a smaller y value on a iOS coordinate system
-    return self.topPadding + inversePercentage * availableHeight;
+    if(range == 0){
+        return NSNotFound;
+    }else{
+        return self.topPadding + inversePercentage * availableHeight;
+    }
 }
 
 - (void)dealloc
@@ -171,7 +176,7 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 
 - (void)drawInContext:(CGContextRef)ctx
 {
-    if(self.dataPoints.count < 1 || self.minDataPoint == nil || self.maxDataPoint == nil){
+    if(self.dataPoints.count < 1){
         return;
     }
     _dataCount = [self.dataPoints count];

@@ -45,8 +45,8 @@
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
     self.chart.dataSource = self;
     
-    self.timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+//    self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
+//    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 /*

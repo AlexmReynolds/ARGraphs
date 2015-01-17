@@ -43,30 +43,9 @@
 
 - (void)setMaxMinMean
 {
-    CGFloat __block minYValue = CGFLOAT_MAX;
-    CGFloat __block maxYValue = CGFLOAT_MIN;
-    CGFloat __block ySum = 0;
-    
-    [self.datapoints enumerateObjectsUsingBlock:^(ARGraphDataPoint *dp, NSUInteger idx, BOOL *stop) {
-        if(dp.yValue < minYValue){
-            minYValue = dp.yValue;
-        }
-        if(dp.yValue > maxYValue){
-            maxYValue = dp.yValue;
-            
-        }
-        ySum += dp.yValue;
-    }];
-    
-    _yMax = maxYValue;
-    _yMin = minYValue;
-    
-    if(ySum){
-        _yMean = ySum / self.datapoints.count;
-    }else {
-        _yMean = ySum;
-    }
-    
+    _yMax = [[self.datapoints valueForKeyPath:@"@max.yValue"] integerValue];
+    _yMin = [[self.datapoints valueForKeyPath:@"@min.yValue"] integerValue];
+    _yMean = [[self.datapoints valueForKeyPath:@"@avg.yValue"] integerValue];
 }
 
 - (void)updateMinMaxMean:(ARGraphDataPoint*)newDataPoint
@@ -74,6 +53,6 @@
     _yMin = MIN(_yMin, newDataPoint.yValue);
     _yMax = MAX(_yMax, newDataPoint.yValue);
     _realMean = (_realMean * self.datapoints.count + newDataPoint.yValue)/(float)(self.datapoints.count + 1);
-    _yMean = floor(_realMean); // round up
+    _yMean = floor(_realMean); // round down
 }
 @end

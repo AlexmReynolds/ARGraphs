@@ -20,18 +20,15 @@
 
 @implementation ARGraphViewController
 
+#pragma mark - View Life Cycle
 - (void)viewDidLoad {
-    self.graphDataPoints = [[NSMutableArray alloc] init];
+    [super viewDidLoad];
+    
+    self.graphDataPoints = [NSMutableArray array];
     self.settingsTable = [self.childViewControllers lastObject];
     self.settingsTable.delegate = self;
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -44,20 +41,14 @@
     self.chart.tintColor = self.settingsTable.chartColor;
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
     self.chart.dataSource = self;
-    
+
+    for (NSInteger i = 0; i < 75; i++) {
+        [self createDataPoint];
+    }
 //    self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
 //    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (void)createDataPoint
 {
     [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:1 y:self.graphDataPoints.count]];
@@ -77,9 +68,7 @@
 - (NSString *)titleForGraph:(ARGraph *)graph
 {
     return self.settingsTable.titleText;
-
 }
-
 
 - (void)settingsChanged
 {

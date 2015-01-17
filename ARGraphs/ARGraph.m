@@ -57,15 +57,18 @@
         [self.layer insertSublayer:_background atIndex:0];
         
         _pointsLayer = [ARGraphPointsLayer layer];
+        _pointsLayer.shouldRasterize = YES;
         _pointsLayer.frame = self.bounds;
         [self.layer addSublayer:_pointsLayer];
         
         _minMaxLayer = [ARYMinMaxLayer layer];
+        _minMaxLayer.shouldRasterize = YES;
         _minMaxLayer.frame = self.bounds;
         
         [self.layer addSublayer:_minMaxLayer];
         
         _meanLayer = [ARMeanLineLayer layer];
+        _meanLayer.shouldRasterize = YES;
         _meanLayer.frame = self.bounds;
         
         [self.layer addSublayer:_meanLayer];

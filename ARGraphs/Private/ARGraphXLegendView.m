@@ -107,14 +107,10 @@
         if(labelIndex == _totalNumberOfLabels - 1){ // lastIndex
             dpIndex = _numberOfDataPoints -1;
         }else {
-            dpIndex = labelIndex * (_numberOfDataPoints / _totalNumberOfLabels);
-            // 1/14
-            // 1/42
-            // make common denominator
-            dpIndex = ((float)(labelIndex / (float)_totalNumberOfLabels)) * (float)_numberOfDataPoints;
+            CGFloat increment = (float)_numberOfDataPoints / ((float)_totalNumberOfLabels - 1.0);
+            dpIndex = ceil((float)labelIndex * increment);
             
         }
-      //  NSLog(@"LT:%lu DPT:%lu LI:%lu DPI:%lu", (unsigned long)_totalNumberOfLabels, (unsigned long)_numberOfDataPoints, (unsigned long)labelIndex, (unsigned long)dpIndex);
     }
     return dpIndex;
 }

@@ -11,6 +11,7 @@
 		5493DA351A64A9BD00FB10ED /* ARMeanLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA311A64A9BD00FB10ED /* ARMeanLineLayer.m */; };
 		5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA331A64A9BD00FB10ED /* ARYMinMaxLayer.m */; };
 		E71233AD1A69D61B0034E447 /* ARGraphDataPointUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AC1A69D61B0034E447 /* ARGraphDataPointUtility.m */; };
+		E71233B01A6D6F430034E447 /* ARGraphXLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */; };
 		E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */; };
 		E7B2A6361A64A44D00FD402E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6341A64A44D00FD402E /* Info.plist */; };
 		E7B2A6371A64A44D00FD402E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6351A64A44D00FD402E /* main.m */; };
@@ -43,6 +44,8 @@
 		5493DA331A64A9BD00FB10ED /* ARYMinMaxLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARYMinMaxLayer.m; path = Private/ARYMinMaxLayer.m; sourceTree = "<group>"; };
 		E71233AB1A69D61B0034E447 /* ARGraphDataPointUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphDataPointUtility.h; path = Private/ARGraphDataPointUtility.h; sourceTree = "<group>"; };
 		E71233AC1A69D61B0034E447 /* ARGraphDataPointUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphDataPointUtility.m; path = Private/ARGraphDataPointUtility.m; sourceTree = "<group>"; };
+		E71233AE1A6D6F430034E447 /* ARGraphXLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphXLegendView.h; path = Private/ARGraphXLegendView.h; sourceTree = "<group>"; };
+		E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphXLegendView.m; path = Private/ARGraphXLegendView.m; sourceTree = "<group>"; };
 		E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGraphsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGraphsDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C71A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -85,6 +88,8 @@
 		5493DA2D1A64A9AB00FB10ED /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				E71233AE1A6D6F430034E447 /* ARGraphXLegendView.h */,
+				E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */,
 				E71233AB1A69D61B0034E447 /* ARGraphDataPointUtility.h */,
 				E71233AC1A69D61B0034E447 /* ARGraphDataPointUtility.m */,
 				5493DA2E1A64A9BD00FB10ED /* ARGraphPointsLayer.h */,
@@ -282,6 +287,7 @@
 				E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */,
 				E71233AD1A69D61B0034E447 /* ARGraphDataPointUtility.m in Sources */,
 				E7B2A63F1A64A45A00FD402E /* ARGraphSettingsTableViewController.m in Sources */,
+				E71233B01A6D6F430034E447 /* ARGraphXLegendView.m in Sources */,
 				5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

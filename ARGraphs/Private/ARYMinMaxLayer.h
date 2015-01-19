@@ -14,6 +14,7 @@
 @property (nonatomic) NSInteger yMin;
 
 @property (nonatomic) CGColorRef lineColor;
+@property (nonatomic) CGColorRef labelColor;
 
 @property (nonatomic) CGFloat topPadding;
 @property (nonatomic) CGFloat bottomPadding;

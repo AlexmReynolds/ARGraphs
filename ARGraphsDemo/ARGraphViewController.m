@@ -41,17 +41,15 @@
     self.chart.tintColor = self.settingsTable.chartColor;
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
     self.chart.dataSource = self;
-
-    for (NSInteger i = 0; i < 75; i++) {
-        [self createDataPoint];
-    }
-//    self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
+    
+    self.chart.labelColor = [UIColor whiteColor];
+//    self.timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
 //    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)createDataPoint
 {
-    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:1 y:self.graphDataPoints.count]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:self.graphDataPoints.count y:self.graphDataPoints.count]];
     [self.chart appendDataPoint:[self.graphDataPoints lastObject]];
 }
 

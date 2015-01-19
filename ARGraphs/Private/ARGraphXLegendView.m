@@ -25,9 +25,9 @@
 - (void)reloadData
 {
     _numberOfDataPoints = [self.delegate numberOfDataPoints];
-    NSUInteger newNumber = [self numberOfLabelsForWidth:self.bounds.size.width];
-    if(newNumber != _totalNumberOfLabels){
-        _totalNumberOfLabels = MIN(newNumber, _numberOfDataPoints);
+    NSUInteger canFit = [self numberOfLabelsForWidth:self.bounds.size.width];
+    if(canFit != _totalNumberOfLabels){
+        _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
         [self createLabels];
         // re-layout
     }else{
@@ -39,9 +39,9 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    NSUInteger newNumber = [self numberOfLabelsForWidth:self.bounds.size.width];
-    if(newNumber != _totalNumberOfLabels || newNumber < _numberOfDataPoints){
-        _totalNumberOfLabels = MIN(newNumber, _numberOfDataPoints);
+    NSUInteger canFit = [self numberOfLabelsForWidth:self.bounds.size.width];
+    if(canFit != _totalNumberOfLabels){
+        _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
         [self createLabels];
         // re-layout
     }else{
@@ -114,7 +114,7 @@
             dpIndex = ((float)(labelIndex / (float)_totalNumberOfLabels)) * (float)_numberOfDataPoints;
             
         }
-        NSLog(@"LT:%lu DPT:%lu LI:%lu DPI:%lu", (unsigned long)_totalNumberOfLabels, (unsigned long)_numberOfDataPoints, (unsigned long)labelIndex, (unsigned long)dpIndex);
+      //  NSLog(@"LT:%lu DPT:%lu LI:%lu DPI:%lu", (unsigned long)_totalNumberOfLabels, (unsigned long)_numberOfDataPoints, (unsigned long)labelIndex, (unsigned long)dpIndex);
     }
     return dpIndex;
 }

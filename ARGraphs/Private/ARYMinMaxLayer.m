@@ -37,6 +37,7 @@
 - (void)dealloc
 {
     CGColorRelease(self.lineColor);
+    CGColorRelease(self.labelColor);
 }
 
 - (void)setLineColor:(CGColorRef)lineColor
@@ -46,6 +47,15 @@
     self.maxTextLayer.foregroundColor = self.lineColor;
     [self setNeedsDisplay];
 }
+
+- (void)setLabelColor:(CGColorRef)labelColor
+{
+    _labelColor = labelColor;
+    self.minTextLayer.foregroundColor = labelColor;
+    self.maxTextLayer.foregroundColor = labelColor;
+    [self setNeedsDisplay];
+}
+
 
 - (void)setYMax:(NSInteger)yMax
 {
@@ -135,7 +145,7 @@
         //        CGFloat offset = [self sizeOfText:@"one line" forFont:self.font].height;
 
         [textLayer setString:@"Hello World"];
-        [textLayer setForegroundColor:self.lineColor];
+        [textLayer setForegroundColor:self.labelColor];
         [textLayer setFontSize:12.0];
         CGFontRef font = CGFontCreateWithFontName((CFStringRef)@"Helvetica"); //NEED TO RELEASE
         textLayer.font = font;
@@ -158,7 +168,7 @@
         //        CGFloat offset = [self sizeOfText:@"one line" forFont:self.font].height;
  
         [textLayer setString:@"Hello World"];
-        [textLayer setForegroundColor:self.lineColor];
+        [textLayer setForegroundColor:self.labelColor];
         [textLayer setFontSize:12.0];
         CGFontRef font = CGFontCreateWithFontName((CFStringRef)@"Helvetica"); //NEED TO RELEASE
         textLayer.font = font;

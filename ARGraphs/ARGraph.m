@@ -10,9 +10,10 @@
 #import "ARGraphPointsLayer.h"
 #import "ARYMinMaxLayer.h"
 #import "ARMeanLineLayer.h"
+#import "ARGraphXLegendView.h"
 #import "ARGraphDataPointUtility.h"
 
-@interface ARGraph ()
+@interface ARGraph ()<ARGraphXLegendDelegate>
 
 //UI
 @property (strong, nonatomic) NSLayoutConstraint *xAxisHeightConstraint;
@@ -22,7 +23,7 @@
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *subtitleLabel;
 
-@property (nonatomic, strong) UIView *xAxisContainerView;
+@property (nonatomic, strong) ARGraphXLegendView *xAxisContainerView;
 @property (nonatomic, strong) UIView *yAxisContainerView;
 @property (nonatomic, strong) UIView *titleContainerView;
 
@@ -187,6 +188,12 @@
     self.minMaxLayer.lineColor = lineColor.CGColor;
     self.meanLayer.lineColor = lineColor.CGColor;
 }
+- (void)setLabelColor:(UIColor *)labelColor
+{
+    _labelColor = labelColor;
+    self.xAxisContainerView.labelColor = labelColor;
+  //  self.minMaxLayer.labelColor = labelColor.CGColor;
+}
 
 #pragma mark - Getters
 
@@ -214,14 +221,6 @@
     self.dataPoints = temp;
     [self.dataPointUtility appendDataPoint:dataPoint];
     [self reloadData];
-}
-
-- (UIColor *)labelColor
-{
-    if(_labelColor == nil){
-        _labelColor = [UIColor whiteColor];
-    }
-    return _labelColor;
 }
 
 - (void)setTintColor:(UIColor *)tintColor
@@ -256,8 +255,9 @@
 - (void)reloadData
 {
     if(self.showXLegend){
-        [self setupXLegend];
+        [self.xAxisContainerView reloadData];
     }
+    
     
     if([self.dataSource respondsToSelector:@selector(titleForGraph:)]){
         self.titleLabel.text = [self.dataSource titleForGraph:self] ?: @"";
@@ -284,38 +284,17 @@
 
     //purge
 }
-
-- (void)setupXLegend
+#pragma mark - X Legend Delegate
+- (NSString *)xLegend:(ARGraphXLegendView *)lengend labelForXLegendAtIndex:(NSUInteger)index
 {
-    NSUInteger count = self.dataCount;
-    [[self.xAxisContainerView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    for (int x = 0; x < count; x++) {
-        [self.xAxisContainerView addSubview:[self labelForXAxisIndex:x]];
-    }
-}
-
-- (UILabel*)labelForXAxisIndex:(NSInteger)index
-{
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = self.labelColor;
     ARGraphDataPoint *dp = [self.dataPoints objectAtIndex:index];
-    if(index == 0 && self.xAxisTitle){
-        label.text = [NSString stringWithFormat:@"%@%li", self.xAxisTitle, (long)dp.xValue];
-
-    }else{
-        label.text = [NSString stringWithFormat:@"%li", (long)dp.xValue];
-    }
-    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    
-    [label sizeToFit];
-    CGRect frame = label.frame;
-    CGFloat centerPoint = [self xPositionForDataPointIndex:index totalPoints:self.dataCount inWidth:self.xAxisContainerView.frame.size.width];
-    
-    frame.origin.x = centerPoint - frame.size.width/2;
-    label.frame = frame;
-    return label;
+    return [NSString stringWithFormat:@"%ld", (long)dp.xValue];
 }
 
+- (NSUInteger)numberOfDataPoints
+{
+    return self.dataPoints.count;
+}
 #pragma mark - View Creation
 
 - (CAGradientLayer*) makeGradientWithColor:(UIColor*)color {
@@ -360,9 +339,9 @@
 - (UIView*)xAxisContainerView
 {
     if(_xAxisContainerView == nil){
-        UIView *view = [[UIView alloc] init];
+        ARGraphXLegendView *view = [[ARGraphXLegendView alloc] init];
         view.backgroundColor = [UIColor blueColor];
-
+        view.delegate = self;
         view.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:view];
         

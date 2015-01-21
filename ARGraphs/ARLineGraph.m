@@ -12,10 +12,13 @@
 #import "ARMeanLineLayer.h"
 #import "ARGraphXLegendView.h"
 #import "ARGraphDataPointUtility.h"
+#import "ARGraphBackground.h"
 
 @interface ARLineGraph ()<ARGraphXLegendDelegate>
 
 //UI
+@property (nonatomic, strong) ARGraphBackground *background;
+
 @property (strong, nonatomic) NSLayoutConstraint *xAxisHeightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *titleHeightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *yAxisWidthConstraint;
@@ -57,15 +60,18 @@
         [self.layer insertSublayer:_background atIndex:0];
         
         _pointsLayer = [ARGraphPointsLayer layer];
+        _pointsLayer.shouldRasterize = YES;
         _pointsLayer.frame = self.bounds;
         [self.layer addSublayer:_pointsLayer];
         
         _minMaxLayer = [ARYMinMaxLayer layer];
+        _minMaxLayer.shouldRasterize = YES;
         _minMaxLayer.frame = self.bounds;
         
         [self.layer addSublayer:_minMaxLayer];
         
         _meanLayer = [ARMeanLineLayer layer];
+        _meanLayer.shouldRasterize = YES;
         _meanLayer.frame = self.bounds;
         
         [self.layer addSublayer:_meanLayer];
@@ -96,7 +102,7 @@
 {
     _background.hidden = !useBackgroundGradient;
 }
-- (void)setDataSource:(id<ARGraphDataSource>)dataSource
+- (void)setDataSource:(id<ARLineGraphDataSource>)dataSource
 {
     _dataSource = dataSource;
     
@@ -253,9 +259,7 @@
 
 - (void)reloadData
 {
-    if(self.showXLegend){
-        [self.xAxisContainerView reloadData];
-    }
+
     _dataPoints = [[self.dataSource ARGraphDataPoints:self] copy];
     _dataPointUtility.datapoints = _dataPoints;
     
@@ -272,6 +276,10 @@
 
 - (void)updateSubLayers
 {
+    if(self.showXLegend){
+        [self.xAxisContainerView reloadData];
+    }
+    
     NSInteger yMin = [[self dataPointUtility] yMin];
     NSInteger yMax = [[self dataPointUtility] yMax];
     self.minMaxLayer.yMin = yMin;

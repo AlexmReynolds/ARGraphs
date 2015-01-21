@@ -253,8 +253,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nG9-II-9gp" id="lLt-n2-LeG">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Background Gradient" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUE-s5-B2k">
-                                                    <rect key="frame" x="8" y="11" width="153.5" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Gradient" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUE-s5-B2k">
+                                                    <rect key="frame" x="8" y="11" width="164.5" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -298,7 +298,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="colorChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="USC-yq-gNn"/>
-                                                        <action selector="colorChanged:" destination="D1P-rE-AVq" eventType="editingDidEnd" id="mvn-EG-c7i"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -330,7 +329,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="colorChanged:" destination="D1P-rE-AVq" eventType="editingDidEnd" id="PBz-d7-VKM"/>
-                                                        <action selector="colorChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="sml-2T-UdB"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -362,7 +360,6 @@
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="colorChanged:" destination="D1P-rE-AVq" eventType="editingDidEnd" id="Fg0-IK-7BS"/>
-                                                        <action selector="colorChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="qHG-HB-w7g"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -402,14 +399,14 @@
         <scene sceneID="jH0-wi-4en">
             <objects>
                 <tableViewController id="JtE-Cw-byw" customClass="ARLineGraphSettingsTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="21d-W2-upi">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="21d-W2-upi">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
                             <tableViewSection headerTitle="Labels" id="ZiD-lL-5XI">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yXo-NR-JZq">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="yXo-NR-JZq">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yXo-NR-JZq" id="0ex-nc-IEc">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -425,7 +422,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="titleChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="FPl-ec-6R5"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="NLD-Yb-GaP"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -440,7 +437,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jHk-jD-gvO">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="jHk-jD-gvO">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jHk-jD-gvO" id="P8c-IL-qRG">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -456,7 +453,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="subtitleChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="yTI-aM-Hqu"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="B1U-Vu-RcO"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -471,7 +468,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="g5T-EL-H5N">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="g5T-EL-H5N">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g5T-EL-H5N" id="xcN-q9-Few">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -479,7 +476,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pVq-wu-SZC">
                                                     <rect key="frame" x="536" y="6" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="minMaxLabels:" destination="JtE-Cw-byw" eventType="valueChanged" id="397-1L-72N"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="fWl-Mx-YxN"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Data Dots" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q3L-cC-xDe">
@@ -506,7 +503,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="3fl-F6-KAX">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="3fl-F6-KAX">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3fl-F6-KAX" id="Bnl-ja-bzA">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -514,7 +511,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W5E-v7-I1A">
                                                     <rect key="frame" x="536" y="6" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="minMaxLabels:" destination="JtE-Cw-byw" eventType="valueChanged" id="8i6-yH-g2t"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="LrW-iS-vOA"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Min Max Labels" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeS-dq-G2X">
@@ -541,7 +538,7 @@
                                             </variation>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="LUF-es-9IN">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="LUF-es-9IN">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LUF-es-9IN" id="hLm-bP-hOv">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -549,7 +546,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nnm-Ec-BC9">
                                                     <rect key="frame" x="536" y="4" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="meanLabels:" destination="JtE-Cw-byw" eventType="valueChanged" id="SCg-BF-1le"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="ygf-xm-F2i"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mean Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bpB-fD-s0J">
@@ -570,7 +567,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="W8G-Es-e3c">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="W8G-Es-e3c">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="W8G-Es-e3c" id="gsL-Ah-wAy">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -578,7 +575,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="opg-ll-qje">
                                                     <rect key="frame" x="536" y="4" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="showXLegendChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="r58-X0-7TZ"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="Omc-2d-51z"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show X Legend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6H2-7W-T1X">
@@ -599,7 +596,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="LK2-mh-jre">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="LK2-mh-jre">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LK2-mh-jre" id="P0p-tE-82c">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -607,7 +604,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b6Q-4U-VW3">
                                                     <rect key="frame" x="536" y="4" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="showYLegendChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="vH9-s3-nf5"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="Ie0-9b-a7l"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Y Legend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jah-Ii-sfa">
@@ -628,7 +625,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Qfo-1O-x5o">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Qfo-1O-x5o">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qfo-1O-x5o" id="Z8v-wq-NJF">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -636,7 +633,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xYf-Ar-8z5">
                                                     <rect key="frame" x="536" y="4" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="curveChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="7Ep-CD-DMp"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="valueChanged" id="sYT-pd-HUh"/>
                                                     </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Use Curved Plot" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRM-wI-NH2">
@@ -661,7 +658,7 @@
                             </tableViewSection>
                             <tableViewSection headerTitle="Tint Color" id="Nc1-GW-sDZ">
                                 <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qNZ-fL-1Dx">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="qNZ-fL-1Dx">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qNZ-fL-1Dx" id="W4A-wI-ath">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -677,7 +674,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="colorChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="s9V-yx-TH7"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="hDC-Y5-PNQ"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -692,7 +689,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="FvV-zo-oRt">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="FvV-zo-oRt">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FvV-zo-oRt" id="d2G-Bw-ZlF">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -708,7 +705,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="colorChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="X14-Nf-t18"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="CZj-ko-kGA"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -723,7 +720,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Aby-do-wYh">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="Aby-do-wYh">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Aby-do-wYh" id="rQQ-i4-n3B">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -739,7 +736,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <connections>
-                                                        <action selector="colorChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="wpo-Ud-FxD"/>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="sYh-R3-VEx"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>

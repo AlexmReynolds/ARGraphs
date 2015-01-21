@@ -255,17 +255,14 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
         }
     }
     
-        if(self.shouldSmooth && _dataCount > kSMOOTHING_MINIMUM){
-            [self drawSmoothLineInContext:ctx];
-            
-        }else {
-            [self drawGraphLinesInContext:ctx];
-            
-        }
-        CGContextStrokePath(ctx);
+    if(self.shouldSmooth && _dataCount > kSMOOTHING_MINIMUM){
+        [self drawSmoothLineInContext:ctx];
         
-    
-    
+    }else {
+        [self drawGraphLinesInContext:ctx];
+        
+    }
+    CGContextStrokePath(ctx);
     
     if(self.shouldFill){
         [self fillGraphInContext:ctx];

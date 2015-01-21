@@ -1,7 +1,24 @@
 # ARGraphs
-Fun graphs for iOS
- #ARLineGraph
- 
+Fun graphs for iOS. All Charts respond to the Appearance selector so you can set App wide settings in App Did finish launching.
+
+    [[ARLineGraph appearance] setLabelColor:[UIColor redColor]];
+    [[ARLineGraph appearance] setTintColor:[UIColor blueColor]];
+    [[ARLineGraph appearance] setLineColor:[UIColor redColor]];
+    [[ARLineGraph appearance] setShowXLegend:YES];
+    [[ARLineGraph appearance] setShowXLegendValues:NO];
+    [[ARLineGraph appearance] setShowDots:NO];
+    [[ARLineGraph appearance] setShowMeanLine:NO];
+    [[ARLineGraph appearance] setUseBackgroundGradient:NO];
+    [[ARLineGraph appearance] setShowMinMaxLines:NO];
+    
+    [[ARPieChart appearance] setUseBackgroundGradient:NO];
+    [[ARPieChart appearance] setLabelColor:[UIColor redColor]];
+    
+## ARLineGraph
+
+### Customizing
+
+
 ## ARPieChart
  ARPieChart represents an array of data in a pie format. The data array can either be an array of datapoints or an array of arrays of datapoint. Simple datapoints like agregated data could be like $450 spent on fast food. Complex data could be each Fast food transaction and the chart will sum up the array.
  ```[pieChart setDataPoints:@[]]```

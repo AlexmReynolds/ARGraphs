@@ -28,42 +28,42 @@
 /// @note The dataSource is not retained.
 @property (nonatomic, weak) id <ARLineGraphDataSource> dataSource;
 /// The line color of the graph line.
-@property (nonatomic, strong) UIColor *lineColor;
+@property (nonatomic, strong) UIColor *lineColor UI_APPEARANCE_SELECTOR;
 /// The label color of the graph.
-@property (nonatomic, strong) UIColor *labelColor;
+@property (nonatomic, strong) UIColor *labelColor UI_APPEARANCE_SELECTOR;
 
 /// Set to @c YES to show the Y legend on the graph. @c NO to hide.
 /// Default is @c YES.
-@property (nonatomic) BOOL showYLegend;
+@property (nonatomic) BOOL showYLegend UI_APPEARANCE_SELECTOR;
 /// Set to @c YES to show the X legend on the graph. @c NO to hide.
 /// Default is @c YES.
-@property (nonatomic) BOOL showXLegend;
+@property (nonatomic) BOOL showXLegend UI_APPEARANCE_SELECTOR;
 
-@property (nonatomic) BOOL showXLegendValues;
+@property (nonatomic) BOOL showXLegendValues UI_APPEARANCE_SELECTOR;
 
-@property (nonatomic) BOOL useBackgroundGradient;
+@property (nonatomic) BOOL useBackgroundGradient UI_APPEARANCE_SELECTOR;
 
 /// Set to @c YES to only show the minimum and maximum Y legend markings on the graph. @c NO to hide.
 /// Default is @c NO.
-@property (nonatomic) BOOL showOnlyMinMaxYLegend;
+@property (nonatomic) BOOL showOnlyMinMaxYLegend UI_APPEARANCE_SELECTOR;
 
 /// Set to @c YES to show a dot at each data point
 /// Default is @c YES
-@property (nonatomic) BOOL showDots;
+@property (nonatomic) BOOL showDots UI_APPEARANCE_SELECTOR;
 /// Configure the radius of each dot. Only used if @c showDots is @c YES
-@property (nonatomic) CGFloat dotRadius;
+@property (nonatomic) CGFloat dotRadius UI_APPEARANCE_SELECTOR;
 /// Set to @c YES to shade the area under the datapoints line.
 /// Default is @c NO
-@property (nonatomic) BOOL shouldFill;
+@property (nonatomic) BOOL shouldFill UI_APPEARANCE_SELECTOR;
 /// Set to @c YES to turn the data points into a smoothed line if enough points.
 /// Default is @c NO
-@property (nonatomic) BOOL shouldSmooth;
+@property (nonatomic) BOOL shouldSmooth UI_APPEARANCE_SELECTOR;
 /// Set to @c YES to show a line at the min Y and max Y values and label each value.
 /// Default is @c YES
-@property (nonatomic) BOOL showMinMaxLines;
+@property (nonatomic) BOOL showMinMaxLines UI_APPEARANCE_SELECTOR;
 /// Set to @c YES to show an average line in the graph. @c NO to hide.
 /// Default is @c YES
-@property (nonatomic) BOOL showMeanLine;
+@property (nonatomic) BOOL showMeanLine UI_APPEARANCE_SELECTOR;
 
 #pragma mark - Methods
 /*! 

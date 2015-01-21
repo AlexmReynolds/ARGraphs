@@ -51,9 +51,7 @@
     self = [super initWithCoder:aDecoder];
     if(self){
         self.dataPointUtility = [[ARGraphDataPointUtility alloc] init];
-        self.backgroundColor = [UIColor clearColor];
-        self.labelColor = [UIColor whiteColor];
-        self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
+
         
         _background = [ARGraphBackground gradientWithColor:self.tintColor.CGColor];
         _background.frame = self.bounds;
@@ -88,6 +86,11 @@
 
 - (void)applyDefaults
 {
+    self.backgroundColor = [UIColor clearColor];
+    _labelColor = [UIColor whiteColor];
+    self.xAxisContainerView.labelColor = _labelColor;
+
+    self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
     self.showXLegend = YES;
     self.showYLegend = YES;
     self.showDots = YES;
@@ -95,7 +98,10 @@
     self.showMeanLine = YES;
     self.useBackgroundGradient = YES;
     self.showXLegendValues = YES;
-    self.lineColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+    _lineColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+    self.pointsLayer.lineColor = _lineColor.CGColor;
+    self.minMaxLayer.lineColor = _lineColor.CGColor;
+    self.meanLayer.lineColor = _lineColor.CGColor;
 }
 
 #pragma mark - Setters
@@ -201,7 +207,7 @@
 {
     _labelColor = labelColor;
     self.xAxisContainerView.labelColor = labelColor;
-  //  self.minMaxLayer.labelColor = labelColor.CGColor;
+    self.minMaxLayer.labelColor = labelColor.CGColor;
 }
 
 - (void)setShowXLegendValues:(BOOL)showXLegendValues

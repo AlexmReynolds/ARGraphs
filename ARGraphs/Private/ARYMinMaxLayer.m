@@ -43,14 +43,12 @@
 - (void)setLineColor:(CGColorRef)lineColor
 {
     _lineColor = CGColorCreateCopy(lineColor);
-    self.minTextLayer.foregroundColor = self.lineColor;
-    self.maxTextLayer.foregroundColor = self.lineColor;
     [self setNeedsDisplay];
 }
 
 - (void)setLabelColor:(CGColorRef)labelColor
 {
-    _labelColor = labelColor;
+    _labelColor = CGColorCreateCopy(labelColor);
     self.minTextLayer.foregroundColor = labelColor;
     self.maxTextLayer.foregroundColor = labelColor;
     [self setNeedsDisplay];

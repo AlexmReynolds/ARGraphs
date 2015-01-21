@@ -14,11 +14,11 @@
 @interface ARPieChart : UIView
 @property (nonatomic, weak) id <ARPieChartDataSource> dataSource;
 
-@property (nonatomic, strong) UIColor *labelColor;
-@property (nonatomic) CGFloat sliceGutterWidth;
-@property (nonatomic) CGFloat innerRadiusPercent;
-@property (nonatomic) BOOL useBackgroundGradient;
-@property (nonatomic) UIEdgeInsets insets;
+@property (nonatomic, strong) UIColor *labelColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic) CGFloat sliceGutterWidth UI_APPEARANCE_SELECTOR;
+@property (nonatomic) CGFloat innerRadiusPercent UI_APPEARANCE_SELECTOR;
+@property (nonatomic) BOOL useBackgroundGradient UI_APPEARANCE_SELECTOR;
+@property (nonatomic) UIEdgeInsets insets UI_APPEARANCE_SELECTOR;
 @end
 
 @protocol ARPieChartDataSource <NSObject>

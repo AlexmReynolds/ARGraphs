@@ -25,6 +25,17 @@
 }
 */
 
+#pragma mark - Setters
+
+- (void)setLabelColor:(UIColor *)labelColor
+{
+    _labelColor = labelColor;
+    _titleLabel.textColor = labelColor;
+    [_labels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
+        label.textColor = labelColor;
+    }];
+}
+
 - (void)reloadData
 {
     _numberOfDataPoints = [self.delegate numberOfDataPoints];
@@ -93,6 +104,7 @@
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
         NSUInteger dpIndex = [self dataPointIndexForLabelIndex:index];
         if(dpIndex != NSNotFound){
+            label.textColor = self.labelColor;
             label.text = [self stringForXLegendAtIndex:dpIndex];
             [self updateFrameOfLabel:label atIndex:index];
         }

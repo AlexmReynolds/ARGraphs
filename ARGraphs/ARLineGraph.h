@@ -27,6 +27,8 @@
 
 @property (nonatomic) BOOL showYLegend;
 @property (nonatomic) BOOL showXLegend;
+@property (nonatomic) BOOL useBackgroundGradient;
+
 @property (nonatomic) BOOL showOnlyMinMaxYLegend;
 
 

@@ -49,7 +49,6 @@
     if(self){
         self.dataPointUtility = [[ARGraphDataPointUtility alloc] init];
         self.backgroundColor = [UIColor clearColor];
-
         self.labelColor = [UIColor whiteColor];
         self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
         
@@ -88,11 +87,15 @@
     self.showDots = YES;
     self.showMinMaxLines = YES;
     self.showMeanLine = YES;
+    self.useBackgroundGradient = YES;
     self.lineColor = [UIColor colorWithWhite:1.0 alpha:0.6];
 }
 
 #pragma mark - Setters
-
+- (void)setUseBackgroundGradient:(BOOL)useBackgroundGradient
+{
+    _background.hidden = !useBackgroundGradient;
+}
 - (void)setDataSource:(id<ARGraphDataSource>)dataSource
 {
     _dataSource = dataSource;

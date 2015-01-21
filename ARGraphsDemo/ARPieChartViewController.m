@@ -26,7 +26,7 @@
     self.chart.innerRadiusPercent = self.settingsTable.innerRadiusPercent;
     self.chart.sliceGutterWidth = self.settingsTable.sliceInset;
     self.chart.tintColor = self.settingsTable.chartColor;
-    self.chart.background.hidden = self.settingsTable.backgroundHidden;
+    self.chart.useBackgroundGradient = self.settingsTable.useBackgroundGradient;
 
     // Do any additional setup after loading the view.
 }
@@ -62,6 +62,6 @@
     self.chart.innerRadiusPercent = self.settingsTable.innerRadiusPercent;
     self.chart.sliceGutterWidth = self.settingsTable.sliceInset;
     self.chart.tintColor = self.settingsTable.chartColor;
-    self.chart.background.hidden = self.settingsTable.backgroundHidden;
+    self.chart.useBackgroundGradient = self.settingsTable.useBackgroundGradient;
 }
 @end

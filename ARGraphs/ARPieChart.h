@@ -8,17 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "ARGraphDataPoint.h"
-#import "ARGraphBackground.h"
 
 @protocol ARPieChartDataSource;
 
 @interface ARPieChart : UIView
 @property (nonatomic, weak) id <ARPieChartDataSource> dataSource;
-@property (nonatomic, strong) ARGraphBackground *background;
 
 @property (nonatomic, strong) UIColor *labelColor;
 @property (nonatomic) CGFloat sliceGutterWidth;
 @property (nonatomic) CGFloat innerRadiusPercent;
+@property (nonatomic) BOOL useBackgroundGradient;
 
 @end
 

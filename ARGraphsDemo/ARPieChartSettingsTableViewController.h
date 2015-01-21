@@ -17,7 +17,7 @@
 @property (nonatomic, weak) id <ARPieChartTableSettingsDelegate> delegate;
 @property (nonatomic) CGFloat sliceInset;
 @property (nonatomic) CGFloat innerRadiusPercent;
-@property (nonatomic) BOOL backgroundHidden;
+@property (nonatomic) BOOL useBackgroundGradient;
 
 @property (nonatomic, strong) UIColor *chartColor;
 

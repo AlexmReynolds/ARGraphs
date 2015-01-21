@@ -53,7 +53,7 @@
     return [UIColor colorWithRed:red/255 green:green/255 blue:blue/255 alpha:1.0];
 }
 
-- (BOOL)backgroundHidden
+- (BOOL)useBackgroundGradient
 {
     return self.backgroundHiddenSwitch.on;
 }

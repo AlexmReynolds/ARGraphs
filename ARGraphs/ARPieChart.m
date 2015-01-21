@@ -9,11 +9,14 @@
 #import "ARPieChart.h"
 #import "ARPieChartDataPointUtility.h"
 #import "ARPieChartLayer.h"
+#import "ARGraphBackground.h"
+
 
 @interface ARPieChart ()
 
 @property (nonatomic, strong) ARPieChartDataPointUtility *dataPointUtility;
 @property (nonatomic, strong) ARPieChartLayer *pieLayer;
+@property (nonatomic, strong) ARGraphBackground *background;
 
 @property (nonatomic) NSUInteger dataCount;
 @property (nonatomic, strong) NSArray *dataPoints;
@@ -38,11 +41,17 @@
         _pieLayer = [ARPieChartLayer layer];
         _pieLayer.frame = self.bounds;
         [self.layer addSublayer:_pieLayer];
+        
+        self.useBackgroundGradient = YES;
     }
     return self;
 }
 
 #pragma mark - Setters
+- (void)setUseBackgroundGradient:(BOOL)useBackgroundGradient
+{
+    _background.hidden = !useBackgroundGradient;
+}
 
 - (void)setDataSource:(id<ARPieChartDataSource>)dataSource
 {

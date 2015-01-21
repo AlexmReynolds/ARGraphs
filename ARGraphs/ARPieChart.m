@@ -51,6 +51,8 @@
     self.insets = UIEdgeInsetsMake(8, 8, 8, 8);
     self.pieLayer.bottomPadding = self.insets.bottom;
     self.pieLayer.topPadding = self.insets.top;
+    self.pieLayer.leftPadding = self.insets.left;
+    self.pieLayer.rightPadding = self.insets.right;
 
 }
 #pragma mark - Setters
@@ -88,6 +90,7 @@
 {
     self.pieLayer.sliceGutterWidth = sliceGutterWidth;
 }
+
 - (void)reloadData
 {    
     _pieLayer.percentages = [self.dataPointUtility percentages];
@@ -95,8 +98,6 @@
     [_pieLayer animate];
 
     [_pieLayer setNeedsDisplay];
-    
-
 }
 
 - (NSUInteger)dataCount

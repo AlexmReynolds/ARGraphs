@@ -9,7 +9,25 @@
 #import <Foundation/Foundation.h>
 
 @interface ARGraphDataPoint : NSObject
+
+/*!
+ Create a data point with a specific @c x and @c y value.
+ 
+ @param x value to save in @c xValue property
+ @param y value to save in @c yValue property
+ */
++ (instancetype)dataPointWithX:(NSInteger)x y:(NSInteger)y;
+
+/*!
+ Create a data point with a specific @c x and @c y value.
+ 
+ @param x value to save in @c xValue property
+ @param y value to save in @c yValue property
+ */
 - (instancetype)initWithX:(NSInteger)xValue y:(NSInteger)yValue;
+
+/// x point value
 @property (nonatomic) NSInteger xValue;
+/// y point value
 @property (nonatomic) NSInteger yValue;
 @end

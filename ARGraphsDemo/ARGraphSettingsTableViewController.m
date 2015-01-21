@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Alex Reynolds. All rights reserved.
 //
 
-#import "ARLineGraphSettingsTableViewController.h"
+#import "ARGraphSettingsTableViewController.h"
 
-@interface ARLineGraphSettingsTableViewController ()
+@interface ARGraphSettingsTableViewController ()
 @property (weak, nonatomic) IBOutlet UISwitch *showDotsSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *showMeanSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *showMinMaxSwitch;
@@ -22,44 +22,37 @@
 @property (weak, nonatomic) IBOutlet UITextField *blueTintValue;
 @end
 
-@implementation ARLineGraphSettingsTableViewController
+@implementation ARGraphSettingsTableViewController
 
+#pragma mark - View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+#pragma mark - Getters
 - (BOOL)showDots
 {
     return self.showDotsSwitch.on;
-
 }
+
 - (BOOL)showMean
 {
     return self.showMeanSwitch.on;
 }
+
 - (BOOL)showMinMax
 {
     return self.showMinMaxSwitch.on;
 }
-- (BOOL)showXLegend{
-    return self.showXLegendSwitch.on;
 
+- (BOOL)showXLegend
+{
+    return self.showXLegendSwitch.on;
 }
 
 - (BOOL)showYLegend
 {
     return self.showYLegendSwitch.on;
-
 }
 
 - (BOOL)showCurvedLine{
@@ -86,12 +79,9 @@
     return [UIColor colorWithRed:red/255 green:green/255 blue:blue/255 alpha:1.0];
 }
 
-- (IBAction)colorChanged:(id)sender {
-    [self settingWasChanged];
-}
+#pragma mark - Actions
 - (IBAction)settingChanged:(id)sender {
     [self settingWasChanged];
-
 }
 
 - (void)settingWasChanged

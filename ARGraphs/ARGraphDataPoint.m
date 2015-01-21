@@ -9,6 +9,11 @@
 #import "ARGraphDataPoint.h"
 
 @implementation ARGraphDataPoint
+
++ (instancetype)dataPointWithX:(NSInteger)x y:(NSInteger)y {
+    return [[self alloc] initWithX:x y:y];
+}
+
 - (instancetype)initWithX:(NSInteger)xValue y:(NSInteger)yValue
 {
     self = [super init];

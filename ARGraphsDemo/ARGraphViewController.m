@@ -9,7 +9,7 @@
 #import "ARGraphViewController.h"
 #import "ARLineGraph.h"
 #import "ARLineGraphSettingsTableViewController.h"
-@interface ARGraphViewController ()<ARGraphDataSource, ARGraphTableSettingsDelegate>
+@interface ARGraphViewController ()<ARLineGraphDataSource, ARGraphTableSettingsDelegate>
 @property (weak, nonatomic) IBOutlet ARLineGraph *chart;
 @property (nonatomic, weak) ARLineGraphSettingsTableViewController *settingsTable;
 
@@ -20,18 +20,15 @@
 
 @implementation ARGraphViewController
 
+#pragma mark - View Life Cycle
 - (void)viewDidLoad {
-    self.graphDataPoints = [[NSMutableArray alloc] init];
+    [super viewDidLoad];
+    
+    self.graphDataPoints = [NSMutableArray array];
     self.settingsTable = [self.childViewControllers lastObject];
     self.settingsTable.delegate = self;
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -44,6 +41,7 @@
     self.chart.tintColor = self.settingsTable.chartColor;
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
     self.chart.dataSource = self;
+    
     self.chart.labelColor = [UIColor whiteColor];
     
     NSInteger perPopData = 10;
@@ -51,19 +49,10 @@
         [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:arc4random()%8]];
     }
     [self.chart reloadData];
-    self.timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+  //  self.timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
+ //   [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (void)createDataPoint
 {
     [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:arc4random()%8]];
@@ -83,9 +72,7 @@
 - (NSString *)titleForGraph:(ARLineGraph *)graph
 {
     return self.settingsTable.titleText;
-
 }
-
 
 - (void)settingsChanged
 {

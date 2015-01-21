@@ -23,7 +23,7 @@
 #pragma mark - View Life Cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.title = @"Line Graph";
     self.graphDataPoints = [NSMutableArray array];
     self.settingsTable = [self.childViewControllers lastObject];
     self.settingsTable.delegate = self;

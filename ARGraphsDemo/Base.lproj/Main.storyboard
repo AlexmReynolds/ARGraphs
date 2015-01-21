@@ -71,10 +71,10 @@
             </objects>
             <point key="canvasLocation" x="-1162" y="1078"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Charts & Graphs-->
         <scene sceneID="PPv-fd-cfO">
             <objects>
-                <tableViewController id="rWl-Nu-6Ge" sceneMemberID="viewController">
+                <tableViewController title="Charts &amp; Graphs" id="rWl-Nu-6Ge" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="bAn-Nh-Ele">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -7,11 +7,11 @@
 //
 
 #import "ARGraphViewController.h"
-#import "ARGraph.h"
-#import "ARGraphSettingsTableViewController.h"
+#import "ARLineGraph.h"
+#import "ARLineGraphSettingsTableViewController.h"
 @interface ARGraphViewController ()<ARGraphDataSource, ARGraphTableSettingsDelegate>
-@property (weak, nonatomic) IBOutlet ARGraph *chart;
-@property (nonatomic, weak) ARGraphSettingsTableViewController *settingsTable;
+@property (weak, nonatomic) IBOutlet ARLineGraph *chart;
+@property (nonatomic, weak) ARLineGraphSettingsTableViewController *settingsTable;
 
 @property (nonatomic,strong) NSMutableArray *graphDataPoints;
 
@@ -45,8 +45,8 @@
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
     self.chart.dataSource = self;
     self.chart.labelColor = [UIColor whiteColor];
-//    self.timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
-//    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    self.timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 /*
@@ -60,21 +60,21 @@
 */
 - (void)createDataPoint
 {
-    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:self.graphDataPoints.count y:self.graphDataPoints.count]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:arc4random()%8]];
     [self.chart appendDataPoint:[self.graphDataPoints lastObject]];
 }
 
-- (NSArray*)ARGraphDataPoints:(ARGraph *)graph
+- (NSArray*)ARGraphDataPoints:(ARLineGraph *)graph
 {
     return self.graphDataPoints;
 }
 
-- (NSString *)subTitleForGraph:(ARGraph *)graph
+- (NSString *)subTitleForGraph:(ARLineGraph *)graph
 {
     return self.settingsTable.subTitleText;
 }
 
-- (NSString *)titleForGraph:(ARGraph *)graph
+- (NSString *)titleForGraph:(ARLineGraph *)graph
 {
     return self.settingsTable.titleText;
 

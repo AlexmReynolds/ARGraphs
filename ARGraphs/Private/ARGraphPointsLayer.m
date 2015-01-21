@@ -9,8 +9,7 @@
 #import "ARGraphPointsLayer.h"
 #import "ARGraphDataPoint.h"
 //
-//#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
-//#define RADIANS_TO_DEGREES(radians) ((radians) * 180.0 / M_PI)
+
 
 static const NSInteger kSMOOTHING_MINIMUM = 20;
 

@@ -16,7 +16,7 @@
 
 @protocol ARGraphDataSource;
 
-@interface ARGraph : UIView
+@interface ARLineGraph : UIView
 @property (strong, nonatomic) IBOutlet UIView *view;
 
 @property (nonatomic, weak) id <ARGraphDataSource> dataSource;
@@ -54,11 +54,12 @@
 @end
 
 @protocol ARGraphDataSource <NSObject>
-
-- (NSArray*)ARGraphDataPoints:(ARGraph*)graph;
-- (NSString*)titleForGraph:(ARGraph*)graph;
-- (NSString*)subTitleForGraph:(ARGraph*)graph;
-- (NSString*)ARGraphTitleForXAxis:(ARGraph *)graph;
-- (NSString*)ARGraphTitleForYAxis:(ARGraph *)graph;
+@required
+- (NSArray*)ARGraphDataPoints:(ARLineGraph*)graph;
+@optional
+- (NSString*)titleForGraph:(ARLineGraph*)graph;
+- (NSString*)subTitleForGraph:(ARLineGraph*)graph;
+- (NSString*)ARGraphTitleForXAxis:(ARLineGraph *)graph;
+- (NSString*)ARGraphTitleForYAxis:(ARLineGraph *)graph;
 
 @end

@@ -6,14 +6,15 @@
 //  Copyright (c) 2015 Cyclr. All rights reserved.
 //
 
-#import "ARGraph.h"
+#import "ARLineGraph.h"
 #import "ARGraphPointsLayer.h"
 #import "ARYMinMaxLayer.h"
 #import "ARMeanLineLayer.h"
+#import "ARGraphBackground.h"
 #import "ARGraphXLegendView.h"
 #import "ARGraphDataPointUtility.h"
 
-@interface ARGraph ()<ARGraphXLegendDelegate>
+@interface ARLineGraph ()<ARGraphXLegendDelegate>
 
 //UI
 @property (strong, nonatomic) NSLayoutConstraint *xAxisHeightConstraint;
@@ -28,7 +29,7 @@
 @property (nonatomic, strong) UIView *titleContainerView;
 
 
-@property (nonatomic, strong) CAGradientLayer *background;
+@property (nonatomic, strong) ARGraphBackground *background;
 @property (nonatomic, strong) ARGraphPointsLayer *pointsLayer;
 @property (nonatomic, strong) ARYMinMaxLayer *minMaxLayer;
 @property (nonatomic, strong) ARMeanLineLayer *meanLayer;
@@ -42,7 +43,7 @@
 
 @end
 
-@implementation ARGraph
+@implementation ARLineGraph
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -53,7 +54,7 @@
         self.labelColor = [UIColor whiteColor];
         self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
         
-        _background = [self makeGradientWithColor:self.tintColor];
+        _background = [ARGraphBackground gradientWithColor:self.tintColor.CGColor];
         _background.frame = self.bounds;
         [self.layer insertSublayer:_background atIndex:0];
         
@@ -227,10 +228,8 @@
 {
     [super setTintColor:tintColor];
     if(_background != nil){
-        [_background removeFromSuperlayer];
-        _background = [self makeGradientWithColor:tintColor];
+        self.background.color = tintColor.CGColor;
         _background.frame = self.bounds;
-        [self.layer insertSublayer:_background atIndex:0];
     }
 
 }
@@ -296,24 +295,6 @@
     return self.dataPoints.count;
 }
 #pragma mark - View Creation
-
-- (CAGradientLayer*) makeGradientWithColor:(UIColor*)color {
-    
-    UIColor *colorOne = [self lightenColor:color withPercent:0.2];
-    UIColor *colorTwo = [self darkenColor:color withPercent:0.2];
-    
-    NSArray *colors = [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor, nil];
-    NSNumber *stopOne = [NSNumber numberWithFloat:0.0];
-    NSNumber *stopTwo = [NSNumber numberWithFloat:1.0];
-    
-    NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
-    
-    CAGradientLayer *headerLayer = [CAGradientLayer layer];
-    headerLayer.colors = colors;
-    headerLayer.locations = locations;
-    
-    return headerLayer;
-}
 
 - (UIView *)titleContainerView
 {
@@ -442,58 +423,4 @@
     
     return size;
 }
-
-- (UIColor *)darkenColor:(UIColor*)color withPercent:(CGFloat)percent {
-    percent = fabs(percent);
-    UIColor *clr = nil;
-    while (percent > 1.0f) {
-        percent /= 10.0f;
-    }
-    
-    percent = 1 - percent;
-    
-    CGColorSpaceRef colorSpace = CGColorGetColorSpace(color.CGColor);
-    
-    CGFloat hue, sat, brightness, alpha, white;
-    if (CGColorSpaceGetModel(colorSpace) == kCGColorSpaceModelRGB) {
-        if ([color getHue:&hue saturation:&sat brightness:&brightness alpha:&alpha]) {
-            clr = [UIColor colorWithHue:hue saturation:sat brightness:fabs(MIN(brightness * percent, 1.0)) alpha:alpha];
-        }
-        
-    } else if (CGColorSpaceGetModel(colorSpace) == kCGColorSpaceModelMonochrome) {
-        if ([color getWhite:&white alpha:&alpha]) {
-            clr = [UIColor colorWithWhite:fabs(MIN(white * percent, 1.0)) alpha:alpha];
-        }
-    }
-    
-    return clr;
-}
-
-- (UIColor *)lightenColor:(UIColor*)color withPercent:(CGFloat)percent {
-    percent = fabs(percent);
-    UIColor *clr = nil;
-    while (percent > 1.0f) {
-        percent /= 10.0f;
-    }
-    percent += 1;
-    
-    CGColorSpaceRef colorSpace = CGColorGetColorSpace(color.CGColor);
-    
-    CGFloat hue, sat, brightness, alpha, white;
-    if (CGColorSpaceGetModel(colorSpace) == kCGColorSpaceModelRGB) {
-        if ([color getHue:&hue saturation:&sat brightness:&brightness alpha:&alpha]) {
-            //            DDLogVerbose(@"getHue passed");
-            clr = [UIColor colorWithHue:hue saturation:sat brightness:fabs(MIN(brightness * percent, 1.0)) alpha:alpha];
-        }
-        
-    } else if (CGColorSpaceGetModel(colorSpace) == kCGColorSpaceModelMonochrome) {
-        if ([color getWhite:&white alpha:&alpha]) {
-            //            DDLogVerbose(@"getWhite passed");
-            clr = [UIColor colorWithWhite:fabs(MIN(white * percent, 1.0)) alpha:alpha];
-        }
-    }
-    
-    return clr;
-}
-
 @end

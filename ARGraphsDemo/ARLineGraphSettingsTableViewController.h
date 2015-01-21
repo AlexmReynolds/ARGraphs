@@ -13,7 +13,7 @@
 - (void)settingsChanged;
 
 @end
-@interface ARGraphSettingsTableViewController : UITableViewController
+@interface ARLineGraphSettingsTableViewController : UITableViewController
 
 @property (nonatomic, weak) id <ARGraphTableSettingsDelegate> delegate;
 

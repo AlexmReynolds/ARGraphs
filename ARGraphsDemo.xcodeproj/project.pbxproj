@@ -12,16 +12,24 @@
 		5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA331A64A9BD00FB10ED /* ARYMinMaxLayer.m */; };
 		E71233AD1A69D61B0034E447 /* ARGraphDataPointUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AC1A69D61B0034E447 /* ARGraphDataPointUtility.m */; };
 		E71233B01A6D6F430034E447 /* ARGraphXLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */; };
+		E71233B31A6DB7890034E447 /* ARGraphBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233B21A6DB7890034E447 /* ARGraphBackground.m */; };
+		E71233B71A6DBDA70034E447 /* ARPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233B61A6DBDA70034E447 /* ARPieChart.m */; };
+		E71233BC1A6DBFE30034E447 /* ARPieChartDataPointUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */; };
+		E71233BE1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233BD1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m */; };
+		E71233C31A6DD3360034E447 /* ARPieChartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233C21A6DD3360034E447 /* ARPieChartLayer.m */; };
+		E71233C61A6DD7350034E447 /* ARPieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233C51A6DD7350034E447 /* ARPieChartViewController.m */; };
+		E71233C91A6ED3250034E447 /* ARHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233C81A6ED3250034E447 /* ARHelpers.m */; };
+		E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */; };
 		E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */; };
 		E7B2A6361A64A44D00FD402E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6341A64A44D00FD402E /* Info.plist */; };
 		E7B2A6371A64A44D00FD402E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6351A64A44D00FD402E /* main.m */; };
 		E7B2A63E1A64A45A00FD402E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6391A64A45A00FD402E /* AppDelegate.m */; };
-		E7B2A63F1A64A45A00FD402E /* ARGraphSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A63B1A64A45A00FD402E /* ARGraphSettingsTableViewController.m */; };
+		E7B2A63F1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A63B1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m */; };
 		E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */; };
 		E7B2A6421A64A46200FD402E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6411A64A46200FD402E /* Images.xcassets */; };
 		E7B2A6471A64A46C00FD402E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */; };
 		E7B2A6481A64A46C00FD402E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6451A64A46C00FD402E /* Main.storyboard */; };
-		E7B2A6531A64A47C00FD402E /* ARGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64A1A64A47C00FD402E /* ARGraph.m */; };
+		E7B2A6531A64A47C00FD402E /* ARLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64A1A64A47C00FD402E /* ARLineGraph.m */; };
 		E7B2A6541A64A47C00FD402E /* ARGraphDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +54,21 @@
 		E71233AC1A69D61B0034E447 /* ARGraphDataPointUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphDataPointUtility.m; path = Private/ARGraphDataPointUtility.m; sourceTree = "<group>"; };
 		E71233AE1A6D6F430034E447 /* ARGraphXLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphXLegendView.h; path = Private/ARGraphXLegendView.h; sourceTree = "<group>"; };
 		E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphXLegendView.m; path = Private/ARGraphXLegendView.m; sourceTree = "<group>"; };
+		E71233B11A6DB7890034E447 /* ARGraphBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphBackground.h; path = Private/ARGraphBackground.h; sourceTree = "<group>"; };
+		E71233B21A6DB7890034E447 /* ARGraphBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphBackground.m; path = Private/ARGraphBackground.m; sourceTree = "<group>"; };
+		E71233B51A6DBDA70034E447 /* ARPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPieChart.h; sourceTree = "<group>"; };
+		E71233B61A6DBDA70034E447 /* ARPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARPieChart.m; sourceTree = "<group>"; };
+		E71233BA1A6DBFE30034E447 /* ARPieChartDataPointUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartDataPointUtility.h; path = Private/ARPieChartDataPointUtility.h; sourceTree = "<group>"; };
+		E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartDataPointUtility.m; path = Private/ARPieChartDataPointUtility.m; sourceTree = "<group>"; };
+		E71233BD1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartDPUtil_Tests.m; path = ARGraphsTests/ARPieChartDPUtil_Tests.m; sourceTree = SOURCE_ROOT; };
+		E71233C11A6DD3360034E447 /* ARPieChartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartLayer.h; path = Private/ARPieChartLayer.h; sourceTree = "<group>"; };
+		E71233C21A6DD3360034E447 /* ARPieChartLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartLayer.m; path = Private/ARPieChartLayer.m; sourceTree = "<group>"; };
+		E71233C41A6DD7350034E447 /* ARPieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartViewController.h; path = ARGraphsDemo/ARPieChartViewController.h; sourceTree = SOURCE_ROOT; };
+		E71233C51A6DD7350034E447 /* ARPieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartViewController.m; path = ARGraphsDemo/ARPieChartViewController.m; sourceTree = SOURCE_ROOT; };
+		E71233C71A6ED3250034E447 /* ARHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARHelpers.h; path = Private/ARHelpers.h; sourceTree = "<group>"; };
+		E71233C81A6ED3250034E447 /* ARHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARHelpers.m; path = Private/ARHelpers.m; sourceTree = "<group>"; };
+		E7826EFF1A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartSettingsTableViewController.h; path = ARGraphsDemo/ARPieChartSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
+		E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartSettingsTableViewController.m; path = ARGraphsDemo/ARPieChartSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
 		E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGraphsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGraphsDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C71A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,15 +77,15 @@
 		E7B2A6351A64A44D00FD402E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ARGraphsDemo/main.m; sourceTree = SOURCE_ROOT; };
 		E7B2A6381A64A45A00FD402E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ARGraphsDemo/AppDelegate.h; sourceTree = SOURCE_ROOT; };
 		E7B2A6391A64A45A00FD402E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ARGraphsDemo/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		E7B2A63A1A64A45A00FD402E /* ARGraphSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphSettingsTableViewController.h; path = ARGraphsDemo/ARGraphSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
-		E7B2A63B1A64A45A00FD402E /* ARGraphSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphSettingsTableViewController.m; path = ARGraphsDemo/ARGraphSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
+		E7B2A63A1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARLineGraphSettingsTableViewController.h; path = ARGraphsDemo/ARLineGraphSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
+		E7B2A63B1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARLineGraphSettingsTableViewController.m; path = ARGraphsDemo/ARLineGraphSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
 		E7B2A63C1A64A45A00FD402E /* ARGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphViewController.h; path = ARGraphsDemo/ARGraphViewController.h; sourceTree = SOURCE_ROOT; };
 		E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphViewController.m; path = ARGraphsDemo/ARGraphViewController.m; sourceTree = SOURCE_ROOT; };
 		E7B2A6411A64A46200FD402E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ARGraphsDemo/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		E7B2A6441A64A46C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ARGraphsDemo/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 		E7B2A6461A64A46C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ARGraphsDemo/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
-		E7B2A6491A64A47C00FD402E /* ARGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraph.h; sourceTree = "<group>"; };
-		E7B2A64A1A64A47C00FD402E /* ARGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraph.m; sourceTree = "<group>"; };
+		E7B2A6491A64A47C00FD402E /* ARLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLineGraph.h; sourceTree = "<group>"; };
+		E7B2A64A1A64A47C00FD402E /* ARLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineGraph.m; sourceTree = "<group>"; };
 		E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphDataPoint.h; sourceTree = "<group>"; };
 		E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphDataPoint.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +111,19 @@
 		5493DA2D1A64A9AB00FB10ED /* Private */ = {
 			isa = PBXGroup;
 			children = (
+				E71233B11A6DB7890034E447 /* ARGraphBackground.h */,
+				E71233B21A6DB7890034E447 /* ARGraphBackground.m */,
+				E71233C71A6ED3250034E447 /* ARHelpers.h */,
+				E71233C81A6ED3250034E447 /* ARHelpers.m */,
+				E71233B91A6DBFB00034E447 /* Pie Chart */,
+				E71233B81A6DBFA30034E447 /* Line Graph */,
+			);
+			name = Private;
+			sourceTree = "<group>";
+		};
+		E71233B81A6DBFA30034E447 /* Line Graph */ = {
+			isa = PBXGroup;
+			children = (
 				E71233AE1A6D6F430034E447 /* ARGraphXLegendView.h */,
 				E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */,
 				E71233AB1A69D61B0034E447 /* ARGraphDataPointUtility.h */,
@@ -99,7 +135,41 @@
 				5493DA321A64A9BD00FB10ED /* ARYMinMaxLayer.h */,
 				5493DA331A64A9BD00FB10ED /* ARYMinMaxLayer.m */,
 			);
-			name = Private;
+			name = "Line Graph";
+			sourceTree = "<group>";
+		};
+		E71233B91A6DBFB00034E447 /* Pie Chart */ = {
+			isa = PBXGroup;
+			children = (
+				E71233BA1A6DBFE30034E447 /* ARPieChartDataPointUtility.h */,
+				E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */,
+				E71233BD1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m */,
+				E71233C11A6DD3360034E447 /* ARPieChartLayer.h */,
+				E71233C21A6DD3360034E447 /* ARPieChartLayer.m */,
+			);
+			name = "Pie Chart";
+			sourceTree = "<group>";
+		};
+		E7826EFD1A6F2B0900642F1E /* Pie Chart */ = {
+			isa = PBXGroup;
+			children = (
+				E7826EFF1A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.h */,
+				E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */,
+				E71233C41A6DD7350034E447 /* ARPieChartViewController.h */,
+				E71233C51A6DD7350034E447 /* ARPieChartViewController.m */,
+			);
+			name = "Pie Chart";
+			sourceTree = "<group>";
+		};
+		E7826EFE1A6F2B1300642F1E /* Line Graph */ = {
+			isa = PBXGroup;
+			children = (
+				E7B2A63A1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.h */,
+				E7B2A63B1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m */,
+				E7B2A63C1A64A45A00FD402E /* ARGraphViewController.h */,
+				E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */,
+			);
+			name = "Line Graph";
 			sourceTree = "<group>";
 		};
 		E7B2A5A01A64874C00FD402E = {
@@ -126,10 +196,8 @@
 			children = (
 				E7B2A6381A64A45A00FD402E /* AppDelegate.h */,
 				E7B2A6391A64A45A00FD402E /* AppDelegate.m */,
-				E7B2A63A1A64A45A00FD402E /* ARGraphSettingsTableViewController.h */,
-				E7B2A63B1A64A45A00FD402E /* ARGraphSettingsTableViewController.m */,
-				E7B2A63C1A64A45A00FD402E /* ARGraphViewController.h */,
-				E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */,
+				E7826EFE1A6F2B1300642F1E /* Line Graph */,
+				E7826EFD1A6F2B0900642F1E /* Pie Chart */,
 				E7B2A6411A64A46200FD402E /* Images.xcassets */,
 				E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */,
 				E7B2A6451A64A46C00FD402E /* Main.storyboard */,
@@ -168,8 +236,10 @@
 		E7B2A5E31A64879200FD402E /* ARGraphs */ = {
 			isa = PBXGroup;
 			children = (
-				E7B2A6491A64A47C00FD402E /* ARGraph.h */,
-				E7B2A64A1A64A47C00FD402E /* ARGraph.m */,
+				E7B2A6491A64A47C00FD402E /* ARLineGraph.h */,
+				E7B2A64A1A64A47C00FD402E /* ARLineGraph.m */,
+				E71233B51A6DBDA70034E447 /* ARPieChart.h */,
+				E71233B61A6DBDA70034E447 /* ARPieChart.m */,
 				E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */,
 				E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */,
 				5493DA2D1A64A9AB00FB10ED /* Private */,
@@ -278,16 +348,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71233BC1A6DBFE30034E447 /* ARPieChartDataPointUtility.m in Sources */,
 				E7B2A6541A64A47C00FD402E /* ARGraphDataPoint.m in Sources */,
 				E7B2A63E1A64A45A00FD402E /* AppDelegate.m in Sources */,
 				5493DA341A64A9BD00FB10ED /* ARGraphPointsLayer.m in Sources */,
+				E71233B31A6DB7890034E447 /* ARGraphBackground.m in Sources */,
 				E7B2A6371A64A44D00FD402E /* main.m in Sources */,
-				E7B2A6531A64A47C00FD402E /* ARGraph.m in Sources */,
+				E7B2A6531A64A47C00FD402E /* ARLineGraph.m in Sources */,
+				E71233C61A6DD7350034E447 /* ARPieChartViewController.m in Sources */,
 				5493DA351A64A9BD00FB10ED /* ARMeanLineLayer.m in Sources */,
+				E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */,
 				E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */,
 				E71233AD1A69D61B0034E447 /* ARGraphDataPointUtility.m in Sources */,
-				E7B2A63F1A64A45A00FD402E /* ARGraphSettingsTableViewController.m in Sources */,
+				E7B2A63F1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m in Sources */,
+				E71233B71A6DBDA70034E447 /* ARPieChart.m in Sources */,
 				E71233B01A6D6F430034E447 /* ARGraphXLegendView.m in Sources */,
+				E71233C91A6ED3250034E447 /* ARHelpers.m in Sources */,
+				E71233C31A6DD3360034E447 /* ARPieChartLayer.m in Sources */,
 				5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -296,6 +373,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E71233BE1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m in Sources */,
 				E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

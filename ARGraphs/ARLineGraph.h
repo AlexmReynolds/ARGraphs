@@ -39,6 +39,8 @@
 /// Default is @c YES.
 @property (nonatomic) BOOL showXLegend;
 
+@property (nonatomic) BOOL showXLegendValues;
+
 @property (nonatomic) BOOL useBackgroundGradient;
 
 /// Set to @c YES to only show the minimum and maximum Y legend markings on the graph. @c NO to hide.

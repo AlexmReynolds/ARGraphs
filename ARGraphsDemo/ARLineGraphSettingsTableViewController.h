@@ -26,5 +26,7 @@
 
 @property (strong, nonatomic) NSString *titleText;
 @property (strong, nonatomic) NSString *subTitleText;
+@property (strong, nonatomic) NSString *xLegendText;
+@property (strong, nonatomic) NSString *yLegnedText;
 @property (nonatomic, strong) UIColor *chartColor;
 @end

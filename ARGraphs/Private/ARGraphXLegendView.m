@@ -12,6 +12,9 @@
     NSUInteger _totalNumberOfLabels;
     NSArray *_labels;
     NSUInteger _numberOfDataPoints;
+    UILabel *_titleLabel;
+    NSString *_title;
+
 }
 
 /*
@@ -25,29 +28,46 @@
 - (void)reloadData
 {
     _numberOfDataPoints = [self.delegate numberOfDataPoints];
-    NSUInteger canFit = [self numberOfLabelsForWidth:self.bounds.size.width];
-    if(canFit != _totalNumberOfLabels){
-        _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
-        [self createLabels];
-        // re-layout
-    }else{
-        //Update Values
-        [self updateLabelValues];
+    _title = [self.delegate titleForXLegend:self];
+    [_titleLabel removeFromSuperview];
+    if(_title != nil){
+        _titleLabel = [self makeTitleLabel];
+        [self addSubview:_titleLabel];
+    }
+    [self createOrUpdateLabels];
+
+
+}
+
+- (void)createOrUpdateLabels
+{
+    if(self.showXValues){
+        NSUInteger canFit = [self numberOfLabelsForWidth:self.bounds.size.width];
+        if(canFit != _totalNumberOfLabels){
+            _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
+            [self createLabels];
+            // re-layout
+        }else{
+            //Update Values
+            [self updateLabelValues];
+        }
     }
 }
 
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    NSUInteger canFit = [self numberOfLabelsForWidth:self.bounds.size.width];
-    if(canFit != _totalNumberOfLabels){
-        _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
-        [self createLabels];
-        // re-layout
-    }else{
-        //Update Values
-        [self updateLabelValues];
-    }
+    [self createOrUpdateLabels];
+}
+
+- (UILabel*)makeTitleLabel
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.text = _title;
+    label.textColor = self.labelColor;
+    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    [label sizeToFit];
+    return label;
 }
 
 - (void)createLabels
@@ -60,6 +80,7 @@
         [self addSubview:label];
         [array addObject:label];
     };
+    
     _labels = array;
     
 }
@@ -70,13 +91,8 @@
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
         NSUInteger dpIndex = [self dataPointIndexForLabelIndex:index];
         if(dpIndex != NSNotFound){
-            label.text = [self.delegate xLegend:self labelForXLegendAtIndex:dpIndex];
-            [label sizeToFit];
-            CGRect frame = label.frame;
-            CGFloat centerPoint = (self.bounds.size.width / _totalNumberOfLabels) * index;
-            
-            frame.origin.x = centerPoint - frame.size.width/2;
-            label.frame = frame;
+            label.text = [self stringForXLegendAtIndex:dpIndex];
+            [self updateFrameOfLabel:label atIndex:index];
         }
     }];
 }
@@ -87,17 +103,20 @@
     label.textColor = self.labelColor;
     NSUInteger dpIndex = [self dataPointIndexForLabelIndex:index];
     if(dpIndex != NSNotFound){
-        label.text = [self.delegate xLegend:self labelForXLegendAtIndex:dpIndex];
+        label.text = [self stringForXLegendAtIndex:dpIndex];
     }
     label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    
+    [self updateFrameOfLabel:label atIndex:index];
+
+    return label;
+}
+
+- (void)updateFrameOfLabel:(UILabel*)label atIndex:(NSUInteger)index
+{
     [label sizeToFit];
     CGRect frame = label.frame;
-    CGFloat centerPoint = (self.bounds.size.width / _totalNumberOfLabels) * index;
-    
-    frame.origin.x = centerPoint - frame.size.width/2;
+    frame.origin.x = [self xPositionForDataPointIndex:index totalPoints:_totalNumberOfLabels inWidth:self.bounds.size.width];
     label.frame = frame;
-    return label;
 }
 
 - (NSUInteger)dataPointIndexForLabelIndex:(NSUInteger)labelIndex
@@ -115,16 +134,29 @@
     return dpIndex;
 }
 
+- (NSString*)stringForXLegendAtIndex:(NSUInteger)index
+{
+    NSInteger value = [self.delegate xLegend:self valueAtIndex:index];
+    return [NSString stringWithFormat:@"%ld", value];
+}
+
 - (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width
 {
     CGFloat itemWidth = width/total;
-    return index * itemWidth + itemWidth/2;
+    CGFloat offsetForTitleLabel = 0;
+    if(_title != nil && _title.length){
+        offsetForTitleLabel = _titleLabel.frame.size.width + itemWidth/2;
+    }
+    return index * itemWidth + offsetForTitleLabel;
 }
 
 - (NSUInteger)numberOfLabelsForWidth:(CGFloat)width
 {
     NSString *testString = @"1234";
     CGSize sizeOfTestString = [self sizeOfText:testString];
+    if(_title != nil && _title.length){
+        width -= _titleLabel.frame.size.width + sizeOfTestString.width/2;
+    }
     NSUInteger numberofLabels =  ceil(width / sizeOfTestString.width);
     return numberofLabels;
 }

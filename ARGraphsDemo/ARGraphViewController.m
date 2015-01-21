@@ -74,6 +74,17 @@
     return self.settingsTable.titleText;
 }
 
+- (NSString *)ARGraphTitleForXAxis:(ARLineGraph *)graph
+{
+    return self.settingsTable.xLegendText;
+}
+
+- (NSString *)ARGraphTitleForYAxis:(ARLineGraph *)graph
+{
+    return self.settingsTable.yLegnedText;
+
+}
+
 - (void)settingsChanged
 {
     self.chart.showMeanLine = self.settingsTable.showMean;

@@ -468,6 +468,68 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="iby-rh-9c5" userLabel="x Legend">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iby-rh-9c5" id="UJF-NR-dGL">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="X Legend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rka-dl-o6m">
+                                                    <rect key="frame" x="8" y="11" width="73" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Foo" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lre-09-TK0">
+                                                    <rect key="frame" x="91" y="7" width="501" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="twv-sy-O64"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Rka-dl-o6m" secondAttribute="bottom" constant="3.5" id="6wT-QD-rcW"/>
+                                                <constraint firstItem="Lre-09-TK0" firstAttribute="leading" secondItem="Rka-dl-o6m" secondAttribute="trailing" constant="10" id="DLw-im-dwp"/>
+                                                <constraint firstItem="Lre-09-TK0" firstAttribute="top" secondItem="UJF-NR-dGL" secondAttribute="topMargin" constant="-1" id="Va1-22-0vJ"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Lre-09-TK0" secondAttribute="bottom" constant="-1.5" id="ZaG-pp-1oi"/>
+                                                <constraint firstItem="Rka-dl-o6m" firstAttribute="leading" secondItem="UJF-NR-dGL" secondAttribute="leadingMargin" id="aWh-4V-nIN"/>
+                                                <constraint firstItem="Lre-09-TK0" firstAttribute="trailing" secondItem="UJF-NR-dGL" secondAttribute="trailingMargin" id="o3b-IP-nP4"/>
+                                                <constraint firstItem="Rka-dl-o6m" firstAttribute="top" secondItem="UJF-NR-dGL" secondAttribute="topMargin" constant="3" id="q7H-8L-14J"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="qCL-nI-MoX" userLabel="Y Legend">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qCL-nI-MoX" id="jrf-VZ-ltf">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Y Legend" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bz8-iP-DkB">
+                                                    <rect key="frame" x="8" y="11" width="74" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Bar" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nET-yG-R8D">
+                                                    <rect key="frame" x="92" y="7" width="500" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="settingChanged:" destination="JtE-Cw-byw" eventType="editingDidEnd" id="pXg-EP-ObO"/>
+                                                    </connections>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nET-yG-R8D" firstAttribute="leading" secondItem="Bz8-iP-DkB" secondAttribute="trailing" constant="10" id="5at-Va-u2U"/>
+                                                <constraint firstItem="Bz8-iP-DkB" firstAttribute="leading" secondItem="jrf-VZ-ltf" secondAttribute="leadingMargin" id="Bs2-YA-QFW"/>
+                                                <constraint firstItem="Bz8-iP-DkB" firstAttribute="top" secondItem="jrf-VZ-ltf" secondAttribute="topMargin" constant="3" id="iLw-r2-Ews"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="nET-yG-R8D" secondAttribute="bottom" constant="-1.5" id="rat-tL-Olp"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Bz8-iP-DkB" secondAttribute="bottom" constant="3.5" id="rpc-Jb-ynt"/>
+                                                <constraint firstItem="nET-yG-R8D" firstAttribute="top" secondItem="jrf-VZ-ltf" secondAttribute="topMargin" constant="-1" id="v0r-n8-H14"/>
+                                                <constraint firstItem="nET-yG-R8D" firstAttribute="trailing" secondItem="jrf-VZ-ltf" secondAttribute="trailingMargin" id="xVf-l3-ufg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="g5T-EL-H5N">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="g5T-EL-H5N" id="xcN-q9-Few">
@@ -771,6 +833,8 @@
                         <outlet property="showYLegendSwitch" destination="b6Q-4U-VW3" id="RjT-fI-bor"/>
                         <outlet property="subTitleField" destination="ZeF-5f-A1Y" id="f99-Xa-rK1"/>
                         <outlet property="titleField" destination="L2i-uW-UfA" id="wgs-K2-QwK"/>
+                        <outlet property="xLegendTextField" destination="Lre-09-TK0" id="X1C-JD-OBz"/>
+                        <outlet property="yLegendTextField" destination="nET-yG-R8D" id="V0D-Gn-yBX"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Mj-Pb-lAv" userLabel="First Responder" sceneMemberID="firstResponder"/>

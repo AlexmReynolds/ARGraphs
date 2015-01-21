@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *redTintValue;
 @property (weak, nonatomic) IBOutlet UITextField *greenTintValue;
 @property (weak, nonatomic) IBOutlet UITextField *blueTintValue;
+@property (weak, nonatomic) IBOutlet UITextField *xLegendTextField;
+@property (weak, nonatomic) IBOutlet UITextField *yLegendTextField;
 @end
 
 @implementation ARLineGraphSettingsTableViewController
@@ -75,6 +77,16 @@
 - (NSString *)subTitleText
 {
     return self.subTitleField.text;
+}
+
+- (NSString *)xLegendText
+{
+    return self.xLegendTextField.text;
+}
+
+- (NSString *)yLegnedText
+{
+    return self.yLegendTextField.text;
 }
 
 - (UIColor *)chartColor

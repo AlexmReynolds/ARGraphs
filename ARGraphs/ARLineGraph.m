@@ -94,6 +94,7 @@
     self.showMinMaxLines = YES;
     self.showMeanLine = YES;
     self.useBackgroundGradient = YES;
+    self.showXLegendValues = YES;
     self.lineColor = [UIColor colorWithWhite:1.0 alpha:0.6];
 }
 
@@ -202,6 +203,10 @@
   //  self.minMaxLayer.labelColor = labelColor.CGColor;
 }
 
+- (void)setShowXLegendValues:(BOOL)showXLegendValues
+{
+    self.xAxisContainerView.showXValues = showXLegendValues;
+}
 #pragma mark - Getters
 
 
@@ -297,10 +302,18 @@
     [self.meanLayer setNeedsDisplay];
 }
 #pragma mark - X Legend Delegate
-- (NSString *)xLegend:(ARGraphXLegendView *)lengend labelForXLegendAtIndex:(NSUInteger)index
+- (NSString*)titleForXLegend:(ARGraphXLegendView *)lengend
+{
+    if([self.dataSource respondsToSelector:@selector(ARGraphTitleForXAxis:)]){
+        return [self.dataSource ARGraphTitleForXAxis:self];
+    }else{
+        return nil;
+    }
+}
+- (NSInteger)xLegend:(ARGraphXLegendView *)lengend valueAtIndex:(NSUInteger)index
 {
     ARGraphDataPoint *dp = [self.dataPoints objectAtIndex:index];
-    return [NSString stringWithFormat:@"%ld", (long)dp.xValue];
+    return dp.xValue;
 }
 
 - (NSUInteger)numberOfDataPoints

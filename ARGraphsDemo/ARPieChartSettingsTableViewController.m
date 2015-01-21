@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *tintRed;
 @property (weak, nonatomic) IBOutlet UITextField *greenTint;
 @property (weak, nonatomic) IBOutlet UITextField *blueTint;
+@property (weak, nonatomic) IBOutlet UISwitch *backgroundHiddenSwitch;
 @end
 
 @implementation ARPieChartSettingsTableViewController
@@ -50,6 +51,11 @@
     CGFloat blue = [self.blueTint.text floatValue];
     
     return [UIColor colorWithRed:red/255 green:green/255 blue:blue/255 alpha:1.0];
+}
+
+- (BOOL)backgroundHidden
+{
+    return self.backgroundHiddenSwitch.on;
 }
 
 - (IBAction)colorChanged:(id)sender {

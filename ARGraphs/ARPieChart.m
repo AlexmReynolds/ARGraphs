@@ -8,12 +8,10 @@
 
 #import "ARPieChart.h"
 #import "ARPieChartDataPointUtility.h"
-#import "ARGraphBackground.h"
 #import "ARPieChartLayer.h"
 
 @interface ARPieChart ()
 
-@property (nonatomic, strong) ARGraphBackground *background;
 @property (nonatomic, strong) ARPieChartDataPointUtility *dataPointUtility;
 @property (nonatomic, strong) ARPieChartLayer *pieLayer;
 
@@ -27,6 +25,7 @@
 {
     self = [super initWithCoder:aDecoder];
     if(self){
+        self.backgroundColor = [UIColor clearColor];
         self.dataPointUtility = [[ARPieChartDataPointUtility alloc] init];
         
         self.labelColor = [UIColor whiteColor];

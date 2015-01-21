@@ -156,7 +156,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.59999999999999998" green="0.34901960780000002" blue="0.70196078429999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="MDe-Hg-LzQ" firstAttribute="top" secondItem="n99-BJ-xOw" secondAttribute="bottom" id="1d1-W1-XX7"/>
                             <constraint firstAttribute="bottomMargin" secondItem="MDe-Hg-LzQ" secondAttribute="bottom" id="Cv0-n7-gNz"/>
@@ -245,6 +245,35 @@
                                                 <constraint firstItem="7WZ-eo-ErR" firstAttribute="trailing" secondItem="byp-eW-zEN" secondAttribute="trailingMargin" id="l4d-tE-oCL"/>
                                                 <constraint firstItem="jaQ-Eg-HKa" firstAttribute="leading" secondItem="byp-eW-zEN" secondAttribute="leadingMargin" id="q37-IB-gTO"/>
                                                 <constraint firstItem="jaQ-Eg-HKa" firstAttribute="top" secondItem="byp-eW-zEN" secondAttribute="topMargin" constant="3" id="rGq-UI-Bbk"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="nG9-II-9gp">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nG9-II-9gp" id="lLt-n2-LeG">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Background Hidden" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QUE-s5-B2k">
+                                                    <rect key="frame" x="8" y="11" width="153.5" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jKp-aY-7Fq">
+                                                    <rect key="frame" x="543" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="colorChanged:" destination="D1P-rE-AVq" eventType="valueChanged" id="bc9-rb-bF2"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="jKp-aY-7Fq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="QUE-s5-B2k" secondAttribute="trailing" constant="10" id="Anb-Cw-Qo5"/>
+                                                <constraint firstItem="jKp-aY-7Fq" firstAttribute="trailing" secondItem="lLt-n2-LeG" secondAttribute="trailingMargin" id="EqJ-86-4Rb"/>
+                                                <constraint firstItem="jKp-aY-7Fq" firstAttribute="top" secondItem="lLt-n2-LeG" secondAttribute="topMargin" constant="-2" id="pOv-hY-feq"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="QUE-s5-B2k" secondAttribute="bottom" constant="4" id="qab-lp-I6u"/>
+                                                <constraint firstItem="QUE-s5-B2k" firstAttribute="top" secondItem="lLt-n2-LeG" secondAttribute="topMargin" constant="3" id="skZ-iJ-2zo"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="jKp-aY-7Fq" secondAttribute="bottom" constant="-1.5" id="tl2-Eg-Rs5"/>
+                                                <constraint firstItem="QUE-s5-B2k" firstAttribute="leading" secondItem="lLt-n2-LeG" secondAttribute="leadingMargin" id="vCI-bz-hGL"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -357,6 +386,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="backgroundHiddenSwitch" destination="jKp-aY-7Fq" id="vSm-1d-Uu8"/>
                         <outlet property="blueTint" destination="atc-Z3-ARC" id="2XB-bx-bF1"/>
                         <outlet property="greenTint" destination="bi1-uU-l3J" id="Iid-6C-Lbw"/>
                         <outlet property="innerRadiusPercentTextField" destination="22Q-Rs-Gyr" id="IM7-L0-71T"/>

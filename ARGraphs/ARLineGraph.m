@@ -48,7 +48,8 @@
     self = [super initWithCoder:aDecoder];
     if(self){
         self.dataPointUtility = [[ARGraphDataPointUtility alloc] init];
-        
+        self.backgroundColor = [UIColor clearColor];
+
         self.labelColor = [UIColor whiteColor];
         self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
         

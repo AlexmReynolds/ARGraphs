@@ -10,7 +10,6 @@
 #import "ARGraphPointsLayer.h"
 #import "ARYMinMaxLayer.h"
 #import "ARMeanLineLayer.h"
-#import "ARGraphBackground.h"
 #import "ARGraphXLegendView.h"
 #import "ARGraphDataPointUtility.h"
 
@@ -29,7 +28,6 @@
 @property (nonatomic, strong) UIView *titleContainerView;
 
 
-@property (nonatomic, strong) ARGraphBackground *background;
 @property (nonatomic, strong) ARGraphPointsLayer *pointsLayer;
 @property (nonatomic, strong) ARYMinMaxLayer *minMaxLayer;
 @property (nonatomic, strong) ARMeanLineLayer *meanLayer;

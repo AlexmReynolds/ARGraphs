@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ARGraphDataPoint.h"
+#import "ARGraphBackground.h"
 
 //typedef NS_OPTIONS(NSInteger, CYCGraphyLegendAlignment){
 //    CYCGraphyLegendAlignmentLeft,
@@ -17,7 +18,8 @@
 @protocol ARGraphDataSource;
 
 @interface ARLineGraph : UIView
-@property (strong, nonatomic) IBOutlet UIView *view;
+
+@property (nonatomic, strong) ARGraphBackground *background;
 
 @property (nonatomic, weak) id <ARGraphDataSource> dataSource;
 @property (nonatomic, strong) UIColor *lineColor;

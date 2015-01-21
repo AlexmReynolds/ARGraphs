@@ -16,17 +16,25 @@
 - (instancetype)init
 {
     self = [super init];
+    [self resetValues];
+    
+    return self;
+}
+
+- (void)resetValues
+{
     _yMin = 0;
     _yMax = 0;
     _yMean = 0;
     _xMax = 0;
     _xMin = 0;
-    
-    return self;
+    _realMean = 0.0;
 }
+
 - (void)setDatapoints:(NSArray *)datapoints
 {
     _datapoints = datapoints;
+    [self resetValues];
     if(_datapoints.count){
         [self setMaxMinMean];
     }
@@ -62,7 +70,8 @@
     _yMin = minYValue;
     
     if(ySum){
-        _yMean = ySum / self.datapoints.count;
+        _realMean = ySum / (CGFloat)self.datapoints.count;
+        _yMean = floor(_realMean); // round down
     }else {
         _yMean = ySum;
     }
@@ -74,6 +83,6 @@
     _yMin = MIN(_yMin, newDataPoint.yValue);
     _yMax = MAX(_yMax, newDataPoint.yValue);
     _realMean = (_realMean * self.datapoints.count + newDataPoint.yValue)/(float)(self.datapoints.count + 1);
-    _yMean = floor(_realMean); // round up
+    _yMean = floor(_realMean); // round down
 }
 @end

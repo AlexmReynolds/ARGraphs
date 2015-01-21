@@ -19,19 +19,19 @@
 
 @implementation ARYMinMaxLayer
 
-+ (instancetype)layer
+- (instancetype)init
 {
-    ARYMinMaxLayer *layer = [super layer];
-    [layer addSublayer:layer.minTextLayer];
-    [layer addSublayer:layer.maxTextLayer];
+    self = [super init];
+    [self addSublayer:self.minTextLayer];
+    [self addSublayer:self.maxTextLayer];
     
     CGFloat fillColors [] = {
         1.0, 1.0, 1.0, 0.6
     };
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); //NEED TO RELEASE
-    layer.lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
+    _lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
     CGColorSpaceRelease(colorSpace);
-    return layer;
+    return self;
 }
 
 - (void)dealloc
@@ -42,7 +42,7 @@
 
 - (void)setLineColor:(CGColorRef)lineColor
 {
-    _lineColor = lineColor;
+    _lineColor = CGColorCreateCopy(lineColor);
     self.minTextLayer.foregroundColor = self.lineColor;
     self.maxTextLayer.foregroundColor = self.lineColor;
     [self setNeedsDisplay];

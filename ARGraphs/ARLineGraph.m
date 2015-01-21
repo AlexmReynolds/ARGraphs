@@ -99,8 +99,6 @@
 - (void)setDataSource:(id<ARGraphDataSource>)dataSource
 {
     _dataSource = dataSource;
-    _dataPoints = [[self.dataSource ARGraphDataPoints:self] copy];
-    _dataPointUtility.datapoints = _dataPoints;
     
     self.titleHeightConstraint.constant = [self sizeOfText:self.titleLabel.text preferredFontForTextStyle:UIFontTextStyleHeadline].height + 8;
     
@@ -223,7 +221,7 @@
     [temp addObject:dataPoint];
     self.dataPoints = temp;
     [self.dataPointUtility appendDataPoint:dataPoint];
-    [self reloadData];
+    [self updateSubLayers];
 }
 
 - (void)setTintColor:(UIColor *)tintColor
@@ -258,7 +256,8 @@
     if(self.showXLegend){
         [self.xAxisContainerView reloadData];
     }
-    
+    _dataPoints = [[self.dataSource ARGraphDataPoints:self] copy];
+    _dataPointUtility.datapoints = _dataPoints;
     
     if([self.dataSource respondsToSelector:@selector(titleForGraph:)]){
         self.titleLabel.text = [self.dataSource titleForGraph:self] ?: @"";
@@ -266,6 +265,13 @@
     if([self.dataSource respondsToSelector:@selector(subTitleForGraph:)]){
         self.subtitleLabel.text = [self.dataSource subTitleForGraph:self] ?: @"";
     }
+
+    [self updateSubLayers];
+    [self.pointsLayer animate];
+}
+
+- (void)updateSubLayers
+{
     NSInteger yMin = [[self dataPointUtility] yMin];
     NSInteger yMax = [[self dataPointUtility] yMax];
     self.minMaxLayer.yMin = yMin;
@@ -281,9 +287,6 @@
     self.meanLayer.yMax = yMax;
     self.meanLayer.yMean = [[self dataPointUtility] yMean];
     [self.meanLayer setNeedsDisplay];
-
-
-    //purge
 }
 #pragma mark - X Legend Delegate
 - (NSString *)xLegend:(ARGraphXLegendView *)lengend labelForXLegendAtIndex:(NSUInteger)index

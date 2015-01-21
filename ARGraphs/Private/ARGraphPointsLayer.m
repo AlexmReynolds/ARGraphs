@@ -16,6 +16,7 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 
 @implementation ARGraphPointsLayer{
     NSInteger _dataCount;
+    CAShapeLayer *_maskLayer;
 }
 - (instancetype)init
 {
@@ -35,10 +36,73 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
         1.0, 1.0, 1.0, 0.8
     };
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); //NEED TO RELEASE
-    self.lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
+    _lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
     CGColorSpaceRelease(colorSpace);
     
     return self;
+}
+
+- (void)setLineColor:(CGColorRef)lineColor
+{
+    _lineColor = CGColorCreateCopy(lineColor);
+}
+
+- (void)animate
+{
+    _maskLayer = [self maskLayer];
+    self.mask = _maskLayer;
+    
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
+    animation.timeOffset =
+    animation.duration = 0.6;
+    animation.fromValue = @0;
+    animation.toValue = @1;
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    animation.removedOnCompletion = YES;
+    
+    [_maskLayer addAnimation:animation forKey:@"reveal"];
+    
+}
+
+- (CAShapeLayer*)maskLayer
+{
+    CAShapeLayer *mask = [CAShapeLayer layer];
+    
+    CGFloat fillColors [] = {
+        1.0, 1.0, 1.0, 0.8
+    };
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); //NEED TO RELEASE
+    CGColorRef stroke  = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
+    
+    CGMutablePathRef path = [self pathForMask];
+    mask.path = path;
+   // mask.fillColor   = [UIColor clearColor].CGColor;
+    mask.strokeColor = stroke;
+    mask.strokeStart = 0;
+    mask.strokeEnd   = 1;
+    mask.lineWidth   = self.bounds.size.height;
+    mask.frame = self.bounds;
+    mask.masksToBounds = YES;
+    
+    CGPathRelease(path);
+    CGColorSpaceRelease(colorSpace);
+    CGColorRelease(stroke);
+    return mask;
+}
+
+- (void)layoutSublayers
+{
+    [super layoutSublayers];
+    _maskLayer.path = [self pathForMask];
+}
+
+- (CGMutablePathRef)pathForMask
+{
+    CGMutablePathRef path = CGPathCreateMutable();
+    CGPathMoveToPoint(path, NULL, 0, self.bounds.size.height/2);
+    CGPathAddLineToPoint(path, NULL, self.bounds.size.width, self.bounds.size.height/2);
+
+    return path;
 }
 
 #pragma mark - Path Methods

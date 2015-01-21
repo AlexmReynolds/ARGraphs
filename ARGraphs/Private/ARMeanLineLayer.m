@@ -12,20 +12,20 @@
 @implementation ARMeanLineLayer
 
 
-+ (instancetype)layer
+- (instancetype)init
 {
-    ARMeanLineLayer *layer = [super layer];
-    layer.leftPadding = 0;
-    layer.rightPadding = 0;
-    layer.topPadding = 0;
-    layer.bottomPadding = 0;
+    self = [super init];
+    self.leftPadding = 0;
+    self.rightPadding = 0;
+    self.topPadding = 0;
+    self.bottomPadding = 0;
     CGFloat fillColors [] = {
         1.0, 1.0, 1.0, 0.6
     };
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); //NEED TO RELEASE
-    layer.lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
+    _lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
     CGColorSpaceRelease(colorSpace);
-    return layer;
+    return self;
 }
 
 - (void)setYMean:(CGFloat)yMean
@@ -36,7 +36,7 @@
 
 - (void)setLineColor:(CGColorRef)lineColor
 {
-    _lineColor = lineColor;
+    _lineColor = CGColorCreateCopy(lineColor);
     [self setNeedsDisplay];
 }
 

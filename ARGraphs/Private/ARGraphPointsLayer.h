@@ -7,7 +7,6 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-
 @interface ARGraphPointsLayer : CALayer
 
 #pragma mark - Data Properties
@@ -33,5 +32,7 @@
 @property (nonatomic)  CGFloat bottomPadding;
 @property (nonatomic)  CGFloat rightPadding;
 @property (nonatomic)  CGFloat leftPadding;
+
+- (void)animate;
 
 @end

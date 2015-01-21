@@ -40,6 +40,8 @@
     self.chart.showYLegend = self.settingsTable.showYLegend;
     self.chart.tintColor = self.settingsTable.chartColor;
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
+    self.chart.showXLegendValues = self.settingsTable.showXLegendValues;
+
     self.chart.dataSource = self;
     
     self.chart.labelColor = [UIColor whiteColor];
@@ -94,7 +96,7 @@
     self.chart.showYLegend = self.settingsTable.showYLegend;
     self.chart.tintColor = self.settingsTable.chartColor;
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
-
+    self.chart.showXLegendValues = self.settingsTable.showXLegendValues;
     [self.chart reloadData];
 }
 @end

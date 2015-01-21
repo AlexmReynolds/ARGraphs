@@ -18,7 +18,7 @@
 @property (nonatomic) CGFloat sliceGutterWidth;
 @property (nonatomic) CGFloat innerRadiusPercent;
 @property (nonatomic) BOOL useBackgroundGradient;
-
+@property (nonatomic) UIEdgeInsets insets;
 @end
 
 @protocol ARPieChartDataSource <NSObject>

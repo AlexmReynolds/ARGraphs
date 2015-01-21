@@ -30,10 +30,7 @@
     if(self){
         self.backgroundColor = [UIColor clearColor];
         self.dataPointUtility = [[ARPieChartDataPointUtility alloc] init];
-        
-        self.labelColor = [UIColor whiteColor];
-        self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
-        
+
         _background = [ARGraphBackground gradientWithColor:self.tintColor.CGColor];
         _background.frame = self.bounds;
         [self.layer insertSublayer:_background atIndex:0];
@@ -41,12 +38,21 @@
         _pieLayer = [ARPieChartLayer layer];
         _pieLayer.frame = self.bounds;
         [self.layer addSublayer:_pieLayer];
-        
-        self.useBackgroundGradient = YES;
+        [self applyDefaults];
     }
     return self;
 }
 
+- (void)applyDefaults
+{
+    self.useBackgroundGradient = YES;
+    self.labelColor = [UIColor whiteColor];
+    self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
+    self.insets = UIEdgeInsetsMake(8, 8, 8, 8);
+    self.pieLayer.bottomPadding = self.insets.bottom;
+    self.pieLayer.topPadding = self.insets.top;
+
+}
 #pragma mark - Setters
 - (void)setUseBackgroundGradient:(BOOL)useBackgroundGradient
 {

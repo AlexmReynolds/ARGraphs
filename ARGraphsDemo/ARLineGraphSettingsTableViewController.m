@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *blueTintValue;
 @property (weak, nonatomic) IBOutlet UITextField *xLegendTextField;
 @property (weak, nonatomic) IBOutlet UITextField *yLegendTextField;
+@property (weak, nonatomic) IBOutlet UISwitch *showXLegendValuesSwitch;
 @end
 
 @implementation ARLineGraphSettingsTableViewController
@@ -62,6 +63,11 @@
 {
     return self.showYLegendSwitch.on;
 
+}
+
+- (BOOL)showXLegendValues
+{
+    return self.showXLegendValuesSwitch.on;
 }
 
 - (BOOL)showCurvedLine{

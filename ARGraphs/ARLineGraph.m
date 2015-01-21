@@ -80,13 +80,13 @@
         self.xAxisContainerView.backgroundColor = [UIColor clearColor];
         self.yAxisContainerView.backgroundColor = [UIColor clearColor];
 
-        [self setDefaults];
+        [self applyDefaults];
 
     }
     return self;
 }
 
-- (void)setDefaults
+- (void)applyDefaults
 {
     self.showXLegend = YES;
     self.showYLegend = YES;
@@ -99,6 +99,7 @@
 }
 
 #pragma mark - Setters
+
 - (void)setUseBackgroundGradient:(BOOL)useBackgroundGradient
 {
     _background.hidden = !useBackgroundGradient;
@@ -326,8 +327,6 @@
 {
     if(_titleContainerView == nil){
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = [UIColor greenColor];
-
         view.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:view];
         
@@ -347,7 +346,6 @@
 {
     if(_xAxisContainerView == nil){
         ARGraphXLegendView *view = [[ARGraphXLegendView alloc] init];
-        view.backgroundColor = [UIColor blueColor];
         view.delegate = self;
         view.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:view];
@@ -360,7 +358,6 @@
         [self addConstraints:@[bottom, left, right, self.xAxisHeightConstraint]];
         
         _xAxisContainerView = view;
-
     }
 
     return _xAxisContainerView;
@@ -370,7 +367,6 @@
 {
     if(_yAxisContainerView == nil){
         UIView *view = [[UIView alloc] init];
-        view.backgroundColor = [UIColor redColor];
         view.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:view];
         
@@ -381,7 +377,6 @@
         
         [self addConstraints:@[bottom, left, top, self.yAxisWidthConstraint]];
         _yAxisContainerView = view;
-
     }
     return _yAxisContainerView;
 }
@@ -426,12 +421,6 @@
 }
 
 #pragma mark - Helpers
-
-- (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width
-{
-    CGFloat itemWidth = width/total;
-    return index * itemWidth + itemWidth/2;
-}
 
 - (CGSize)sizeOfText:(NSString*)text preferredFontForTextStyle:(NSString*)style {
     UIFont *font = [UIFont preferredFontForTextStyle:style];

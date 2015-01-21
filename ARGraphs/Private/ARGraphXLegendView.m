@@ -51,6 +51,8 @@
             //Update Values
             [self updateLabelValues];
         }
+    }else {
+        [_labels makeObjectsPerformSelector:@selector(removeFromSuperview)];
     }
 }
 

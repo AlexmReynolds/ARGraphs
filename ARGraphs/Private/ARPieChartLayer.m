@@ -50,7 +50,7 @@
 - (CAShapeLayer*)maskLayer
 {
     CAShapeLayer *mask = [CAShapeLayer layer];
-    CGFloat radius = MIN(self.bounds.size.width, self.bounds.size.height) / 2;
+    CGFloat radius = [self radiusOfPie];
 
     UIBezierPath *path = [self pathForMask];
     mask.path = path.CGPath;
@@ -72,7 +72,7 @@
 
 - (UIBezierPath*)pathForMask
 {
-    CGFloat radius = MIN(self.bounds.size.width, self.bounds.size.height) / 2;
+    CGFloat radius = [self radiusOfPie];
     CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
     UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:center
                                                         radius:radius/2
@@ -124,8 +124,8 @@
 
 - (CGMutablePathRef)pathForSliceAtIndex:(NSUInteger)index startAngle:(CGFloat)startAngle
 {
-    CGFloat radius = MIN(self.bounds.size.width, self.bounds.size.height) / 2;
-    CGFloat percent = self.percentages[index];;
+    CGFloat radius = [self radiusOfPie];
+    CGFloat percent = self.percentages[index];
     CGFloat degrees = 360.0 * percent;
     CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
     
@@ -147,6 +147,11 @@
 
     CGPathCloseSubpath(path);
     return path;
+}
+
+- (CGFloat)radiusOfPie
+{
+    return MIN(self.bounds.size.width - self.leftPadding - self.rightPadding, self.bounds.size.height - self.topPadding - self.bottomPadding) / 2;
 }
 
 - (CGPoint)point:(CGPoint)point insetby:(CGFloat)inset startAngle:(CGFloat)angle degrees:(CGFloat)degrees

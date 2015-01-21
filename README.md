@@ -2,11 +2,11 @@
 Fun graphs for iOS
  #ARLineGraph
  
- #ARPieChart
+## ARPieChart
  ARPieChart represents an array of data in a pie format. The data array can either be an array of datapoints or an array of arrays of datapoint. Simple datapoints like agregated data could be like $450 spent on fast food. Complex data could be each Fast food transaction and the chart will sum up the array.
  ```[pieChart setDataPoints:@[]]```
  
- ##Customizing
+### Customizing
  The pie uses a background gradient which is a lighter and darker color of the view's tintColor. The gradient is applied by default. 
  ```pieChart.useBackgroundGradient = NO;``` will remove the gradient and you can set a background color. Background color is clear by default.
  

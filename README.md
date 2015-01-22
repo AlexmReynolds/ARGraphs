@@ -1,5 +1,6 @@
 # ARGraphs
 Fun graphs for iOS. 
+
 ![demo](demo.gif)
 
 All Charts respond to the Appearance selector so you can set App wide settings in App Did finish launching.

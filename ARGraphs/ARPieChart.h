@@ -18,7 +18,15 @@
 @property (nonatomic) CGFloat sliceGutterWidth UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat innerRadiusPercent UI_APPEARANCE_SELECTOR;
 @property (nonatomic) BOOL useBackgroundGradient UI_APPEARANCE_SELECTOR;
+
 @property (nonatomic) UIEdgeInsets insets UI_APPEARANCE_SELECTOR;
+
+/*!
+ @abstract Animate the chart into view
+ 
+ @discussion This method is to reveal the chart and data when first shown or data updated
+ */
+- (void)beginAnimationIn;
 @end
 
 @protocol ARPieChartDataSource <NSObject>
@@ -26,8 +34,6 @@
 - (NSArray *)ARPieChartDataPoints:(ARPieChart *)graph;
 
 @optional
-//- (NSArray*)ARPieChart:(ARPieChart*)chart dataPointForPieIndex:(NSUInteger)index;
-//- (NSArray*)ARPieChart:(ARPieChart*)chart dataPointArrayForPieIndex:(NSUInteger)index;
 - (NSString *)titleForPieChart:(ARPieChart *)chart;
 - (NSString *)subTitleForPieChart:(ARPieChart *)chart;
 - (NSString *)ARPieChart:(ARPieChart *)chart titleForPieIndex:(NSUInteger)index;

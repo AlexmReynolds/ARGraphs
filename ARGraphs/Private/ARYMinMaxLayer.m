@@ -14,6 +14,8 @@
 
 @property (nonatomic, strong) CATextLayer *minTextLayer;
 @property (nonatomic, strong) CATextLayer *maxTextLayer;
+@property (nonatomic) CGColorRef defaultLineColor;
+@property (nonatomic) CGColorRef defaultLabelColor;
 
 @end
 
@@ -22,33 +24,38 @@
 - (instancetype)init
 {
     self = [super init];
-    [self addSublayer:self.minTextLayer];
-    [self addSublayer:self.maxTextLayer];
-    
     CGFloat fillColors [] = {
         1.0, 1.0, 1.0, 0.6
     };
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); //NEED TO RELEASE
-    _lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
+    _defaultLineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
+    _defaultLabelColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
+    
     CGColorSpaceRelease(colorSpace);
+    
+    [self addSublayer:self.minTextLayer];
+    [self addSublayer:self.maxTextLayer];
+    
+
     return self;
 }
 
 - (void)dealloc
 {
-    CGColorRelease(self.lineColor);
-    CGColorRelease(self.labelColor);
+    CGColorRelease(_defaultLineColor);
+    CGColorRelease(_defaultLabelColor);
 }
+#pragma mark - Setters
 
 - (void)setLineColor:(CGColorRef)lineColor
 {
-    _lineColor = CGColorCreateCopy(lineColor);
+    _lineColor = lineColor;
     [self setNeedsDisplay];
 }
 
 - (void)setLabelColor:(CGColorRef)labelColor
 {
-    _labelColor = CGColorCreateCopy(labelColor);
+    _labelColor = labelColor;
     self.minTextLayer.foregroundColor = labelColor;
     self.maxTextLayer.foregroundColor = labelColor;
     [self setNeedsDisplay];
@@ -69,6 +76,8 @@
     
 }
 
+#pragma mark - Helpers
+
 - (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height
 {
     CGFloat range = self.yMax - self.yMin;
@@ -82,12 +91,6 @@
     }else{
         return self.topPadding + inversePercentage * availableHeight;
     }
-}
-
-- (void)layoutSublayers
-{
-    self.minTextLayer.frame = [self frameforMinLabel];
-    self.maxTextLayer.frame = [self frameforMaxLabel];
 }
 
 - (CGRect)frameforMinLabel
@@ -113,9 +116,19 @@
     return rect;
 }
 
+- (void)layoutSublayers
+{
+    self.minTextLayer.frame = [self frameforMinLabel];
+    self.maxTextLayer.frame = [self frameforMaxLabel];
+}
+
 - (void)drawInContext:(CGContextRef)ctx
 {
-    CGContextSetStrokeColorWithColor(ctx, self.lineColor);
+    if(_lineColor){
+        CGContextSetStrokeColorWithColor(ctx, self.lineColor);
+    }else {
+        CGContextSetStrokeColorWithColor(ctx, _defaultLineColor);
+    }
     CGContextSetLineWidth(ctx, 1.0);
 
     CGFloat minY = [self yPositionForYDataPoint:self.yMin inHeight:self.bounds.size.height];
@@ -134,16 +147,19 @@
     CGContextStrokePath(ctx);
 }
 
-
+#pragma mark - Layer Creation Methods
 
 - (CATextLayer *)minTextLayer
 {
     if(_minTextLayer == nil){
         CATextLayer *textLayer = [CATextLayer layer];
-        //        CGFloat offset = [self sizeOfText:@"one line" forFont:self.font].height;
 
         [textLayer setString:@"Hello World"];
-        [textLayer setForegroundColor:self.labelColor];
+        if(_labelColor){
+            [textLayer setForegroundColor:self.labelColor];
+        }else {
+            [textLayer setForegroundColor:_defaultLabelColor];
+        }
         [textLayer setFontSize:12.0];
         CGFontRef font = CGFontCreateWithFontName((CFStringRef)@"Helvetica"); //NEED TO RELEASE
         textLayer.font = font;
@@ -163,10 +179,13 @@
 {
     if(_maxTextLayer == nil){
         CATextLayer *textLayer = [CATextLayer layer];
-        //        CGFloat offset = [self sizeOfText:@"one line" forFont:self.font].height;
  
         [textLayer setString:@"Hello World"];
-        [textLayer setForegroundColor:self.labelColor];
+        if(_labelColor){
+            [textLayer setForegroundColor:self.labelColor];
+        }else {
+            [textLayer setForegroundColor:_defaultLabelColor];
+        }
         [textLayer setFontSize:12.0];
         CGFontRef font = CGFontCreateWithFontName((CFStringRef)@"Helvetica"); //NEED TO RELEASE
         textLayer.font = font;

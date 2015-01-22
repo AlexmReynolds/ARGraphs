@@ -43,7 +43,7 @@
     self.chart.showXLegendValues = self.settingsTable.showXLegendValues;
 
     self.chart.dataSource = self;
-        
+    [self.chart beginAnimationIn];
     NSInteger perPopData = 10;
     while (perPopData--) {
         [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:arc4random()%8]];

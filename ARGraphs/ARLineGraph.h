@@ -83,6 +83,13 @@
  */
 - (void)appendDataPoint:(ARGraphDataPoint*)dataPoint;
 
+/*!
+ @abstract Animate the graph into view
+ 
+ @discussion This method is to reveal the graph and data when first shown or data updated
+ */
+- (void)beginAnimationIn;
+
 @end
 
 

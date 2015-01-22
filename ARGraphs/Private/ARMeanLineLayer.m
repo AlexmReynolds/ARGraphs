@@ -9,6 +9,10 @@
 #import "ARMeanLineLayer.h"
 #import "ARGraphDataPoint.h"
 
+@interface ARMeanLineLayer ()
+@property (nonatomic) CGColorRef defaultLineColor;
+@end
+
 @implementation ARMeanLineLayer
 
 
@@ -23,7 +27,7 @@
         1.0, 1.0, 1.0, 0.6
     };
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); //NEED TO RELEASE
-    _lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
+    _defaultLineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
     CGColorSpaceRelease(colorSpace);
     return self;
 }
@@ -36,7 +40,7 @@
 
 - (void)setLineColor:(CGColorRef)lineColor
 {
-    _lineColor = CGColorCreateCopy(lineColor);
+    _lineColor = lineColor;
     [self setNeedsDisplay];
 }
 
@@ -60,8 +64,11 @@
     CGFloat dashLengths[] = {4, 2};
     CGContextSetLineDash(ctx, 0, dashLengths, 2);
     CGContextSetLineWidth(ctx, 1.0);
-    CGContextSetStrokeColorWithColor(ctx, self.lineColor);
-    CGFloat yPosition = [self yPositionForYDataPoint:self.yMean inHeight:self.bounds.size.height];
+    if(_lineColor){
+        CGContextSetStrokeColorWithColor(ctx, self.lineColor);
+    }else {
+        CGContextSetStrokeColorWithColor(ctx, _defaultLineColor);
+    }    CGFloat yPosition = [self yPositionForYDataPoint:self.yMean inHeight:self.bounds.size.height];
     if(yPosition != NSNotFound){
         CGContextMoveToPoint(ctx, 0, yPosition);
         CGContextAddLineToPoint(ctx, self.bounds.size.width, yPosition);
@@ -74,7 +81,7 @@
 
 - (void)dealloc
 {
-    CGColorRelease(self.lineColor);
+    CGColorRelease(_defaultLineColor);
 }
 
 @end

@@ -30,7 +30,11 @@
 
     // Do any additional setup after loading the view.
 }
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.chart beginAnimationIn];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -46,6 +50,11 @@
 
     
     return @[dp,dp1,dp2,dp3,dp4];
+}
+
+- (NSString *)ARPieChart:(ARPieChart *)chart titleForPieIndex:(NSUInteger)index
+{
+    return [NSString stringWithFormat:@"i %lu", (unsigned long)index];
 }
 
 /*

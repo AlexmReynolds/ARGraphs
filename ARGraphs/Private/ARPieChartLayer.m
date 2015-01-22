@@ -93,8 +93,8 @@
     CGContextSetRGBStrokeColor(ctx, 1.0, 1.0, 1.0, 1.0);
     CGContextSetLineWidth(ctx, 2.0);
     CGFloat lastAngle = 0;
-    while (count--) {
-        [self drawSliceInContext:ctx atIndex:count startAngle:&lastAngle];
+    for(NSInteger x = 0; x < count; x++){
+        [self drawSliceInContext:ctx atIndex:x startAngle:&lastAngle];
     }
 }
 
@@ -130,7 +130,7 @@
     CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
     
     if(self.sliceGutterWidth > 0){
-        center = [self point:center insetby:self.sliceGutterWidth startAngle:startAngle degrees:degrees];
+        center = [ARHelpers pointInCircle:center insetFromCenterBy:self.sliceGutterWidth startAngle:startAngle degrees:degrees];
         radius -= self.sliceGutterWidth;
 
     }
@@ -153,17 +153,4 @@
 {
     return MIN(self.bounds.size.width - self.leftPadding - self.rightPadding, self.bounds.size.height - self.topPadding - self.bottomPadding) / 2;
 }
-
-- (CGPoint)point:(CGPoint)point insetby:(CGFloat)inset startAngle:(CGFloat)angle degrees:(CGFloat)degrees
-{
-    CGFloat newAngle = (angle + degrees/2);
-    newAngle = 360.0 - newAngle;
-    CGFloat rads = DEGREES_TO_RADIANS(newAngle);
-    CGFloat hypotenues = inset;
-    CGFloat opposite = sinf(rads) * hypotenues;
-    CGFloat adjacent = cosf(rads) * hypotenues;
-
-    return CGPointMake(point.x + adjacent, point.y - opposite);// invert due to x,y coordinate plane
-}
-
 @end

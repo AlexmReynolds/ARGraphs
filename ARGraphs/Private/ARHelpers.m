@@ -64,4 +64,16 @@
     CGColorSpaceRelease(colorSpace);
     return newColor;
 }
+
++ (CGPoint)pointInCircle:(CGPoint)point insetFromCenterBy:(CGFloat)inset startAngle:(CGFloat)angle degrees:(CGFloat)degrees
+{
+    CGFloat newAngle = (angle + degrees/2);
+    newAngle = 360.0 - newAngle;
+    CGFloat rads = DEGREES_TO_RADIANS(newAngle);
+    CGFloat hypotenues = inset;
+    CGFloat opposite = sinf(rads) * hypotenues;
+    CGFloat adjacent = cosf(rads) * hypotenues;
+    
+    return CGPointMake(point.x + adjacent, point.y - opposite);// invert due to x,y coordinate plane
+}
 @end

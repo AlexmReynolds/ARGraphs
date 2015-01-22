@@ -283,7 +283,6 @@
     }
 
     [self updateSubLayers];
-    [self.pointsLayer animate];
 }
 
 - (void)updateSubLayers
@@ -444,4 +443,10 @@
     
     return size;
 }
+
+- (void)beginAnimationIn
+{
+    [_pointsLayer animate];
+}
+
 @end

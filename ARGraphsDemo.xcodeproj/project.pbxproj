@@ -21,7 +21,7 @@
 		E71233C91A6ED3250034E447 /* ARHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233C81A6ED3250034E447 /* ARHelpers.m */; };
 		E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */; };
 		E7826F041A705D0900642F1E /* ARPieChartLabelsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */; };
-		E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */; };
+		E7B2A5C91A64874C00FD402E /* ARLineGraphs_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */; };
 		E7B2A6361A64A44D00FD402E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6341A64A44D00FD402E /* Info.plist */; };
 		E7B2A6371A64A44D00FD402E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6351A64A44D00FD402E /* main.m */; };
 		E7B2A63E1A64A45A00FD402E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6391A64A45A00FD402E /* AppDelegate.m */; };
@@ -75,7 +75,7 @@
 		E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGraphsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGraphsDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7B2A5C71A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARGraphsTests.m; sourceTree = "<group>"; };
+		E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARLineGraphs_Tests.m; sourceTree = "<group>"; };
 		E7B2A6341A64A44D00FD402E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ARGraphsDemo/Info.plist; sourceTree = SOURCE_ROOT; };
 		E7B2A6351A64A44D00FD402E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ARGraphsDemo/main.m; sourceTree = SOURCE_ROOT; };
 		E7B2A6381A64A45A00FD402E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ARGraphsDemo/AppDelegate.h; sourceTree = SOURCE_ROOT; };
@@ -146,7 +146,6 @@
 			children = (
 				E71233BA1A6DBFE30034E447 /* ARPieChartDataPointUtility.h */,
 				E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */,
-				E71233BD1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m */,
 				E71233C11A6DD3360034E447 /* ARPieChartLayer.h */,
 				E71233C21A6DD3360034E447 /* ARPieChartLayer.m */,
 				E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */,
@@ -224,7 +223,8 @@
 		E7B2A5C51A64874C00FD402E /* ARGraphsTests */ = {
 			isa = PBXGroup;
 			children = (
-				E7B2A5C81A64874C00FD402E /* ARGraphsTests.m */,
+				E71233BD1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m */,
+				E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */,
 				E7B2A5C61A64874C00FD402E /* Supporting Files */,
 			);
 			path = ARGraphsTests;
@@ -380,7 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E71233BE1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m in Sources */,
-				E7B2A5C91A64874C00FD402E /* ARGraphsTests.m in Sources */,
+				E7B2A5C91A64874C00FD402E /* ARLineGraphs_Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

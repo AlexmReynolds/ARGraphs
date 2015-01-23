@@ -50,38 +50,51 @@
 {
     self = [super initWithCoder:aDecoder];
     if(self){
-        self.dataPointUtility = [[ARGraphDataPointUtility alloc] init];
-
-        
-        _background = [ARGraphBackground gradientWithColor:self.tintColor.CGColor];
-        _background.frame = self.bounds;
-        [self.layer insertSublayer:_background atIndex:0];
-        
-        _pointsLayer = [ARGraphPointsLayer layer];
-        _pointsLayer.shouldRasterize = YES;
-        _pointsLayer.frame = self.bounds;
-        [self.layer addSublayer:_pointsLayer];
-        
-        _minMaxLayer = [ARYMinMaxLayer layer];
-        _minMaxLayer.shouldRasterize = YES;
-        _minMaxLayer.frame = self.bounds;
-        
-        [self.layer addSublayer:_minMaxLayer];
-        
-        _meanLayer = [ARMeanLineLayer layer];
-        _meanLayer.shouldRasterize = YES;
-        _meanLayer.frame = self.bounds;
-        
-        [self.layer addSublayer:_meanLayer];
-        
-        self.titleContainerView.backgroundColor = [UIColor clearColor];
-        self.xAxisContainerView.backgroundColor = [UIColor clearColor];
-        self.yAxisContainerView.backgroundColor = [UIColor clearColor];
-
-        [self applyDefaults];
-
+        [self initialSetup];
     }
     return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(self){
+        [self initialSetup];
+    }
+    return self;
+}
+
+- (void)initialSetup
+{
+    self.dataPointUtility = [[ARGraphDataPointUtility alloc] init];
+    
+    
+    _background = [ARGraphBackground gradientWithColor:self.tintColor.CGColor];
+    _background.frame = self.bounds;
+    [self.layer insertSublayer:_background atIndex:0];
+    
+    _pointsLayer = [ARGraphPointsLayer layer];
+    _pointsLayer.shouldRasterize = YES;
+    _pointsLayer.frame = self.bounds;
+    [self.layer addSublayer:_pointsLayer];
+    
+    _minMaxLayer = [ARYMinMaxLayer layer];
+    _minMaxLayer.shouldRasterize = YES;
+    _minMaxLayer.frame = self.bounds;
+    
+    [self.layer addSublayer:_minMaxLayer];
+    
+    _meanLayer = [ARMeanLineLayer layer];
+    _meanLayer.shouldRasterize = YES;
+    _meanLayer.frame = self.bounds;
+    
+    [self.layer addSublayer:_meanLayer];
+    
+    self.titleContainerView.backgroundColor = [UIColor clearColor];
+    self.xAxisContainerView.backgroundColor = [UIColor clearColor];
+    self.yAxisContainerView.backgroundColor = [UIColor clearColor];
+    
+    [self applyDefaults];
 }
 
 - (void)applyDefaults
@@ -108,6 +121,7 @@
 
 - (void)setUseBackgroundGradient:(BOOL)useBackgroundGradient
 {
+    _useBackgroundGradient = useBackgroundGradient;
     _background.hidden = !useBackgroundGradient;
 }
 - (void)setDataSource:(id<ARLineGraphDataSource>)dataSource
@@ -138,26 +152,22 @@
 {
     _showYLegend = showYLegend;
     if(_showYLegend){
-        NSLog(@"show Legend");
         self.yAxisWidthConstraint.constant = [self sizeOfText:@"foo" preferredFontForTextStyle:UIFontTextStyleCaption1].width;
     }else {
-        NSLog(@"hide Legend");
-
         self.yAxisWidthConstraint.constant = 0.0;
 
     }
-    NSLog(@"constant is now %f", self.yAxisWidthConstraint.constant);
-
     [self.yAxisContainerView layoutIfNeeded];
     
 }
 
 - (void)setShowDots:(BOOL)showDots
 {
+    _showDots = showDots;
     self.pointsLayer.showDots = showDots;
     CGFloat padding = 0;
     if(showDots){
-        padding = 8;
+        padding = self.pointsLayer.dotRadius;
     }
     self.pointsLayer.topPadding = padding;
     self.pointsLayer.bottomPadding = padding;
@@ -169,6 +179,7 @@
 
 - (void)setShowMinMaxLines:(BOOL)showMinMaxLines
 {
+    _showMinMaxLines = showMinMaxLines;
     self.minMaxLayer.hidden = !showMinMaxLines;
     if(showMinMaxLines){
         self.pointsLayer.rightPadding = 20;
@@ -179,26 +190,31 @@
 
 - (void)setShowMeanLine:(BOOL)showMeanLine
 {
+    _showMeanLine = showMeanLine;
     self.meanLayer.hidden = !showMeanLine;
 }
 
 - (void)setShouldSmooth:(BOOL)shouldSmooth
 {
+    _shouldSmooth = shouldSmooth;
     self.pointsLayer.shouldSmooth = shouldSmooth;
 }
 
 - (void)setShouldFill:(BOOL)shouldFill
 {
+    _shouldFill = shouldFill;
     self.pointsLayer.shouldFill = shouldFill;
 }
 
 - (void)setDotRadius:(CGFloat)dotRadius
 {
+    _dotRadius = dotRadius;
     self.pointsLayer.dotRadius = dotRadius;
 }
 
 - (void)setLineColor:(UIColor *)lineColor
 {
+    _lineColor = lineColor;
     self.pointsLayer.lineColor = lineColor.CGColor;
     self.minMaxLayer.lineColor = lineColor.CGColor;
     self.meanLayer.lineColor = lineColor.CGColor;
@@ -212,6 +228,7 @@
 
 - (void)setShowXLegendValues:(BOOL)showXLegendValues
 {
+    _showXLegendValues = showXLegendValues;
     self.xAxisContainerView.showXValues = showXLegendValues;
 }
 #pragma mark - Getters

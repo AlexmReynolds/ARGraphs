@@ -41,7 +41,8 @@
     self.chart.tintColor = self.settingsTable.chartColor;
     self.chart.shouldSmooth = self.settingsTable.showCurvedLine;
     self.chart.showXLegendValues = self.settingsTable.showXLegendValues;
-
+    self.chart.layer.cornerRadius = 8.0;
+    self.chart.clipsToBounds = YES;
     self.chart.dataSource = self;
     [self.chart beginAnimationIn];
     NSInteger perPopData = 10;
@@ -49,8 +50,8 @@
         [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:arc4random()%8]];
     }
     [self.chart reloadData];
-  //  self.timer = [NSTimer timerWithTimeInterval:0.5 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
- //   [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+    self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 
 - (void)createDataPoint

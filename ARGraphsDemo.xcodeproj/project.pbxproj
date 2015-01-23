@@ -1,582 +1,1725 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
-
-/* Begin PBXBuildFile section */
-		5493DA341A64A9BD00FB10ED /* ARGraphPointsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA2F1A64A9BD00FB10ED /* ARGraphPointsLayer.m */; };
-		5493DA351A64A9BD00FB10ED /* ARMeanLineLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA311A64A9BD00FB10ED /* ARMeanLineLayer.m */; };
-		5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA331A64A9BD00FB10ED /* ARYMinMaxLayer.m */; };
-		E71233AD1A69D61B0034E447 /* ARGraphDataPointUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AC1A69D61B0034E447 /* ARGraphDataPointUtility.m */; };
-		E71233B01A6D6F430034E447 /* ARGraphXLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */; };
-		E71233B31A6DB7890034E447 /* ARGraphBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233B21A6DB7890034E447 /* ARGraphBackground.m */; };
-		E71233B71A6DBDA70034E447 /* ARPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233B61A6DBDA70034E447 /* ARPieChart.m */; };
-		E71233BC1A6DBFE30034E447 /* ARPieChartDataPointUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */; };
-		E71233BE1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233BD1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m */; };
-		E71233C31A6DD3360034E447 /* ARPieChartLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233C21A6DD3360034E447 /* ARPieChartLayer.m */; };
-		E71233C61A6DD7350034E447 /* ARPieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233C51A6DD7350034E447 /* ARPieChartViewController.m */; };
-		E71233C91A6ED3250034E447 /* ARHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233C81A6ED3250034E447 /* ARHelpers.m */; };
-		E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */; };
-		E7826F041A705D0900642F1E /* ARPieChartLabelsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */; };
-		E7B2A5C91A64874C00FD402E /* ARLineGraphs_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */; };
-		E7B2A6361A64A44D00FD402E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6341A64A44D00FD402E /* Info.plist */; };
-		E7B2A6371A64A44D00FD402E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6351A64A44D00FD402E /* main.m */; };
-		E7B2A63E1A64A45A00FD402E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A6391A64A45A00FD402E /* AppDelegate.m */; };
-		E7B2A63F1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A63B1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m */; };
-		E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */; };
-		E7B2A6421A64A46200FD402E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6411A64A46200FD402E /* Images.xcassets */; };
-		E7B2A6471A64A46C00FD402E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */; };
-		E7B2A6481A64A46C00FD402E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E7B2A6451A64A46C00FD402E /* Main.storyboard */; };
-		E7B2A6531A64A47C00FD402E /* ARLineGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64A1A64A47C00FD402E /* ARLineGraph.m */; };
-		E7B2A6541A64A47C00FD402E /* ARGraphDataPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */; };
-/* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		E7B2A5C31A64874C00FD402E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E7B2A5A11A64874C00FD402E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E7B2A5A81A64874C00FD402E;
-			remoteInfo = ARGraphs;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXFileReference section */
-		5493DA2E1A64A9BD00FB10ED /* ARGraphPointsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphPointsLayer.h; path = Private/ARGraphPointsLayer.h; sourceTree = "<group>"; };
-		5493DA2F1A64A9BD00FB10ED /* ARGraphPointsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphPointsLayer.m; path = Private/ARGraphPointsLayer.m; sourceTree = "<group>"; };
-		5493DA301A64A9BD00FB10ED /* ARMeanLineLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARMeanLineLayer.h; path = Private/ARMeanLineLayer.h; sourceTree = "<group>"; };
-		5493DA311A64A9BD00FB10ED /* ARMeanLineLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARMeanLineLayer.m; path = Private/ARMeanLineLayer.m; sourceTree = "<group>"; };
-		5493DA321A64A9BD00FB10ED /* ARYMinMaxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARYMinMaxLayer.h; path = Private/ARYMinMaxLayer.h; sourceTree = "<group>"; };
-		5493DA331A64A9BD00FB10ED /* ARYMinMaxLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARYMinMaxLayer.m; path = Private/ARYMinMaxLayer.m; sourceTree = "<group>"; };
-		E71233AB1A69D61B0034E447 /* ARGraphDataPointUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphDataPointUtility.h; path = Private/ARGraphDataPointUtility.h; sourceTree = "<group>"; };
-		E71233AC1A69D61B0034E447 /* ARGraphDataPointUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphDataPointUtility.m; path = Private/ARGraphDataPointUtility.m; sourceTree = "<group>"; };
-		E71233AE1A6D6F430034E447 /* ARGraphXLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphXLegendView.h; path = Private/ARGraphXLegendView.h; sourceTree = "<group>"; };
-		E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphXLegendView.m; path = Private/ARGraphXLegendView.m; sourceTree = "<group>"; };
-		E71233B11A6DB7890034E447 /* ARGraphBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphBackground.h; path = Private/ARGraphBackground.h; sourceTree = "<group>"; };
-		E71233B21A6DB7890034E447 /* ARGraphBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphBackground.m; path = Private/ARGraphBackground.m; sourceTree = "<group>"; };
-		E71233B51A6DBDA70034E447 /* ARPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPieChart.h; sourceTree = "<group>"; };
-		E71233B61A6DBDA70034E447 /* ARPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARPieChart.m; sourceTree = "<group>"; };
-		E71233BA1A6DBFE30034E447 /* ARPieChartDataPointUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartDataPointUtility.h; path = Private/ARPieChartDataPointUtility.h; sourceTree = "<group>"; };
-		E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartDataPointUtility.m; path = Private/ARPieChartDataPointUtility.m; sourceTree = "<group>"; };
-		E71233BD1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartDPUtil_Tests.m; path = ARGraphsTests/ARPieChartDPUtil_Tests.m; sourceTree = SOURCE_ROOT; };
-		E71233C11A6DD3360034E447 /* ARPieChartLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartLayer.h; path = Private/ARPieChartLayer.h; sourceTree = "<group>"; };
-		E71233C21A6DD3360034E447 /* ARPieChartLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartLayer.m; path = Private/ARPieChartLayer.m; sourceTree = "<group>"; };
-		E71233C41A6DD7350034E447 /* ARPieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartViewController.h; path = ARGraphsDemo/ARPieChartViewController.h; sourceTree = SOURCE_ROOT; };
-		E71233C51A6DD7350034E447 /* ARPieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartViewController.m; path = ARGraphsDemo/ARPieChartViewController.m; sourceTree = SOURCE_ROOT; };
-		E71233C71A6ED3250034E447 /* ARHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARHelpers.h; path = Private/ARHelpers.h; sourceTree = "<group>"; };
-		E71233C81A6ED3250034E447 /* ARHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARHelpers.m; path = Private/ARHelpers.m; sourceTree = "<group>"; };
-		E7826EFF1A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartSettingsTableViewController.h; path = ARGraphsDemo/ARPieChartSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
-		E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartSettingsTableViewController.m; path = ARGraphsDemo/ARPieChartSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
-		E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartLabelsLayer.h; path = Private/ARPieChartLabelsLayer.h; sourceTree = "<group>"; };
-		E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartLabelsLayer.m; path = Private/ARPieChartLabelsLayer.m; sourceTree = "<group>"; };
-		E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARGraphsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARGraphsDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7B2A5C71A64874C00FD402E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARLineGraphs_Tests.m; sourceTree = "<group>"; };
-		E7B2A6341A64A44D00FD402E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ARGraphsDemo/Info.plist; sourceTree = SOURCE_ROOT; };
-		E7B2A6351A64A44D00FD402E /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = ARGraphsDemo/main.m; sourceTree = SOURCE_ROOT; };
-		E7B2A6381A64A45A00FD402E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = ARGraphsDemo/AppDelegate.h; sourceTree = SOURCE_ROOT; };
-		E7B2A6391A64A45A00FD402E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = ARGraphsDemo/AppDelegate.m; sourceTree = SOURCE_ROOT; };
-		E7B2A63A1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARLineGraphSettingsTableViewController.h; path = ARGraphsDemo/ARLineGraphSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
-		E7B2A63B1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARLineGraphSettingsTableViewController.m; path = ARGraphsDemo/ARLineGraphSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
-		E7B2A63C1A64A45A00FD402E /* ARGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphViewController.h; path = ARGraphsDemo/ARGraphViewController.h; sourceTree = SOURCE_ROOT; };
-		E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphViewController.m; path = ARGraphsDemo/ARGraphViewController.m; sourceTree = SOURCE_ROOT; };
-		E7B2A6411A64A46200FD402E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = ARGraphsDemo/Images.xcassets; sourceTree = SOURCE_ROOT; };
-		E7B2A6441A64A46C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = ARGraphsDemo/Base.lproj/LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
-		E7B2A6461A64A46C00FD402E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = ARGraphsDemo/Base.lproj/Main.storyboard; sourceTree = SOURCE_ROOT; };
-		E7B2A6491A64A47C00FD402E /* ARLineGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARLineGraph.h; sourceTree = "<group>"; };
-		E7B2A64A1A64A47C00FD402E /* ARLineGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineGraph.m; sourceTree = "<group>"; };
-		E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARGraphDataPoint.h; sourceTree = "<group>"; };
-		E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARGraphDataPoint.m; sourceTree = "<group>"; };
-/* End PBXFileReference section */
-
-/* Begin PBXFrameworksBuildPhase section */
-		E7B2A5A61A64874C00FD402E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7B2A5BF1A64874C00FD402E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		5493DA2D1A64A9AB00FB10ED /* Private */ = {
-			isa = PBXGroup;
-			children = (
-				E71233B11A6DB7890034E447 /* ARGraphBackground.h */,
-				E71233B21A6DB7890034E447 /* ARGraphBackground.m */,
-				E71233C71A6ED3250034E447 /* ARHelpers.h */,
-				E71233C81A6ED3250034E447 /* ARHelpers.m */,
-				E71233B91A6DBFB00034E447 /* Pie Chart */,
-				E71233B81A6DBFA30034E447 /* Line Graph */,
-			);
-			name = Private;
-			sourceTree = "<group>";
-		};
-		E71233B81A6DBFA30034E447 /* Line Graph */ = {
-			isa = PBXGroup;
-			children = (
-				E71233AE1A6D6F430034E447 /* ARGraphXLegendView.h */,
-				E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */,
-				E71233AB1A69D61B0034E447 /* ARGraphDataPointUtility.h */,
-				E71233AC1A69D61B0034E447 /* ARGraphDataPointUtility.m */,
-				5493DA2E1A64A9BD00FB10ED /* ARGraphPointsLayer.h */,
-				5493DA2F1A64A9BD00FB10ED /* ARGraphPointsLayer.m */,
-				5493DA301A64A9BD00FB10ED /* ARMeanLineLayer.h */,
-				5493DA311A64A9BD00FB10ED /* ARMeanLineLayer.m */,
-				5493DA321A64A9BD00FB10ED /* ARYMinMaxLayer.h */,
-				5493DA331A64A9BD00FB10ED /* ARYMinMaxLayer.m */,
-			);
-			name = "Line Graph";
-			sourceTree = "<group>";
-		};
-		E71233B91A6DBFB00034E447 /* Pie Chart */ = {
-			isa = PBXGroup;
-			children = (
-				E71233BA1A6DBFE30034E447 /* ARPieChartDataPointUtility.h */,
-				E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */,
-				E71233C11A6DD3360034E447 /* ARPieChartLayer.h */,
-				E71233C21A6DD3360034E447 /* ARPieChartLayer.m */,
-				E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */,
-				E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */,
-			);
-			name = "Pie Chart";
-			sourceTree = "<group>";
-		};
-		E7826EFD1A6F2B0900642F1E /* Pie Chart */ = {
-			isa = PBXGroup;
-			children = (
-				E7826EFF1A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.h */,
-				E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */,
-				E71233C41A6DD7350034E447 /* ARPieChartViewController.h */,
-				E71233C51A6DD7350034E447 /* ARPieChartViewController.m */,
-			);
-			name = "Pie Chart";
-			sourceTree = "<group>";
-		};
-		E7826EFE1A6F2B1300642F1E /* Line Graph */ = {
-			isa = PBXGroup;
-			children = (
-				E7B2A63A1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.h */,
-				E7B2A63B1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m */,
-				E7B2A63C1A64A45A00FD402E /* ARGraphViewController.h */,
-				E7B2A63D1A64A45A00FD402E /* ARGraphViewController.m */,
-			);
-			name = "Line Graph";
-			sourceTree = "<group>";
-		};
-		E7B2A5A01A64874C00FD402E = {
-			isa = PBXGroup;
-			children = (
-				E7B2A5E31A64879200FD402E /* ARGraphs */,
-				E7B2A5AB1A64874C00FD402E /* ARGraphsDemo */,
-				E7B2A5C51A64874C00FD402E /* ARGraphsTests */,
-				E7B2A5AA1A64874C00FD402E /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		E7B2A5AA1A64874C00FD402E /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */,
-				E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E7B2A5AB1A64874C00FD402E /* ARGraphsDemo */ = {
-			isa = PBXGroup;
-			children = (
-				E7B2A6381A64A45A00FD402E /* AppDelegate.h */,
-				E7B2A6391A64A45A00FD402E /* AppDelegate.m */,
-				E7826EFE1A6F2B1300642F1E /* Line Graph */,
-				E7826EFD1A6F2B0900642F1E /* Pie Chart */,
-				E7B2A6411A64A46200FD402E /* Images.xcassets */,
-				E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */,
-				E7B2A6451A64A46C00FD402E /* Main.storyboard */,
-				E7B2A5AC1A64874C00FD402E /* Supporting Files */,
-			);
-			name = ARGraphsDemo;
-			path = ARGraphs;
-			sourceTree = "<group>";
-		};
-		E7B2A5AC1A64874C00FD402E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E7B2A6341A64A44D00FD402E /* Info.plist */,
-				E7B2A6351A64A44D00FD402E /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E7B2A5C51A64874C00FD402E /* ARGraphsTests */ = {
-			isa = PBXGroup;
-			children = (
-				E71233BD1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m */,
-				E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */,
-				E7B2A5C61A64874C00FD402E /* Supporting Files */,
-			);
-			path = ARGraphsTests;
-			sourceTree = "<group>";
-		};
-		E7B2A5C61A64874C00FD402E /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				E7B2A5C71A64874C00FD402E /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E7B2A5E31A64879200FD402E /* ARGraphs */ = {
-			isa = PBXGroup;
-			children = (
-				E7B2A6491A64A47C00FD402E /* ARLineGraph.h */,
-				E7B2A64A1A64A47C00FD402E /* ARLineGraph.m */,
-				E71233B51A6DBDA70034E447 /* ARPieChart.h */,
-				E71233B61A6DBDA70034E447 /* ARPieChart.m */,
-				E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */,
-				E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */,
-				5493DA2D1A64A9AB00FB10ED /* Private */,
-			);
-			path = ARGraphs;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
-
-/* Begin PBXNativeTarget section */
-		E7B2A5A81A64874C00FD402E /* ARGraphsDemo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E7B2A5CC1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsDemo" */;
-			buildPhases = (
-				E7B2A5A51A64874C00FD402E /* Sources */,
-				E7B2A5A61A64874C00FD402E /* Frameworks */,
-				E7B2A5A71A64874C00FD402E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ARGraphsDemo;
-			productName = ARGraphs;
-			productReference = E7B2A5A91A64874C00FD402E /* ARGraphsDemo.app */;
-			productType = "com.apple.product-type.application";
-		};
-		E7B2A5C11A64874C00FD402E /* ARGraphsDemoTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E7B2A5CF1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsDemoTests" */;
-			buildPhases = (
-				E7B2A5BE1A64874C00FD402E /* Sources */,
-				E7B2A5BF1A64874C00FD402E /* Frameworks */,
-				E7B2A5C01A64874C00FD402E /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E7B2A5C41A64874C00FD402E /* PBXTargetDependency */,
-			);
-			name = ARGraphsDemoTests;
-			productName = ARGraphsTests;
-			productReference = E7B2A5C21A64874C00FD402E /* ARGraphsDemoTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-/* End PBXNativeTarget section */
-
-/* Begin PBXProject section */
-		E7B2A5A11A64874C00FD402E /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Alex Reynolds";
-				TargetAttributes = {
-					E7B2A5A81A64874C00FD402E = {
-						CreatedOnToolsVersion = 6.1.1;
-					};
-					E7B2A5C11A64874C00FD402E = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = E7B2A5A81A64874C00FD402E;
-					};
-				};
-			};
-			buildConfigurationList = E7B2A5A41A64874C00FD402E /* Build configuration list for PBXProject "ARGraphsDemo" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = E7B2A5A01A64874C00FD402E;
-			productRefGroup = E7B2A5AA1A64874C00FD402E /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				E7B2A5A81A64874C00FD402E /* ARGraphsDemo */,
-				E7B2A5C11A64874C00FD402E /* ARGraphsDemoTests */,
-			);
-		};
-/* End PBXProject section */
-
-/* Begin PBXResourcesBuildPhase section */
-		E7B2A5A71A64874C00FD402E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E7B2A6421A64A46200FD402E /* Images.xcassets in Resources */,
-				E7B2A6471A64A46C00FD402E /* LaunchScreen.xib in Resources */,
-				E7B2A6361A64A44D00FD402E /* Info.plist in Resources */,
-				E7B2A6481A64A46C00FD402E /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7B2A5C01A64874C00FD402E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
-		E7B2A5A51A64874C00FD402E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E71233BC1A6DBFE30034E447 /* ARPieChartDataPointUtility.m in Sources */,
-				E7826F041A705D0900642F1E /* ARPieChartLabelsLayer.m in Sources */,
-				E7B2A6541A64A47C00FD402E /* ARGraphDataPoint.m in Sources */,
-				E7B2A63E1A64A45A00FD402E /* AppDelegate.m in Sources */,
-				5493DA341A64A9BD00FB10ED /* ARGraphPointsLayer.m in Sources */,
-				E71233B31A6DB7890034E447 /* ARGraphBackground.m in Sources */,
-				E7B2A6371A64A44D00FD402E /* main.m in Sources */,
-				E7B2A6531A64A47C00FD402E /* ARLineGraph.m in Sources */,
-				E71233C61A6DD7350034E447 /* ARPieChartViewController.m in Sources */,
-				5493DA351A64A9BD00FB10ED /* ARMeanLineLayer.m in Sources */,
-				E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */,
-				E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */,
-				E71233AD1A69D61B0034E447 /* ARGraphDataPointUtility.m in Sources */,
-				E7B2A63F1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m in Sources */,
-				E71233B71A6DBDA70034E447 /* ARPieChart.m in Sources */,
-				E71233B01A6D6F430034E447 /* ARGraphXLegendView.m in Sources */,
-				E71233C91A6ED3250034E447 /* ARHelpers.m in Sources */,
-				E71233C31A6DD3360034E447 /* ARPieChartLayer.m in Sources */,
-				5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E7B2A5BE1A64874C00FD402E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E71233BE1A6DC4E40034E447 /* ARPieChartDPUtil_Tests.m in Sources */,
-				E7B2A5C91A64874C00FD402E /* ARLineGraphs_Tests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E7B2A5C41A64874C00FD402E /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E7B2A5A81A64874C00FD402E /* ARGraphsDemo */;
-			targetProxy = E7B2A5C31A64874C00FD402E /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		E7B2A6431A64A46C00FD402E /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E7B2A6441A64A46C00FD402E /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-		E7B2A6451A64A46C00FD402E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E7B2A6461A64A46C00FD402E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
-/* Begin XCBuildConfiguration section */
-		E7B2A5CA1A64874C00FD402E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E7B2A5CB1A64874C00FD402E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		E7B2A5CD1A64874C00FD402E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ARGraphsDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = ARGraphsDemo;
-			};
-			name = Debug;
-		};
-		E7B2A5CE1A64874C00FD402E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = ARGraphsDemo/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = ARGraphsDemo;
-			};
-			name = Release;
-		};
-		E7B2A5D01A64874C00FD402E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ARGraphsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = ARGraphsDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphsDemo.app/ARGraphsDemo";
-			};
-			name = Debug;
-		};
-		E7B2A5D11A64874C00FD402E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = ARGraphsTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = ARGraphsDemoTests;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ARGraphsDemo.app/ARGraphsDemo";
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
-
-/* Begin XCConfigurationList section */
-		E7B2A5A41A64874C00FD402E /* Build configuration list for PBXProject "ARGraphsDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7B2A5CA1A64874C00FD402E /* Debug */,
-				E7B2A5CB1A64874C00FD402E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E7B2A5CC1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsDemo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7B2A5CD1A64874C00FD402E /* Debug */,
-				E7B2A5CE1A64874C00FD402E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E7B2A5CF1A64874C00FD402E /* Build configuration list for PBXNativeTarget "ARGraphsDemoTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E7B2A5D01A64874C00FD402E /* Debug */,
-				E7B2A5D11A64874C00FD402E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = E7B2A5A11A64874C00FD402E /* Project object */;
-}
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>archiveVersion</key>
+	<string>1</string>
+	<key>classes</key>
+	<dict/>
+	<key>objectVersion</key>
+	<string>46</string>
+	<key>objects</key>
+	<dict>
+		<key>09935FA1A02E38979766098F</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>D1FCF12BDB4F16810639FDB7</string>
+				<string>C2D9305BF1B6FE53B7505C75</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pods</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>223F11AD9E8F39A9D779AB2B</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Check Pods Manifest.lock</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>diff "${PODS_ROOT}/../Podfile.lock" "${PODS_ROOT}/Manifest.lock" &gt; /dev/null
+if [[ $? != 0 ]] ; then
+    cat &lt;&lt; EOM
+error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.
+EOM
+    exit 1
+fi
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>2944D4C36737F70FAB172751</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5BED951ABE254C28B27CE0E7</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>464A454363F827885FEEC597</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>inputPaths</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXShellScriptBuildPhase</string>
+			<key>name</key>
+			<string>Copy Pods Resources</string>
+			<key>outputPaths</key>
+			<array/>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+			<key>shellPath</key>
+			<string>/bin/sh</string>
+			<key>shellScript</key>
+			<string>"${SRCROOT}/Pods/Target Support Files/Pods-ARGraphsDemoTests/Pods-ARGraphsDemoTests-resources.sh"
+</string>
+			<key>showEnvVarsInLog</key>
+			<string>0</string>
+		</dict>
+		<key>5493DA2D1A64A9AB00FB10ED</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E71233B11A6DB7890034E447</string>
+				<string>E71233B21A6DB7890034E447</string>
+				<string>E71233C71A6ED3250034E447</string>
+				<string>E71233C81A6ED3250034E447</string>
+				<string>E71233B91A6DBFB00034E447</string>
+				<string>E71233B81A6DBFA30034E447</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Private</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5493DA2E1A64A9BD00FB10ED</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARLineGraphPointsLayer.h</string>
+			<key>path</key>
+			<string>Private/ARLineGraphPointsLayer.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5493DA2F1A64A9BD00FB10ED</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARLineGraphPointsLayer.m</string>
+			<key>path</key>
+			<string>Private/ARLineGraphPointsLayer.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5493DA321A64A9BD00FB10ED</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARYMinMaxLayer.h</string>
+			<key>path</key>
+			<string>Private/ARYMinMaxLayer.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5493DA331A64A9BD00FB10ED</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARYMinMaxLayer.m</string>
+			<key>path</key>
+			<string>Private/ARYMinMaxLayer.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>5493DA341A64A9BD00FB10ED</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5493DA2F1A64A9BD00FB10ED</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5493DA361A64A9BD00FB10ED</key>
+		<dict>
+			<key>fileRef</key>
+			<string>5493DA331A64A9BD00FB10ED</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>5BED951ABE254C28B27CE0E7</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>archive.ar</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>libPods-ARGraphsDemoTests.a</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>8E52E0F2E0678591A230E909</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>5BED951ABE254C28B27CE0E7</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Frameworks</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>C2D9305BF1B6FE53B7505C75</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-ARGraphsDemoTests.release.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-ARGraphsDemoTests/Pods-ARGraphsDemoTests.release.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>D1FCF12BDB4F16810639FDB7</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.xcconfig</string>
+			<key>name</key>
+			<string>Pods-ARGraphsDemoTests.debug.xcconfig</string>
+			<key>path</key>
+			<string>Pods/Target Support Files/Pods-ARGraphsDemoTests/Pods-ARGraphsDemoTests.debug.xcconfig</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233AB1A69D61B0034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARLineGraphDataPointUtility.h</string>
+			<key>path</key>
+			<string>Private/ARLineGraphDataPointUtility.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233AC1A69D61B0034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARLineGraphDataPointUtility.m</string>
+			<key>path</key>
+			<string>Private/ARLineGraphDataPointUtility.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233AD1A69D61B0034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233AC1A69D61B0034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E71233AE1A6D6F430034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARGraphXLegendView.h</string>
+			<key>path</key>
+			<string>Private/ARGraphXLegendView.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233AF1A6D6F430034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARGraphXLegendView.m</string>
+			<key>path</key>
+			<string>Private/ARGraphXLegendView.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233B01A6D6F430034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233AF1A6D6F430034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E71233B11A6DB7890034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARGraphBackground.h</string>
+			<key>path</key>
+			<string>Private/ARGraphBackground.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233B21A6DB7890034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARGraphBackground.m</string>
+			<key>path</key>
+			<string>Private/ARGraphBackground.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233B31A6DB7890034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233B21A6DB7890034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E71233B51A6DBDA70034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>ARPieChart.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233B61A6DBDA70034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ARPieChart.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233B71A6DBDA70034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233B61A6DBDA70034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E71233B81A6DBFA30034E447</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E71233AE1A6D6F430034E447</string>
+				<string>E71233AF1A6D6F430034E447</string>
+				<string>E71233AB1A69D61B0034E447</string>
+				<string>E71233AC1A69D61B0034E447</string>
+				<string>5493DA2E1A64A9BD00FB10ED</string>
+				<string>5493DA2F1A64A9BD00FB10ED</string>
+				<string>E7546BBE1A72F4E60005C8EE</string>
+				<string>E7546BBF1A72F4E60005C8EE</string>
+				<string>5493DA321A64A9BD00FB10ED</string>
+				<string>5493DA331A64A9BD00FB10ED</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Line Graph</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233B91A6DBFB00034E447</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E71233BA1A6DBFE30034E447</string>
+				<string>E71233BB1A6DBFE30034E447</string>
+				<string>E71233C11A6DD3360034E447</string>
+				<string>E71233C21A6DD3360034E447</string>
+				<string>E7826F021A705D0900642F1E</string>
+				<string>E7826F031A705D0900642F1E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pie Chart</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233BA1A6DBFE30034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARPieChartDataPointUtility.h</string>
+			<key>path</key>
+			<string>Private/ARPieChartDataPointUtility.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233BB1A6DBFE30034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARPieChartDataPointUtility.m</string>
+			<key>path</key>
+			<string>Private/ARPieChartDataPointUtility.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233BC1A6DBFE30034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233BB1A6DBFE30034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E71233BD1A6DC4E40034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARPieChartDPUtil_Tests.m</string>
+			<key>path</key>
+			<string>ARGraphsTests/ARPieChartDPUtil_Tests.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E71233BE1A6DC4E40034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233BD1A6DC4E40034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E71233C11A6DD3360034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARPieChartLayer.h</string>
+			<key>path</key>
+			<string>Private/ARPieChartLayer.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233C21A6DD3360034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARPieChartLayer.m</string>
+			<key>path</key>
+			<string>Private/ARPieChartLayer.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233C31A6DD3360034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233C21A6DD3360034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E71233C41A6DD7350034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARPieChartViewController.h</string>
+			<key>path</key>
+			<string>ARGraphsDemo/ARPieChartViewController.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E71233C51A6DD7350034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARPieChartViewController.m</string>
+			<key>path</key>
+			<string>ARGraphsDemo/ARPieChartViewController.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E71233C61A6DD7350034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233C51A6DD7350034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E71233C71A6ED3250034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARHelpers.h</string>
+			<key>path</key>
+			<string>Private/ARHelpers.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233C81A6ED3250034E447</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARHelpers.m</string>
+			<key>path</key>
+			<string>Private/ARHelpers.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E71233C91A6ED3250034E447</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E71233C81A6ED3250034E447</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7546BBE1A72F4E60005C8EE</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARLineGraphMean.h</string>
+			<key>path</key>
+			<string>Private/ARLineGraphMean.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7546BBF1A72F4E60005C8EE</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARLineGraphMean.m</string>
+			<key>path</key>
+			<string>Private/ARLineGraphMean.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7546BC01A72F4E60005C8EE</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7546BBF1A72F4E60005C8EE</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7826EFD1A6F2B0900642F1E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7826EFF1A6F2B3B00642F1E</string>
+				<string>E7826F001A6F2B3B00642F1E</string>
+				<string>E71233C41A6DD7350034E447</string>
+				<string>E71233C51A6DD7350034E447</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Pie Chart</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7826EFE1A6F2B1300642F1E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A63A1A64A45A00FD402E</string>
+				<string>E7B2A63B1A64A45A00FD402E</string>
+				<string>E7B2A63C1A64A45A00FD402E</string>
+				<string>E7B2A63D1A64A45A00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Line Graph</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7826EFF1A6F2B3B00642F1E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARPieChartSettingsTableViewController.h</string>
+			<key>path</key>
+			<string>ARGraphsDemo/ARPieChartSettingsTableViewController.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7826F001A6F2B3B00642F1E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARPieChartSettingsTableViewController.m</string>
+			<key>path</key>
+			<string>ARGraphsDemo/ARPieChartSettingsTableViewController.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7826F011A6F2B3B00642F1E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7826F001A6F2B3B00642F1E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7826F021A705D0900642F1E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARPieChartLabelsLayer.h</string>
+			<key>path</key>
+			<string>Private/ARPieChartLabelsLayer.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7826F031A705D0900642F1E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARPieChartLabelsLayer.m</string>
+			<key>path</key>
+			<string>Private/ARPieChartLabelsLayer.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7826F041A705D0900642F1E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7826F031A705D0900642F1E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A5A01A64874C00FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A5E31A64879200FD402E</string>
+				<string>E7B2A5AB1A64874C00FD402E</string>
+				<string>E7B2A5C51A64874C00FD402E</string>
+				<string>E7B2A5AA1A64874C00FD402E</string>
+				<string>09935FA1A02E38979766098F</string>
+				<string>8E52E0F2E0678591A230E909</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A5A11A64874C00FD402E</key>
+		<dict>
+			<key>attributes</key>
+			<dict>
+				<key>LastUpgradeCheck</key>
+				<string>0610</string>
+				<key>ORGANIZATIONNAME</key>
+				<string>Alex Reynolds</string>
+				<key>TargetAttributes</key>
+				<dict>
+					<key>E7B2A5A81A64874C00FD402E</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>6.1.1</string>
+					</dict>
+					<key>E7B2A5C11A64874C00FD402E</key>
+					<dict>
+						<key>CreatedOnToolsVersion</key>
+						<string>6.1.1</string>
+						<key>TestTargetID</key>
+						<string>E7B2A5A81A64874C00FD402E</string>
+					</dict>
+				</dict>
+			</dict>
+			<key>buildConfigurationList</key>
+			<string>E7B2A5A41A64874C00FD402E</string>
+			<key>compatibilityVersion</key>
+			<string>Xcode 3.2</string>
+			<key>developmentRegion</key>
+			<string>English</string>
+			<key>hasScannedForEncodings</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXProject</string>
+			<key>knownRegions</key>
+			<array>
+				<string>en</string>
+				<string>Base</string>
+			</array>
+			<key>mainGroup</key>
+			<string>E7B2A5A01A64874C00FD402E</string>
+			<key>productRefGroup</key>
+			<string>E7B2A5AA1A64874C00FD402E</string>
+			<key>projectDirPath</key>
+			<string></string>
+			<key>projectReferences</key>
+			<array/>
+			<key>projectRoot</key>
+			<string></string>
+			<key>targets</key>
+			<array>
+				<string>E7B2A5A81A64874C00FD402E</string>
+				<string>E7B2A5C11A64874C00FD402E</string>
+			</array>
+		</dict>
+		<key>E7B2A5A41A64874C00FD402E</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E7B2A5CA1A64874C00FD402E</string>
+				<string>E7B2A5CB1A64874C00FD402E</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E7B2A5A51A64874C00FD402E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E71233BC1A6DBFE30034E447</string>
+				<string>E7826F041A705D0900642F1E</string>
+				<string>E7B2A6541A64A47C00FD402E</string>
+				<string>E7B2A63E1A64A45A00FD402E</string>
+				<string>5493DA341A64A9BD00FB10ED</string>
+				<string>E71233B31A6DB7890034E447</string>
+				<string>E7B2A6371A64A44D00FD402E</string>
+				<string>E7B2A6531A64A47C00FD402E</string>
+				<string>E71233C61A6DD7350034E447</string>
+				<string>E7826F011A6F2B3B00642F1E</string>
+				<string>E7B2A6401A64A45A00FD402E</string>
+				<string>E71233AD1A69D61B0034E447</string>
+				<string>E7B2A63F1A64A45A00FD402E</string>
+				<string>E71233B71A6DBDA70034E447</string>
+				<string>E71233B01A6D6F430034E447</string>
+				<string>E71233C91A6ED3250034E447</string>
+				<string>E71233C31A6DD3360034E447</string>
+				<string>E7546BC01A72F4E60005C8EE</string>
+				<string>5493DA361A64A9BD00FB10ED</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E7B2A5A61A64874C00FD402E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E7B2A5A71A64874C00FD402E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E7B2A6421A64A46200FD402E</string>
+				<string>E7B2A6471A64A46C00FD402E</string>
+				<string>E7B2A6361A64A44D00FD402E</string>
+				<string>E7B2A6481A64A46C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E7B2A5A81A64874C00FD402E</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>E7B2A5CC1A64874C00FD402E</string>
+			<key>buildPhases</key>
+			<array>
+				<string>E7B2A5A51A64874C00FD402E</string>
+				<string>E7B2A5A61A64874C00FD402E</string>
+				<string>E7B2A5A71A64874C00FD402E</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>ARGraphsDemo</string>
+			<key>productName</key>
+			<string>ARGraphs</string>
+			<key>productReference</key>
+			<string>E7B2A5A91A64874C00FD402E</string>
+			<key>productType</key>
+			<string>com.apple.product-type.application</string>
+		</dict>
+		<key>E7B2A5A91A64874C00FD402E</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.application</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>ARGraphsDemo.app</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>E7B2A5AA1A64874C00FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A5A91A64874C00FD402E</string>
+				<string>E7B2A5C21A64874C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Products</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A5AB1A64874C00FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A6381A64A45A00FD402E</string>
+				<string>E7B2A6391A64A45A00FD402E</string>
+				<string>E7826EFE1A6F2B1300642F1E</string>
+				<string>E7826EFD1A6F2B0900642F1E</string>
+				<string>E7B2A6411A64A46200FD402E</string>
+				<string>E7B2A6431A64A46C00FD402E</string>
+				<string>E7B2A6451A64A46C00FD402E</string>
+				<string>E7B2A5AC1A64874C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>ARGraphsDemo</string>
+			<key>path</key>
+			<string>ARGraphs</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A5AC1A64874C00FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A6341A64A44D00FD402E</string>
+				<string>E7B2A6351A64A44D00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A5BE1A64874C00FD402E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>E71233BE1A6DC4E40034E447</string>
+				<string>E7B2A5C91A64874C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXSourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E7B2A5BF1A64874C00FD402E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array>
+				<string>2944D4C36737F70FAB172751</string>
+			</array>
+			<key>isa</key>
+			<string>PBXFrameworksBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E7B2A5C01A64874C00FD402E</key>
+		<dict>
+			<key>buildActionMask</key>
+			<string>2147483647</string>
+			<key>files</key>
+			<array/>
+			<key>isa</key>
+			<string>PBXResourcesBuildPhase</string>
+			<key>runOnlyForDeploymentPostprocessing</key>
+			<string>0</string>
+		</dict>
+		<key>E7B2A5C11A64874C00FD402E</key>
+		<dict>
+			<key>buildConfigurationList</key>
+			<string>E7B2A5CF1A64874C00FD402E</string>
+			<key>buildPhases</key>
+			<array>
+				<string>223F11AD9E8F39A9D779AB2B</string>
+				<string>E7B2A5BE1A64874C00FD402E</string>
+				<string>E7B2A5BF1A64874C00FD402E</string>
+				<string>E7B2A5C01A64874C00FD402E</string>
+				<string>464A454363F827885FEEC597</string>
+			</array>
+			<key>buildRules</key>
+			<array/>
+			<key>dependencies</key>
+			<array>
+				<string>E7B2A5C41A64874C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXNativeTarget</string>
+			<key>name</key>
+			<string>ARGraphsDemoTests</string>
+			<key>productName</key>
+			<string>ARGraphsTests</string>
+			<key>productReference</key>
+			<string>E7B2A5C21A64874C00FD402E</string>
+			<key>productType</key>
+			<string>com.apple.product-type.bundle.unit-test</string>
+		</dict>
+		<key>E7B2A5C21A64874C00FD402E</key>
+		<dict>
+			<key>explicitFileType</key>
+			<string>wrapper.cfbundle</string>
+			<key>includeInIndex</key>
+			<string>0</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>path</key>
+			<string>ARGraphsDemoTests.xctest</string>
+			<key>sourceTree</key>
+			<string>BUILT_PRODUCTS_DIR</string>
+		</dict>
+		<key>E7B2A5C31A64874C00FD402E</key>
+		<dict>
+			<key>containerPortal</key>
+			<string>E7B2A5A11A64874C00FD402E</string>
+			<key>isa</key>
+			<string>PBXContainerItemProxy</string>
+			<key>proxyType</key>
+			<string>1</string>
+			<key>remoteGlobalIDString</key>
+			<string>E7B2A5A81A64874C00FD402E</string>
+			<key>remoteInfo</key>
+			<string>ARGraphs</string>
+		</dict>
+		<key>E7B2A5C41A64874C00FD402E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXTargetDependency</string>
+			<key>target</key>
+			<string>E7B2A5A81A64874C00FD402E</string>
+			<key>targetProxy</key>
+			<string>E7B2A5C31A64874C00FD402E</string>
+		</dict>
+		<key>E7B2A5C51A64874C00FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E71233BD1A6DC4E40034E447</string>
+				<string>E7B2A5C81A64874C00FD402E</string>
+				<string>E7B2A5C61A64874C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>ARGraphsTests</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A5C61A64874C00FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A5C71A64874C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>Supporting Files</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A5C71A64874C00FD402E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>path</key>
+			<string>Info.plist</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A5C81A64874C00FD402E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ARLineGraphs_Tests.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A5C91A64874C00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A5C81A64874C00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A5CA1A64874C00FD402E</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_DYNAMIC_NO_PIC</key>
+				<string>NO</string>
+				<key>GCC_OPTIMIZATION_LEVEL</key>
+				<string>0</string>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+				<string>NO</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.1</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>YES</string>
+				<key>ONLY_ACTIVE_ARCH</key>
+				<string>YES</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E7B2A5CB1A64874C00FD402E</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ALWAYS_SEARCH_USER_PATHS</key>
+				<string>NO</string>
+				<key>CLANG_CXX_LANGUAGE_STANDARD</key>
+				<string>gnu++0x</string>
+				<key>CLANG_CXX_LIBRARY</key>
+				<string>libc++</string>
+				<key>CLANG_ENABLE_MODULES</key>
+				<string>YES</string>
+				<key>CLANG_ENABLE_OBJC_ARC</key>
+				<string>YES</string>
+				<key>CLANG_WARN_BOOL_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_CONSTANT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_DIRECT_OBJC_ISA_USAGE</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_EMPTY_BODY</key>
+				<string>YES</string>
+				<key>CLANG_WARN_ENUM_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_INT_CONVERSION</key>
+				<string>YES</string>
+				<key>CLANG_WARN_OBJC_ROOT_CLASS</key>
+				<string>YES_ERROR</string>
+				<key>CLANG_WARN_UNREACHABLE_CODE</key>
+				<string>YES</string>
+				<key>CLANG_WARN__DUPLICATE_METHOD_MATCH</key>
+				<string>YES</string>
+				<key>CODE_SIGN_IDENTITY[sdk=iphoneos*]</key>
+				<string>iPhone Developer</string>
+				<key>COPY_PHASE_STRIP</key>
+				<string>YES</string>
+				<key>ENABLE_NS_ASSERTIONS</key>
+				<string>NO</string>
+				<key>ENABLE_STRICT_OBJC_MSGSEND</key>
+				<string>YES</string>
+				<key>GCC_C_LANGUAGE_STANDARD</key>
+				<string>gnu99</string>
+				<key>GCC_WARN_64_TO_32_BIT_CONVERSION</key>
+				<string>YES</string>
+				<key>GCC_WARN_ABOUT_RETURN_TYPE</key>
+				<string>YES_ERROR</string>
+				<key>GCC_WARN_UNDECLARED_SELECTOR</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+				<string>YES_AGGRESSIVE</string>
+				<key>GCC_WARN_UNUSED_FUNCTION</key>
+				<string>YES</string>
+				<key>GCC_WARN_UNUSED_VARIABLE</key>
+				<string>YES</string>
+				<key>IPHONEOS_DEPLOYMENT_TARGET</key>
+				<string>8.1</string>
+				<key>MTL_ENABLE_DEBUG_INFO</key>
+				<string>NO</string>
+				<key>SDKROOT</key>
+				<string>iphoneos</string>
+				<key>TARGETED_DEVICE_FAMILY</key>
+				<string>1,2</string>
+				<key>VALIDATE_PRODUCT</key>
+				<string>YES</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E7B2A5CC1A64874C00FD402E</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E7B2A5CD1A64874C00FD402E</string>
+				<string>E7B2A5CE1A64874C00FD402E</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E7B2A5CD1A64874C00FD402E</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>INFOPLIST_FILE</key>
+				<string>ARGraphsDemo/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>ARGraphsDemo</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E7B2A5CE1A64874C00FD402E</key>
+		<dict>
+			<key>buildSettings</key>
+			<dict>
+				<key>ASSETCATALOG_COMPILER_APPICON_NAME</key>
+				<string>AppIcon</string>
+				<key>INFOPLIST_FILE</key>
+				<string>ARGraphsDemo/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>ARGraphsDemo</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E7B2A5CF1A64874C00FD402E</key>
+		<dict>
+			<key>buildConfigurations</key>
+			<array>
+				<string>E7B2A5D01A64874C00FD402E</string>
+				<string>E7B2A5D11A64874C00FD402E</string>
+			</array>
+			<key>defaultConfigurationIsVisible</key>
+			<string>0</string>
+			<key>defaultConfigurationName</key>
+			<string>Release</string>
+			<key>isa</key>
+			<string>XCConfigurationList</string>
+		</dict>
+		<key>E7B2A5D01A64874C00FD402E</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>D1FCF12BDB4F16810639FDB7</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>GCC_PREPROCESSOR_DEFINITIONS</key>
+				<array>
+					<string>DEBUG=1</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>ARGraphsTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>ARGraphsDemoTests</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/ARGraphsDemo.app/ARGraphsDemo</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Debug</string>
+		</dict>
+		<key>E7B2A5D11A64874C00FD402E</key>
+		<dict>
+			<key>baseConfigurationReference</key>
+			<string>C2D9305BF1B6FE53B7505C75</string>
+			<key>buildSettings</key>
+			<dict>
+				<key>BUNDLE_LOADER</key>
+				<string>$(TEST_HOST)</string>
+				<key>FRAMEWORK_SEARCH_PATHS</key>
+				<array>
+					<string>$(SDKROOT)/Developer/Library/Frameworks</string>
+					<string>$(inherited)</string>
+				</array>
+				<key>INFOPLIST_FILE</key>
+				<string>ARGraphsTests/Info.plist</string>
+				<key>LD_RUNPATH_SEARCH_PATHS</key>
+				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>PRODUCT_NAME</key>
+				<string>ARGraphsDemoTests</string>
+				<key>TEST_HOST</key>
+				<string>$(BUILT_PRODUCTS_DIR)/ARGraphsDemo.app/ARGraphsDemo</string>
+			</dict>
+			<key>isa</key>
+			<string>XCBuildConfiguration</string>
+			<key>name</key>
+			<string>Release</string>
+		</dict>
+		<key>E7B2A5E31A64879200FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A6491A64A47C00FD402E</string>
+				<string>E7B2A64A1A64A47C00FD402E</string>
+				<string>E71233B51A6DBDA70034E447</string>
+				<string>E71233B61A6DBDA70034E447</string>
+				<string>E7B2A64B1A64A47C00FD402E</string>
+				<string>E7B2A64C1A64A47C00FD402E</string>
+				<string>5493DA2D1A64A9AB00FB10ED</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>path</key>
+			<string>ARGraphs</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A6341A64A44D00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>text.plist.xml</string>
+			<key>name</key>
+			<string>Info.plist</string>
+			<key>path</key>
+			<string>ARGraphsDemo/Info.plist</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A6351A64A44D00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>main.m</string>
+			<key>path</key>
+			<string>ARGraphsDemo/main.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A6361A64A44D00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A6341A64A44D00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A6371A64A44D00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A6351A64A44D00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A6381A64A45A00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AppDelegate.h</string>
+			<key>path</key>
+			<string>ARGraphsDemo/AppDelegate.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A6391A64A45A00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AppDelegate.m</string>
+			<key>path</key>
+			<string>ARGraphsDemo/AppDelegate.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A63A1A64A45A00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARLineGraphSettingsTableViewController.h</string>
+			<key>path</key>
+			<string>ARGraphsDemo/ARLineGraphSettingsTableViewController.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A63B1A64A45A00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARLineGraphSettingsTableViewController.m</string>
+			<key>path</key>
+			<string>ARGraphsDemo/ARLineGraphSettingsTableViewController.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A63C1A64A45A00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>ARGraphViewController.h</string>
+			<key>path</key>
+			<string>ARGraphsDemo/ARGraphViewController.h</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A63D1A64A45A00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>ARGraphViewController.m</string>
+			<key>path</key>
+			<string>ARGraphsDemo/ARGraphViewController.m</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A63E1A64A45A00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A6391A64A45A00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A63F1A64A45A00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A63B1A64A45A00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A6401A64A45A00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A63D1A64A45A00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A6411A64A46200FD402E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>folder.assetcatalog</string>
+			<key>name</key>
+			<string>Images.xcassets</string>
+			<key>path</key>
+			<string>ARGraphsDemo/Images.xcassets</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A6421A64A46200FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A6411A64A46200FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A6431A64A46C00FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A6441A64A46C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>LaunchScreen.xib</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A6441A64A46C00FD402E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.xib</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>ARGraphsDemo/Base.lproj/LaunchScreen.xib</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A6451A64A46C00FD402E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>E7B2A6461A64A46C00FD402E</string>
+			</array>
+			<key>isa</key>
+			<string>PBXVariantGroup</string>
+			<key>name</key>
+			<string>Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A6461A64A46C00FD402E</key>
+		<dict>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>file.storyboard</string>
+			<key>name</key>
+			<string>Base</string>
+			<key>path</key>
+			<string>ARGraphsDemo/Base.lproj/Main.storyboard</string>
+			<key>sourceTree</key>
+			<string>SOURCE_ROOT</string>
+		</dict>
+		<key>E7B2A6471A64A46C00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A6431A64A46C00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A6481A64A46C00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A6451A64A46C00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A6491A64A47C00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>ARLineGraph.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A64A1A64A47C00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ARLineGraph.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A64B1A64A47C00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>path</key>
+			<string>ARGraphDataPoint.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A64C1A64A47C00FD402E</key>
+		<dict>
+			<key>fileEncoding</key>
+			<string>4</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>path</key>
+			<string>ARGraphDataPoint.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>E7B2A6531A64A47C00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A64A1A64A47C00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+		<key>E7B2A6541A64A47C00FD402E</key>
+		<dict>
+			<key>fileRef</key>
+			<string>E7B2A64C1A64A47C00FD402E</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
+		</dict>
+	</dict>
+	<key>rootObject</key>
+	<string>E7B2A5A11A64874C00FD402E</string>
+</dict>
+</plist>

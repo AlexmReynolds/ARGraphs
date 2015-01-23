@@ -6,10 +6,10 @@
 //  Copyright (c) 2015 Alex Reynolds. All rights reserved.
 //
 
-#import "ARGraphDataPointUtility.h"
+#import "ARLineGraphDataPointUtility.h"
 #import "ARGraphDataPoint.h"
 
-@implementation ARGraphDataPointUtility{
+@implementation ARLineGraphDataPointUtility{
     CGFloat _realMean;
 
 }

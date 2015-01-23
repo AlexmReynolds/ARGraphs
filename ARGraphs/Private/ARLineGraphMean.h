@@ -1,15 +1,15 @@
 //
-//  CYCMeanLineLayer.h
-//  Cyclr
+//  ARLineGraphMean.h
+//  ARGraphsDemo
 //
-//  Created by Alex Reynolds on 1/12/15.
-//  Copyright (c) 2015 Cyclr. All rights reserved.
+//  Created by Alex Reynolds on 1/23/15.
+//  Copyright (c) 2015 Alex Reynolds. All rights reserved.
 //
 
 #import <QuartzCore/QuartzCore.h>
 
-@interface ARMeanLineLayer : CALayer
-
+@interface ARLineGraphMean : CAShapeLayer
+@property (nonatomic) BOOL animateChanges;
 @property (nonatomic) NSInteger yMax;
 @property (nonatomic) NSInteger yMin;
 @property (nonatomic) CGFloat yMean;

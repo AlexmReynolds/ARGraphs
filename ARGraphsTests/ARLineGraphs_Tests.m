@@ -8,21 +8,25 @@
 
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
+#import <OCMock/OCMock.h>
 #import "ARLineGraph.h"
-#import "ARGraphPointsLayer.h"
-#import "ARMeanLineLayer.h"
+#import "ARLineGraphPointsLayer.h"
+#import "ARLineGraphMean.h"
 #import "ARYMinMaxLayer.h"
 
 
 @interface ARLineGraph (Tests)
 - (CAGradientLayer*)getBackgroundForTests;
-- (ARGraphPointsLayer*)getPointsLayerForTests;
+- (ARLineGraphPointsLayer*)getPointsLayerForTests;
 - (ARYMinMaxLayer*)getMinMaxLayerForTests;
-- (ARMeanLineLayer*)getMeanLayerForTests;
+- (ARLineGraphMean*)getMeanLayerForTests;
 
 - (NSLayoutConstraint*)getXLegendHeightConstraintForTests;
 - (NSLayoutConstraint*)getYLegendHeightConstraintForTests;
+- (NSArray*)getDataPointsForTests;
 
+- (UILabel*)getTitleLabelForTests;
+- (UILabel*)getSubTitleLabelForTests;
 @end
 
 @implementation ARLineGraph (Tests)
@@ -31,7 +35,7 @@
     return [self valueForKey:@"_background"];
 }
 
-- (ARGraphPointsLayer*)getPointsLayerForTests
+- (ARLineGraphPointsLayer*)getPointsLayerForTests
 {
     return [self valueForKey:@"_pointsLayer"];
 }
@@ -41,7 +45,7 @@
     return [self valueForKey:@"_minMaxLayer"];
 }
 
-- (ARMeanLineLayer*)getMeanLayerForTests
+- (ARLineGraphMean*)getMeanLayerForTests
 {
     return [self valueForKey:@"_meanLayer"];
 }
@@ -57,6 +61,21 @@
     return [self valueForKey:@"_yAxisWidthConstraint"];
     
 }
+- (NSArray*)getDataPointsForTests
+{
+    return [self valueForKey:@"_dataPoints"];
+}
+
+- (UILabel*)getTitleLabelForTests
+{
+    return [self valueForKey:@"_titleLabel"];
+}
+
+- (UILabel*)getSubTitleLabelForTests
+{
+    return [self valueForKey:@"_subtitleLabel"];
+}
+
 @end
 
 @interface ARLineGraphs_Tests : XCTestCase{
@@ -256,4 +275,91 @@
     XCTAssertEqual(sut.dotRadius, [sut getPointsLayerForTests].dotRadius, @"dotRadius was not set");
 }
 
+- (void)testSettingLineColor_ShouldSetLineColorOnSubLayers
+{
+    sut.lineColor = [UIColor redColor];
+    UIColor *pointsLine = [UIColor colorWithCGColor:[sut getPointsLayerForTests].lineColor];
+    UIColor *meanLine = [UIColor colorWithCGColor:[sut getMeanLayerForTests].lineColor];
+    UIColor *maxLine = [UIColor colorWithCGColor:[sut getMinMaxLayerForTests].lineColor];
+    
+    XCTAssertTrue([sut.lineColor isEqual:pointsLine], @"colors were not equal");
+    XCTAssertTrue([sut.lineColor isEqual:meanLine], @"colors were not equal");
+    XCTAssertTrue([sut.lineColor isEqual:maxLine], @"colors were not equal");
+
+}
+
+- (void)testSettingLabelColor_ShouldSetLabelColorOnSubLayers
+{
+    sut.labelColor = [UIColor redColor];
+    UIColor *maxLine = [UIColor colorWithCGColor:[sut getMinMaxLayerForTests].labelColor];
+    XCTAssertTrue([sut.labelColor isEqual:maxLine], @"colors were not equal");
+}
+
+#pragma mark - MEthods
+
+- (void)testAppendingADatapoint_ShouldAddItToDataPoints
+{
+    ARGraphDataPoint *point = [ARGraphDataPoint dataPointWithX:1 y:2];
+    [sut appendDataPoint:point];
+    XCTAssertEqual(point, [[sut getDataPointsForTests] lastObject], @"Datapoint was not appended");
+}
+
+#pragma mark - Delegate
+- (void)testSettingDataSource_ShouldCallDataPoints
+{
+    id mockDelegate = [OCMockObject mockForProtocol:@protocol(ARLineGraphDataSource)];
+    [[mockDelegate expect] ARGraphDataPoints:sut];
+    [[mockDelegate expect] titleForGraph:sut];
+    [[mockDelegate expect] subTitleForGraph:sut];
+    [[mockDelegate expect] ARGraphTitleForXAxis:sut];
+    
+    sut.dataSource = mockDelegate;
+
+    XCTAssertNoThrow([mockDelegate verify],@"method was not called");
+}
+
+- (void)testIfDataSourceSendsTitle_ShouldSetTitleLabel
+{
+    NSString *string = @"foobar";
+    id mockDelegate = [OCMockObject mockForProtocol:@protocol(ARLineGraphDataSource)];
+    [[mockDelegate expect] ARGraphDataPoints:sut];
+    [[[mockDelegate expect] andReturn:string] titleForGraph:sut];
+    [[mockDelegate expect] subTitleForGraph:sut];
+    [[mockDelegate expect] ARGraphTitleForXAxis:sut];
+    
+    sut.dataSource = mockDelegate;
+    
+    XCTAssertTrue([[sut getTitleLabelForTests].text isEqualToString:string],@"title label was not set to %@", string);
+}
+
+- (void)testIfDataSourceSendsSubTitle_ShouldSetSubTitleLabel
+{
+    NSString *string = @"hello world";
+    id mockDelegate = [OCMockObject mockForProtocol:@protocol(ARLineGraphDataSource)];
+    [[mockDelegate expect] ARGraphDataPoints:sut];
+    [[mockDelegate expect] titleForGraph:sut];
+    [[[mockDelegate expect] andReturn:string] subTitleForGraph:sut];
+    [[mockDelegate expect] ARGraphTitleForXAxis:sut];
+    
+    sut.dataSource = mockDelegate;
+    
+    XCTAssertTrue([[sut getSubTitleLabelForTests].text isEqualToString:string],@"subtitle label was not set to %@", string);
+}
+
+- (void)testIfDataSourceSendsDataPoints_ShouldSetDataPointsArray
+{
+    NSArray *dataPoints = @[[ARGraphDataPoint dataPointWithX:0 y:0],
+                            [ARGraphDataPoint dataPointWithX:1 y:1],
+                            ];
+    
+    id mockDelegate = [OCMockObject mockForProtocol:@protocol(ARLineGraphDataSource)];
+    [[[mockDelegate expect] andReturn:dataPoints] ARGraphDataPoints:sut];
+    [[mockDelegate expect] titleForGraph:sut];
+    [[mockDelegate expect] subTitleForGraph:sut];
+    [[mockDelegate expect] ARGraphTitleForXAxis:sut];
+    
+    sut.dataSource = mockDelegate;
+    
+    XCTAssertTrue([[sut getDataPointsForTests] isEqual:dataPoints],@"subtitle label was not set to %@", dataPoints);
+}
 @end

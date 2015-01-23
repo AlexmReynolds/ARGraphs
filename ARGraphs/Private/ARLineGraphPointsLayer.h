@@ -7,7 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-@interface ARGraphPointsLayer : CALayer
+@interface ARLineGraphPointsLayer : CALayer
 
 #pragma mark - Data Properties
 

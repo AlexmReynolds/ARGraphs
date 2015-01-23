@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 @class ARGraphDataPoint;
-@interface ARGraphDataPointUtility : NSObject
+@interface ARLineGraphDataPointUtility : NSObject
 
 @property (nonatomic, copy) NSArray *datapoints;
 

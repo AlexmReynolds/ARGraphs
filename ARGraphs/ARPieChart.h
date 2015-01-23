@@ -18,7 +18,6 @@
 @property (nonatomic) CGFloat sliceGutterWidth UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat innerRadiusPercent UI_APPEARANCE_SELECTOR;
 @property (nonatomic) BOOL useBackgroundGradient UI_APPEARANCE_SELECTOR;
-
 @property (nonatomic) UIEdgeInsets insets UI_APPEARANCE_SELECTOR;
 
 /*!

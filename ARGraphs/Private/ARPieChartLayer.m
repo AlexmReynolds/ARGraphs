@@ -19,7 +19,7 @@
 + (instancetype)layer
 {
     ARPieChartLayer *layer = [super layer];
-    layer.sliceGutterWidth = 4.0;
+    layer.sliceGutterWidth = 0.0;
     layer.innerRadiusPercent = 0.4;
     CGFloat fillColors [] = {
         1.0, 1.0, 1.0, 0.8

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Cyclr. All rights reserved.
 //
 
-#import "ARGraphPointsLayer.h"
+#import "ARLineGraphPointsLayer.h"
 #import "ARGraphDataPoint.h"
 //
 
@@ -14,7 +14,7 @@
 static const NSInteger kSMOOTHING_MINIMUM = 20;
 
 
-@implementation ARGraphPointsLayer{
+@implementation ARLineGraphPointsLayer{
     NSInteger _dataCount;
     CAShapeLayer *_maskLayer;
 }
@@ -53,7 +53,6 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     self.mask = _maskLayer;
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    animation.timeOffset =
     animation.duration = 0.6;
     animation.fromValue = @0;
     animation.toValue = @1;
@@ -212,8 +211,15 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 - (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width
 {
     CGFloat availableWidth = width - self.leftPadding - self.rightPadding;
-    CGFloat itemWidth = availableWidth/total;
-    return self.leftPadding + index * itemWidth + itemWidth/2;
+    if (self.showDots) {
+        availableWidth -= (self.dotRadius + self.lineWidth)*2;
+    }
+    CGFloat itemWidth = availableWidth / (total - 1);
+    CGFloat x = self.leftPadding + index * itemWidth;
+    if(self.showDots){
+        x += self.dotRadius + self.lineWidth;
+    }
+    return x;
 }
 
 - (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height

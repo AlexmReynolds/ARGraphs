@@ -7,12 +7,14 @@
 //
 
 #import "ARLineGraph.h"
-#import "ARGraphPointsLayer.h"
+#import "ARLineGraphPointsLayer.h"
 #import "ARYMinMaxLayer.h"
-#import "ARMeanLineLayer.h"
 #import "ARGraphXLegendView.h"
-#import "ARGraphDataPointUtility.h"
+#import "ARLineGraphDataPointUtility.h"
 #import "ARGraphBackground.h"
+
+
+#import "ARLineGraphMean.h"
 
 @interface ARLineGraph ()<ARGraphXLegendDelegate>
 
@@ -31,9 +33,9 @@
 @property (nonatomic, strong) UIView *titleContainerView;
 
 
-@property (nonatomic, strong) ARGraphPointsLayer *pointsLayer;
+@property (nonatomic, strong) ARLineGraphPointsLayer *pointsLayer;
 @property (nonatomic, strong) ARYMinMaxLayer *minMaxLayer;
-@property (nonatomic, strong) ARMeanLineLayer *meanLayer;
+@property (nonatomic, strong) ARLineGraphMean *meanLayer;
 
 
 @property (nonatomic) NSUInteger dataCount;
@@ -41,7 +43,7 @@
 @property (nonatomic, strong) NSString *xAxisTitle;
 @property (nonatomic) UIEdgeInsets subLayersPadding;
 
-@property (nonatomic, strong) ARGraphDataPointUtility *dataPointUtility;
+@property (nonatomic, strong) ARLineGraphDataPointUtility *dataPointUtility;
 
 @end
 
@@ -67,14 +69,14 @@
 
 - (void)initialSetup
 {
-    self.dataPointUtility = [[ARGraphDataPointUtility alloc] init];
+    self.dataPointUtility = [[ARLineGraphDataPointUtility alloc] init];
     
     
     _background = [ARGraphBackground gradientWithColor:self.tintColor.CGColor];
     _background.frame = self.bounds;
     [self.layer insertSublayer:_background atIndex:0];
     
-    _pointsLayer = [ARGraphPointsLayer layer];
+    _pointsLayer = [ARLineGraphPointsLayer layer];
     _pointsLayer.shouldRasterize = YES;
     _pointsLayer.frame = self.bounds;
     [self.layer addSublayer:_pointsLayer];
@@ -85,7 +87,7 @@
     
     [self.layer addSublayer:_minMaxLayer];
     
-    _meanLayer = [ARMeanLineLayer layer];
+    _meanLayer = [ARLineGraphMean layer];
     _meanLayer.shouldRasterize = YES;
     _meanLayer.frame = self.bounds;
     
@@ -247,6 +249,17 @@
     self.meanLayer.topPadding = subLayersPadding.top;
     
 }
+
+- (void)setTintColor:(UIColor *)tintColor
+{
+    [super setTintColor:tintColor];
+    if(_background != nil){
+        self.background.color = tintColor.CGColor;
+        _background.frame = self.bounds;
+    }
+    
+}
+
 #pragma mark - Getters
 
 
@@ -274,17 +287,6 @@
     [self.dataPointUtility appendDataPoint:dataPoint];
     [self updateSubLayers];
 }
-
-- (void)setTintColor:(UIColor *)tintColor
-{
-    [super setTintColor:tintColor];
-    if(_background != nil){
-        self.background.color = tintColor.CGColor;
-        _background.frame = self.bounds;
-    }
-
-}
-
 
 #pragma mark - Base MEthods
 

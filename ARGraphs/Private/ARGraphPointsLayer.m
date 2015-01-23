@@ -321,15 +321,7 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 - (void)drawDataPointDot:(ARGraphDataPoint*)dataPoint index:(NSInteger)index inContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGPoint relativePoint = [self pointForDataPoint:dataPoint index:index total:_dataCount];
-
     CGContextAddArc(context, relativePoint.x, relativePoint.y, self.dotRadius, 0.0, M_PI * 2.0, NO);
-    
-//    if(index > 0){
-//        CYCGraphDataPoint *lastDP = [self.dataPoints objectAtIndex:index-1];
-//        CGPoint lastRelativePoint = [self pointForDataPoint:lastDP index:index-1 total:_dataCount];
-//        [self drawConnectingLineFromPT1:relativePoint toPT2:lastRelativePoint inContext:context];
-//        
-//    }
 }
 
 - (void)drawConnectingLineFromPT1:(CGPoint)PT1 toPT2:(CGPoint)PT2 inContext:(CGContextRef)context
@@ -343,8 +335,8 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
         CGFloat hypoteneus = self.dotRadius;
         opposite = sinf(angle) * hypoteneus;
         adjacent = cosf(angle) * hypoteneus;
-        CGContextMoveToPoint(context, PT1.x - adjacent, PT1.y - opposite);
     }
+    CGContextMoveToPoint(context, PT1.x - adjacent, PT1.y - opposite);
 
     CGContextAddLineToPoint(context, PT2.x + adjacent, PT2.y + opposite);
 }
@@ -361,7 +353,6 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
             ARGraphDataPoint *lastDP = [self.dataPoints objectAtIndex:x-1];
             CGPoint lastRelativePoint = [self pointForDataPoint:lastDP index:x-1 total:_dataCount];
             [self drawConnectingLineFromPT1:relativePoint toPT2:lastRelativePoint inContext:ctx];
-            //CGContextAddLineToPoint(ctx, relativePoint.x, relativePoint.y);
         }
     }
 }

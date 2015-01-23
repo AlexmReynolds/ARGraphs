@@ -27,7 +27,6 @@
 
 @property (nonatomic) CGColorRef lineColor;
 
-
 @property (nonatomic)  CGFloat topPadding;
 @property (nonatomic)  CGFloat bottomPadding;
 @property (nonatomic)  CGFloat rightPadding;

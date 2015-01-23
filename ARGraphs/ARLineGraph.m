@@ -39,6 +39,7 @@
 @property (nonatomic) NSUInteger dataCount;
 @property (nonatomic, strong) NSArray *dataPoints;
 @property (nonatomic, strong) NSString *xAxisTitle;
+@property (nonatomic) UIEdgeInsets subLayersPadding;
 
 @property (nonatomic, strong) ARGraphDataPointUtility *dataPointUtility;
 
@@ -124,6 +125,7 @@
     _useBackgroundGradient = useBackgroundGradient;
     _background.hidden = !useBackgroundGradient;
 }
+
 - (void)setDataSource:(id<ARLineGraphDataSource>)dataSource
 {
     _dataSource = dataSource;
@@ -167,25 +169,26 @@
     self.pointsLayer.showDots = showDots;
     CGFloat padding = 0;
     if(showDots){
-        padding = self.pointsLayer.dotRadius;
+        padding = self.pointsLayer.dotRadius + self.pointsLayer.lineWidth;
     }
-    self.pointsLayer.topPadding = padding;
-    self.pointsLayer.bottomPadding = padding;
-    self.minMaxLayer.bottomPadding = padding;
-    self.minMaxLayer.topPadding = padding;
-    self.meanLayer.bottomPadding = padding;
-    self.meanLayer.topPadding = padding;
+    
+    UIEdgeInsets oldPadding = self.subLayersPadding;
+    oldPadding.top = padding;
+    oldPadding.bottom = padding;
+    self.subLayersPadding = oldPadding;
 }
 
 - (void)setShowMinMaxLines:(BOOL)showMinMaxLines
 {
     _showMinMaxLines = showMinMaxLines;
     self.minMaxLayer.hidden = !showMinMaxLines;
+    CGFloat padding = 0;
     if(showMinMaxLines){
-        self.pointsLayer.rightPadding = 20;
-    }else {
-        self.pointsLayer.rightPadding = 0;
+        padding = 20;
     }
+    UIEdgeInsets oldPadding = self.subLayersPadding;
+    oldPadding.right = padding;
+    self.subLayersPadding = oldPadding;
 }
 
 - (void)setShowMeanLine:(BOOL)showMeanLine
@@ -231,6 +234,19 @@
     _showXLegendValues = showXLegendValues;
     self.xAxisContainerView.showXValues = showXLegendValues;
 }
+
+- (void)setSubLayersPadding:(UIEdgeInsets)subLayersPadding
+{
+    _subLayersPadding = subLayersPadding;
+    self.pointsLayer.rightPadding = subLayersPadding.right;
+    self.pointsLayer.topPadding = subLayersPadding.top;
+    self.pointsLayer.bottomPadding = subLayersPadding.bottom;
+    self.minMaxLayer.bottomPadding = subLayersPadding.bottom;
+    self.minMaxLayer.topPadding = subLayersPadding.top;
+    self.meanLayer.bottomPadding = subLayersPadding.bottom;
+    self.meanLayer.topPadding = subLayersPadding.top;
+    
+}
 #pragma mark - Getters
 
 
@@ -271,6 +287,7 @@
 
 
 #pragma mark - Base MEthods
+
 - (void)layoutSubviews
 {
     CGRect pointsLayerFrame = self.bounds;
@@ -324,6 +341,7 @@
     self.meanLayer.yMean = [[self dataPointUtility] yMean];
     [self.meanLayer setNeedsDisplay];
 }
+
 #pragma mark - X Legend Delegate
 - (NSString*)titleForXLegend:(ARGraphXLegendView *)lengend
 {
@@ -343,6 +361,7 @@
 {
     return self.dataPoints.count;
 }
+
 #pragma mark - View Creation
 
 - (UIView *)titleContainerView

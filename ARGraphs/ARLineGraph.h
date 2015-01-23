@@ -65,6 +65,7 @@
 /// Default is @c YES
 @property (nonatomic) BOOL showMeanLine UI_APPEARANCE_SELECTOR;
 
+@property (nonatomic) UIEdgeInsets insets;
 #pragma mark - Methods
 /*! 
  Full reload of the graph

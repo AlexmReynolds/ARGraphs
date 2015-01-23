@@ -167,6 +167,18 @@
     XCTAssertTrue([sut getBackgroundForTests].hidden, @"gradient was not hidden");
 }
 
+- (void)testSettingShowMInMaxToNo_ShouldHideMinMaxLayer
+{
+    sut.showMinMaxLines = NO;
+    XCTAssertTrue([sut getMinMaxLayerForTests].hidden, @"minMaxLayer was not hidden");
+}
+
+- (void)testSettingShowMeanLineToNo_ShouldHideMeanLayer
+{
+    sut.showMeanLine = NO;
+    XCTAssertTrue([sut getMeanLayerForTests].hidden, @"meanLine was not hidden");
+}
+
 - (void)testSetShowXLegendToNO_ShouldSetHeightConstraintToZero
 {
     sut.showXLegend = NO;
@@ -206,18 +218,42 @@
 - (void)testSetShowDotsToYES_ShouldPadPointsLayerForDotRadius
 {
     sut.showDots = YES;
-    XCTAssertTrue([sut getPointsLayerForTests].topPadding == [sut getPointsLayerForTests].dotRadius, @"show dots BOOL did not padd chart");
+    CGFloat expected = [sut getPointsLayerForTests].dotRadius + [sut getPointsLayerForTests].lineWidth;
+
+    XCTAssertTrue([sut getPointsLayerForTests].topPadding == expected, @"show dots BOOL did not padd chart");
 }
 
 - (void)testSetShowDotsToYES_ShouldPadMinMaxLayerForDotRadius
 {
     sut.showDots = YES;
-    XCTAssertTrue([sut getMinMaxLayerForTests].topPadding == [sut getPointsLayerForTests].dotRadius, @"show dots BOOL did not padd chart");
+    CGFloat expected = [sut getPointsLayerForTests].dotRadius + [sut getPointsLayerForTests].lineWidth;
+
+    XCTAssertTrue([sut getMinMaxLayerForTests].topPadding == expected, @"show dots BOOL did not padd chart");
 }
 
 - (void)testSetShowDotsToYES_ShouldPadMeanLayerForDotRadius
 {
     sut.showDots = YES;
-    XCTAssertTrue([sut getMeanLayerForTests].topPadding == [sut getPointsLayerForTests].dotRadius, @"show dots BOOL did not padd chart");
+    CGFloat expected = [sut getPointsLayerForTests].dotRadius + [sut getPointsLayerForTests].lineWidth;
+    XCTAssertTrue([sut getMeanLayerForTests].topPadding == expected, @"show dots BOOL did not padd chart");
 }
+
+- (void)testSetShowMinMaxToYES_ShouldPadPointsLayerToAddSpaceForMinMax
+{
+    sut.showMinMaxLines = YES;
+    XCTAssertTrue([sut getPointsLayerForTests].rightPadding == 20, @"showMinMaxLines BOOL did not pad chart for labels");
+}
+
+- (void)testSetShowMinMaxToNO_ShouldPadPointsLayerToAddSpaceForMinMax
+{
+    sut.showMinMaxLines = NO;
+    XCTAssertTrue([sut getPointsLayerForTests].rightPadding == 0, @"showMinMaxLines BOOL did not pad chart for labels");
+}
+
+- (void)testSettingDotRadius_ShouldSetDotRadiusOnPointsLayer
+{
+    sut.dotRadius = 10.0;
+    XCTAssertEqual(sut.dotRadius, [sut getPointsLayerForTests].dotRadius, @"dotRadius was not set");
+}
+
 @end

@@ -151,7 +151,7 @@
 - (NSString*)stringForXLegendAtIndex:(NSUInteger)index
 {
     NSInteger value = [self.delegate xLegend:self valueAtIndex:index];
-    return [NSString stringWithFormat:@"%ld", value];
+    return [NSString stringWithFormat:@"%li", (long)value];
 }
 
 - (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width

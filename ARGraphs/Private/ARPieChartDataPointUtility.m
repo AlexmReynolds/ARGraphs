@@ -77,10 +77,6 @@
     for (NSInteger x = 0; x < dataPoints.count; x++) {
         _percentages[x] = (double)_sums[x] / (double)_allDataPointsTotal;
     }
-    
-    NSLog(@"smallest val: %li, largest val:%li", (long)smallestValue, (long)largestValue);
-    NSLog(@"smallest idx: %li, largest idx:%li", (long)_smallestIndex, (long)_largestIndex);
-
 }
 
 - (NSInteger)sumDataPoints:(NSArray*)dataPoints
@@ -88,8 +84,6 @@
     NSInteger __block sum = 0;
     [dataPoints enumerateObjectsUsingBlock:^(ARGraphDataPoint *dataPoint, NSUInteger idx, BOOL *stop) {
         sum += dataPoint.yValue;
-        NSLog(@"DP valu %li",dataPoint.yValue);
-
     }];
     return sum;
 }

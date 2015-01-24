@@ -1,4 +1,9 @@
-# ARGraphs
+
+ARGraphs
+===========
+
+[![Build Status](https://travis-ci.org/AlexmReynolds/ARGraphs.svg?branch=master)](https://travis-ci.org/AlexmReynolds/ARGraphs)
+
 Fun graphs for iOS. 
 
 ![demo](demo.gif)

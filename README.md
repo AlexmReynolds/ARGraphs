@@ -4,6 +4,10 @@ ARGraphs
 
 [![Build Status](https://travis-ci.org/AlexmReynolds/ARGraphs.svg?branch=master)](https://travis-ci.org/AlexmReynolds/ARGraphs)
 
+[![Version](https://img.shields.io/cocoapods/v/ARGraphs.svg?style=flat)](http://cocoadocs.org/docsets/ARGraphs)
+[![License](https://img.shields.io/cocoapods/l/ARGraphs.svg?style=flat)](http://cocoadocs.org/docsets/ARGraphs)
+[![Platform](https://img.shields.io/cocoapods/p/ARGraphs.svg?style=flat)](http://cocoadocs.org/docsets/ARGraphs)
+
 Fun graphs for iOS. 
 
 ![demo](demo.gif)

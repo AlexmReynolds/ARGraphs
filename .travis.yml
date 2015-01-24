@@ -1,0 +1,5 @@
+language: objective-c
+xcode_workspace: ARGraphsDemo.xcworkspace
+xcode_scheme: ARGraphsDemo
+xcode_sdk:
+  - iphonesimulator8.1

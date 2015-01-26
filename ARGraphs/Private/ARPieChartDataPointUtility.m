@@ -13,7 +13,7 @@
 @implementation ARPieChartDataPointUtility{
     NSInteger _allDataPointsTotal;
     NSUInteger _smallestIndex;
-    NSUInteger _largestIndex;    
+    NSUInteger _largestIndex;
 }
 
 - (instancetype)init
@@ -24,24 +24,13 @@
     _largestIndex = NSNotFound;
     return self;
 }
-- (void)dealloc
-{
-    free(self.sums);
-    free(self.percentages);
-
-}
 - (void)setDatapoints:(NSArray *)datapoints
 {
     _datapoints = datapoints;
-    [self allocateMemoriesForDataPoints:datapoints];
+    _percentages = @[];
+    _sums = @[];
     [self parseDataPoints:datapoints];
     
-}
-
-- (void)allocateMemoriesForDataPoints:(NSArray*)dataPoints
-{
-    _sums = malloc(sizeof(NSInteger) * dataPoints.count);
-    _percentages = malloc(sizeof(CGFloat) * dataPoints.count);
 }
 
 - (void)parseDataPoints:(NSArray*)dataPoints
@@ -51,7 +40,9 @@
     NSInteger __block smallestValue = NSIntegerMax;
     _largestIndex = 0;
     NSInteger __block largestValue = NSIntegerMin;
-    
+    NSMutableArray *sum = [[NSMutableArray alloc] init];
+    NSMutableArray *percentages = [[NSMutableArray alloc] init];
+
     
     [dataPoints enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         NSInteger value = 0;
@@ -70,13 +61,16 @@
             _largestIndex = idx;
             largestValue = value;
         }
-        _sums[idx] = value;
+        [sum addObject:@(value)];
+
         _allDataPointsTotal += value;
     }];
     
     for (NSInteger x = 0; x < dataPoints.count; x++) {
-        _percentages[x] = (double)_sums[x] / (double)_allDataPointsTotal;
+        [percentages addObject:@([[sum objectAtIndex:x] doubleValue] / (double)_allDataPointsTotal)];
     }
+    _sums = sum;
+    _percentages = percentages;
 }
 
 - (NSInteger)sumDataPoints:(NSArray*)dataPoints
@@ -90,20 +84,20 @@
 
 #pragma mark - Public Methods
 
-- (double)slicePercentageAtIndex:(NSUInteger)index
+- (CGFloat)slicePercentageAtIndex:(NSUInteger)index
 {
     if(index < self.datapoints.count){
-        NSInteger sectionSum =  _sums[index];
-        return (double)sectionSum / (double)_allDataPointsTotal;
+        CGFloat sectionSum =  [_sums[index] doubleValue];
+        return sectionSum / (CGFloat)_allDataPointsTotal;
     }else {
         return 0.0;
     }
 }
 
-- (NSInteger)sliceSumAtIndex:(NSUInteger)index
+- (CGFloat)sliceSumAtIndex:(NSUInteger)index
 {
     if(index < self.datapoints.count){
-        return _sums[index];
+        return [_sums[index] doubleValue];
     }else {
         return NSNotFound;
     }

@@ -10,7 +10,7 @@
 
 @interface ARPieChartLabelsLayer : CALayer
 @property (nonatomic) NSInteger numberOfSlices;
-@property (nonatomic) CGFloat *percentages;
+@property (nonatomic) NSArray *percentages;
 @property (nonatomic) CGColorRef labelColor;
 @property (nonatomic, strong) NSArray *labelStrings;
 @property (nonatomic) CGFloat innerRadiusPercent;

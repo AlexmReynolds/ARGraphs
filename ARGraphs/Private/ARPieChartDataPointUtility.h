@@ -13,12 +13,12 @@
 
 @property (nonatomic, copy) NSArray *datapoints;
 
-@property (nonatomic, readonly) NSInteger *sums;
-@property (nonatomic, readonly) CGFloat *percentages;
+@property (nonatomic, readonly) NSArray *sums;
+@property (nonatomic, readonly) NSArray *percentages;
 
 
-- (double)slicePercentageAtIndex:(NSUInteger)index;
-- (NSInteger)sliceSumAtIndex:(NSUInteger)index;
+- (CGFloat)slicePercentageAtIndex:(NSUInteger)index;
+- (CGFloat)sliceSumAtIndex:(NSUInteger)index;
 - (NSInteger)datapointsTotal;
 - (NSUInteger)largestSliceIndex;
 - (NSUInteger)smallestSliceIndex;

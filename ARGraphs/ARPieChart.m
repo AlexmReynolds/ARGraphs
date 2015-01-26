@@ -37,7 +37,7 @@
         _background.frame = self.bounds;
         [self.layer insertSublayer:_background atIndex:0];
         
-        _pieLayer = [ARPieChartLayer layer];
+        _pieLayer = [[ARPieChartLayer alloc] init];
         _pieLayer.frame = self.bounds;
         [self.layer addSublayer:_pieLayer];
         
@@ -148,6 +148,5 @@
     _labelsLayer.opacity = 0.0;
     [_labelsLayer performSelector:@selector(animate) withObject:nil afterDelay:0.5];
 }
-
 
 @end

@@ -95,7 +95,7 @@
             CGRect textRect = [label.string boundingRectWithSize:self.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
 
             if(self.interalLabels){
-                CGFloat percent = self.percentages[idx];
+                CGFloat percent = [self.percentages[idx] doubleValue];
                 CGFloat degrees = 360.0 * percent;
                 label.frame =  [self insetLabelFrameForLabelSize:textRect.size sliceDegrees:degrees sliceStartAngel:lastAngle];
                 lastAngle += degrees;

@@ -7,12 +7,18 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+typedef NS_OPTIONS(NSInteger, ARSliceAnimation) {
+    ARSliceAnimationDefault,
+    ARSliceAnimationPop,
+    ARSliceAnimationFan,
+    ARSliceAnimationNone
 
+};
 @interface ARPieChartLayer : CALayer
 
 @property (nonatomic) CGFloat sliceGutterWidth;
 @property (nonatomic) CGFloat innerRadiusPercent;
-
+@property (nonatomic) ARSliceAnimation animationType;
 @property (nonatomic) CGFloat topPadding;
 @property (nonatomic) CGFloat bottomPadding;
 @property (nonatomic) CGFloat rightPadding;
@@ -22,7 +28,7 @@
 
 
 @property (nonatomic) NSInteger numberOfSlices;
-@property (nonatomic) CGFloat *percentages;
+@property (nonatomic) NSArray *percentages;
 @property (nonatomic) NSArray *colors;
 
 

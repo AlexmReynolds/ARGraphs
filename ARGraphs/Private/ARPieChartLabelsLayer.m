@@ -114,7 +114,7 @@
     CGFloat radius = [self radiusOfPie];
     CGFloat offset = (radius/2) + (radius*self.innerRadiusPercent);
     CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    CGPoint origin = [ARHelpers pointInCircle:center insetFromCenterBy:offset startAngle:startAngle degrees:degrees];
+    CGPoint origin = [ARHelpers pointInCircle:center insetFromCenterBy:offset angle:(startAngle + degrees/2)];
     CGRect frame = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
     return frame;
 }

@@ -16,6 +16,6 @@
 @interface ARHelpers : NSObject
 + (CGColorRef)darkenColor:(CGColorRef)color withPercent:(CGFloat)percent;
 + (CGColorRef)lightenColor:(CGColorRef)color withPercent:(CGFloat)percent;
-+ (CGPoint)pointInCircle:(CGPoint)point insetFromCenterBy:(CGFloat)inset startAngle:(CGFloat)angle degrees:(CGFloat)degrees;
++ (CGPoint)pointInCircle:(CGPoint)point insetFromCenterBy:(CGFloat)inset angle:(CGFloat)angle;
 
 @end

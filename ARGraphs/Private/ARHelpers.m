@@ -65,10 +65,9 @@
     return newColor;
 }
 
-+ (CGPoint)pointInCircle:(CGPoint)point insetFromCenterBy:(CGFloat)inset startAngle:(CGFloat)angle degrees:(CGFloat)degrees
++ (CGPoint)pointInCircle:(CGPoint)point insetFromCenterBy:(CGFloat)inset angle:(CGFloat)angle
 {
-    CGFloat newAngle = (angle + degrees/2);
-    newAngle = 360.0 - newAngle;
+    CGFloat newAngle = 360.0 - angle;
     CGFloat rads = DEGREES_TO_RADIANS(newAngle);
     CGFloat hypotenues = inset;
     CGFloat opposite = sinf(rads) * hypotenues;

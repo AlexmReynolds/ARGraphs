@@ -22,7 +22,7 @@
     self = [super init];
     self.sliceGutterWidth = 0.0;
     self.innerRadiusPercent = 0.4;
-    self.animationType = ARSliceAnimationDefault;
+    self.animationType = ARSliceAnimationFan;
     CGFloat fillColors [] = {
         1.0, 1.0, 1.0, 0.8
     };
@@ -115,8 +115,6 @@
             [self animateSlicePop];
             break;
         case ARSliceAnimationFan:
-            _maskLayer = [self maskLayer];
-            self.mask = _maskLayer;
             [self animateSliceFan];
             break;
         case ARSliceAnimationNone:
@@ -197,7 +195,7 @@
     CAShapeLayer *slice = [CAShapeLayer layer];
     CGMutablePathRef path = [self pathForSliceWithPercent:percentage startAngle:startAngle];
     slice.path = path;
-    slice.lineWidth   = 2.0;
+    slice.lineWidth = 2.0;
     slice.frame = self.bounds;
     CGPathRelease(path);
     return slice;
@@ -269,6 +267,7 @@
         CGFloat percent = [self.percentages[x] doubleValue];
         CGFloat degrees = 360.0 * percent;
         CAShapeLayer *slice = [self.sublayers objectAtIndex:x];
+        slice.frame = self.bounds;
         CGMutablePathRef path = [self pathForSliceWithPercent:percent startAngle:lastAngle];
         slice.path = path;
         lastAngle += degrees;
@@ -297,7 +296,7 @@
     CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
     
     if(self.sliceGutterWidth > 0){
-        center = [ARHelpers pointInCircle:center insetFromCenterBy:self.sliceGutterWidth startAngle:startAngle degrees:degrees];
+        center = [ARHelpers pointInCircle:center insetFromCenterBy:self.sliceGutterWidth angle:(startAngle + degrees/2)];
         radius -= self.sliceGutterWidth;
 
     }

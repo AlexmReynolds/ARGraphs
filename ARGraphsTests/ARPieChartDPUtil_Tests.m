@@ -72,7 +72,7 @@
 - (void)testSlicePercentageAtIndex4_ShouldReturnPercent
 {
     sut.datapoints = [self arrayOfDataPoints]; //10 + 11 + 12 + 13 + 14
-    XCTAssertEqual([sut slicePercentageAtIndex:4] ,14.0/60.0, @"sum at index 4 was not 14");
+    XCTAssertEqualWithAccuracy([sut slicePercentageAtIndex:4] ,14.0/60.0, 0.05, @"sum at index 4 was not 14");
 }
 
 #pragma mark - Array of arrays of DataPoints

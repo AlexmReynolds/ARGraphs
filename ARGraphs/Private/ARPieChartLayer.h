@@ -7,13 +7,9 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-typedef NS_OPTIONS(NSInteger, ARSliceAnimation) {
-    ARSliceAnimationDefault,
-    ARSliceAnimationPop,
-    ARSliceAnimationFan,
-    ARSliceAnimationNone
+#import "ARPieChartAnimationTypes.h"
 
-};
+
 @interface ARPieChartLayer : CALayer
 
 @property (nonatomic) CGFloat sliceGutterWidth;

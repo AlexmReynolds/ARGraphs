@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "ARGraphDataPoint.h"
+#import "ARPieChartAnimationTypes.h"
 
 @protocol ARPieChartDataSource;
 
 @interface ARPieChart : UIView
 @property (nonatomic, weak) id <ARPieChartDataSource> dataSource;
-
+@property (nonatomic) ARSliceAnimation animationType;
 @property (nonatomic, strong) UIColor *labelColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat sliceGutterWidth UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat innerRadiusPercent UI_APPEARANCE_SELECTOR;

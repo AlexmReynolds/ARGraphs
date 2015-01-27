@@ -104,6 +104,12 @@
     _labelsLayer.labelColor = labelColor.CGColor;
 }
 
+- (void)setAnimationType:(ARSliceAnimation)animationType
+{
+    _animationType = animationType;
+    self.pieLayer.animationType = animationType;
+}
+
 - (void)reloadData
 {    
     _pieLayer.percentages = [self.dataPointUtility percentages];

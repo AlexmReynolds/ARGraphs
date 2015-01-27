@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *greenTint;
 @property (weak, nonatomic) IBOutlet UITextField *blueTint;
 @property (weak, nonatomic) IBOutlet UISwitch *backgroundHiddenSwitch;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *animationTypeSegment;
 @end
 
 @implementation ARPieChartSettingsTableViewController
@@ -33,7 +34,10 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+- (NSInteger)animationType
+{
+    return _animationTypeSegment.selectedSegmentIndex;
+}
 - (CGFloat)sliceInset
 {
     return [self.insetAmountTextField.text floatValue];
@@ -56,6 +60,9 @@
 - (BOOL)useBackgroundGradient
 {
     return self.backgroundHiddenSwitch.on;
+}
+- (IBAction)animationTypeChanged:(id)sender {
+    [self settingWasChanged];
 }
 
 - (IBAction)colorChanged:(id)sender {

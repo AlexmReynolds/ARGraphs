@@ -307,6 +307,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Animation" id="p1C-uO-SEG" userLabel="Animation">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sZR-Yz-ZhE">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sZR-Yz-ZhE" id="lPo-EB-ReZ">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="6Xb-Bm-E3m">
+                                                    <rect key="frame" x="8" y="8" width="584" height="29"/>
+                                                    <segments>
+                                                        <segment title="Default"/>
+                                                        <segment title="Pop"/>
+                                                        <segment title="Fan"/>
+                                                        <segment title="None"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="animationTypeChanged:" destination="D1P-rE-AVq" eventType="valueChanged" id="taf-aC-c6w"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6Xb-Bm-E3m" firstAttribute="bottom" secondItem="lPo-EB-ReZ" secondAttribute="bottomMargin" id="IgT-d9-xQn"/>
+                                                <constraint firstItem="6Xb-Bm-E3m" firstAttribute="trailing" secondItem="lPo-EB-ReZ" secondAttribute="trailingMargin" id="It7-po-Bb8"/>
+                                                <constraint firstItem="6Xb-Bm-E3m" firstAttribute="leading" secondItem="lPo-EB-ReZ" secondAttribute="leadingMargin" id="bGa-mL-MZm"/>
+                                                <constraint firstItem="6Xb-Bm-E3m" firstAttribute="top" secondItem="lPo-EB-ReZ" secondAttribute="topMargin" id="cWv-Pn-UNN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Tint Color" id="UWT-Kf-Ehy">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="sjI-Xf-ExX">
@@ -411,6 +441,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="animationTypeSegment" destination="6Xb-Bm-E3m" id="bhX-2a-XVz"/>
                         <outlet property="backgroundHiddenSwitch" destination="jKp-aY-7Fq" id="vSm-1d-Uu8"/>
                         <outlet property="blueTint" destination="atc-Z3-ARC" id="2XB-bx-bF1"/>
                         <outlet property="greenTint" destination="bi1-uU-l3J" id="Iid-6C-Lbw"/>

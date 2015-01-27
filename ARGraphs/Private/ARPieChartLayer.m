@@ -175,7 +175,7 @@
         animation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         animation.beginTime = CACurrentMediaTime() + (x * 0.1);
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-        animation.removedOnCompletion = YES;
+        animation.removedOnCompletion = NO;
         [CATransaction setCompletionBlock:^{
             slice.transform = CATransform3DIdentity;
             [slice removeAllAnimations];

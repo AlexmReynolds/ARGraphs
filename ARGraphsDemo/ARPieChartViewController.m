@@ -72,5 +72,10 @@
     self.chart.sliceGutterWidth = self.settingsTable.sliceInset;
     self.chart.tintColor = self.settingsTable.chartColor;
     self.chart.useBackgroundGradient = self.settingsTable.useBackgroundGradient;
+    if(self.chart.animationType != self.settingsTable.animationType){
+        self.chart.animationType = self.settingsTable.animationType;
+        [self.chart beginAnimationIn];
+    }
+    
 }
 @end

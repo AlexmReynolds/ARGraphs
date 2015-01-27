@@ -76,6 +76,7 @@
 		E7546BBF1A72F4E60005C8EE /* ARLineGraphMean.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARLineGraphMean.m; path = Private/ARLineGraphMean.m; sourceTree = "<group>"; };
 		E7546BC11A76EBF30005C8EE /* ARPieChartLayer_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARPieChartLayer_Tests.m; sourceTree = "<group>"; };
 		E7546BC31A76F5E00005C8EE /* ARHelpers_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARHelpers_Tests.m; sourceTree = "<group>"; };
+		E7546BC51A771AB90005C8EE /* ARPieChartAnimationTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARPieChartAnimationTypes.h; path = Private/ARPieChartAnimationTypes.h; sourceTree = "<group>"; };
 		E7826EFF1A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartSettingsTableViewController.h; path = ARGraphsDemo/ARPieChartSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
 		E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartSettingsTableViewController.m; path = ARGraphsDemo/ARPieChartSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
 		E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartLabelsLayer.h; path = Private/ARPieChartLabelsLayer.h; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 				E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */,
 				E71233C11A6DD3360034E447 /* ARPieChartLayer.h */,
 				E71233C21A6DD3360034E447 /* ARPieChartLayer.m */,
+				E7546BC51A771AB90005C8EE /* ARPieChartAnimationTypes.h */,
 				E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */,
 				E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */,
 			);

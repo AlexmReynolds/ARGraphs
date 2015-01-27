@@ -45,13 +45,18 @@
     self.chart.clipsToBounds = YES;
     self.chart.dataSource = self;
     [self.chart beginAnimationIn];
-    NSInteger perPopData = 10;
+    NSInteger perPopData = 2;
     while (perPopData--) {
         [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:arc4random()%8]];
     }
     [self.chart reloadData];
     self.timer = [NSTimer timerWithTimeInterval:1.0 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
     [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.timer invalidate];
 }
 
 - (void)createDataPoint

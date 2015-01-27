@@ -9,27 +9,26 @@
 #import "ARLineGraph.h"
 #import "ARLineGraphPointsLayer.h"
 #import "ARYMinMaxLayer.h"
-#import "ARGraphXLegendView.h"
+#import "ARLineGraphXLegendView.h"
+#import "ARLineGraphYLegendView.h"
 #import "ARLineGraphDataPointUtility.h"
 #import "ARGraphBackground.h"
 
 
 #import "ARLineGraphMean.h"
 
-@interface ARLineGraph ()<ARGraphXLegendDelegate>
+@interface ARLineGraph ()<ARGraphXLegendDelegate, ARLineGraphYLegendDelegate>
 
 //UI
 @property (nonatomic, strong) ARGraphBackground *background;
 
-@property (strong, nonatomic) NSLayoutConstraint *xAxisHeightConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *titleHeightConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *yAxisWidthConstraint;
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *subtitleLabel;
 
-@property (nonatomic, strong) ARGraphXLegendView *xAxisContainerView;
-@property (nonatomic, strong) UIView *yAxisContainerView;
+@property (nonatomic, strong) ARLineGraphXLegendView *xAxisContainerView;
+@property (nonatomic, strong) ARLineGraphYLegendView *yAxisContainerView;
 @property (nonatomic, strong) UIView *titleContainerView;
 
 
@@ -93,10 +92,6 @@
     
     [self.layer addSublayer:_meanLayer];
     
-    self.titleContainerView.backgroundColor = [UIColor clearColor];
-    self.xAxisContainerView.backgroundColor = [UIColor clearColor];
-    self.yAxisContainerView.backgroundColor = [UIColor clearColor];
-    
     [self applyDefaults];
 }
 
@@ -114,10 +109,11 @@
     self.showMeanLine = YES;
     self.useBackgroundGradient = YES;
     self.showXLegendValues = YES;
-    _lineColor = [UIColor colorWithWhite:1.0 alpha:0.6];
+    _lineColor = [UIColor colorWithWhite:1.0 alpha:1.0];
     self.pointsLayer.lineColor = _lineColor.CGColor;
     self.minMaxLayer.lineColor = _lineColor.CGColor;
     self.meanLayer.lineColor = _lineColor.CGColor;
+    self.insets = UIEdgeInsetsMake(4, 4, 4, 4);
 }
 
 #pragma mark - Setters
@@ -143,9 +139,9 @@
 {
     _showXLegend = showXLegend;
     if(_showXLegend){
-        self.xAxisHeightConstraint.constant = [self sizeOfText:@"foo" preferredFontForTextStyle:UIFontTextStyleCaption1].height;
+        self.xAxisContainerView.heightConstraint.constant = [self sizeOfText:@"foo" preferredFontForTextStyle:UIFontTextStyleCaption1].height;
     }else {
-        self.xAxisHeightConstraint.constant = 0.0;
+        self.xAxisContainerView.heightConstraint.constant = 0.0;
         
     }
     [self.xAxisContainerView layoutIfNeeded];
@@ -156,9 +152,9 @@
 {
     _showYLegend = showYLegend;
     if(_showYLegend){
-        self.yAxisWidthConstraint.constant = [self sizeOfText:@"foo" preferredFontForTextStyle:UIFontTextStyleCaption1].width;
+        self.yAxisContainerView.widthConstraint.constant = [self sizeOfText:@"foo" preferredFontForTextStyle:UIFontTextStyleCaption1].width;
     }else {
-        self.yAxisWidthConstraint.constant = 0.0;
+        self.yAxisContainerView.widthConstraint.constant = 0.0;
 
     }
     [self.yAxisContainerView layoutIfNeeded];
@@ -191,6 +187,7 @@
     UIEdgeInsets oldPadding = self.subLayersPadding;
     oldPadding.right = padding;
     self.subLayersPadding = oldPadding;
+    self.xAxisContainerView.rightConstraint.constant = -padding;
 }
 
 - (void)setShowMeanLine:(BOOL)showMeanLine
@@ -257,6 +254,11 @@
         self.background.color = tintColor.CGColor;
         _background.frame = self.bounds;
     }
+    
+}
+- (void)setInsets:(UIEdgeInsets)insets
+{
+    _insets = insets;
     
 }
 
@@ -345,7 +347,7 @@
 }
 
 #pragma mark - X Legend Delegate
-- (NSString*)titleForXLegend:(ARGraphXLegendView *)lengend
+- (NSString*)titleForXLegend:(ARLineGraphXLegendView *)lengend
 {
     if([self.dataSource respondsToSelector:@selector(ARGraphTitleForXAxis:)]){
         return [self.dataSource ARGraphTitleForXAxis:self];
@@ -353,7 +355,7 @@
         return nil;
     }
 }
-- (NSInteger)xLegend:(ARGraphXLegendView *)lengend valueAtIndex:(NSUInteger)index
+- (NSInteger)xLegend:(ARLineGraphXLegendView *)lengend valueAtIndex:(NSUInteger)index
 {
     ARGraphDataPoint *dp = [self.dataPoints objectAtIndex:index];
     return dp.xValue;
@@ -385,41 +387,33 @@
     
     return _titleContainerView;
 }
-- (UIView*)xAxisContainerView
+- (ARLineGraphXLegendView*)xAxisContainerView
 {
     if(_xAxisContainerView == nil){
-        ARGraphXLegendView *view = [[ARGraphXLegendView alloc] init];
+        ARLineGraphXLegendView *view = [[ARLineGraphXLegendView alloc] init];
         view.delegate = self;
-        view.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:view];
-        
-        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:view.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.yAxisContainerView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:view.superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
-        self.xAxisHeightConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40.0];
-        
-        [self addConstraints:@[bottom, left, right, self.xAxisHeightConstraint]];
-        
+        view.leftConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.yAxisContainerView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
+        [self addConstraint:view.leftConstraint];
         _xAxisContainerView = view;
+        [self layoutIfNeeded];
+
     }
 
     return _xAxisContainerView;
 }
 
-- (UIView*)yAxisContainerView
+- (ARLineGraphYLegendView*)yAxisContainerView
 {
     if(_yAxisContainerView == nil){
-        UIView *view = [[UIView alloc] init];
-        view.translatesAutoresizingMaskIntoConstraints = NO;
+        ARLineGraphYLegendView *view = [[ARLineGraphYLegendView alloc] init];
+        view.delegate = self;
         [self addSubview:view];
-        
-        NSLayoutConstraint *bottom = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:view.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:view.superview attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleContainerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
-        self.yAxisWidthConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40.0];
-        
-        [self addConstraints:@[bottom, left, top, self.yAxisWidthConstraint]];
+        view.topConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleContainerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+        [self addConstraint:view.topConstraint];
         _yAxisContainerView = view;
+        [self layoutIfNeeded];
+
     }
     return _yAxisContainerView;
 }

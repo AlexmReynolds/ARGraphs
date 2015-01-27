@@ -162,7 +162,6 @@
 
 - (void)animateSlicePop
 {
-
     for (NSInteger x = 0; x < self.numberOfSlices; x++) {
        
         [CATransaction begin];

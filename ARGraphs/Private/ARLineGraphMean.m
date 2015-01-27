@@ -41,6 +41,13 @@
         CGPathRelease(newPath);
     }
 }
+- (void)layoutSublayers
+{
+    [super layoutSublayers];
+    
+    CGMutablePathRef newPath = [self pathForMean:self.yMean];
+    self.path = newPath;
+    CGPathRelease(newPath);}
 
 - (void)setLineColor:(CGColorRef)lineColor
 {

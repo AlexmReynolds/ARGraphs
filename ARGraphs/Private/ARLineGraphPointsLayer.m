@@ -13,7 +13,9 @@
 
 static const NSInteger kSMOOTHING_MINIMUM = 20;
 
+@interface ARLineGraphPointsLayer ()
 
+@end
 @implementation ARLineGraphPointsLayer{
     NSInteger _dataCount;
     CAShapeLayer *_maskLayer;
@@ -31,9 +33,8 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     self.rightPadding = 0;
     self.topPadding = 0;
     self.bottomPadding = 0;
-    
     CGFloat fillColors [] = {
-        1.0, 1.0, 1.0, 0.8
+        1.0, 1.0, 1.0, 1.0
     };
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB(); //NEED TO RELEASE
     _lineColor = CGColorCreate(colorSpace, fillColors); //RELEASE ON DEalloc
@@ -93,6 +94,9 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 {
     [super layoutSublayers];
     _maskLayer.path = [self pathForMask];
+    _maskLayer.frame = self.bounds;
+    _maskLayer.lineWidth   = self.bounds.size.height;
+
 }
 
 - (CGMutablePathRef)pathForMask
@@ -251,7 +255,7 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     _dataCount = [self.dataPoints count];
     //CGContextSetRGBStrokeColor(ctx, 1.0, 1.0, 1.0, 1.0);
     CGContextSetStrokeColorWithColor(ctx, self.lineColor);
-    
+    CGContextSetShouldAntialias(ctx, YES);
     CGContextSetLineWidth(ctx, self.lineWidth);
     if(self.showDots){
         for(int x = 0; x < _dataCount; x++){

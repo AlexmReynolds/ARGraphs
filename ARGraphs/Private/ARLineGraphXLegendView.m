@@ -6,25 +6,31 @@
 //  Copyright (c) 2015 Alex Reynolds. All rights reserved.
 //
 
-#import "ARGraphXLegendView.h"
+#import "ARLineGraphXLegendView.h"
 
-@implementation ARGraphXLegendView{
+@interface ARLineGraphXLegendView ()
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@end
+@implementation ARLineGraphXLegendView{
     NSUInteger _totalNumberOfLabels;
     NSArray *_labels;
     NSUInteger _numberOfDataPoints;
-    UILabel *_titleLabel;
     NSString *_title;
 
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)didMoveToSuperview
+{
+    [super didMoveToSuperview];
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    self.bottomConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+    self.rightConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
+    self.heightConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40.0];
+    
+    [self.superview addConstraints:@[self.bottomConstraint, self.rightConstraint, self.heightConstraint]];
+    
 }
-*/
-
 #pragma mark - Setters
 
 - (void)setLabelColor:(UIColor *)labelColor
@@ -40,30 +46,27 @@
 {
     _numberOfDataPoints = [self.delegate numberOfDataPoints];
     _title = [self.delegate titleForXLegend:self];
-    [_titleLabel removeFromSuperview];
     if(_title != nil){
-        _titleLabel = [self makeTitleLabel];
-        [self addSubview:_titleLabel];
+        [self addSubview:self.titleLabel];
+    }else{
+        [self.titleLabel removeFromSuperview];
     }
     [self createOrUpdateLabels];
-
-
 }
 
 - (void)createOrUpdateLabels
 {
     if(self.showXValues){
         NSUInteger canFit = [self numberOfLabelsForWidth:self.bounds.size.width];
-        if(canFit != _totalNumberOfLabels){
+        if(_totalNumberOfLabels != canFit){
             _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
             [self createLabels];
-            // re-layout
         }else{
-            //Update Values
             [self updateLabelValues];
         }
     }else {
         [_labels makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        _labels = @[];
     }
 }
 
@@ -73,28 +76,46 @@
     [self createOrUpdateLabels];
 }
 
-- (UILabel*)makeTitleLabel
+- (UILabel*)titleLabel
 {
-    UILabel *label = [[UILabel alloc] init];
-    label.text = _title;
-    label.textColor = self.labelColor;
-    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    [label sizeToFit];
-    return label;
+    if(_titleLabel == nil){
+        UILabel *label = [[UILabel alloc] init];
+        label.text = _title;
+        label.textColor = self.labelColor;
+        label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+        [label sizeToFit];
+        _titleLabel = label;
+    }
+    return _titleLabel;
 }
 
 - (void)createLabels
 {
-    [_labels makeObjectsPerformSelector:@selector(removeFromSuperview)];
-    NSMutableArray *array = [[NSMutableArray alloc] init];
-    NSInteger count = 0;
-    for (count = 0; count < _totalNumberOfLabels; count++) {
-        UILabel *label = [self labelForXAxisIndex:count];
-        [self addSubview:label];
-        [array addObject:label];
+    NSInteger exisitngLabel = _labels.count;
+    NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
+    NSInteger indexCounter = 0;
+    NSInteger numberOfLabelsToCreate = _totalNumberOfLabels - exisitngLabel;
+
+    for (indexCounter = 0; indexCounter < _totalNumberOfLabels; indexCounter++) {
+        if(exisitngLabel > indexCounter){
+            // updated Label
+            UILabel *label = [newLabels objectAtIndex:indexCounter];
+            [self updateLabel:label atindex:indexCounter];
+        }else {
+            //create laebl
+            UILabel *label = [self labelForXAxisIndex:indexCounter];
+            [self addSubview:label];
+            [newLabels addObject:label];
+        }
     };
     
-    _labels = array;
+    if(exisitngLabel > _totalNumberOfLabels){
+        NSInteger labelsToDelete = exisitngLabel - numberOfLabelsToCreate;
+        while(labelsToDelete--){
+            [[_labels objectAtIndex:labelsToDelete] removeFromSuperview];
+        }
+    }
+    _labels = newLabels;
     
 }
 
@@ -102,13 +123,18 @@
 {
     NSArray *copiedLabels = [_labels copy];
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
-        NSUInteger dpIndex = [self dataPointIndexForLabelIndex:index];
-        if(dpIndex != NSNotFound){
-            label.textColor = self.labelColor;
-            label.text = [self stringForXLegendAtIndex:dpIndex];
-            [self updateFrameOfLabel:label atIndex:index];
-        }
+        [self updateLabel:label atindex:index];
     }];
+}
+
+- (void)updateLabel:(UILabel*)label atindex:(NSInteger)index
+{
+    NSUInteger dpIndex = [self dataPointIndexForLabelIndex:index];
+    if(dpIndex != NSNotFound){
+        label.textColor = self.labelColor;
+        label.text = [self stringForXLegendAtIndex:dpIndex];
+        [self updateFrameOfLabel:label atIndex:index];
+    }
 }
 
 - (UILabel*)labelForXAxisIndex:(NSInteger)index
@@ -159,8 +185,11 @@
     CGFloat itemWidth = width/total;
     CGFloat offsetForTitleLabel = 0;
     if(_title != nil && _title.length){
+        itemWidth = (width - _titleLabel.frame.size.width)/total;
         offsetForTitleLabel = _titleLabel.frame.size.width + itemWidth/2;
     }
+
+
     return index * itemWidth + offsetForTitleLabel;
 }
 

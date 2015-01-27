@@ -11,7 +11,7 @@
 		5493DA341A64A9BD00FB10ED /* ARLineGraphPointsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA2F1A64A9BD00FB10ED /* ARLineGraphPointsLayer.m */; };
 		5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5493DA331A64A9BD00FB10ED /* ARYMinMaxLayer.m */; };
 		E71233AD1A69D61B0034E447 /* ARLineGraphDataPointUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AC1A69D61B0034E447 /* ARLineGraphDataPointUtility.m */; };
-		E71233B01A6D6F430034E447 /* ARGraphXLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */; };
+		E71233B01A6D6F430034E447 /* ARLineGraphXLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233AF1A6D6F430034E447 /* ARLineGraphXLegendView.m */; };
 		E71233B31A6DB7890034E447 /* ARGraphBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233B21A6DB7890034E447 /* ARGraphBackground.m */; };
 		E71233B71A6DBDA70034E447 /* ARPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233B61A6DBDA70034E447 /* ARPieChart.m */; };
 		E71233BC1A6DBFE30034E447 /* ARPieChartDataPointUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */; };
@@ -22,6 +22,7 @@
 		E7546BC01A72F4E60005C8EE /* ARLineGraphMean.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BBF1A72F4E60005C8EE /* ARLineGraphMean.m */; };
 		E7546BC21A76EBF30005C8EE /* ARPieChartLayer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BC11A76EBF30005C8EE /* ARPieChartLayer_Tests.m */; };
 		E7546BC41A76F5E00005C8EE /* ARHelpers_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BC31A76F5E00005C8EE /* ARHelpers_Tests.m */; };
+		E7546BC81A780B260005C8EE /* ARLineGraphYLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BC71A780B260005C8EE /* ARLineGraphYLegendView.m */; };
 		E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */; };
 		E7826F041A705D0900642F1E /* ARPieChartLabelsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */; };
 		E7B2A5C91A64874C00FD402E /* ARLineGraphs_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */; };
@@ -57,8 +58,8 @@
 		D1FCF12BDB4F16810639FDB7 /* Pods-ARGraphsDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ARGraphsDemoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ARGraphsDemoTests/Pods-ARGraphsDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E71233AB1A69D61B0034E447 /* ARLineGraphDataPointUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARLineGraphDataPointUtility.h; path = Private/ARLineGraphDataPointUtility.h; sourceTree = "<group>"; };
 		E71233AC1A69D61B0034E447 /* ARLineGraphDataPointUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARLineGraphDataPointUtility.m; path = Private/ARLineGraphDataPointUtility.m; sourceTree = "<group>"; };
-		E71233AE1A6D6F430034E447 /* ARGraphXLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphXLegendView.h; path = Private/ARGraphXLegendView.h; sourceTree = "<group>"; };
-		E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphXLegendView.m; path = Private/ARGraphXLegendView.m; sourceTree = "<group>"; };
+		E71233AE1A6D6F430034E447 /* ARLineGraphXLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARLineGraphXLegendView.h; path = Private/ARLineGraphXLegendView.h; sourceTree = "<group>"; };
+		E71233AF1A6D6F430034E447 /* ARLineGraphXLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARLineGraphXLegendView.m; path = Private/ARLineGraphXLegendView.m; sourceTree = "<group>"; };
 		E71233B11A6DB7890034E447 /* ARGraphBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphBackground.h; path = Private/ARGraphBackground.h; sourceTree = "<group>"; };
 		E71233B21A6DB7890034E447 /* ARGraphBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphBackground.m; path = Private/ARGraphBackground.m; sourceTree = "<group>"; };
 		E71233B51A6DBDA70034E447 /* ARPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARPieChart.h; sourceTree = "<group>"; };
@@ -77,6 +78,8 @@
 		E7546BC11A76EBF30005C8EE /* ARPieChartLayer_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARPieChartLayer_Tests.m; sourceTree = "<group>"; };
 		E7546BC31A76F5E00005C8EE /* ARHelpers_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARHelpers_Tests.m; sourceTree = "<group>"; };
 		E7546BC51A771AB90005C8EE /* ARPieChartAnimationTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARPieChartAnimationTypes.h; path = Private/ARPieChartAnimationTypes.h; sourceTree = "<group>"; };
+		E7546BC61A780B260005C8EE /* ARLineGraphYLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARLineGraphYLegendView.h; path = Private/ARLineGraphYLegendView.h; sourceTree = "<group>"; };
+		E7546BC71A780B260005C8EE /* ARLineGraphYLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARLineGraphYLegendView.m; path = Private/ARLineGraphYLegendView.m; sourceTree = "<group>"; };
 		E7826EFF1A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartSettingsTableViewController.h; path = ARGraphsDemo/ARPieChartSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
 		E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartSettingsTableViewController.m; path = ARGraphsDemo/ARPieChartSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
 		E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartLabelsLayer.h; path = Private/ARPieChartLabelsLayer.h; sourceTree = "<group>"; };
@@ -154,8 +157,10 @@
 		E71233B81A6DBFA30034E447 /* Line Graph */ = {
 			isa = PBXGroup;
 			children = (
-				E71233AE1A6D6F430034E447 /* ARGraphXLegendView.h */,
-				E71233AF1A6D6F430034E447 /* ARGraphXLegendView.m */,
+				E71233AE1A6D6F430034E447 /* ARLineGraphXLegendView.h */,
+				E71233AF1A6D6F430034E447 /* ARLineGraphXLegendView.m */,
+				E7546BC61A780B260005C8EE /* ARLineGraphYLegendView.h */,
+				E7546BC71A780B260005C8EE /* ARLineGraphYLegendView.m */,
 				E71233AB1A69D61B0034E447 /* ARLineGraphDataPointUtility.h */,
 				E71233AC1A69D61B0034E447 /* ARLineGraphDataPointUtility.m */,
 				5493DA2E1A64A9BD00FB10ED /* ARLineGraphPointsLayer.h */,
@@ -434,11 +439,12 @@
 				E71233AD1A69D61B0034E447 /* ARLineGraphDataPointUtility.m in Sources */,
 				E7B2A63F1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m in Sources */,
 				E71233B71A6DBDA70034E447 /* ARPieChart.m in Sources */,
-				E71233B01A6D6F430034E447 /* ARGraphXLegendView.m in Sources */,
+				E71233B01A6D6F430034E447 /* ARLineGraphXLegendView.m in Sources */,
 				E71233C91A6ED3250034E447 /* ARHelpers.m in Sources */,
 				E71233C31A6DD3360034E447 /* ARPieChartLayer.m in Sources */,
 				E7546BC01A72F4E60005C8EE /* ARLineGraphMean.m in Sources */,
 				5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */,
+				E7546BC81A780B260005C8EE /* ARLineGraphYLegendView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,8 @@
 #import "ARLineGraphPointsLayer.h"
 #import "ARLineGraphMean.h"
 #import "ARYMinMaxLayer.h"
-
+#import "ARLineGraphXLegendView.h"
+#import "ARLineGraphYLegendView.h"
 
 @interface ARLineGraph (Tests)
 - (CAGradientLayer*)getBackgroundForTests;
@@ -21,8 +22,9 @@
 - (ARYMinMaxLayer*)getMinMaxLayerForTests;
 - (ARLineGraphMean*)getMeanLayerForTests;
 
-- (NSLayoutConstraint*)getXLegendHeightConstraintForTests;
-- (NSLayoutConstraint*)getYLegendHeightConstraintForTests;
+- (ARLineGraphXLegendView*)getXLegendContainerForTests;
+- (ARLineGraphYLegendView*)getYLegendContainerForTests;
+
 - (NSArray*)getDataPointsForTests;
 
 - (UILabel*)getTitleLabelForTests;
@@ -50,17 +52,16 @@
     return [self valueForKey:@"_meanLayer"];
 }
 
-- (NSLayoutConstraint*)getXLegendHeightConstraintForTests
+- (ARLineGraphXLegendView*)getXLegendContainerForTests
 {
-    return [self valueForKey:@"_xAxisHeightConstraint"];
-
+    return [self valueForKey:@"_xAxisContainerView"];
 }
 
-- (NSLayoutConstraint*)getYLegendHeightConstraintForTests
+- (ARLineGraphYLegendView*)getYLegendContainerForTests
 {
-    return [self valueForKey:@"_yAxisWidthConstraint"];
-    
+    return [self valueForKey:@"_yAxisContainerView"];
 }
+
 - (NSArray*)getDataPointsForTests
 {
     return [self valueForKey:@"_dataPoints"];
@@ -170,7 +171,7 @@
 
 - (void)testLineColor_ShouldDefaultToYes
 {
-        XCTAssertTrue([sut.lineColor isEqual:[UIColor colorWithWhite:1.0 alpha:0.6]], @"lineColor was not defaulted to white");
+        XCTAssertTrue([sut.lineColor isEqual:[UIColor colorWithWhite:1.0 alpha:1.0]], @"lineColor was not defaulted to white");
 }
 
 - (void)testLabelColor_ShouldDefaultToYes
@@ -192,6 +193,18 @@
     XCTAssertTrue([sut getMinMaxLayerForTests].hidden, @"minMaxLayer was not hidden");
 }
 
+- (void)testSettingShowMInMaxToNo_ShouldSetXLegendRightToNegative20
+{
+    sut.showMinMaxLines = YES;
+    XCTAssertTrue([sut getXLegendContainerForTests].rightConstraint.constant == -20, @"x legend right was not set to 0");
+}
+
+- (void)testSettingShowMInMaxToNo_ShouldSetXLegendRightTo0
+{
+    sut.showMinMaxLines = NO;
+    XCTAssertTrue([sut getXLegendContainerForTests].rightConstraint.constant == 0, @"x legend right was not set to 0");
+}
+
 - (void)testSettingShowMeanLineToNo_ShouldHideMeanLayer
 {
     sut.showMeanLine = NO;
@@ -201,25 +214,25 @@
 - (void)testSetShowXLegendToNO_ShouldSetHeightConstraintToZero
 {
     sut.showXLegend = NO;
-    XCTAssertEqual([sut getXLegendHeightConstraintForTests].constant, 0.0, @"constraint was not set to 0");
+    XCTAssertEqual([sut getXLegendContainerForTests].heightConstraint.constant, 0.0, @"constraint was not set to 0");
 }
 
 - (void)testSetShowXLegendToYES_ShouldSetHeightConstraintToZero
 {
     sut.showXLegend = YES;
-    XCTAssertTrue([sut getXLegendHeightConstraintForTests].constant > 0.0, @"constraint was not set");
+    XCTAssertTrue([sut getXLegendContainerForTests].heightConstraint.constant > 0.0, @"constraint was not set");
 }
 
 - (void)testSetShowYLegendToNO_ShouldSetWidthConstraintToZero
 {
     sut.showYLegend = NO;
-    XCTAssertEqual([sut getYLegendHeightConstraintForTests].constant, 0.0, @"constraint was not set to 0");
+    XCTAssertEqual([sut getYLegendContainerForTests].widthConstraint.constant, 0.0, @"constraint was not set to 0");
 }
 
 - (void)testSetShowYLegendToYES_ShouldSetWidthConstraintToZero
 {
     sut.showYLegend = YES;
-    XCTAssertTrue([sut getYLegendHeightConstraintForTests].constant > 0.0, @"constraint was not set");
+    XCTAssertTrue([sut getYLegendContainerForTests].widthConstraint.constant > 0.0, @"constraint was not set");
 }
 
 - (void)testSetShowDotsToYES_ShouldSetShowDotsOnThePointPayer

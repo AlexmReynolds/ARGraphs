@@ -9,7 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @protocol ARGraphXLegendDelegate;
-@interface ARGraphXLegendView : UIView
+@interface ARLineGraphXLegendView : UIView
+
+@property (strong, nonatomic) NSLayoutConstraint *heightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *leftConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *rightConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *bottomConstraint;
 
 @property (nonatomic, weak) id <ARGraphXLegendDelegate> delegate;
 @property (nonatomic, strong) UIColor *labelColor;
@@ -20,7 +25,7 @@
 
 @protocol ARGraphXLegendDelegate <NSObject>
 @required
-- (NSString*)titleForXLegend:(ARGraphXLegendView*)lengend;
-- (NSInteger)xLegend:(ARGraphXLegendView*)lengend valueAtIndex:(NSUInteger)index;
+- (NSString*)titleForXLegend:(ARLineGraphXLegendView*)lengend;
+- (NSInteger)xLegend:(ARLineGraphXLegendView*)lengend valueAtIndex:(NSUInteger)index;
 - (NSUInteger)numberOfDataPoints;
 @end

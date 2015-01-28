@@ -21,5 +21,6 @@
 @property (nonatomic) NSInteger yMin;
 @property (nonatomic, strong) NSString *title;
 
+- (CGSize)contentSize;
 @end
 

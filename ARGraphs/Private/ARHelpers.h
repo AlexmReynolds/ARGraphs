@@ -18,4 +18,6 @@
 + (CGColorRef)lightenColor:(CGColorRef)color withPercent:(CGFloat)percent;
 + (CGPoint)pointInCircle:(CGPoint)point insetFromCenterBy:(CGFloat)inset angle:(CGFloat)angle;
 + (NSArray *)incrementArrayForNumberOfItems:(NSInteger)numberOfItems range:(NSRange)range;
++ (CGSize)sizeOfText:(NSString*)text;
+
 @end

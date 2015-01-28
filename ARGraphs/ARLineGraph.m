@@ -38,6 +38,8 @@
 @property (nonatomic) NSUInteger dataCount;
 @property (nonatomic, strong) NSArray *dataPoints;
 @property (nonatomic, strong) NSString *xAxisTitle;
+@property (nonatomic, strong) NSString *yAxisTitle;
+
 @property (nonatomic) UIEdgeInsets subLayersPadding;
 
 @property (nonatomic, strong) ARLineGraphDataPointUtility *dataPointUtility;
@@ -132,59 +134,45 @@
 - (void)setShowXLegend:(BOOL)showXLegend
 {
     _showXLegend = showXLegend;
-    if(_showXLegend){
-        self.xAxisContainerView.heightConstraint.constant = [self sizeOfText:@"foo" preferredFontForTextStyle:UIFontTextStyleCaption1].height;
-        self.yAxisContainerView.bottomConstraint.constant = self.xAxisContainerView.heightConstraint.constant + self.insets.bottom;
+    [self layoutLegends];
 
-    }else {
-        self.xAxisContainerView.heightConstraint.constant = 0.0;
-        self.yAxisContainerView.bottomConstraint.constant = self.insets.bottom;
-        
-    }
-    [self.xAxisContainerView layoutIfNeeded];
-    
 }
 
 - (void)setShowYLegend:(BOOL)showYLegend
 {
     _showYLegend = showYLegend;
-    if(_showYLegend){
-        self.yAxisContainerView.widthConstraint.constant = [self sizeOfText:@"foo" preferredFontForTextStyle:UIFontTextStyleCaption1].width;
-    }else {
-        self.yAxisContainerView.widthConstraint.constant = 0.0;
 
-    }
-    [self.yAxisContainerView layoutIfNeeded];
-    
+    [self layoutLegends];
 }
+
+- (void)setShowXLegendValues:(BOOL)showXLegendValues
+{
+    _showXLegendValues = showXLegendValues;
+    self.xAxisContainerView.showXValues = showXLegendValues;
+    [self layoutLegends];
+}
+
+- (void)setShowYLegendValues:(BOOL)showYLegendValues
+{
+    _showYLegendValues = showYLegendValues;
+    self.yAxisContainerView.showYValues = showYLegendValues;
+    [self layoutLegends];
+}
+
 
 - (void)setShowDots:(BOOL)showDots
 {
     _showDots = showDots;
     self.pointsLayer.showDots = showDots;
-    CGFloat padding = 0;
-    if(showDots){
-        padding = self.pointsLayer.dotRadius + self.pointsLayer.lineWidth;
-    }
-    
-    UIEdgeInsets oldPadding = self.subLayersPadding;
-    oldPadding.top = padding;
-    oldPadding.bottom = padding;
-    self.subLayersPadding = oldPadding;
+    self.subLayersPadding = [self calculatePaddingForSubLayers];
 }
 
 - (void)setShowMinMaxLines:(BOOL)showMinMaxLines
 {
     _showMinMaxLines = showMinMaxLines;
     self.minMaxLayer.hidden = !showMinMaxLines;
-    CGFloat padding = 0;
-    if(showMinMaxLines){
-        padding = 20;
-    }
-    UIEdgeInsets oldPadding = self.subLayersPadding;
-    oldPadding.right = padding;
-    self.subLayersPadding = oldPadding;
-    self.xAxisContainerView.rightConstraint.constant = -padding;
+    self.subLayersPadding = [self calculatePaddingForSubLayers];
+    self.xAxisContainerView.rightConstraint.constant = -20;
 }
 
 - (void)setShowMeanLine:(BOOL)showMeanLine
@@ -224,19 +212,6 @@
     self.xAxisContainerView.labelColor = labelColor;
     self.minMaxLayer.labelColor = labelColor.CGColor;
 }
-
-- (void)setShowXLegendValues:(BOOL)showXLegendValues
-{
-    _showXLegendValues = showXLegendValues;
-    self.xAxisContainerView.showXValues = showXLegendValues;
-}
-
-- (void)setShowYLegendValues:(BOOL)showYLegendValues
-{
-    _showYLegendValues = showYLegendValues;
-    self.yAxisContainerView.showYValues = showYLegendValues;
-}
-
 - (void)setSubLayersPadding:(UIEdgeInsets)subLayersPadding
 {
     _subLayersPadding = subLayersPadding;
@@ -263,8 +238,9 @@
 {
     _insets = insets;
     self.yAxisContainerView.leftConstraint.constant = insets.left;
-    self.xAxisContainerView.bottomConstraint.constant = insets.bottom;
     self.titleContainerView.topConstraint.constant = insets.top;
+    self.titleContainerView.leftConstraint.constant = insets.left;
+    self.titleContainerView.rightConstraint.constant = insets.right;
     [self layoutIfNeeded];
 }
 
@@ -273,15 +249,22 @@
 
 - (NSString *)xAxisTitle
 {
-    if(_xAxisTitle == nil){
-        if([self.dataSource respondsToSelector:@selector(ARGraphTitleForXAxis:)]){
-            _xAxisTitle = [self.dataSource ARGraphTitleForXAxis:self];
-        }else {
-            nil;
-        }
+    if([self.dataSource respondsToSelector:@selector(ARGraphTitleForXAxis:)]){
+        return [self.dataSource ARGraphTitleForXAxis:self];
+    }else {
+        return nil;
     }
-    return _xAxisTitle;
 }
+
+- (NSString *)yAxisTitle
+{
+    if([self.dataSource respondsToSelector:@selector(ARGraphTitleForYAxis:)]){
+        return [self.dataSource ARGraphTitleForYAxis:self];
+    }else {
+        return nil;
+    }
+}
+
 - (NSUInteger)dataCount
 {
     return self.dataPoints.count;
@@ -300,17 +283,36 @@
 
 - (void)layoutSubviews
 {
+    [super layoutSubviews];
     CGRect pointsLayerFrame = self.bounds;
-    pointsLayerFrame.size.height -= self.xAxisContainerView.bounds.size.height;
-    pointsLayerFrame.size.height -= self.titleContainerView.bounds.size.height;
+    pointsLayerFrame.size.height -= (self.bounds.size.height - CGRectGetMinY(self.xAxisContainerView.frame));
+    pointsLayerFrame.size.height -= CGRectGetMaxY(self.titleContainerView.frame);
 
-    pointsLayerFrame.size.width -= self.yAxisContainerView.bounds.size.width;
-    pointsLayerFrame.origin.y += self.titleContainerView.bounds.size.height;
-    pointsLayerFrame.origin.x += self.yAxisContainerView.bounds.size.width;
+    pointsLayerFrame.size.width -= (CGRectGetMaxX(self.yAxisContainerView.frame) + self.insets.right);
+    pointsLayerFrame.origin.y += CGRectGetMaxY(self.titleContainerView.frame);
+    pointsLayerFrame.origin.x += CGRectGetMaxX(self.yAxisContainerView.frame);
     _pointsLayer.frame = pointsLayerFrame;
     _minMaxLayer.frame = pointsLayerFrame;
     _meanLayer.frame = pointsLayerFrame;
     _background.frame = self.bounds;
+}
+
+- (void)layoutLegends
+{
+    if(self.showXLegend){
+        self.xAxisContainerView.heightConstraint.constant = [self.xAxisContainerView contentSize].height;
+    }else {
+        self.xAxisContainerView.heightConstraint.constant = 0.0;
+        
+    }
+    
+    if(self.showYLegend){
+        self.yAxisContainerView.widthConstraint.constant = [self.yAxisContainerView contentSize].width;
+    }else {
+        self.yAxisContainerView.widthConstraint.constant = 0.0;
+    }
+    NSLog(@"bottom Y is %f", self.yAxisContainerView.bottomConstraint.constant);
+    [self layoutIfNeeded];
 }
 
 - (void)reloadData
@@ -318,7 +320,9 @@
 
     _dataPoints = [[self.dataSource ARGraphDataPoints:self] copy];
     _dataPointUtility.datapoints = _dataPoints;
-    
+    self.xAxisContainerView.title = self.xAxisTitle;
+    self.yAxisContainerView.title = self.yAxisTitle;
+
     if([self.dataSource respondsToSelector:@selector(titleForGraph:)]){
         self.titleContainerView.title = [self.dataSource titleForGraph:self] ?: @"";
     }
@@ -334,7 +338,7 @@
     if(self.showXLegend){
         [self.xAxisContainerView reloadData];
     }
-    
+
     NSInteger yMin = [[self dataPointUtility] yMin];
     NSInteger yMax = [[self dataPointUtility] yMax];
     self.minMaxLayer.yMin = yMin;
@@ -354,16 +358,7 @@
     self.yAxisContainerView.yMin = yMin;
     [self.meanLayer setNeedsDisplay];
 }
-
 #pragma mark - X Legend Delegate
-- (NSString*)titleForXLegend:(ARLineGraphXLegendView *)lengend
-{
-    if([self.dataSource respondsToSelector:@selector(ARGraphTitleForXAxis:)]){
-        return [self.dataSource ARGraphTitleForXAxis:self];
-    }else{
-        return nil;
-    }
-}
 - (NSInteger)xLegend:(ARLineGraphXLegendView *)lengend valueAtIndex:(NSUInteger)index
 {
     ARGraphDataPoint *dp = [self.dataPoints objectAtIndex:index];
@@ -390,12 +385,11 @@
 - (ARLineGraphXLegendView*)xAxisContainerView
 {
     if(_xAxisContainerView == nil){
-        ARLineGraphXLegendView *view = [[ARLineGraphXLegendView alloc] init];
-        view.delegate = self;
-        [self addSubview:view];
-        view.leftConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.yAxisContainerView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
-        [self addConstraint:view.leftConstraint];
-        _xAxisContainerView = view;
+        _xAxisContainerView = [[ARLineGraphXLegendView alloc] init];
+        _xAxisContainerView.delegate = self;
+        [self addSubview:_xAxisContainerView];
+        _xAxisContainerView.leftConstraint = [NSLayoutConstraint constraintWithItem:_xAxisContainerView attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:self.yAxisContainerView attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
+        [self addConstraint:_xAxisContainerView.leftConstraint];
         [self layoutIfNeeded];
     }
 
@@ -405,11 +399,11 @@
 - (ARLineGraphYLegendView*)yAxisContainerView
 {
     if(_yAxisContainerView == nil){
-        ARLineGraphYLegendView *view = [[ARLineGraphYLegendView alloc] init];
-        [self addSubview:view];
-        view.topConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleContainerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
-        [self addConstraint:view.topConstraint];
-        _yAxisContainerView = view;
+        _yAxisContainerView = [[ARLineGraphYLegendView alloc] init];
+        [self addSubview:_yAxisContainerView];
+        _yAxisContainerView.topConstraint = [NSLayoutConstraint constraintWithItem:_yAxisContainerView attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleContainerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+        _yAxisContainerView.bottomConstraint = [NSLayoutConstraint constraintWithItem:_yAxisContainerView attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.xAxisContainerView attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
+        [self addConstraints:@[_yAxisContainerView.topConstraint, _yAxisContainerView.bottomConstraint]];
         [self layoutIfNeeded];
 
     }
@@ -417,7 +411,19 @@
 }
 
 #pragma mark - Helpers
-
+- (UIEdgeInsets)calculatePaddingForSubLayers
+{
+    CGFloat left = 0, right = 0, top = 0, bottom = 0;
+    if(_showMinMaxLines){
+        right += 20;
+    }
+    if(_showDots){
+        top += self.pointsLayer.dotRadius + self.pointsLayer.lineWidth;
+        bottom += self.pointsLayer.dotRadius + self.pointsLayer.lineWidth;
+    }
+    
+    return UIEdgeInsetsMake(top, left, bottom, right);
+}
 - (CGSize)sizeOfText:(NSString*)text preferredFontForTextStyle:(NSString*)style {
     UIFont *font = [UIFont preferredFontForTextStyle:style];
     NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName: font}];

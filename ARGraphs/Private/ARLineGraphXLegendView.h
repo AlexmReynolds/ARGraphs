@@ -19,13 +19,17 @@
 @property (nonatomic, weak) id <ARGraphXLegendDelegate> delegate;
 @property (nonatomic, strong) UIColor *labelColor;
 @property (nonatomic) BOOL showXValues;
+@property (nonatomic, strong) NSString *title;
+
 // This does a full reload. Very bad for perfromance if chart is live updating. User AppendDataPoint instead
 - (void)reloadData;
+
+- (CGSize)contentSize;
+
 @end
 
 @protocol ARGraphXLegendDelegate <NSObject>
 @required
-- (NSString*)titleForXLegend:(ARLineGraphXLegendView*)lengend;
 - (NSInteger)xLegend:(ARLineGraphXLegendView*)lengend valueAtIndex:(NSUInteger)index;
 - (NSUInteger)numberOfDataPoints;
 @end

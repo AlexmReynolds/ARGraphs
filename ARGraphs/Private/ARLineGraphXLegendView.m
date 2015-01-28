@@ -24,10 +24,10 @@
     self = [super initWithFrame:frame];
     if(self){
         [self addSubview:self.titleLabel];
+        [self addTitleLabelConstraints];
         self.labelColor = [UIColor whiteColor];
         self.translatesAutoresizingMaskIntoConstraints = NO;
         self.clipsToBounds = YES;
-        [self addSubview:self.titleLabel];
     }
     return self;
 }
@@ -55,34 +55,36 @@
     }];
 }
 
+- (void)setTitle:(NSString *)title
+{
+    _title = title;
+    self.titleLabel.text = title;
+    if(self.heightConstraint.constant > 0){
+        self.heightConstraint.constant = [self contentSize].height;
+        [self.superview layoutIfNeeded];
+    }
+}
+
 - (void)reloadData
 {
     _numberOfDataPoints = [self.delegate numberOfDataPoints];
-    _title = [self.delegate titleForXLegend:self];
-    if(_title != nil){
-        _titleLabel.hidden = NO;
-        _titleLabel.text = _title;
-        [_titleLabel sizeToFit];
-    }else{
-        _titleLabel.hidden = YES;
-    }
     [self createOrUpdateLabels];
 }
 
-- (void)createOrUpdateLabels
+- (CGSize)contentSize
 {
+    CGFloat height = 0;
+    CGSize sizeOfTestString = [ARHelpers sizeOfText:@"1234"];
     if(self.showXValues){
-        NSUInteger canFit = [self numberOfLabelsForWidth:self.bounds.size.width];
-        if(_totalNumberOfLabels != canFit){
-            _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
-            [self createLabels];
-        }else{
-            [self updateLabelValues];
-        }
-    }else {
-        [_labels makeObjectsPerformSelector:@selector(removeFromSuperview)];
-        _labels = @[];
+        height += sizeOfTestString.height;
     }
+    if(_title != nil && _title.length){
+        height += [ARHelpers sizeOfText:self.title].height;
+        if(self.showXValues){
+            height += 2;
+        }
+    }
+    return CGSizeMake(self.bounds.size.width, height);
 }
 
 - (void)layoutSubviews
@@ -91,10 +93,13 @@
     [self createOrUpdateLabels];
 }
 
+#pragma mark - Getter
+
 - (UILabel*)titleLabel
 {
     if(_titleLabel == nil){
         UILabel *label = [[UILabel alloc] init];
+        label.translatesAutoresizingMaskIntoConstraints = NO;
         label.text = _title;
         label.textColor = self.labelColor;
         label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
@@ -104,55 +109,102 @@
     return _titleLabel;
 }
 
-- (void)createLabels
+#pragma mark - Layout Methods
+
+- (void)createOrUpdateLabels
+{
+    if(self.showXValues){
+        NSUInteger canFit = [self numberOfLabelsForWidth:self.bounds.size.width];
+        if(_totalNumberOfLabels != canFit){
+            _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
+            [self createMissingLabelsOrDeleteExtras];
+            [self updateLabelValues];
+
+        }else{
+            [self updateLabelValues];
+        }
+    }else {
+        _totalNumberOfLabels = 0;
+        [_labels makeObjectsPerformSelector:@selector(removeFromSuperview)];
+        _labels = @[];
+    }
+}
+
+- (void)createMissingLabelsOrDeleteExtras
 {
     NSInteger exisitngLabel = _labels.count;
-    NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
-    NSInteger indexCounter = 0;
     NSInteger numberOfLabelsToCreate = _totalNumberOfLabels - exisitngLabel;
-    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
 
+    if(numberOfLabelsToCreate > 0){
+        [self createNewLabels];
+    }else if(numberOfLabelsToCreate < 0) {
+        [self deleteUnNeededLabels];
+    }
+}
+
+- (void)createNewLabels
+{
+    NSInteger indexCounter = 0;
+    NSInteger exisitngLabel = _labels.count;
+    NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
     for (indexCounter = 0; indexCounter < _totalNumberOfLabels; indexCounter++) {
         if(exisitngLabel > indexCounter){
             // updated Label
-            UILabel *label = [newLabels objectAtIndex:indexCounter];
-            [self updateLabel:label atindex:indexCounter value:increments[indexCounter]];
+//            NSArray *labelIndexToDPIndexIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
+//            CGSize sizeOfTestString = [self sizeOfText:[self stringForXLegendAtIndex:[[labelIndexToDPIndexIncrements lastObject] integerValue]]];
+//            NSArray *xPosiitonIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.width - sizeOfTestString.width)];
+//            UILabel *label = [newLabels objectAtIndex:indexCounter];
+//            [self updateLabel:label atindex:indexCounter dpIndex:labelIndexToDPIndexIncrements[indexCounter] xPosition:xPosiitonIncrements[indexCounter]];
         }else {
             //create laebl
-            UILabel *label = [self labelForXAxisIndex:indexCounter];
+            UILabel *label = [self createLabelForXAxisIndex:indexCounter];
             [self addSubview:label];
             [newLabels addObject:label];
         }
     };
     
-    if(exisitngLabel > _totalNumberOfLabels){
-        NSInteger labelsToDelete = exisitngLabel - numberOfLabelsToCreate;
-        while(labelsToDelete--){
-            [[_labels objectAtIndex:labelsToDelete] removeFromSuperview];
+    _labels = newLabels;
+}
+
+- (void)deleteUnNeededLabels{
+    NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
+
+    if(_labels.count > _totalNumberOfLabels){
+        NSInteger labelsToDelete = _labels.count - _totalNumberOfLabels;
+        while(labelsToDelete){
+            NSInteger index = _labels.count - labelsToDelete;
+            [[newLabels objectAtIndex:index] removeFromSuperview];
+            [newLabels removeObjectAtIndex:index];
+            labelsToDelete--;
         }
     }
     _labels = newLabels;
-    
 }
 
 - (void)updateLabelValues
 {
+    if(_labels.count == 0){
+        return;
+    }
     NSArray *copiedLabels = [_labels copy];
-    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
-
+    NSArray *labelIndexToDPIndexIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
+    
+    CGSize sizeOfTestString = [ARHelpers sizeOfText:[self stringForXLegendAtIndex:[[labelIndexToDPIndexIncrements lastObject] integerValue]]];
+    NSArray *xPosiitonIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.width - sizeOfTestString.width)];
+    
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
-        [self updateLabel:label atindex:index value:increments[index]];
+        [self updateLabel:label atindex:index dpIndex:labelIndexToDPIndexIncrements[index] xPosition:xPosiitonIncrements[index]];
     }];
 }
 
-- (void)updateLabel:(UILabel*)label atindex:(NSInteger)index value:(NSNumber*)value
+- (void)updateLabel:(UILabel*)label atindex:(NSInteger)index dpIndex:(NSNumber*)dpIndex xPosition:(NSNumber*)xPosition
 {
     label.textColor = self.labelColor;
-    label.text = [self stringForXLegendAtIndex:[value integerValue]];
-    [self updateFrameOfLabel:label atIndex:index];
+    label.text = [self stringForXLegendAtIndex:[dpIndex integerValue]];
+    [self updateFrameOfLabel:label value:[xPosition integerValue]];
 }
 
-- (UILabel*)labelForXAxisIndex:(NSInteger)index
+- (UILabel*)createLabelForXAxisIndex:(NSInteger)index
 {
     UILabel *label = [[UILabel alloc] init];
     label.textColor = self.labelColor;
@@ -161,16 +213,14 @@
         label.text = [self stringForXLegendAtIndex:dpIndex];
     }
     label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    [self updateFrameOfLabel:label atIndex:index];
-
     return label;
 }
 
-- (void)updateFrameOfLabel:(UILabel*)label atIndex:(NSUInteger)index
+- (void)updateFrameOfLabel:(UILabel*)label value:(NSUInteger)value
 {
     [label sizeToFit];
     CGRect frame = label.frame;
-    frame.origin.x = [self xPositionForDataPointIndex:index totalPoints:_totalNumberOfLabels inWidth:self.bounds.size.width];
+    frame.origin.x = value;
     label.frame = frame;
 }
 
@@ -195,45 +245,27 @@
     return [NSString stringWithFormat:@"%li", (long)value];
 }
 
-- (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width
+- (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalLabelCount:(NSInteger)total inWidth:(CGFloat)width
 {
-    CGFloat itemWidth = width/total;
-    CGFloat offsetForTitleLabel = 0;
-    if(_title != nil && _title.length){
-        itemWidth = (width - _titleLabel.frame.size.width)/total;
-        offsetForTitleLabel = _titleLabel.frame.size.width + itemWidth/2;
-    }
-
-
-    return index * itemWidth + offsetForTitleLabel;
+    NSString *testString = @"1234";
+    CGSize sizeOfTestString = [ARHelpers sizeOfText:testString];
+    CGFloat availablePadding = width - (sizeOfTestString.width * total);
+    return (index * (sizeOfTestString.width + availablePadding/total));
 }
 
 - (NSUInteger)numberOfLabelsForWidth:(CGFloat)width
 {
     NSString *testString = @"1234";
-    CGSize sizeOfTestString = [self sizeOfText:testString];
-    if(_title != nil && _title.length){
-        width -= _titleLabel.frame.size.width + sizeOfTestString.width/2;
-    }
+    CGSize sizeOfTestString = [ARHelpers sizeOfText:testString];
     NSUInteger numberofLabels =  ceil(width / sizeOfTestString.width);
     return numberofLabels;
 }
 
-
-- (CGSize)sizeOfText:(NSString*)text{
-    UIFont *font = [UIFont fontWithName:@"Helvetica" size:12.0];
-    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName: font}];
+- (void)addTitleLabelConstraints
+{
+    NSLayoutConstraint *bottomConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+    NSLayoutConstraint *centerX = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeCenterX relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeCenterX multiplier:1.0 constant:0.0];
     
-    UILabel *label = [[UILabel alloc] init];
-    
-    label.attributedText = attributedText;
-    label.numberOfLines = 0;
-    label.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize size = [label sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
-    
-    font = nil;
-    attributedText = nil;
-    
-    return size;
+    [self addConstraints:@[bottomConstraint, centerX]];
 }
 @end

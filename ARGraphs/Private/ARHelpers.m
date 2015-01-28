@@ -90,4 +90,22 @@
     
     return increments;
 }
+
++ (CGSize)sizeOfText:(NSString*)text
+{
+    UIFont *font = [UIFont fontWithName:@"Helvetica" size:12.0];
+    NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName: font}];
+    
+    UILabel *label = [[UILabel alloc] init];
+    
+    label.attributedText = attributedText;
+    label.numberOfLines = 0;
+    label.lineBreakMode = NSLineBreakByWordWrapping;
+    CGSize size = [label sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+    
+    font = nil;
+    attributedText = nil;
+    
+    return size;
+}
 @end

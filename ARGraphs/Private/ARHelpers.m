@@ -75,4 +75,19 @@
     
     return CGPointMake(point.x + adjacent, point.y - opposite);// invert due to x,y coordinate plane
 }
+
++ (NSArray *)incrementArrayForNumberOfItems:(NSInteger)numberOfItems range:(NSRange)range
+{
+    NSMutableArray *increments = [[NSMutableArray alloc] init];
+    CGFloat increment = (CGFloat)range.length/(numberOfItems - 1);
+    for(NSInteger x = 0; x < numberOfItems; x++){
+        if(range.length == 0){
+            [increments addObject:@(0)];
+        }else {
+            [increments addObject:@(range.location + x * increment)];
+        }
+    }
+    
+    return increments;
+}
 @end

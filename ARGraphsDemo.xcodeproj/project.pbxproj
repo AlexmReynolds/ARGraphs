@@ -23,6 +23,7 @@
 		E7546BC21A76EBF30005C8EE /* ARPieChartLayer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BC11A76EBF30005C8EE /* ARPieChartLayer_Tests.m */; };
 		E7546BC41A76F5E00005C8EE /* ARHelpers_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BC31A76F5E00005C8EE /* ARHelpers_Tests.m */; };
 		E7546BC81A780B260005C8EE /* ARLineGraphYLegendView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BC71A780B260005C8EE /* ARLineGraphYLegendView.m */; };
+		E7546BCB1A7840280005C8EE /* ARGraphTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BCA1A7840280005C8EE /* ARGraphTitleView.m */; };
 		E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */; };
 		E7826F041A705D0900642F1E /* ARPieChartLabelsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */; };
 		E7B2A5C91A64874C00FD402E /* ARLineGraphs_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */; };
@@ -80,6 +81,8 @@
 		E7546BC51A771AB90005C8EE /* ARPieChartAnimationTypes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ARPieChartAnimationTypes.h; path = Private/ARPieChartAnimationTypes.h; sourceTree = "<group>"; };
 		E7546BC61A780B260005C8EE /* ARLineGraphYLegendView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARLineGraphYLegendView.h; path = Private/ARLineGraphYLegendView.h; sourceTree = "<group>"; };
 		E7546BC71A780B260005C8EE /* ARLineGraphYLegendView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARLineGraphYLegendView.m; path = Private/ARLineGraphYLegendView.m; sourceTree = "<group>"; };
+		E7546BC91A7840280005C8EE /* ARGraphTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARGraphTitleView.h; path = Private/ARGraphTitleView.h; sourceTree = "<group>"; };
+		E7546BCA1A7840280005C8EE /* ARGraphTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARGraphTitleView.m; path = Private/ARGraphTitleView.m; sourceTree = "<group>"; };
 		E7826EFF1A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartSettingsTableViewController.h; path = ARGraphsDemo/ARPieChartSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
 		E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartSettingsTableViewController.m; path = ARGraphsDemo/ARPieChartSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
 		E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartLabelsLayer.h; path = Private/ARPieChartLabelsLayer.h; sourceTree = "<group>"; };
@@ -138,6 +141,8 @@
 			children = (
 				E71233B11A6DB7890034E447 /* ARGraphBackground.h */,
 				E71233B21A6DB7890034E447 /* ARGraphBackground.m */,
+				E7546BC91A7840280005C8EE /* ARGraphTitleView.h */,
+				E7546BCA1A7840280005C8EE /* ARGraphTitleView.m */,
 				E71233C71A6ED3250034E447 /* ARHelpers.h */,
 				E71233C81A6ED3250034E447 /* ARHelpers.m */,
 				E71233B91A6DBFB00034E447 /* Pie Chart */,
@@ -437,6 +442,7 @@
 				E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */,
 				E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */,
 				E71233AD1A69D61B0034E447 /* ARLineGraphDataPointUtility.m in Sources */,
+				E7546BCB1A7840280005C8EE /* ARGraphTitleView.m in Sources */,
 				E7B2A63F1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m in Sources */,
 				E71233B71A6DBDA70034E447 /* ARPieChart.m in Sources */,
 				E71233B01A6D6F430034E447 /* ARLineGraphXLegendView.m in Sources */,

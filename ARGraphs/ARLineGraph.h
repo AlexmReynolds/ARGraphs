@@ -35,6 +35,9 @@
 /// Set to @c YES to show the Y legend on the graph. @c NO to hide.
 /// Default is @c YES.
 @property (nonatomic) BOOL showYLegend UI_APPEARANCE_SELECTOR;
+
+@property (nonatomic) BOOL showYLegendValues UI_APPEARANCE_SELECTOR;
+
 /// Set to @c YES to show the X legend on the graph. @c NO to hide.
 /// Default is @c YES.
 @property (nonatomic) BOOL showXLegend UI_APPEARANCE_SELECTOR;

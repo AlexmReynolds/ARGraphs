@@ -11,25 +11,23 @@
 #import "ARYMinMaxLayer.h"
 #import "ARLineGraphXLegendView.h"
 #import "ARLineGraphYLegendView.h"
+#import "ARGraphTitleView.h"
 #import "ARLineGraphDataPointUtility.h"
 #import "ARGraphBackground.h"
 
 
 #import "ARLineGraphMean.h"
 
-@interface ARLineGraph ()<ARGraphXLegendDelegate, ARLineGraphYLegendDelegate>
+@interface ARLineGraph ()<ARGraphXLegendDelegate>
 
 //UI
 @property (nonatomic, strong) ARGraphBackground *background;
 
 @property (strong, nonatomic) NSLayoutConstraint *titleHeightConstraint;
 
-@property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UILabel *subtitleLabel;
-
 @property (nonatomic, strong) ARLineGraphXLegendView *xAxisContainerView;
 @property (nonatomic, strong) ARLineGraphYLegendView *yAxisContainerView;
-@property (nonatomic, strong) UIView *titleContainerView;
+@property (nonatomic, strong) ARGraphTitleView *titleContainerView;
 
 
 @property (nonatomic, strong) ARLineGraphPointsLayer *pointsLayer;
@@ -109,6 +107,7 @@
     self.showMeanLine = YES;
     self.useBackgroundGradient = YES;
     self.showXLegendValues = YES;
+    self.showYLegendValues = YES;
     _lineColor = [UIColor colorWithWhite:1.0 alpha:1.0];
     self.pointsLayer.lineColor = _lineColor.CGColor;
     self.minMaxLayer.lineColor = _lineColor.CGColor;
@@ -127,11 +126,6 @@
 - (void)setDataSource:(id<ARLineGraphDataSource>)dataSource
 {
     _dataSource = dataSource;
-    
-    self.titleHeightConstraint.constant = [self sizeOfText:self.titleLabel.text preferredFontForTextStyle:UIFontTextStyleHeadline].height + 8;
-    
-    [self layoutIfNeeded];
-    
     [self reloadData];
 }
 
@@ -140,8 +134,11 @@
     _showXLegend = showXLegend;
     if(_showXLegend){
         self.xAxisContainerView.heightConstraint.constant = [self sizeOfText:@"foo" preferredFontForTextStyle:UIFontTextStyleCaption1].height;
+        self.yAxisContainerView.bottomConstraint.constant = self.xAxisContainerView.heightConstraint.constant + self.insets.bottom;
+
     }else {
         self.xAxisContainerView.heightConstraint.constant = 0.0;
+        self.yAxisContainerView.bottomConstraint.constant = self.insets.bottom;
         
     }
     [self.xAxisContainerView layoutIfNeeded];
@@ -234,6 +231,12 @@
     self.xAxisContainerView.showXValues = showXLegendValues;
 }
 
+- (void)setShowYLegendValues:(BOOL)showYLegendValues
+{
+    _showYLegendValues = showYLegendValues;
+    self.yAxisContainerView.showYValues = showYLegendValues;
+}
+
 - (void)setSubLayersPadding:(UIEdgeInsets)subLayersPadding
 {
     _subLayersPadding = subLayersPadding;
@@ -259,7 +262,10 @@
 - (void)setInsets:(UIEdgeInsets)insets
 {
     _insets = insets;
-    
+    self.yAxisContainerView.leftConstraint.constant = insets.left;
+    self.xAxisContainerView.bottomConstraint.constant = insets.bottom;
+    self.titleContainerView.topConstraint.constant = insets.top;
+    [self layoutIfNeeded];
 }
 
 #pragma mark - Getters
@@ -314,10 +320,10 @@
     _dataPointUtility.datapoints = _dataPoints;
     
     if([self.dataSource respondsToSelector:@selector(titleForGraph:)]){
-        self.titleLabel.text = [self.dataSource titleForGraph:self] ?: @"";
+        self.titleContainerView.title = [self.dataSource titleForGraph:self] ?: @"";
     }
     if([self.dataSource respondsToSelector:@selector(subTitleForGraph:)]){
-        self.subtitleLabel.text = [self.dataSource subTitleForGraph:self] ?: @"";
+        self.titleContainerView.subtitle = [self.dataSource subTitleForGraph:self] ?: @"";
     }
 
     [self updateSubLayers];
@@ -343,6 +349,9 @@
     self.meanLayer.yMin = yMin;
     self.meanLayer.yMax = yMax;
     self.meanLayer.yMean = [[self dataPointUtility] yMean];
+    
+    self.yAxisContainerView.yMax = yMax;
+    self.yAxisContainerView.yMin = yMin;
     [self.meanLayer setNeedsDisplay];
 }
 
@@ -368,20 +377,11 @@
 
 #pragma mark - View Creation
 
-- (UIView *)titleContainerView
+- (ARGraphTitleView *)titleContainerView
 {
     if(_titleContainerView == nil){
-        UIView *view = [[UIView alloc] init];
-        view.translatesAutoresizingMaskIntoConstraints = NO;
+        ARGraphTitleView *view = [[ARGraphTitleView alloc] init];
         [self addSubview:view];
-        
-        
-        NSLayoutConstraint *top = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:view.superview attribute:NSLayoutAttributeTop multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:view.superview attribute:NSLayoutAttributeLeft multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:view.superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
-        self.titleHeightConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40.0];
-        
-        [self addConstraints:@[top, left, right, self.titleHeightConstraint]];
         _titleContainerView = view;
     }
     
@@ -397,7 +397,6 @@
         [self addConstraint:view.leftConstraint];
         _xAxisContainerView = view;
         [self layoutIfNeeded];
-
     }
 
     return _xAxisContainerView;
@@ -407,7 +406,6 @@
 {
     if(_yAxisContainerView == nil){
         ARLineGraphYLegendView *view = [[ARLineGraphYLegendView alloc] init];
-        view.delegate = self;
         [self addSubview:view];
         view.topConstraint = [NSLayoutConstraint constraintWithItem:view attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.titleContainerView attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
         [self addConstraint:view.topConstraint];
@@ -416,45 +414,6 @@
 
     }
     return _yAxisContainerView;
-}
-
-- (UILabel *)titleLabel{
-    if(_titleLabel == nil){
-        _titleLabel = [[UILabel alloc] init];
-        _titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
-        _titleLabel.text = @"foo";
-        _titleLabel.textColor =  self.labelColor;
-
-        [self.titleContainerView addSubview:_titleLabel];
-        NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_titleLabel.superview attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:_titleLabel.superview attribute:NSLayoutAttributeLeading multiplier:1.0 constant:8.0];
-        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:_titleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:self.subtitleLabel attribute:NSLayoutAttributeLeading multiplier:1.0 constant:-10.0];
-
-        [_titleLabel.superview addConstraints:@[centerY, left, right]];
-    }
-    return _titleLabel;
-}
-
-- (UILabel *)subtitleLabel{
-    if(_subtitleLabel == nil){
-        _subtitleLabel = [[UILabel alloc] init];
-        _subtitleLabel.translatesAutoresizingMaskIntoConstraints = NO;
-        _subtitleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
-        _subtitleLabel.text = @"bar";
-        _subtitleLabel.textColor = self.labelColor;
-        [self.titleContainerView addSubview:_subtitleLabel];
-        
-        NSLayoutConstraint *centerY = [NSLayoutConstraint constraintWithItem:_subtitleLabel attribute:NSLayoutAttributeCenterY relatedBy:NSLayoutRelationEqual toItem:_subtitleLabel.superview attribute:NSLayoutAttributeCenterY multiplier:1.0 constant:0.0];
-        NSLayoutConstraint *right = [NSLayoutConstraint constraintWithItem:_subtitleLabel attribute:NSLayoutAttributeTrailing relatedBy:NSLayoutRelationEqual toItem:_subtitleLabel.superview attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:-8.0];
-        NSLayoutConstraint *left = [NSLayoutConstraint constraintWithItem:_subtitleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeTrailing multiplier:1.0 constant:10.0];
-        
-        [_subtitleLabel.superview addConstraints:@[centerY, left, right]];
-        [_subtitleLabel setContentHuggingPriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-        [_subtitleLabel setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
-
-    }
-    return _subtitleLabel;
 }
 
 #pragma mark - Helpers

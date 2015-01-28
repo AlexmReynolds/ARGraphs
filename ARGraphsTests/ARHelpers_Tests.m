@@ -176,4 +176,47 @@
     XCTAssertEqualWithAccuracy(center.x + xOffset, returnedPoint.x, 1.0, @"points were not equal");
     XCTAssertEqualWithAccuracy(center.y + yOffset, returnedPoint.y, 1.0, @"points were not equal");
 }
+
+#pragma mark - Incrementer tests
+- (void)testIncrementFor10Items_ShouldReturn10Increments
+{
+    NSInteger items = 10;
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:items range:NSMakeRange(0, 50)];
+    XCTAssertEqual([increments count], items, @"increments did not contain 10 items");
+}
+- (void)testIncrementFor10ItemsWithTotal50_ShouldReturnFirstIncrementOfZero
+{
+    NSInteger items = 10;
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:items range:NSMakeRange(0, 50)];
+    XCTAssertTrue([[increments firstObject] floatValue] == 0.0, @"was not 0");
+}
+
+- (void)testIncrementFor10ItemsWithTotal50_ShouldReturnLastIncrementOf50
+{
+    NSInteger items = 10;
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:items range:NSMakeRange(0, 50)];
+    XCTAssertEqual([[increments lastObject] floatValue], 50.0, @"was not 50");
+}
+
+- (void)testIncrementFor14ItemsWithTotal2011_ShouldReturnLastIncrementOf2011
+{
+    NSInteger items = 14;
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:items range:NSMakeRange(0, 2011)];
+    XCTAssertEqual([[increments lastObject] floatValue], 2011, @"was not 2011");
+}
+
+- (void)testIncrementFor14ItemsWithTotal2011_ShouldReturnFirstIncrementOf113
+{
+    NSInteger items = 14;
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:items range:NSMakeRange(113, 2011)];
+    XCTAssertTrue([[increments firstObject] floatValue] == 113.0, @"was not 0");
+}
+
+- (void)testIncrementFor14ItemsWithNoRange_ShouldReturnArrayOfZeroValues
+{
+    NSInteger items = 14;
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:items range:NSMakeRange(113, 0)];
+    XCTAssertTrue([[increments firstObject] floatValue] == 0.0, @"was not 0");
+}
+
 @end

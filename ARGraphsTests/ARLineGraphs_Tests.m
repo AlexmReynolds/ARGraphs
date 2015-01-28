@@ -15,6 +15,7 @@
 #import "ARYMinMaxLayer.h"
 #import "ARLineGraphXLegendView.h"
 #import "ARLineGraphYLegendView.h"
+#import "ARGraphTitleView.h"
 
 @interface ARLineGraph (Tests)
 - (CAGradientLayer*)getBackgroundForTests;
@@ -24,11 +25,9 @@
 
 - (ARLineGraphXLegendView*)getXLegendContainerForTests;
 - (ARLineGraphYLegendView*)getYLegendContainerForTests;
+- (ARGraphTitleView*)getTitleViewForTests;
 
 - (NSArray*)getDataPointsForTests;
-
-- (UILabel*)getTitleLabelForTests;
-- (UILabel*)getSubTitleLabelForTests;
 @end
 
 @implementation ARLineGraph (Tests)
@@ -62,19 +61,14 @@
     return [self valueForKey:@"_yAxisContainerView"];
 }
 
+- (ARGraphTitleView *)getTitleViewForTests
+{
+    return [self valueForKey:@"_titleContainerView"];
+}
+
 - (NSArray*)getDataPointsForTests
 {
     return [self valueForKey:@"_dataPoints"];
-}
-
-- (UILabel*)getTitleLabelForTests
-{
-    return [self valueForKey:@"_titleLabel"];
-}
-
-- (UILabel*)getSubTitleLabelForTests
-{
-    return [self valueForKey:@"_subtitleLabel"];
 }
 
 @end
@@ -342,7 +336,7 @@
     
     sut.dataSource = mockDelegate;
     
-    XCTAssertTrue([[sut getTitleLabelForTests].text isEqualToString:string],@"title label was not set to %@", string);
+    XCTAssertTrue([[sut getTitleViewForTests].title isEqualToString:string],@"title label was not set to %@", string);
 }
 
 - (void)testIfDataSourceSendsSubTitle_ShouldSetSubTitleLabel
@@ -356,7 +350,7 @@
     
     sut.dataSource = mockDelegate;
     
-    XCTAssertTrue([[sut getSubTitleLabelForTests].text isEqualToString:string],@"subtitle label was not set to %@", string);
+    XCTAssertTrue([[sut getTitleViewForTests].subtitle isEqualToString:string],@"subtitle label was not set to %@", string);
 }
 
 - (void)testIfDataSourceSendsDataPoints_ShouldSetDataPointsArray

@@ -7,7 +7,7 @@
 //
 
 #import "ARLineGraphXLegendView.h"
-
+#import "ARHelpers.h"
 @interface ARLineGraphXLegendView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 
@@ -19,16 +19,29 @@
     NSString *_title;
 
 }
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(self){
+        [self addSubview:self.titleLabel];
+        self.labelColor = [UIColor whiteColor];
+        self.translatesAutoresizingMaskIntoConstraints = NO;
+        self.clipsToBounds = YES;
+        [self addSubview:self.titleLabel];
+    }
+    return self;
+}
 
 - (void)didMoveToSuperview
 {
     [super didMoveToSuperview];
-    self.translatesAutoresizingMaskIntoConstraints = NO;
-    self.bottomConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
-    self.rightConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
-    self.heightConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40.0];
-    
-    [self.superview addConstraints:@[self.bottomConstraint, self.rightConstraint, self.heightConstraint]];
+    if(self.superview){
+        self.bottomConstraint = [NSLayoutConstraint constraintWithItem:self.superview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:self attribute:NSLayoutAttributeBottom multiplier:1.0 constant:0.0];
+        self.rightConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:self.superview attribute:NSLayoutAttributeRight multiplier:1.0 constant:0.0];
+        self.heightConstraint = [NSLayoutConstraint constraintWithItem:self attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:40.0];
+        
+        [self.superview addConstraints:@[self.bottomConstraint, self.rightConstraint, self.heightConstraint]];
+    }
     
 }
 #pragma mark - Setters
@@ -47,9 +60,11 @@
     _numberOfDataPoints = [self.delegate numberOfDataPoints];
     _title = [self.delegate titleForXLegend:self];
     if(_title != nil){
-        [self addSubview:self.titleLabel];
+        _titleLabel.hidden = NO;
+        _titleLabel.text = _title;
+        [_titleLabel sizeToFit];
     }else{
-        [self.titleLabel removeFromSuperview];
+        _titleLabel.hidden = YES;
     }
     [self createOrUpdateLabels];
 }
@@ -95,12 +110,13 @@
     NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
     NSInteger indexCounter = 0;
     NSInteger numberOfLabelsToCreate = _totalNumberOfLabels - exisitngLabel;
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
 
     for (indexCounter = 0; indexCounter < _totalNumberOfLabels; indexCounter++) {
         if(exisitngLabel > indexCounter){
             // updated Label
             UILabel *label = [newLabels objectAtIndex:indexCounter];
-            [self updateLabel:label atindex:indexCounter];
+            [self updateLabel:label atindex:indexCounter value:increments[indexCounter]];
         }else {
             //create laebl
             UILabel *label = [self labelForXAxisIndex:indexCounter];
@@ -122,19 +138,18 @@
 - (void)updateLabelValues
 {
     NSArray *copiedLabels = [_labels copy];
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
+
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
-        [self updateLabel:label atindex:index];
+        [self updateLabel:label atindex:index value:increments[index]];
     }];
 }
 
-- (void)updateLabel:(UILabel*)label atindex:(NSInteger)index
+- (void)updateLabel:(UILabel*)label atindex:(NSInteger)index value:(NSNumber*)value
 {
-    NSUInteger dpIndex = [self dataPointIndexForLabelIndex:index];
-    if(dpIndex != NSNotFound){
-        label.textColor = self.labelColor;
-        label.text = [self stringForXLegendAtIndex:dpIndex];
-        [self updateFrameOfLabel:label atIndex:index];
-    }
+    label.textColor = self.labelColor;
+    label.text = [self stringForXLegendAtIndex:[value integerValue]];
+    [self updateFrameOfLabel:label atIndex:index];
 }
 
 - (UILabel*)labelForXAxisIndex:(NSInteger)index

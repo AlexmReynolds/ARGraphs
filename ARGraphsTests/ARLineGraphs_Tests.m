@@ -319,7 +319,8 @@
     [[mockDelegate expect] titleForGraph:sut];
     [[mockDelegate expect] subTitleForGraph:sut];
     [[mockDelegate expect] ARGraphTitleForXAxis:sut];
-    
+    [[mockDelegate expect] ARGraphTitleForYAxis:sut];
+
     sut.dataSource = mockDelegate;
 
     XCTAssertNoThrow([mockDelegate verify],@"method was not called");
@@ -333,7 +334,8 @@
     [[[mockDelegate expect] andReturn:string] titleForGraph:sut];
     [[mockDelegate expect] subTitleForGraph:sut];
     [[mockDelegate expect] ARGraphTitleForXAxis:sut];
-    
+    [[mockDelegate expect] ARGraphTitleForYAxis:sut];
+
     sut.dataSource = mockDelegate;
     
     XCTAssertTrue([[sut getTitleViewForTests].title isEqualToString:string],@"title label was not set to %@", string);
@@ -347,7 +349,8 @@
     [[mockDelegate expect] titleForGraph:sut];
     [[[mockDelegate expect] andReturn:string] subTitleForGraph:sut];
     [[mockDelegate expect] ARGraphTitleForXAxis:sut];
-    
+    [[mockDelegate expect] ARGraphTitleForYAxis:sut];
+
     sut.dataSource = mockDelegate;
     
     XCTAssertTrue([[sut getTitleViewForTests].subtitle isEqualToString:string],@"subtitle label was not set to %@", string);
@@ -364,7 +367,8 @@
     [[mockDelegate expect] titleForGraph:sut];
     [[mockDelegate expect] subTitleForGraph:sut];
     [[mockDelegate expect] ARGraphTitleForXAxis:sut];
-    
+    [[mockDelegate expect] ARGraphTitleForYAxis:sut];
+
     sut.dataSource = mockDelegate;
     
     XCTAssertTrue([[sut getDataPointsForTests] isEqual:dataPoints],@"subtitle label was not set to %@", dataPoints);

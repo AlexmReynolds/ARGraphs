@@ -172,7 +172,11 @@
     _showMinMaxLines = showMinMaxLines;
     self.minMaxLayer.hidden = !showMinMaxLines;
     self.subLayersPadding = [self calculatePaddingForSubLayers];
-    self.xAxisContainerView.rightConstraint.constant = -20;
+    if(self.showMinMaxLines){
+        self.xAxisContainerView.rightConstraint.constant = -20;
+    }else {
+        self.xAxisContainerView.rightConstraint.constant = 0;
+    }
 }
 
 - (void)setShowMeanLine:(BOOL)showMeanLine

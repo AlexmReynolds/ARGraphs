@@ -91,7 +91,47 @@
     return increments;
 }
 
-+ (CGSize)sizeOfText:(NSString*)text
++ (CGFloat)heightOfCaptionText:(NSString*)text inWidth:(CGFloat)width;
+{
+    return [self sizeOfText:text constrainedToSize:CGSizeMake(width, CGFLOAT_MAX)].height;
+}
+
++ (CGFloat)widthOfCaptionText:(NSString *)text inHeight:(CGFloat)height
+{
+    return [self sizeOfText:text constrainedToSize:CGSizeMake(CGFLOAT_MAX, height)].width;
+}
+
++ (void)CRUDObjectsWithExisting:(NSArray*)existing totalNeeded:(NSInteger)totalNeeded create:(void(^)(NSInteger index))createBlock delete:(void(^)(NSInteger index))deleteBlock update:(void(^)(NSInteger index))updateBlock
+{
+    NSInteger numberOfExisiting = existing.count;
+    NSInteger diff = totalNeeded - numberOfExisiting;
+    if(diff >= 0){// create or update
+        for(NSInteger x = 0; x < totalNeeded; x++){
+            if(numberOfExisiting > x){
+                if(updateBlock){
+                    updateBlock(x);
+                }
+            }else {
+                if(createBlock){
+                    createBlock(x);
+                }
+            }
+
+        }
+    }else if(diff < 0){// Delete
+        for(NSInteger x = 0; x < ABS(diff); x++){
+            NSInteger index = numberOfExisiting - 1 - x;
+            if(deleteBlock){
+                deleteBlock(index);
+            }
+        }
+    }
+    
+}
+
+#pragma mark - Private Methods
+
++ (CGSize)sizeOfText:(NSString *)text constrainedToSize:(CGSize)sizeLimit
 {
     UIFont *font = [UIFont fontWithName:@"Helvetica" size:12.0];
     NSAttributedString *attributedText = [[NSAttributedString alloc] initWithString:text attributes:@{NSFontAttributeName: font}];
@@ -101,11 +141,10 @@
     label.attributedText = attributedText;
     label.numberOfLines = 0;
     label.lineBreakMode = NSLineBreakByWordWrapping;
-    CGSize size = [label sizeThatFits:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)];
+    CGSize size = [label sizeThatFits:sizeLimit];
     
     font = nil;
     attributedText = nil;
-    
     return size;
 }
 @end

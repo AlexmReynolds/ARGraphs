@@ -97,11 +97,12 @@ static CGFloat kPaddingBetweenLabels = 2.0;
 - (CGSize)contentSize
 {
     CGFloat width = 0;
-    CGSize sizeOfTestString = [ARHelpers sizeOfText:[NSString stringWithFormat:@"%li", _yMax]];
+    CGFloat widthOfTestString = [ARHelpers widthOfCaptionText:[NSString stringWithFormat:@"%li", _yMax] inHeight:self.bounds.size.height];
+
     if(_title != nil && _title.length){
-        width = [ARHelpers sizeOfText:self.title].height + sizeOfTestString.width + 6;
+        width = [ARHelpers heightOfCaptionText:self.title inWidth:self.bounds.size.width] + widthOfTestString + 6;
     }else{
-        width = sizeOfTestString.width;
+        width = widthOfTestString;
     }
     return CGSizeMake(width, self.bounds.size.height);
 }
@@ -232,16 +233,16 @@ static CGFloat kPaddingBetweenLabels = 2.0;
 - (CGFloat)yPositionForLabelIndex:(NSInteger)index totalLabelCount:(NSInteger)total inHeight:(CGFloat)height
 {
     NSString *testString = @"1234";
-    CGSize sizeOfTestString = [ARHelpers sizeOfText:testString];
-    CGFloat availablePadding = height - (sizeOfTestString.height * total);
+    CGFloat heightOfTestString = [ARHelpers heightOfCaptionText:testString inWidth:self.bounds.size.width];
+    CGFloat availablePadding = height - (heightOfTestString * total);
     NSInteger inverseIndex = _totalNumberOfLabels - index - 1;
-    return (inverseIndex * (sizeOfTestString.height + availablePadding/total));
+    return (inverseIndex * (heightOfTestString + availablePadding/total));
 }
 - (NSUInteger)numberOfLabelsForHeight:(CGFloat)height
 {
     NSString *testString = @"1234";
-    CGSize sizeOfTestString = [ARHelpers sizeOfText:testString];
-    NSUInteger numberofLabels =  floor(height / (sizeOfTestString.height + kPaddingBetweenLabels));
+    CGFloat heightOfTestString = [ARHelpers heightOfCaptionText:testString inWidth:self.bounds.size.width];
+    NSUInteger numberofLabels =  floor(height / (heightOfTestString + kPaddingBetweenLabels));
     return numberofLabels;
 }
 

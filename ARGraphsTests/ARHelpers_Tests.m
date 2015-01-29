@@ -219,4 +219,95 @@
     XCTAssertTrue([[increments firstObject] floatValue] == 0.0, @"was not 0");
 }
 
+#pragma mark - CRUD Helper Tests
+
+- (void)testWithNoExistingObjectsAnd4Needed_ShouldCallCreate4Times
+{
+    NSArray *existings = @[];
+    NSInteger totalNeeded = 4 , __block createdCount = 0, __block updatedCount = 0, __block deletedCount = 0;
+
+    [ARHelpers CRUDObjectsWithExisting:existings totalNeeded:totalNeeded create:^(NSInteger index) {
+        createdCount +=1;
+    } delete:^(NSInteger index) {
+        deletedCount +=1;
+    } update:^(NSInteger index) {
+        updatedCount +=1;
+    }];
+    
+    XCTAssertEqual(createdCount, totalNeeded, @"did not create 4 objects");
+}
+
+- (void)testWith2ExistingObjectsAnd4Needed_ShouldCallCreate2Times
+{
+    NSArray *existings = @[@1,@2];
+    NSInteger totalNeeded = 4 , __block createdCount = 0, __block updatedCount = 0, __block deletedCount = 0;
+    
+    [ARHelpers CRUDObjectsWithExisting:existings totalNeeded:totalNeeded create:^(NSInteger index) {
+        createdCount +=1;
+    } delete:^(NSInteger index) {
+        deletedCount +=1;
+    } update:^(NSInteger index) {
+        updatedCount +=1;
+    }];
+    
+    XCTAssertEqual(createdCount, 2, @"did not create 2 objects");
+}
+
+- (void)testWith2ExistingObjectsAnd4Needed_ShouldCallUpdate2Times
+{
+    NSArray *existings = @[@1,@2];
+    NSInteger totalNeeded = 4 , __block createdCount = 0, __block updatedCount = 0, __block deletedCount = 0;
+    
+    [ARHelpers CRUDObjectsWithExisting:existings totalNeeded:totalNeeded create:^(NSInteger index) {
+        createdCount +=1;
+    } delete:^(NSInteger index) {
+        deletedCount +=1;
+    } update:^(NSInteger index) {
+        updatedCount +=1;
+    }];
+    XCTAssertEqual(createdCount, 2, @"did not create 2 objects");
+    XCTAssertEqual(updatedCount, 2, @"did not update 2 objects");
+}
+
+- (void)testWith5ExistingObjectsAnd4Needed_ShouldCallDelete1Time
+{
+    NSArray *existings = @[@1,@2,@3,@4,@5];
+    NSInteger totalNeeded = 4 , __block createdCount = 0, __block updatedCount = 0, __block deletedCount = 0;
+    
+    [ARHelpers CRUDObjectsWithExisting:existings totalNeeded:totalNeeded create:^(NSInteger index) {
+        createdCount +=1;
+    } delete:^(NSInteger index) {
+        deletedCount +=1;
+    } update:^(NSInteger index) {
+        updatedCount +=1;
+    }];
+    
+    XCTAssertEqual(deletedCount, 1, @"did not delete 1 objects");
+}
+
+- (void)testWith5ExistingObjectsAnd4Needed_ShouldCallDeleteWithIndex4
+{
+    NSArray *existings = @[@1,@2,@3,@4,@5];
+    NSInteger totalNeeded = 4 , __block expectedIndex = 0;
+    
+    [ARHelpers CRUDObjectsWithExisting:existings totalNeeded:totalNeeded create:nil delete:^(NSInteger index){
+        expectedIndex = index;
+
+    } update:nil];
+    
+    XCTAssertEqual(expectedIndex, 4, @"did not delete with index 4");
+}
+
+- (void)testWith1ExistingObjectsAnd2Needed_ShouldCallUpdateWithIndex0
+{
+    NSArray *existings = @[@1,@2,@3,@4,@5];
+    NSInteger totalNeeded = 4 , __block expectedIndex = 0;
+    
+    [ARHelpers CRUDObjectsWithExisting:existings totalNeeded:totalNeeded create:nil delete:nil update:^(NSInteger index) {
+        expectedIndex = index;
+    }];
+    
+    XCTAssertEqual(expectedIndex, 0, @"did not update with index 0");
+}
+
 @end

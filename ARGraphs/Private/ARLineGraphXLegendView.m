@@ -74,12 +74,12 @@
 - (CGSize)contentSize
 {
     CGFloat height = 0;
-    CGSize sizeOfTestString = [ARHelpers sizeOfText:@"1234"];
+    CGFloat heightOfTestString = [ARHelpers heightOfCaptionText:@"1234" inWidth:self.bounds.size.width];
     if(self.showXValues){
-        height += sizeOfTestString.height;
+        height += heightOfTestString;
     }
     if(_title != nil && _title.length){
-        height += [ARHelpers sizeOfText:self.title].height;
+        height += [ARHelpers heightOfCaptionText:_title inWidth:self.bounds.size.width];
         if(self.showXValues){
             height += 2;
         }
@@ -109,7 +109,7 @@
     return _titleLabel;
 }
 
-#pragma mark - Layout Methods
+#pragma mark - Creation Methods
 
 - (void)createOrUpdateLabels
 {
@@ -118,10 +118,10 @@
         if(_totalNumberOfLabels != canFit){
             _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
             [self createMissingLabelsOrDeleteExtras];
-            [self updateLabelValues];
+            [self updateAllLabelValues];
 
         }else{
-            [self updateLabelValues];
+            [self updateAllLabelValues];
         }
     }else {
         _totalNumberOfLabels = 0;
@@ -148,15 +148,8 @@
     NSInteger exisitngLabel = _labels.count;
     NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
     for (indexCounter = 0; indexCounter < _totalNumberOfLabels; indexCounter++) {
-        if(exisitngLabel > indexCounter){
-            // updated Label
-//            NSArray *labelIndexToDPIndexIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
-//            CGSize sizeOfTestString = [self sizeOfText:[self stringForXLegendAtIndex:[[labelIndexToDPIndexIncrements lastObject] integerValue]]];
-//            NSArray *xPosiitonIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.width - sizeOfTestString.width)];
-//            UILabel *label = [newLabels objectAtIndex:indexCounter];
-//            [self updateLabel:label atindex:indexCounter dpIndex:labelIndexToDPIndexIncrements[indexCounter] xPosition:xPosiitonIncrements[indexCounter]];
-        }else {
-            //create laebl
+        if(exisitngLabel <= indexCounter){
+            //create label
             UILabel *label = [self createLabelForXAxisIndex:indexCounter];
             [self addSubview:label];
             [newLabels addObject:label];
@@ -164,6 +157,14 @@
     };
     
     _labels = newLabels;
+}
+
+- (UILabel*)createLabelForXAxisIndex:(NSInteger)index
+{
+    UILabel *label = [[UILabel alloc] init];
+    label.textColor = self.labelColor;
+    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
+    return label;
 }
 
 - (void)deleteUnNeededLabels{
@@ -181,7 +182,9 @@
     _labels = newLabels;
 }
 
-- (void)updateLabelValues
+#pragma mark - Update Methods
+
+- (void)updateAllLabelValues
 {
     if(_labels.count == 0){
         return;
@@ -189,8 +192,10 @@
     NSArray *copiedLabels = [_labels copy];
     NSArray *labelIndexToDPIndexIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
     
-    CGSize sizeOfTestString = [ARHelpers sizeOfText:[self stringForXLegendAtIndex:[[labelIndexToDPIndexIncrements lastObject] integerValue]]];
-    NSArray *xPosiitonIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.width - sizeOfTestString.width)];
+    NSString *stringToMeasure = [self stringForXLegendAtIndex:[[labelIndexToDPIndexIncrements lastObject] integerValue]];
+    CGFloat widthOfTestString = [ARHelpers widthOfCaptionText:stringToMeasure inHeight:self.bounds.size.height];
+
+    NSArray *xPosiitonIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.width - widthOfTestString)];
     
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
         [self updateLabel:label atindex:index dpIndex:labelIndexToDPIndexIncrements[index] xPosition:xPosiitonIncrements[index]];
@@ -204,39 +209,12 @@
     [self updateFrameOfLabel:label value:[xPosition integerValue]];
 }
 
-- (UILabel*)createLabelForXAxisIndex:(NSInteger)index
-{
-    UILabel *label = [[UILabel alloc] init];
-    label.textColor = self.labelColor;
-    NSUInteger dpIndex = [self dataPointIndexForLabelIndex:index];
-    if(dpIndex != NSNotFound){
-        label.text = [self stringForXLegendAtIndex:dpIndex];
-    }
-    label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    return label;
-}
-
 - (void)updateFrameOfLabel:(UILabel*)label value:(NSUInteger)value
 {
     [label sizeToFit];
     CGRect frame = label.frame;
     frame.origin.x = value;
     label.frame = frame;
-}
-
-- (NSUInteger)dataPointIndexForLabelIndex:(NSUInteger)labelIndex
-{
-    NSUInteger dpIndex = NSNotFound;
-    if(_numberOfDataPoints > 0){
-        if(labelIndex == _totalNumberOfLabels - 1){ // lastIndex
-            dpIndex = _numberOfDataPoints -1;
-        }else {
-            CGFloat increment = (float)_numberOfDataPoints / ((float)_totalNumberOfLabels - 1.0);
-            dpIndex = ceil((float)labelIndex * increment);
-            
-        }
-    }
-    return dpIndex;
 }
 
 - (NSString*)stringForXLegendAtIndex:(NSUInteger)index
@@ -248,16 +226,17 @@
 - (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalLabelCount:(NSInteger)total inWidth:(CGFloat)width
 {
     NSString *testString = @"1234";
-    CGSize sizeOfTestString = [ARHelpers sizeOfText:testString];
-    CGFloat availablePadding = width - (sizeOfTestString.width * total);
-    return (index * (sizeOfTestString.width + availablePadding/total));
+    CGFloat widthOfTestString = [ARHelpers widthOfCaptionText:testString inHeight:self.bounds.size.height];
+    CGFloat availablePadding = width - (widthOfTestString * total);
+    return (index * (widthOfTestString + availablePadding/total));
 }
 
+// We use a hardcoded string because we don't know the datapoint values yet
 - (NSUInteger)numberOfLabelsForWidth:(CGFloat)width
 {
     NSString *testString = @"1234";
-    CGSize sizeOfTestString = [ARHelpers sizeOfText:testString];
-    NSUInteger numberofLabels =  ceil(width / sizeOfTestString.width);
+    CGFloat widthOfTestString = [ARHelpers widthOfCaptionText:testString inHeight:self.bounds.size.height];
+    NSUInteger numberofLabels =  ceil(width / widthOfTestString);
     return numberofLabels;
 }
 

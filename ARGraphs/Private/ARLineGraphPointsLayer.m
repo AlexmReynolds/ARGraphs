@@ -218,12 +218,16 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     if (self.showDots) {
         availableWidth -= (self.dotRadius + self.lineWidth)*2;
     }
-    CGFloat itemWidth = availableWidth / (total - 1);
-    CGFloat x = self.leftPadding + index * itemWidth;
-    if(self.showDots){
-        x += self.dotRadius + self.lineWidth;
+    if(total == 1){
+        return NSNotFound;
+    }else{
+        CGFloat itemWidth = availableWidth / (total - 1);
+        CGFloat x = self.leftPadding + index * itemWidth;
+        if(self.showDots){
+            x += self.dotRadius + self.lineWidth;
+        }
+        return x;
     }
-    return x;
 }
 
 - (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height
@@ -328,10 +332,14 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     CGPathRelease(path); //RELEASE
 }
 
-- (void)drawDataPointDot:(ARGraphDataPoint*)dataPoint index:(NSInteger)index inContext:(CGContextRef)context inRect:(CGRect)rect
+- (BOOL)drawDataPointDot:(ARGraphDataPoint*)dataPoint index:(NSInteger)index inContext:(CGContextRef)context inRect:(CGRect)rect
 {
     CGPoint relativePoint = [self pointForDataPoint:dataPoint index:index total:_dataCount];
-    CGContextAddArc(context, relativePoint.x, relativePoint.y, self.dotRadius, 0.0, M_PI * 2.0, NO);
+    BOOL canDrawPoint = (relativePoint.x != NSNotFound && relativePoint.y != NSNotFound);
+    if(canDrawPoint){
+        CGContextAddArc(context, relativePoint.x, relativePoint.y, self.dotRadius, 0.0, M_PI * 2.0, NO);
+    }
+    return canDrawPoint;
 }
 
 - (void)drawConnectingLineFromPT1:(CGPoint)PT1 toPT2:(CGPoint)PT2 inContext:(CGContextRef)context

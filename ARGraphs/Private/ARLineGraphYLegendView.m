@@ -8,8 +8,8 @@
 
 #import "ARLineGraphYLegendView.h"
 #import "ARHelpers.h"
-@interface ARLineGraphYLegendView ()
 
+@interface ARLineGraphYLegendView ()
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic) NSInteger totalNumberOfLabels;
 @property (nonatomic) NSRange range;
@@ -129,12 +129,12 @@ static CGFloat kPaddingBetweenLabels = 2.0;
     if(self.showYValues){
         NSInteger canFit = [self numberOfLabelsForHeight:self.bounds.size.height];
         if(_totalNumberOfLabels != canFit){
-            _totalNumberOfLabels = canFit;
+            _totalNumberOfLabels = MIN(canFit,_range.length + 1);
             [self createMissingLabelsOrDeleteExtras];
-            [self updateLabelValues];
+        //    [self updateLabelValues];
             
         }else{
-            [self updateLabelValues];
+            [self updateAllLabelValues];
         }
     }else {
         [_labels makeObjectsPerformSelector:@selector(removeFromSuperview)];
@@ -144,76 +144,51 @@ static CGFloat kPaddingBetweenLabels = 2.0;
 
 - (void)createMissingLabelsOrDeleteExtras
 {
-    NSInteger exisitngLabel = _labels.count;
-    NSInteger numberOfLabelsToCreate = _totalNumberOfLabels - exisitngLabel;
-    
-    if(numberOfLabelsToCreate > 0){
-        [self createNewLabels];
-    }else if(numberOfLabelsToCreate < 0) {
-        [self deleteUnNeededLabels];
-    }
-}
-- (void)createNewLabels
-{
-    NSInteger exisitngLabel = _labels.count;
-    NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
-    NSInteger indexCounter = 0;
+    NSMutableArray *copiedLabels = [NSMutableArray arrayWithArray:_labels];
     NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:_range];
-
-    for (indexCounter = 0; indexCounter < _totalNumberOfLabels; indexCounter++) {
-        if(exisitngLabel > indexCounter){
-            // updated Label
-        }else {
-            //create laebl
-            UILabel *label = [self labelForYAxisIndex:indexCounter value:increments[indexCounter]];
-            [self addSubview:label];
-            [newLabels addObject:label];
-        }
-    };
-    
-    _labels = newLabels;
-    
-}
-- (void)deleteUnNeededLabels{
-    NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
-    
-    if(_labels.count > _totalNumberOfLabels){
-        NSInteger labelsToDelete = _labels.count - _totalNumberOfLabels;
-        for (NSInteger x = 1; x < labelsToDelete; x++) {
-            NSInteger index = _labels.count - x;
-            [[newLabels objectAtIndex:index] removeFromSuperview];
-            [newLabels removeObjectAtIndex:index];
-            labelsToDelete--;
-        }
-    }
-    _labels = newLabels;
+    CGFloat stringHeight = [ARHelpers heightOfCaptionText:@"foo" inWidth:self.bounds.size.width];
+    NSArray *yPositionIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.height - stringHeight)];
+    [ARHelpers CRUDObjectsWithExisting:_labels totalNeeded:_totalNumberOfLabels create:^(NSInteger index) {
+        NSInteger inverseYPosition = yPositionIncrements.count - index - 1;
+        UILabel *label = [self makeLabel];
+        [self updateLabel:label yValue:[yPositionIncrements[inverseYPosition] floatValue] value:increments[index]];
+        [self addSubview:label];
+        [copiedLabels addObject:label];
+    } delete:^(NSInteger index) {
+        [[copiedLabels objectAtIndex:index] removeFromSuperview];
+        [copiedLabels removeObjectAtIndex:index];
+    } update:^(NSInteger index) {
+        
+        NSInteger inverseYPosition = yPositionIncrements.count - index - 1;
+        [self updateLabel:copiedLabels[index] yValue:[yPositionIncrements[inverseYPosition] floatValue] value:increments[index]];
+    }];
+    _labels = copiedLabels;
 }
 
-- (void)updateLabelValues
+- (void)updateAllLabelValues
 {
     NSArray *copiedLabels = [_labels copy];
     NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:copiedLabels.count range:_range];
+    NSArray *yPositionIncrements = [ARHelpers incrementArrayForNumberOfItems:copiedLabels.count range:NSMakeRange(0, self.bounds.size.height)];
+
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
-        [self updateLabel:label atindex:index value:increments[index]];
+        NSInteger inverseYPosition = yPositionIncrements.count - index - 1;
+        [self updateLabel:label yValue:[yPositionIncrements[inverseYPosition] floatValue] value:increments[index]];
     }];
 }
 
-- (void)updateLabel:(UILabel*)label atindex:(NSInteger)index value:(NSNumber*)value
+- (void)updateLabel:(UILabel*)label yValue:(CGFloat)yValue value:(NSNumber*)value
 {
-
     label.textColor = self.labelColor;
     label.text = [NSString stringWithFormat:@"%li",[value integerValue]];
-    [self updateFrameOfLabel:label atIndex:index];
+    [self updateFrameOfLabel:label yValue:yValue];
 }
 
-- (UILabel*)labelForYAxisIndex:(NSInteger)index value:(NSNumber*)value
+- (UILabel*)makeLabel
 {
     UILabel *label = [[UILabel alloc] init];
     label.textColor = self.labelColor;
-    label.text = [NSString stringWithFormat:@"%li",[value integerValue]];
     label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
-    [self updateFrameOfLabel:label atIndex:index];
-    
     return label;
 }
 
@@ -222,21 +197,13 @@ static CGFloat kPaddingBetweenLabels = 2.0;
     return [NSString stringWithFormat:@"%ld", _yMin + index * increment];
 }
 
-- (void)updateFrameOfLabel:(UILabel*)label atIndex:(NSUInteger)index
+- (void)updateFrameOfLabel:(UILabel*)label yValue:(CGFloat)yValue
 {
     [label sizeToFit];
     CGRect frame = label.frame;
     frame.origin.x = self.bounds.size.width - frame.size.width;
-    frame.origin.y = [self yPositionForLabelIndex:index totalLabelCount:_totalNumberOfLabels inHeight:self.bounds.size.height];
+    frame.origin.y = yValue;
     label.frame = frame;
-}
-- (CGFloat)yPositionForLabelIndex:(NSInteger)index totalLabelCount:(NSInteger)total inHeight:(CGFloat)height
-{
-    NSString *testString = @"1234";
-    CGFloat heightOfTestString = [ARHelpers heightOfCaptionText:testString inWidth:self.bounds.size.width];
-    CGFloat availablePadding = height - (heightOfTestString * total);
-    NSInteger inverseIndex = _totalNumberOfLabels - index - 1;
-    return (inverseIndex * (heightOfTestString + availablePadding/total));
 }
 - (NSUInteger)numberOfLabelsForHeight:(CGFloat)height
 {

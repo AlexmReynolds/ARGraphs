@@ -219,6 +219,12 @@
     XCTAssertTrue([[increments firstObject] floatValue] == 0.0, @"was not 0");
 }
 
+- (void)testIncrementFor1Items_ShouldReturnArrayOfZeroValues
+{
+    NSInteger items = 1;
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:items range:NSMakeRange(113, 111)];
+    XCTAssertTrue([[increments firstObject] floatValue] == 0.0, @"was not 0");
+}
 #pragma mark - CRUD Helper Tests
 
 - (void)testWithNoExistingObjectsAnd4Needed_ShouldCallCreate4Times

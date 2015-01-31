@@ -81,7 +81,7 @@
     NSMutableArray *increments = [[NSMutableArray alloc] init];
     CGFloat increment = (CGFloat)range.length/(numberOfItems - 1);
     for(NSInteger x = 0; x < numberOfItems; x++){
-        if(range.length == 0){
+        if(range.length == 0 || numberOfItems <= 1){
             [increments addObject:@(0)];
         }else {
             [increments addObject:@(range.location + x * increment)];

@@ -131,8 +131,6 @@ static CGFloat kPaddingBetweenLabels = 2.0;
         if(_totalNumberOfLabels != canFit){
             _totalNumberOfLabels = MIN(canFit,_range.length + 1);
             [self createMissingLabelsOrDeleteExtras];
-        //    [self updateLabelValues];
-            
         }else{
             [self updateAllLabelValues];
         }
@@ -169,7 +167,8 @@ static CGFloat kPaddingBetweenLabels = 2.0;
 {
     NSArray *copiedLabels = [_labels copy];
     NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:copiedLabels.count range:_range];
-    NSArray *yPositionIncrements = [ARHelpers incrementArrayForNumberOfItems:copiedLabels.count range:NSMakeRange(0, self.bounds.size.height)];
+    CGFloat stringHeight = [ARHelpers heightOfCaptionText:@"foo" inWidth:self.bounds.size.width];
+    NSArray *yPositionIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.height - stringHeight)];
 
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
         NSInteger inverseYPosition = yPositionIncrements.count - index - 1;
@@ -190,11 +189,6 @@ static CGFloat kPaddingBetweenLabels = 2.0;
     label.textColor = self.labelColor;
     label.font = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     return label;
-}
-
-- (NSString*)labelTextAtIndex:(NSInteger)index increment:(NSInteger)increment
-{
-    return [NSString stringWithFormat:@"%ld", _yMin + index * increment];
 }
 
 - (void)updateFrameOfLabel:(UILabel*)label yValue:(CGFloat)yValue

@@ -47,7 +47,7 @@
     [self.chart beginAnimationIn];
     NSInteger perPopData = 10;
     while (perPopData--) {
-        [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:arc4random()%1]];
+        [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:100 + arc4random()%1]];
     }
     [self.chart reloadData];
     self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
@@ -61,7 +61,7 @@
 
 - (void)createDataPoint
 {
-    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:arc4random()%8]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:100 +arc4random()%80]];
     [self.chart appendDataPoint:[self.graphDataPoints lastObject]];
 }
 

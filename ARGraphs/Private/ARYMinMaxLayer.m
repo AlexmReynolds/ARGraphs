@@ -8,6 +8,7 @@
 
 #import "ARYMinMaxLayer.h"
 #import "ARGraphDataPoint.h"
+#import "ARHelpers.h"
 #import <UIKit/UIKit.h>
 
 @interface ARYMinMaxLayer()
@@ -77,27 +78,17 @@
 }
 
 #pragma mark - Helpers
-
-- (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height
-{
-    CGFloat range = self.yMax - self.yMin;
-    CGFloat availableHeight = height - self.topPadding - self.bottomPadding;
-    CGFloat normalizedDataPointYValue = dataPoint - self.yMin;
-
-    CGFloat percentageOfDataPointToRange =  (normalizedDataPointYValue / range);
-    CGFloat inversePercentage = 1.0 - percentageOfDataPointToRange; // Must invert because the greater the value the higher we want it on the chart which is a smaller y value on a iOS coordinate system
-    if(range == 0){
-        return NSNotFound;
-    }else{
-        return self.topPadding + inversePercentage * availableHeight;
-    }
-}
-
 - (CGRect)frameforMinLabel
 {
+    CGFloat availableHeight = self.bounds.size.height - self.topPadding - self.bottomPadding;
+
     CGRect rect = [self.minTextLayer.string boundingRectWithSize:self.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
-    rect.origin.x = self.bounds.size.width - rect.size.width - 8;
-    rect.origin.y = [self yPositionForYDataPoint:self.yMin inHeight:self.bounds.size.height] - rect.size.height;
+    rect.origin.x = self.bounds.size.width - rect.size.width - self.rightPadding;
+    
+    CGFloat yVal = [ARHelpers yPositionForYDataPoint:self.yMin availableHeight:availableHeight yRange:NSMakeRange(self.yMin, self.yMax - self.yMin)];
+    yVal += self.topPadding;
+    
+    rect.origin.y = yVal - rect.size.height;
     if(rect.origin.y == NSNotFound){
         rect = CGRectZero;
     }
@@ -107,9 +98,15 @@
 
 - (CGRect)frameforMaxLabel
 {
+    CGFloat availableHeight = self.bounds.size.height - self.topPadding - self.bottomPadding;
+
     CGRect rect = [self.maxTextLayer.string boundingRectWithSize:self.frame.size options:NSStringDrawingUsesLineFragmentOrigin attributes:nil context:nil];
-    rect.origin.x = self.bounds.size.width - rect.size.width - 8;
-    rect.origin.y = [self yPositionForYDataPoint:self.yMax inHeight:self.bounds.size.height];
+    rect.origin.x = self.bounds.size.width - rect.size.width - self.rightPadding;
+    
+    CGFloat yVal = [ARHelpers yPositionForYDataPoint:self.yMax availableHeight:availableHeight yRange:NSMakeRange(self.yMin, self.yMax - self.yMin)];
+    yVal += self.topPadding;
+    
+    rect.origin.y = yVal;
     if(rect.origin.y == NSNotFound){
         rect = CGRectZero;
     }

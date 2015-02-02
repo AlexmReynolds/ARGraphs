@@ -7,6 +7,7 @@
 //
 
 #import "ARLineGraphMean.h"
+#import "ARHelpers.h"
 
 @implementation ARLineGraphMean
 - (instancetype)init
@@ -73,26 +74,11 @@
 - (CGMutablePathRef)pathForMean:(CGFloat)mean
 {
     CGMutablePathRef path = CGPathCreateMutable();
-    CGFloat yPosition = [self yPositionForYDataPoint:self.yMean inHeight:self.bounds.size.height];
-
+    CGFloat availableHeight = self.bounds.size.height - self.topPadding - self.bottomPadding;
+    CGFloat yPosition = [ARHelpers yPositionForYDataPoint:self.yMean availableHeight:availableHeight yRange:NSMakeRange(self.yMin, self.yMax - self.yMin)];
+    yPosition += self.topPadding;
     CGPathMoveToPoint(path, NULL, 0, yPosition);
     CGPathAddLineToPoint(path, NULL, self.bounds.size.width, yPosition);
     return path;
 }
-
-- (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height
-{
-    CGFloat range = self.yMax - self.yMin;
-    CGFloat availableHeight = height - self.topPadding - self.bottomPadding;
-    CGFloat normalizedDataPointYValue = dataPoint - self.yMin;
-    
-    CGFloat percentageOfDataPointToRange =  (normalizedDataPointYValue / range);
-    CGFloat inversePercentage = 1.0 - percentageOfDataPointToRange; // Must invert because the greater the value the higher we want it on the chart which is a smaller y value on a iOS coordinate system
-    if(range == 0){
-        return NSNotFound;
-    }else{
-        return self.topPadding + inversePercentage * availableHeight;
-    }
-}
-
 @end

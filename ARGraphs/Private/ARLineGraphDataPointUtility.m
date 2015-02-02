@@ -10,8 +10,8 @@
 #import "ARGraphDataPoint.h"
 
 @implementation ARLineGraphDataPointUtility{
-    CGFloat _realMean;
-
+    CGFloat _realYMean;
+    CGFloat _realXMean;
 }
 - (instancetype)init
 {
@@ -23,12 +23,12 @@
 
 - (void)resetValues
 {
-    _yMin = 0;
-    _yMax = 0;
-    _yMean = 0;
-    _xMax = 0;
-    _xMin = 0;
-    _realMean = 0.0;
+    _realYMean = 0.0;
+    _realXMean = 0.0;
+    _yMax = NSNotFound;
+    _yMin = NSNotFound;
+    _xMax =  NSNotFound;
+    _xMin = NSNotFound;
 }
 
 - (void)setDatapoints:(NSArray *)datapoints
@@ -49,19 +49,50 @@
     _datapoints = array;
 }
 
+// Here we run 1 loop over all the datapoints to calculate our values
+// We don't use valueForKeyPath:@"@max.yValue because we'd have to run 1 for each xMin, XMax etc.
+// When using valueForKeyPath: we'd have to do this 6 times which on 40,000 Datapoints is 100 times slower
 - (void)setMaxMinMean
 {
-    _yMax = [[self.datapoints valueForKeyPath:@"@max.yValue"] integerValue];
-    _yMin = [[self.datapoints valueForKeyPath:@"@min.yValue"] integerValue];
-    _realMean = [[self.datapoints valueForKeyPath:@"@avg.yValue"] doubleValue];
-    _yMean = floor(_realMean); // round down
+    CGFloat sumX = 0;
+    CGFloat sumY = 0;
+    
+    NSInteger numberOfItems = self.datapoints.count;
+    while (numberOfItems--) {
+        ARGraphDataPoint *dp = self.datapoints[numberOfItems];
+        [self parseMinMaxForDataPoint:dp];
+        sumX += dp.xValue;
+        sumY += dp.yValue;
+    }
+    
+    _realYMean = sumY / self.datapoints.count;
+    _realXMean = sumX / self.datapoints.count;
+    
+    _yMean = floor(_realYMean); // round down
+    _xMean = floor(_realXMean); // round down
 }
 
 - (void)updateMinMaxMean:(ARGraphDataPoint*)newDataPoint
 {
-    _yMin = MIN(_yMin, newDataPoint.yValue);
-    _yMax = MAX(_yMax, newDataPoint.yValue);
-    _realMean = (_realMean * self.datapoints.count + newDataPoint.yValue)/(float)(self.datapoints.count + 1);
-    _yMean = floor(_realMean); // round down
+    [self parseMinMaxForDataPoint:newDataPoint];
+    _realXMean = (_realXMean * self.datapoints.count + newDataPoint.xValue)/(float)(self.datapoints.count + 1);
+    _realYMean = (_realYMean * self.datapoints.count + newDataPoint.yValue)/(float)(self.datapoints.count + 1);
+    _yMean = floor(_realYMean); // round down
+    _xMean = floor(_realXMean); // round down
+
 }
+
+- (void)parseMinMaxForDataPoint:(ARGraphDataPoint*)dp
+{
+    _yMin = _yMin != NSNotFound ? _yMin : NSIntegerMax;
+    _yMax = _yMax != NSNotFound ? _yMax : NSIntegerMin;
+    _xMin = _xMin != NSNotFound ? _xMin : NSIntegerMax;
+    _xMax = _xMax != NSNotFound ? _xMax : NSIntegerMin;
+    
+    _yMax = MAX(_yMax, dp.yValue);
+    _yMin = MIN(_yMin, dp.yValue);
+    _xMax = MAX(_xMax, dp.xValue);
+    _xMin = MIN(_xMin, dp.xValue);
+}
+
 @end

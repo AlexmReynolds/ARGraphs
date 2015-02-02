@@ -345,22 +345,25 @@
 
     NSInteger yMin = [[self dataPointUtility] yMin];
     NSInteger yMax = [[self dataPointUtility] yMax];
-    self.minMaxLayer.yMin = yMin;
-    self.minMaxLayer.yMax = yMax;
-    [self.minMaxLayer setNeedsDisplay];
-    
-    self.pointsLayer.yMin = yMin;
-    self.pointsLayer.yMax = yMax;
-    self.pointsLayer.dataPoints = self.dataPoints;
-    [self.pointsLayer setNeedsDisplay];
-    
-    self.meanLayer.yMin = yMin;
-    self.meanLayer.yMax = yMax;
-    self.meanLayer.yMean = [[self dataPointUtility] yMean];
-    
-    self.yAxisContainerView.yMax = yMax;
-    self.yAxisContainerView.yMin = yMin;
-    [self.meanLayer setNeedsDisplay];
+    if(yMax != NSNotFound && yMin != NSNotFound){
+        self.minMaxLayer.yMin = yMin;
+        self.minMaxLayer.yMax = yMax;
+        [self.minMaxLayer setNeedsDisplay];
+        
+        self.pointsLayer.yMin = yMin;
+        self.pointsLayer.yMax = yMax;
+        self.pointsLayer.dataPoints = self.dataPoints;
+        [self.pointsLayer setNeedsDisplay];
+        
+        self.meanLayer.yMin = yMin;
+        self.meanLayer.yMax = yMax;
+        self.meanLayer.yMean = [[self dataPointUtility] yMean];
+        
+        self.yAxisContainerView.yMax = yMax;
+        self.yAxisContainerView.yMin = yMin;
+        [self.meanLayer setNeedsDisplay];
+    }
+
 }
 #pragma mark - X Legend Delegate
 - (NSInteger)xLegend:(ARLineGraphXLegendView *)lengend valueAtIndex:(NSUInteger)index

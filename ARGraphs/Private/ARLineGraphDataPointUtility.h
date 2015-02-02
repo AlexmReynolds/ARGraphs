@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) NSInteger yMin;
 @property (nonatomic, readonly) NSInteger xMax;
 @property (nonatomic, readonly) NSInteger xMin;
+@property (nonatomic, readonly) NSInteger xMean;
 @property (nonatomic, readonly) NSInteger yMean;
 
 - (void)appendDataPoint:(ARGraphDataPoint*)dataPoint;

@@ -14,7 +14,7 @@
 
 @interface ARLineGraphXLegendView (Tests)
 - (NSUInteger)getTotalNumberOfLabelsForTest;
-- (UILabel*)createLabelForXAxisIndex:(NSInteger)index;
+- (UILabel*)makeLabel;
 @end
 
 @implementation ARLineGraphXLegendView (Tests)
@@ -93,7 +93,7 @@
         count += 1;
     };
     OCMockObject *mockSut = [OCMockObject partialMockForObject:sut];
-    [[[[[mockSut stub] andDo:proxyBlock] andReturn:[UILabel new]] ignoringNonObjectArgs] createLabelForXAxisIndex:0];
+    [[[[[mockSut stub] andDo:proxyBlock] andReturn:[UILabel new]] ignoringNonObjectArgs] makeLabel];
     id mockDelegate = [self makeMockDelegateNumberOfDP:datapoints];
     sut.delegate = mockDelegate;
     sut.showXValues = YES;
@@ -119,7 +119,7 @@
     
     sut.delegate = mockDelegate;
     OCMockObject *mockSut = [OCMockObject partialMockForObject:sut];
-    [[[[[mockSut stub] andDo:proxyBlock] andReturn:[UILabel new]] ignoringNonObjectArgs] createLabelForXAxisIndex:0];
+    [[[[[mockSut stub] andDo:proxyBlock] andReturn:[UILabel new]] ignoringNonObjectArgs] makeLabel];
     [sut reloadData];
 
     XCTAssertEqual(count, 1, @"did not make %i labels", 1);

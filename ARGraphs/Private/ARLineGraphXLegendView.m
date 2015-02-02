@@ -118,8 +118,6 @@
         if(_totalNumberOfLabels != canFit){
             _totalNumberOfLabels = MIN(canFit, _numberOfDataPoints);
             [self createMissingLabelsOrDeleteExtras];
-            [self updateAllLabelValues];
-
         }else{
             [self updateAllLabelValues];
         }
@@ -130,36 +128,40 @@
     }
 }
 
+//- (void)createMissingLabelsOrDeleteExtras
+//{
+//    NSInteger exisitngLabel = _labels.count;
+//    NSInteger numberOfLabelsToCreate = _totalNumberOfLabels - exisitngLabel;
+//
+//    if(numberOfLabelsToCreate > 0){
+//        [self createNewLabels];
+//    }else if(numberOfLabelsToCreate < 0) {
+//        [self deleteUnNeededLabels];
+//    }
+//}
+
 - (void)createMissingLabelsOrDeleteExtras
 {
-    NSInteger exisitngLabel = _labels.count;
-    NSInteger numberOfLabelsToCreate = _totalNumberOfLabels - exisitngLabel;
-
-    if(numberOfLabelsToCreate > 0){
-        [self createNewLabels];
-    }else if(numberOfLabelsToCreate < 0) {
-        [self deleteUnNeededLabels];
-    }
-}
-
-- (void)createNewLabels
-{
-    NSInteger indexCounter = 0;
-    NSInteger exisitngLabel = _labels.count;
-    NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
-    for (indexCounter = 0; indexCounter < _totalNumberOfLabels; indexCounter++) {
-        if(exisitngLabel <= indexCounter){
-            //create label
-            UILabel *label = [self createLabelForXAxisIndex:indexCounter];
-            [self addSubview:label];
-            [newLabels addObject:label];
-        }
-    };
+    NSMutableArray *copiedLabels = [NSMutableArray arrayWithArray:_labels];
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
     
-    _labels = newLabels;
+    CGFloat stringWidth = [ARHelpers widthOfCaptionText:@"foo" inHeight:self.bounds.size.height];
+    NSArray *xPositionIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.width - stringWidth)];
+    [ARHelpers CRUDObjectsWithExisting:_labels totalNeeded:_totalNumberOfLabels create:^(NSInteger index) {
+        UILabel *label = [self makeLabel];
+        [self updateLabel:label xValue:[xPositionIncrements[index] floatValue] dpIndex:increments[index]];
+        [self addSubview:label];
+        [copiedLabels addObject:label];
+    } delete:^(NSInteger index) {
+        [[copiedLabels objectAtIndex:index] removeFromSuperview];
+        [copiedLabels removeObjectAtIndex:index];
+    } update:^(NSInteger index) {
+        [self updateLabel:copiedLabels[index] xValue:[xPositionIncrements[index] floatValue] dpIndex:increments[index]];
+    }];
+    _labels = copiedLabels;
 }
 
-- (UILabel*)createLabelForXAxisIndex:(NSInteger)index
+- (UILabel*)makeLabel
 {
     UILabel *label = [[UILabel alloc] init];
     label.textColor = self.labelColor;
@@ -167,19 +169,19 @@
     return label;
 }
 
-- (void)deleteUnNeededLabels{
-    NSMutableArray *newLabels = [NSMutableArray arrayWithArray:_labels];
+- (void)updateLabel:(UILabel*)label xValue:(CGFloat)xValue dpIndex:(NSNumber*)dpIndex
+{
+    label.textColor = self.labelColor;
+    label.text = [self stringForXLegendAtIndex:[dpIndex integerValue]];
+    [self updateFrameOfLabel:label xValue:xValue];
+}
 
-    if(_labels.count > _totalNumberOfLabels){
-        NSInteger labelsToDelete = _labels.count - _totalNumberOfLabels;
-        while(labelsToDelete){
-            NSInteger index = _labels.count - labelsToDelete;
-            [[newLabels objectAtIndex:index] removeFromSuperview];
-            [newLabels removeObjectAtIndex:index];
-            labelsToDelete--;
-        }
-    }
-    _labels = newLabels;
+- (void)updateFrameOfLabel:(UILabel*)label xValue:(CGFloat)xValue
+{
+    [label sizeToFit];
+    CGRect frame = label.frame;
+    frame.origin.x = xValue;
+    label.frame = frame;
 }
 
 #pragma mark - Update Methods
@@ -190,23 +192,16 @@
         return;
     }
     NSArray *copiedLabels = [_labels copy];
-    NSArray *labelIndexToDPIndexIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
+    NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, _numberOfDataPoints - 1)];
     
-    NSString *stringToMeasure = [self stringForXLegendAtIndex:[[labelIndexToDPIndexIncrements lastObject] integerValue]];
+    NSString *stringToMeasure = [self stringForXLegendAtIndex:[[increments lastObject] integerValue]];
     CGFloat widthOfTestString = [ARHelpers widthOfCaptionText:stringToMeasure inHeight:self.bounds.size.height];
 
     NSArray *xPosiitonIncrements = [ARHelpers incrementArrayForNumberOfItems:_totalNumberOfLabels range:NSMakeRange(0, self.bounds.size.width - widthOfTestString)];
     
     [copiedLabels enumerateObjectsUsingBlock:^(UILabel *label, NSUInteger index, BOOL *stop) {
-        [self updateLabel:label atindex:index dpIndex:labelIndexToDPIndexIncrements[index] xPosition:xPosiitonIncrements[index]];
+        [self updateLabel:copiedLabels[index] xValue:[xPosiitonIncrements[index] floatValue] dpIndex:increments[index]];
     }];
-}
-
-- (void)updateLabel:(UILabel*)label atindex:(NSInteger)index dpIndex:(NSNumber*)dpIndex xPosition:(NSNumber*)xPosition
-{
-    label.textColor = self.labelColor;
-    label.text = [self stringForXLegendAtIndex:[dpIndex integerValue]];
-    [self updateFrameOfLabel:label value:[xPosition integerValue]];
 }
 
 - (void)updateFrameOfLabel:(UILabel*)label value:(NSUInteger)value

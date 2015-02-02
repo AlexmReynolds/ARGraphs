@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 @import UIKit;
+@class ARGraphDataPoint;
 
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
 #define RADIANS_TO_DEGREES(radians) ((radians) * 180.0 / M_PI)
@@ -94,4 +95,19 @@
 
  */
 + (void)CRUDObjectsWithExisting:(NSArray*)existing totalNeeded:(NSInteger)totalNeeded create:(void(^)(NSInteger index))createBlock delete:(void(^)(NSInteger index))deleteBlock update:(void(^)(NSInteger index))updateBlock;
+
+/**
+ *  @abstract Calls CRUD blocks so we dont have to recreate exisiting items
+ *
+ *  @discussion Runs CRUD blocks to minimize unneeded creation of objects
+ *
+ *  @param  dataPoint the datapoint value for this axis
+ *  @param  availableHeight space in view that point can sit in
+ *  @param  range that datapoint values lie between
+ *  @return  CGFloat position for datapoint in view
+ 
+ */
++ (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint availableHeight:(CGFloat)availableHeight yRange:(NSRange)range;
++ (CGPoint)positionForDataPoint:(ARGraphDataPoint*)dataPoint availableSize:(CGSize)availableSize yRange:(NSRange)yRange xRange:(NSRange)xRange;
+
 @end

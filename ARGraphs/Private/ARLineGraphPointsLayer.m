@@ -8,7 +8,7 @@
 
 #import "ARLineGraphPointsLayer.h"
 #import "ARGraphDataPoint.h"
-//
+#import "ARHelpers.h"
 
 
 static const NSInteger kSMOOTHING_MINIMUM = 20;
@@ -207,8 +207,10 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 - (CGPoint)pointForDataPoint:(ARGraphDataPoint*)dataPoint index:(NSInteger)index total:(NSInteger)total
 {
     ARGraphDataPoint *dp = [self.dataPoints objectAtIndex:index];
+    CGFloat availableHeight = self.bounds.size.height - self.topPadding - self.bottomPadding;
     CGFloat xVal = [self xPositionForDataPointIndex:index totalPoints:total inWidth:self.bounds.size.width];
-    CGFloat yVal = [self yPositionForYDataPoint:dp.yValue inHeight:self.bounds.size.height];
+    CGFloat yVal = [ARHelpers yPositionForYDataPoint:dp.yValue availableHeight:availableHeight yRange:NSMakeRange(self.yMin, self.yMax - self.yMin)];
+    yVal += self.topPadding;
     return CGPointMake(xVal, yVal);
 }
 
@@ -230,18 +232,17 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     }
 }
 
-- (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint inHeight:(CGFloat)height
+- (CGFloat)xPositionForXDataPoint:(NSInteger)dataPoint inWidth:(CGFloat)width
 {
-    CGFloat range = self.yMax - self.yMin;
-    CGFloat availableHeight = height - self.topPadding - self.bottomPadding;
-    CGFloat normalizedDataPointYValue = dataPoint - self.yMin;
+    CGFloat range = self.xMax - self.xMin;
+    CGFloat availableHeight = width - self.leftPadding - self.rightPadding;
+    CGFloat normalizedDataPointYValue = dataPoint - self.xMin;
     
     CGFloat percentageOfDataPointToRange =  (normalizedDataPointYValue / range);
-    CGFloat inversePercentage = 1.0 - percentageOfDataPointToRange; // Must invert because the greater the value the higher we want it on the chart which is a smaller y value on a iOS coordinate system
     if(range == 0){
         return NSNotFound;
     }else{
-        return self.topPadding + inversePercentage * availableHeight;
+        return self.topPadding + percentageOfDataPointToRange * availableHeight;
     }
 }
 

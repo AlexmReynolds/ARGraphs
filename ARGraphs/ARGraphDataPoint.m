@@ -21,4 +21,12 @@
     self.yValue = yValue;
     return self;
 }
+
+- (instancetype)initWithY:(NSInteger)yValue
+{
+    self = [super init];
+    self.xValue = NSNotFound;
+    self.yValue = yValue;
+    return self;
+}
 @end

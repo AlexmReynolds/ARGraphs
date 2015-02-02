@@ -45,13 +45,22 @@
     self.chart.clipsToBounds = YES;
     self.chart.dataSource = self;
     [self.chart beginAnimationIn];
-    NSInteger perPopData = 10;
-    while (perPopData--) {
-        [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:arc4random()%10 y:100 + arc4random()%1]];
-    }
+    NSInteger perPopData = 100;
+//    while (perPopData--) {
+//        [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:100 - perPopData y:100 + arc4random()%100]];
+//    }
+    
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:1 y:100 + arc4random()%100]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:10 y:100 + arc4random()%100]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:11 y:100 + arc4random()%100]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:12 y:100 + arc4random()%100]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:17 y:100 + arc4random()%100]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:26 y:100 + arc4random()%100]];
+    [self.graphDataPoints addObject:[[ARGraphDataPoint alloc] initWithX:27 y:100 + arc4random()%100]];
+
     [self.chart reloadData];
-    self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
-    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+   // self.timer = [NSTimer timerWithTimeInterval:2.0 target:self selector:@selector(createDataPoint) userInfo:nil repeats:YES];
+  //  [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {

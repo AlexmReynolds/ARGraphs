@@ -128,18 +128,6 @@
     }
 }
 
-//- (void)createMissingLabelsOrDeleteExtras
-//{
-//    NSInteger exisitngLabel = _labels.count;
-//    NSInteger numberOfLabelsToCreate = _totalNumberOfLabels - exisitngLabel;
-//
-//    if(numberOfLabelsToCreate > 0){
-//        [self createNewLabels];
-//    }else if(numberOfLabelsToCreate < 0) {
-//        [self deleteUnNeededLabels];
-//    }
-//}
-
 - (void)createMissingLabelsOrDeleteExtras
 {
     NSMutableArray *copiedLabels = [NSMutableArray arrayWithArray:_labels];
@@ -172,8 +160,14 @@
 - (void)updateLabel:(UILabel*)label xValue:(CGFloat)xValue dpIndex:(NSNumber*)dpIndex
 {
     label.textColor = self.labelColor;
-    label.text = [self stringForXLegendAtIndex:[dpIndex integerValue]];
+    if(self.normalizeXValues){
+        label.text = [self stringForXLegendAtIndex:[dpIndex integerValue]];
+    }else {
+        CGFloat value = [ARHelpers dataPointXValueForXPosition:xValue availableWidth:self.bounds.size.width yRange:NSMakeRange(self.xMin, self.xMax - self.xMin)];
+        label.text = [NSString stringWithFormat:@"%li", (long)value];
+    }
     [self updateFrameOfLabel:label xValue:xValue];
+
 }
 
 - (void)updateFrameOfLabel:(UILabel*)label xValue:(CGFloat)xValue
@@ -204,17 +198,10 @@
     }];
 }
 
-- (void)updateFrameOfLabel:(UILabel*)label value:(NSUInteger)value
-{
-    [label sizeToFit];
-    CGRect frame = label.frame;
-    frame.origin.x = value;
-    label.frame = frame;
-}
-
 - (NSString*)stringForXLegendAtIndex:(NSUInteger)index
 {
     NSInteger value = [self.delegate xLegend:self valueAtIndex:index];
+    
     return [NSString stringWithFormat:@"%li", (long)value];
 }
 

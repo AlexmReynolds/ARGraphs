@@ -225,6 +225,19 @@
     NSArray *increments = [ARHelpers incrementArrayForNumberOfItems:items range:NSMakeRange(113, 111)];
     XCTAssertTrue([[increments firstObject] floatValue] == 0.0, @"was not 0");
 }
+
+#pragma mark - Converting x Point to DataPoint
+- (void)testConvertingAFramein20Percent_ShouldReturhDataPoint20PercentInRange
+{
+    CGFloat value = [ARHelpers dataPointXValueForXPosition:20 availableWidth:100 yRange:NSMakeRange(0, 100)];
+    XCTAssertEqual(value, 20, @"value was not 20");
+}
+
+- (void)testConvertingAFramein50Percent_ShouldReturhDataPoint50PercentInRange
+{
+    CGFloat value = [ARHelpers dataPointXValueForXPosition:20 availableWidth:40 yRange:NSMakeRange(1, 26)];
+    XCTAssertEqual(value, 14, @"value was not 20");
+}
 #pragma mark - CRUD Helper Tests
 
 - (void)testWithNoExistingObjectsAnd4Needed_ShouldCallCreate4Times

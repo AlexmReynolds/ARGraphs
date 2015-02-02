@@ -26,6 +26,8 @@
  */
 - (instancetype)initWithX:(NSInteger)xValue y:(NSInteger)yValue;
 
+- (instancetype)initWithY:(NSInteger)yValue;
+
 /// x point value
 @property (nonatomic) NSInteger xValue;
 /// y point value

@@ -44,6 +44,10 @@
 
 @property (nonatomic) BOOL showXLegendValues UI_APPEARANCE_SELECTOR;
 
+/// Set to @c YES the graph will lay out points in the order they appear in the array with equal distance between points x axis
+/// Default is @c NO
+@property (nonatomic) BOOL normalizeXValues UI_APPEARANCE_SELECTOR;
+
 @property (nonatomic) BOOL useBackgroundGradient UI_APPEARANCE_SELECTOR;
 
 /// Set to @c YES to only show the minimum and maximum Y legend markings on the graph. @c NO to hide.

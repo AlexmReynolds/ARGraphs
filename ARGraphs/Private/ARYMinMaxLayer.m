@@ -127,18 +127,19 @@
         CGContextSetStrokeColorWithColor(ctx, _defaultLineColor);
     }
     CGContextSetLineWidth(ctx, 1.0);
+    CGFloat availableHeight = self.bounds.size.height - self.topPadding - self.bottomPadding;
 
-    CGFloat minY = [self yPositionForYDataPoint:self.yMin inHeight:self.bounds.size.height];
-    CGFloat maxY = [self yPositionForYDataPoint:self.yMax inHeight:self.bounds.size.height];
+    CGFloat minY = [ARHelpers yPositionForYDataPoint:self.yMin availableHeight:availableHeight yRange:NSMakeRange(self.yMin, self.yMax - self.yMin)];
+    CGFloat maxY = [ARHelpers yPositionForYDataPoint:self.yMax availableHeight:availableHeight yRange:NSMakeRange(self.yMin, self.yMax - self.yMin)];
 
     if(minY != NSNotFound){
-        CGContextMoveToPoint(ctx, 0, minY);
-        CGContextAddLineToPoint(ctx, self.bounds.size.width, minY);
+        CGContextMoveToPoint(ctx, 0, minY + self.topPadding);
+        CGContextAddLineToPoint(ctx, self.bounds.size.width, minY + self.topPadding);
     }
     
     if(maxY != NSNotFound){
-        CGContextMoveToPoint(ctx, 0, maxY);
-        CGContextAddLineToPoint(ctx, self.bounds.size.width, maxY);
+        CGContextMoveToPoint(ctx, 0, maxY + self.topPadding);
+        CGContextAddLineToPoint(ctx, self.bounds.size.width, maxY + self.topPadding);
     }
 
     CGContextStrokePath(ctx);

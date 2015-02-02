@@ -24,6 +24,7 @@
 @property (nonatomic) BOOL shouldFill;
 @property (nonatomic) BOOL shouldSmooth;
 @property (nonatomic) BOOL showDots;
+@property (nonatomic) BOOL normalizeXValues;
 
 @property (nonatomic) CGColorRef lineColor;
 

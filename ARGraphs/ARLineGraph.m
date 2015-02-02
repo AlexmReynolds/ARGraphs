@@ -104,6 +104,7 @@
     self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
     self.showXLegend = YES;
     self.showYLegend = YES;
+    self.normalizeXValues = NO;
     self.showDots = YES;
     self.showMinMaxLines = YES;
     self.showMeanLine = YES;
@@ -144,7 +145,13 @@
 
     [self layoutLegends];
 }
-
+- (void)setNormalizeXValues:(BOOL)normalizeXValues
+{
+    _normalizeXValues = normalizeXValues;
+    self.pointsLayer.normalizeXValues = normalizeXValues;
+    [self.pointsLayer layoutIfNeeded];
+    self.xAxisContainerView.normalizeXValues = normalizeXValues;
+}
 - (void)setShowXLegendValues:(BOOL)showXLegendValues
 {
     _showXLegendValues = showXLegendValues;
@@ -345,6 +352,8 @@
 
     NSInteger yMin = [[self dataPointUtility] yMin];
     NSInteger yMax = [[self dataPointUtility] yMax];
+    NSInteger xMin = [[self dataPointUtility] xMin];
+    NSInteger xMax = [[self dataPointUtility] xMax];
     if(yMax != NSNotFound && yMin != NSNotFound){
         self.minMaxLayer.yMin = yMin;
         self.minMaxLayer.yMax = yMax;
@@ -352,16 +361,20 @@
         
         self.pointsLayer.yMin = yMin;
         self.pointsLayer.yMax = yMax;
+        self.pointsLayer.xMin = xMin;
+        self.pointsLayer.xMax = xMax;
         self.pointsLayer.dataPoints = self.dataPoints;
         [self.pointsLayer setNeedsDisplay];
         
         self.meanLayer.yMin = yMin;
         self.meanLayer.yMax = yMax;
         self.meanLayer.yMean = [[self dataPointUtility] yMean];
-        
+        [self.meanLayer setNeedsDisplay];
+
         self.yAxisContainerView.yMax = yMax;
         self.yAxisContainerView.yMin = yMin;
-        [self.meanLayer setNeedsDisplay];
+        self.xAxisContainerView.xMax = xMax;
+        self.xAxisContainerView.xMin = xMin;
     }
 
 }

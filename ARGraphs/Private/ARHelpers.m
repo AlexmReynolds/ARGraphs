@@ -162,4 +162,28 @@
         return inversePercentage * availableHeight;
     }
 }
+
++ (CGFloat)xPositionForXDataPoint:(NSInteger)dataPoint availableWidth:(CGFloat)availableWidth yRange:(NSRange)range
+{
+    CGFloat normalizedDataPointYValue = dataPoint - range.location;
+    CGFloat percentageOfDataPointToRange =  (normalizedDataPointYValue / range.length);
+    if(range.length == 0){
+        return NSNotFound;
+    }else{
+        return percentageOfDataPointToRange * availableWidth;
+    }
+}
+
++ (CGFloat)dataPointXValueForXPosition:(CGFloat)xPosition availableWidth:(CGFloat)availableWidth yRange:(NSRange)range
+{
+    CGFloat percentageOfPositionToRange = xPosition / availableWidth;
+    CGFloat normalizedDataPointXValue = percentageOfPositionToRange * range.length;
+
+    if(range.length == 0){
+        return NSNotFound;
+    }else{
+        return range.location + normalizedDataPointXValue;
+    }
+}
+
 @end

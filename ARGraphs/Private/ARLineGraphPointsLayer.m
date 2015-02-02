@@ -208,13 +208,20 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 {
     ARGraphDataPoint *dp = [self.dataPoints objectAtIndex:index];
     CGFloat availableHeight = self.bounds.size.height - self.topPadding - self.bottomPadding;
-    CGFloat xVal = [self xPositionForDataPointIndex:index totalPoints:total inWidth:self.bounds.size.width];
+    
+    CGFloat xVal;
+    if(self.normalizeXValues){
+        xVal = [self xPositionEquallySpacedForDataPointIndex:index totalPoints:total inWidth:self.bounds.size.width];
+    }else {
+        xVal = [self xPositionForXDataPoint:dp.xValue inWidth:self.bounds.size.width - self.rightPadding - self.leftPadding ];
+    }
+    
     CGFloat yVal = [ARHelpers yPositionForYDataPoint:dp.yValue availableHeight:availableHeight yRange:NSMakeRange(self.yMin, self.yMax - self.yMin)];
     yVal += self.topPadding;
     return CGPointMake(xVal, yVal);
 }
 
-- (CGFloat)xPositionForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width
+- (CGFloat)xPositionEquallySpacedForDataPointIndex:(NSInteger)index totalPoints:(NSInteger)total inWidth:(CGFloat)width
 {
     CGFloat availableWidth = width - self.leftPadding - self.rightPadding;
     if (self.showDots) {
@@ -235,14 +242,19 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
 - (CGFloat)xPositionForXDataPoint:(NSInteger)dataPoint inWidth:(CGFloat)width
 {
     CGFloat range = self.xMax - self.xMin;
-    CGFloat availableHeight = width - self.leftPadding - self.rightPadding;
+    CGFloat availableWidth = width;
     CGFloat normalizedDataPointYValue = dataPoint - self.xMin;
     
     CGFloat percentageOfDataPointToRange =  (normalizedDataPointYValue / range);
     if(range == 0){
         return NSNotFound;
     }else{
-        return self.topPadding + percentageOfDataPointToRange * availableHeight;
+        CGFloat x = self.leftPadding + percentageOfDataPointToRange * availableWidth;
+        if(self.showDots){
+            availableWidth -= (self.dotRadius * 2) + self.lineWidth;
+            x += self.dotRadius + self.lineWidth;
+        }
+        return x;
     }
 }
 

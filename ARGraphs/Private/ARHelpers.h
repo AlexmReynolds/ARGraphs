@@ -97,9 +97,9 @@
 + (void)CRUDObjectsWithExisting:(NSArray*)existing totalNeeded:(NSInteger)totalNeeded create:(void(^)(NSInteger index))createBlock delete:(void(^)(NSInteger index))deleteBlock update:(void(^)(NSInteger index))updateBlock;
 
 /**
- *  @abstract Calls CRUD blocks so we dont have to recreate exisiting items
+ *  @abstract Converts a datapoint to a coordinate in a view
  *
- *  @discussion Runs CRUD blocks to minimize unneeded creation of objects
+ *  @discussion Converts a datapoint to a coordinate in a view
  *
  *  @param  dataPoint the datapoint value for this axis
  *  @param  availableHeight space in view that point can sit in
@@ -108,6 +108,9 @@
  
  */
 + (CGFloat)yPositionForYDataPoint:(NSInteger)dataPoint availableHeight:(CGFloat)availableHeight yRange:(NSRange)range;
-+ (CGPoint)positionForDataPoint:(ARGraphDataPoint*)dataPoint availableSize:(CGSize)availableSize yRange:(NSRange)yRange xRange:(NSRange)xRange;
 
+
++ (CGFloat)xPositionForXDataPoint:(NSInteger)dataPoint availableWidth:(CGFloat)availableWidth yRange:(NSRange)range;
+
++ (CGFloat)dataPointXValueForXPosition:(CGFloat)xPosition availableWidth:(CGFloat)availableWidth yRange:(NSRange)range;
 @end

@@ -19,6 +19,9 @@
 @property (nonatomic, weak) id <ARGraphXLegendDelegate> delegate;
 @property (nonatomic, strong) UIColor *labelColor;
 @property (nonatomic) BOOL showXValues;
+@property (nonatomic) BOOL normalizeXValues;
+@property (nonatomic) NSInteger xMax;
+@property (nonatomic) NSInteger xMin;
 @property (nonatomic, strong) NSString *title;
 
 // This does a full reload. Very bad for perfromance if chart is live updating. User AppendDataPoint instead

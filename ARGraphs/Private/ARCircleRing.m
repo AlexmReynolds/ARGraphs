@@ -34,7 +34,7 @@
     CGFloat radius = self.bounds.size.width/2 - self.lineWidth/2;
     
     CGMutablePathRef path = CGPathCreateMutable();
-    CGPathAddArc(path, NULL, center.x, center.y, radius, -M_PI/2, 2 * M_PI, NO);
+    CGPathAddArc(path, NULL, center.x, center.y, radius, -M_PI/2, 1.5 * M_PI, NO);
     return path;
 }
 

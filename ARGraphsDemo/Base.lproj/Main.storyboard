@@ -134,6 +134,23 @@
                                             <segue destination="3Bk-St-mqe" kind="show" id="Ubk-ut-gF6"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="0lC-Z9-dDf" style="IBUITableViewCellStyleDefault" id="7wF-8u-J7I">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7wF-8u-J7I" id="OF9-mi-Ovu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Circle Graph" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0lC-Z9-dDf">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="hmy-pj-rN7" kind="show" id="xbw-JP-myL"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -146,7 +163,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emB-LI-HgC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-543" y="977"/>
+            <point key="canvasLocation" x="-584" y="964"/>
         </scene>
         <!--Pie Chart View Controller-->
         <scene sceneID="o5f-3d-KXt">
@@ -201,7 +218,42 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wec-zQ-CEN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="102" y="1168"/>
+            <point key="canvasLocation" x="303" y="977"/>
+        </scene>
+        <!--Circle Graph View Controller-->
+        <scene sceneID="ryC-At-bw7">
+            <objects>
+                <viewController id="hmy-pj-rN7" customClass="ARCircleGraphViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gfR-4D-82z"/>
+                        <viewControllerLayoutGuide type="bottom" id="DUL-4P-PJY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dJn-rs-ohn">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eS-Vy-kvu" customClass="ARCircleGraph">
+                                <rect key="frame" x="250" y="77" width="100" height="100"/>
+                                <color key="backgroundColor" red="0.34901960780000002" green="0.70196078429999997" blue="0.63137254899999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="GPp-K5-f0V"/>
+                                    <constraint firstAttribute="width" constant="100" id="jK4-FQ-L02"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="3eS-Vy-kvu" secondAttribute="centerX" id="UuT-h3-0JU"/>
+                            <constraint firstItem="3eS-Vy-kvu" firstAttribute="top" secondItem="gfR-4D-82z" secondAttribute="bottom" constant="13" id="zze-gm-A2e"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="graph" destination="3eS-Vy-kvu" id="v1p-pL-7KH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iH4-ft-6MJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-29" y="1624"/>
         </scene>
         <!--Pie Chart Settings Table View Controller-->
         <scene sceneID="6UZ-AK-N50">

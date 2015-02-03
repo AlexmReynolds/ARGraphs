@@ -1,0 +1,30 @@
+//
+//  ARCircleValueLabel.h
+//  ARGraphsDemo
+//
+//  Created by Alex Reynolds on 2/3/15.
+//  Copyright (c) 2015 Alex Reynolds. All rights reserved.
+//
+
+#import <UIKit/UIKit.h>
+
+@interface ARCircleValueLabel : UILabel
+@property (nonatomic) CGFloat lineWidth;
+
+@property (nonatomic, strong) NSString *format;
+@property (nonatomic, assign) NSTimeInterval animationDuration;
+
+@property (nonatomic, copy) void (^completionBlock)();
+
+-(void)countFrom:(CGFloat)startValue to:(CGFloat)endValue;
+-(void)countFrom:(CGFloat)startValue to:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
+
+-(void)countFromCurrentValueTo:(CGFloat)endValue;
+-(void)countFromCurrentValueTo:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
+
+-(void)countFromZeroTo:(CGFloat)endValue;
+-(void)countFromZeroTo:(CGFloat)endValue withDuration:(NSTimeInterval)duration;
+
+- (CGFloat)currentValue;
+
+@end

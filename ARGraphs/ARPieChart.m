@@ -25,28 +25,41 @@
 @end
 @implementation ARPieChart
 
-
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
     if(self){
-        self.backgroundColor = [UIColor clearColor];
-        self.dataPointUtility = [[ARPieChartDataPointUtility alloc] init];
-
-        _background = [ARGraphBackground gradientWithColor:self.tintColor.CGColor];
-        _background.frame = self.bounds;
-        [self.layer insertSublayer:_background atIndex:0];
-        
-        _pieLayer = [[ARPieChartLayer alloc] init];
-        _pieLayer.frame = self.bounds;
-        [self.layer addSublayer:_pieLayer];
-        
-        _labelsLayer = [[ARPieChartLabelsLayer alloc] init];
-        _labelsLayer.frame = self.bounds;
-        [self.layer addSublayer:_labelsLayer];
-        [self applyDefaults];
+        [self initialSetup];
     }
     return self;
+}
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if(self){
+        [self initialSetup];
+    }
+    return self;
+}
+
+- (void)initialSetup
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.dataPointUtility = [[ARPieChartDataPointUtility alloc] init];
+    
+    _background = [ARGraphBackground gradientWithColor:self.tintColor.CGColor];
+    _background.frame = self.bounds;
+    [self.layer insertSublayer:_background atIndex:0];
+    
+    _pieLayer = [[ARPieChartLayer alloc] init];
+    _pieLayer.frame = self.bounds;
+    [self.layer addSublayer:_pieLayer];
+    
+    _labelsLayer = [[ARPieChartLabelsLayer alloc] init];
+    _labelsLayer.frame = self.bounds;
+    [self.layer addSublayer:_labelsLayer];
+    [self applyDefaults];
 }
 
 - (void)applyDefaults

@@ -27,6 +27,10 @@
 		E7546BDE1A7AA0160005C8EE /* ARLineGraphXLegend_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BDD1A7AA0160005C8EE /* ARLineGraphXLegend_Tests.m */; };
 		E7546BF81A7C4A220005C8EE /* ARLineGraphPointsLayer_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BF71A7C4A220005C8EE /* ARLineGraphPointsLayer_Tests.m */; };
 		E7546BFD1A8007110005C8EE /* ARLineGraphDPUtil_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546BFB1A8007050005C8EE /* ARLineGraphDPUtil_Tests.m */; };
+		E7546C1E1A816D020005C8EE /* ARCircleGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546C1D1A816D020005C8EE /* ARCircleGraph.m */; };
+		E7546C221A816D4A0005C8EE /* ARCircleRing.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546C211A816D4A0005C8EE /* ARCircleRing.m */; };
+		E7546C261A81713D0005C8EE /* ARCircleGraphViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546C251A81713D0005C8EE /* ARCircleGraphViewController.m */; };
+		E7546C291A8173610005C8EE /* ARCircleValueLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E7546C281A8173610005C8EE /* ARCircleValueLabel.m */; };
 		E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */; };
 		E7826F041A705D0900642F1E /* ARPieChartLabelsLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */; };
 		E7B2A5C91A64874C00FD402E /* ARLineGraphs_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = E7B2A5C81A64874C00FD402E /* ARLineGraphs_Tests.m */; };
@@ -89,6 +93,14 @@
 		E7546BDD1A7AA0160005C8EE /* ARLineGraphXLegend_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineGraphXLegend_Tests.m; sourceTree = "<group>"; };
 		E7546BF71A7C4A220005C8EE /* ARLineGraphPointsLayer_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineGraphPointsLayer_Tests.m; sourceTree = "<group>"; };
 		E7546BFB1A8007050005C8EE /* ARLineGraphDPUtil_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARLineGraphDPUtil_Tests.m; sourceTree = "<group>"; };
+		E7546C1C1A816D020005C8EE /* ARCircleGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCircleGraph.h; sourceTree = "<group>"; };
+		E7546C1D1A816D020005C8EE /* ARCircleGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARCircleGraph.m; sourceTree = "<group>"; };
+		E7546C201A816D4A0005C8EE /* ARCircleRing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARCircleRing.h; path = "Private/Circle Graph/ARCircleRing.h"; sourceTree = "<group>"; };
+		E7546C211A816D4A0005C8EE /* ARCircleRing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARCircleRing.m; path = "Private/Circle Graph/ARCircleRing.m"; sourceTree = "<group>"; };
+		E7546C241A81713D0005C8EE /* ARCircleGraphViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARCircleGraphViewController.h; path = ARGraphsDemo/ARCircleGraphViewController.h; sourceTree = SOURCE_ROOT; };
+		E7546C251A81713D0005C8EE /* ARCircleGraphViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARCircleGraphViewController.m; path = ARGraphsDemo/ARCircleGraphViewController.m; sourceTree = SOURCE_ROOT; };
+		E7546C271A8173610005C8EE /* ARCircleValueLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARCircleValueLabel.h; path = "Private/Circle Graph/ARCircleValueLabel.h"; sourceTree = "<group>"; };
+		E7546C281A8173610005C8EE /* ARCircleValueLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARCircleValueLabel.m; path = "Private/Circle Graph/ARCircleValueLabel.m"; sourceTree = "<group>"; };
 		E7826EFF1A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartSettingsTableViewController.h; path = ARGraphsDemo/ARPieChartSettingsTableViewController.h; sourceTree = SOURCE_ROOT; };
 		E7826F001A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARPieChartSettingsTableViewController.m; path = ARGraphsDemo/ARPieChartSettingsTableViewController.m; sourceTree = SOURCE_ROOT; };
 		E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARPieChartLabelsLayer.h; path = Private/ARPieChartLabelsLayer.h; sourceTree = "<group>"; };
@@ -151,6 +163,7 @@
 				E7546BCA1A7840280005C8EE /* ARGraphTitleView.m */,
 				E71233C71A6ED3250034E447 /* ARHelpers.h */,
 				E71233C81A6ED3250034E447 /* ARHelpers.m */,
+				E7546C1F1A816D070005C8EE /* Circle Graph */,
 				E71233B91A6DBFB00034E447 /* Pie Chart */,
 				E71233B81A6DBFA30034E447 /* Line Graph */,
 			);
@@ -189,13 +202,33 @@
 			children = (
 				E71233BA1A6DBFE30034E447 /* ARPieChartDataPointUtility.h */,
 				E71233BB1A6DBFE30034E447 /* ARPieChartDataPointUtility.m */,
+				E7546BC51A771AB90005C8EE /* ARPieChartAnimationTypes.h */,
 				E71233C11A6DD3360034E447 /* ARPieChartLayer.h */,
 				E71233C21A6DD3360034E447 /* ARPieChartLayer.m */,
-				E7546BC51A771AB90005C8EE /* ARPieChartAnimationTypes.h */,
 				E7826F021A705D0900642F1E /* ARPieChartLabelsLayer.h */,
 				E7826F031A705D0900642F1E /* ARPieChartLabelsLayer.m */,
 			);
 			name = "Pie Chart";
+			sourceTree = "<group>";
+		};
+		E7546C1F1A816D070005C8EE /* Circle Graph */ = {
+			isa = PBXGroup;
+			children = (
+				E7546C201A816D4A0005C8EE /* ARCircleRing.h */,
+				E7546C211A816D4A0005C8EE /* ARCircleRing.m */,
+				E7546C271A8173610005C8EE /* ARCircleValueLabel.h */,
+				E7546C281A8173610005C8EE /* ARCircleValueLabel.m */,
+			);
+			name = "Circle Graph";
+			sourceTree = "<group>";
+		};
+		E7546C231A8171170005C8EE /* Circle Graph */ = {
+			isa = PBXGroup;
+			children = (
+				E7546C241A81713D0005C8EE /* ARCircleGraphViewController.h */,
+				E7546C251A81713D0005C8EE /* ARCircleGraphViewController.m */,
+			);
+			name = "Circle Graph";
 			sourceTree = "<group>";
 		};
 		E7826EFD1A6F2B0900642F1E /* Pie Chart */ = {
@@ -246,6 +279,7 @@
 			children = (
 				E7B2A6381A64A45A00FD402E /* AppDelegate.h */,
 				E7B2A6391A64A45A00FD402E /* AppDelegate.m */,
+				E7546C231A8171170005C8EE /* Circle Graph */,
 				E7826EFE1A6F2B1300642F1E /* Line Graph */,
 				E7826EFD1A6F2B0900642F1E /* Pie Chart */,
 				E7B2A6411A64A46200FD402E /* Images.xcassets */,
@@ -296,6 +330,8 @@
 				E7B2A64A1A64A47C00FD402E /* ARLineGraph.m */,
 				E71233B51A6DBDA70034E447 /* ARPieChart.h */,
 				E71233B61A6DBDA70034E447 /* ARPieChart.m */,
+				E7546C1C1A816D020005C8EE /* ARCircleGraph.h */,
+				E7546C1D1A816D020005C8EE /* ARCircleGraph.m */,
 				E7B2A64B1A64A47C00FD402E /* ARGraphDataPoint.h */,
 				E7B2A64C1A64A47C00FD402E /* ARGraphDataPoint.m */,
 				5493DA2D1A64A9AB00FB10ED /* Private */,
@@ -450,15 +486,19 @@
 				E71233C61A6DD7350034E447 /* ARPieChartViewController.m in Sources */,
 				E7826F011A6F2B3B00642F1E /* ARPieChartSettingsTableViewController.m in Sources */,
 				E7B2A6401A64A45A00FD402E /* ARGraphViewController.m in Sources */,
+				E7546C1E1A816D020005C8EE /* ARCircleGraph.m in Sources */,
 				E71233AD1A69D61B0034E447 /* ARLineGraphDataPointUtility.m in Sources */,
 				E7546BCB1A7840280005C8EE /* ARGraphTitleView.m in Sources */,
+				E7546C261A81713D0005C8EE /* ARCircleGraphViewController.m in Sources */,
 				E7B2A63F1A64A45A00FD402E /* ARLineGraphSettingsTableViewController.m in Sources */,
 				E71233B71A6DBDA70034E447 /* ARPieChart.m in Sources */,
 				E71233B01A6D6F430034E447 /* ARLineGraphXLegendView.m in Sources */,
 				E71233C91A6ED3250034E447 /* ARHelpers.m in Sources */,
 				E71233C31A6DD3360034E447 /* ARPieChartLayer.m in Sources */,
+				E7546C291A8173610005C8EE /* ARCircleValueLabel.m in Sources */,
 				E7546BC01A72F4E60005C8EE /* ARLineGraphMean.m in Sources */,
 				5493DA361A64A9BD00FB10ED /* ARYMinMaxLayer.m in Sources */,
+				E7546C221A816D4A0005C8EE /* ARCircleRing.m in Sources */,
 				E7546BC81A780B260005C8EE /* ARLineGraphYLegendView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

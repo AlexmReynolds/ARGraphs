@@ -346,9 +346,7 @@
 
 - (void)updateSubLayers
 {
-    if(self.showXLegend){
-        [self.xAxisContainerView reloadData];
-    }
+
 
     NSInteger yMin = [[self dataPointUtility] yMin];
     NSInteger yMax = [[self dataPointUtility] yMax];
@@ -375,6 +373,13 @@
         self.yAxisContainerView.yMin = yMin;
         self.xAxisContainerView.xMax = xMax;
         self.xAxisContainerView.xMin = xMin;
+    }
+    
+    if(self.showXLegend){
+        [self.xAxisContainerView reloadData];
+    }
+    if(self.showYLegend){
+        [self.yAxisContainerView reloadData];
     }
 
 }

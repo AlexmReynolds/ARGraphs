@@ -22,5 +22,7 @@
 @property (nonatomic, strong) NSString *title;
 
 - (CGSize)contentSize;
+- (void)reloadData;
+
 @end
 

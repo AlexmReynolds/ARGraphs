@@ -71,15 +71,6 @@ static CGFloat kPaddingBetweenLabels = 2.0;
         self.widthConstraint.constant = [self contentSize].width;
         [self.superview layoutIfNeeded];
     }
-
-}
-
-- (void)setRange:(NSRange)range
-{
-    _range = range;
-    if(range.length > 0){
-        [self createOrUpdateLabels];
-    }
 }
 
 - (void)setLabelColor:(UIColor *)labelColor
@@ -92,7 +83,12 @@ static CGFloat kPaddingBetweenLabels = 2.0;
 }
  
 #pragma mark - Getters
-
+- (void)reloadData
+{
+    if(_range.length > 0){
+        [self createOrUpdateLabels];
+    }
+}
 - (CGSize)contentSize
 {
     CGFloat width = 0;

@@ -39,9 +39,11 @@
 - (void)initialSetup
 {
     _ring = [[ARCircleRing alloc] init];
-    _ring.lineColor = [UIColor redColor].CGColor;
+    _ring.lineColor = [UIColor blueColor].CGColor;
     _ring.lineCap = kCALineCapRound;
     _ring.fillColor = [UIColor clearColor].CGColor;
+    _ring.maxColor = [UIColor redColor].CGColor;
+    _ring.minColor = [UIColor yellowColor].CGColor;
     [self.layer addSublayer:_ring];
     
     _valueLabel = [[ARCircleValueLabel alloc] init];

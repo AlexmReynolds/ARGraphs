@@ -7,10 +7,12 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-
+@import UIKit;
 @interface ARCircleRing : CAShapeLayer
 @property (nonatomic) CGFloat percent;
 @property (nonatomic) CGColorRef lineColor;
 @property (nonatomic) CGFloat animationDuration;
+@property (nonatomic) CGColorRef minColor;
+@property (nonatomic) CGColorRef maxColor;
 
 @end

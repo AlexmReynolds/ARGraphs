@@ -37,6 +37,8 @@
  */
 + (CGColorRef)lightenColor:(CGColorRef)color withPercent:(CGFloat)percent;
 
++ (CGColorRef)colorPercentBetween:(CGFloat)percent betweenMinColor:(CGColorRef)minColor maxColor:(CGColorRef)maxColor;
+
 /**
  *  @abstract Makes a CGPoint that has been translated from its current position
  *

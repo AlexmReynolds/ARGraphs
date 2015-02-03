@@ -14,5 +14,7 @@
 
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic) CGFloat animationDuration;
+@property (nonatomic) UIColor *minColor;
+@property (nonatomic) UIColor *maxColor;
 
 @end

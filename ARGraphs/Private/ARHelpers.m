@@ -65,6 +65,48 @@
     return newColor;
 }
 
++ (CGColorRef)colorPercentBetween:(CGFloat)percent betweenMinColor:(CGColorRef)minColor maxColor:(CGColorRef)maxColor
+{
+    CGFloat inverseProgress = 1.0 - percent;
+    NSInteger   totalMinComponents = CGColorGetNumberOfComponents(minColor);
+    BOOL  isMinGreyscale     = totalMinComponents == 2 ? YES : NO;
+    
+    NSInteger   totalMaxComponents = CGColorGetNumberOfComponents(maxColor);
+    BOOL  isMaxGreyscale        = totalMaxComponents == 2 ? YES : NO;
+    
+    CGFloat* minComponents = (CGFloat *)CGColorGetComponents(minColor);
+    CGFloat* maxComponents = (CGFloat *)CGColorGetComponents(maxColor);
+    
+    CGFloat newComponents[4];
+    
+    if (isMaxGreyscale && isMinGreyscale) {
+        newComponents[0] = minComponents[0] * inverseProgress + maxComponents[0] * percent;
+        newComponents[1] = minComponents[0] * inverseProgress + maxComponents[0] * percent;
+        newComponents[2] = minComponents[0] * inverseProgress + maxComponents[0] * percent;
+        newComponents[3] = minComponents[1] * inverseProgress + maxComponents[1] * percent;
+    } else if(isMinGreyscale) {
+        newComponents[0] = minComponents[0] * inverseProgress + maxComponents[0] * percent;
+        newComponents[1] = minComponents[0] * inverseProgress + maxComponents[1] * percent;
+        newComponents[2] = minComponents[0] * inverseProgress + maxComponents[2] * percent;
+        newComponents[3] = minComponents[1] * inverseProgress + maxComponents[3] * percent;
+    } else if(isMaxGreyscale){
+        newComponents[0] = minComponents[0] * inverseProgress + maxComponents[0] * percent;
+        newComponents[1] = minComponents[1] * inverseProgress + maxComponents[0] * percent;
+        newComponents[2] = minComponents[2] * inverseProgress + maxComponents[0] * percent;
+        newComponents[3] = minComponents[3] * inverseProgress + maxComponents[1] * percent;
+    }else {
+        newComponents[0] = minComponents[0] * inverseProgress+ maxComponents[0] * percent;
+        newComponents[1] = minComponents[1] * inverseProgress+ maxComponents[1] * percent;
+        newComponents[2] = minComponents[2] * inverseProgress+ maxComponents[2] * percent;
+        newComponents[3] = minComponents[3] * inverseProgress+ maxComponents[3] * percent;
+    }
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef newColor = CGColorCreate(colorSpace, newComponents);
+    CGColorSpaceRelease(colorSpace);
+    return newColor;
+}
+
 + (CGPoint)pointInCircle:(CGPoint)point insetFromCenterBy:(CGFloat)inset angle:(CGFloat)angle
 {
     CGFloat newAngle = 360.0 - angle;

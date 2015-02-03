@@ -7,8 +7,13 @@
 //
 
 #import "ARCircleRing.h"
+#import "ARHelpers.h"
 
+@interface ARCircleRing ()
+@property (nonatomic) CGColorRef percentColor;
+@end
 @implementation ARCircleRing
+
 - (instancetype)init{
     self = [super init];
     CGMutablePathRef path = [self circlePath];
@@ -26,6 +31,10 @@
 - (void)dealloc
 {
     CGColorRelease(self.lineColor);
+    CGColorRelease(self.minColor);
+    CGColorRelease(self.maxColor);
+    CGColorRelease(self.percentColor);
+
 }
 
 - (CGMutablePathRef)circlePath
@@ -44,10 +53,28 @@
     self.strokeColor = self.lineColor;
 }
 
+- (void)setMaxColor:(CGColorRef)maxColor
+{
+    _maxColor = CGColorCreateCopy(maxColor);
+}
+
+- (void)setMinColor:(CGColorRef)minColor
+{
+    _minColor = CGColorCreateCopy(minColor);
+}
+
 - (void)setPercent:(CGFloat)percent
 {
     _percent = percent;
+    [self setThePercentColor];
     [self animatePercentage:percent];
+}
+
+- (void)setThePercentColor
+{
+    if(self.maxColor && self.minColor && self.percent){
+        _percentColor = [ARHelpers colorPercentBetween:self.percent betweenMinColor:self.minColor maxColor:self.maxColor];
+    }
 }
 
 - (void)animatePercentage:(CGFloat)percentage
@@ -61,6 +88,17 @@
     animation.removedOnCompletion = YES;
     [self addAnimation:animation forKey:@"reveal"];
     self.strokeEnd = percentage;
+    
+    if(self.maxColor && self.minColor){
+        CABasicAnimation *colorAnimation = [CABasicAnimation animationWithKeyPath:@"strokeColor"];
+        colorAnimation.duration = self.animationDuration;
+        colorAnimation.fromValue = (id)(self.minColor);
+        colorAnimation.toValue = (id)(self.percentColor);
+        colorAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        colorAnimation.removedOnCompletion = YES;
+        [self addAnimation:colorAnimation forKey:@"colorAnimation"];
+        self.strokeColor = _percentColor;
+    }
 }
 
 - (void)layoutSublayers

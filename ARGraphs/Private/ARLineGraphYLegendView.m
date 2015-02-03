@@ -20,7 +20,6 @@ static CGFloat kPaddingBetweenLabels = 2.0;
 
 @implementation ARLineGraphYLegendView{
     NSArray *_labels;
-    NSRange _range;
 }
 - (instancetype)initWithFrame:(CGRect)frame
 {

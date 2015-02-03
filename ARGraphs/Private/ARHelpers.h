@@ -114,3 +114,4 @@
 
 + (CGFloat)dataPointXValueForXPosition:(CGFloat)xPosition availableWidth:(CGFloat)availableWidth yRange:(NSRange)range;
 @end
+

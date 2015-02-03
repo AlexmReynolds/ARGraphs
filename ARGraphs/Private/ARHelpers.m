@@ -84,7 +84,7 @@
         if(range.length == 0 || numberOfItems <= 1){
             [increments addObject:@(0)];
         }else {
-            [increments addObject:@(range.location + x * increment)];
+            [increments addObject:@((NSInteger)range.location + x * increment)];
         }
     }
     

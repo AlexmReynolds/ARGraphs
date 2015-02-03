@@ -164,7 +164,11 @@
         label.text = [self stringForXLegendAtIndex:[dpIndex integerValue]];
     }else {
         CGFloat value = [ARHelpers dataPointXValueForXPosition:xValue availableWidth:self.bounds.size.width yRange:NSMakeRange(self.xMin, self.xMax - self.xMin)];
-        label.text = [NSString stringWithFormat:@"%li", (long)value];
+        if(value != NSNotFound){
+            label.text = [NSString stringWithFormat:@"%li", (long)value];
+        }else {
+            label.text = @"";
+        }
     }
     [self updateFrameOfLabel:label xValue:xValue];
 

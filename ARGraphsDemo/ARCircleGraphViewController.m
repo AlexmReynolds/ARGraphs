@@ -17,14 +17,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"Circle Graph";
+
     // Do any additional setup after loading the view.
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.graph.percent = 0.6;
+    self.graph.percent = 0.8;
     self.graph.lineWidth = 4.0;
     self.graph.valueFormat = @"%.02f";
+    self.graph.backgroundColor = [UIColor clearColor];
     self.graph.value = 100;
 }
 - (void)didReceiveMemoryWarning {

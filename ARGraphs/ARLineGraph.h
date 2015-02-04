@@ -72,6 +72,9 @@
 /// Default is @c YES
 @property (nonatomic) BOOL showMeanLine UI_APPEARANCE_SELECTOR;
 
+// The duration of the animation for showing the datapoints
+@property (nonatomic) CGFloat animationDuration UI_APPEARANCE_SELECTOR;
+
 @property (nonatomic) UIEdgeInsets insets;
 #pragma mark - Methods
 /*! 

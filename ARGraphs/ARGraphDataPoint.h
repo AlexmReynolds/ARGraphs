@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 @interface ARGraphDataPoint : NSObject
 
 /*!
@@ -16,7 +16,7 @@
  @param x value to save in @c xValue property
  @param y value to save in @c yValue property
  */
-+ (instancetype)dataPointWithX:(NSInteger)x y:(NSInteger)y;
++ (instancetype)dataPointWithX:(CGFloat)x y:(CGFloat)y;
 
 /*!
  Create a data point with a specific @c x and @c y value.
@@ -24,12 +24,12 @@
  @param x value to save in @c xValue property
  @param y value to save in @c yValue property
  */
-- (instancetype)initWithX:(NSInteger)xValue y:(NSInteger)yValue;
+- (instancetype)initWithX:(CGFloat)xValue y:(CGFloat)yValue;
 
-- (instancetype)initWithY:(NSInteger)yValue;
+- (instancetype)initWithY:(CGFloat)yValue;
 
 /// x point value
-@property (nonatomic) NSInteger xValue;
+@property (nonatomic) CGFloat xValue;
 /// y point value
-@property (nonatomic) NSInteger yValue;
+@property (nonatomic) CGFloat yValue;
 @end

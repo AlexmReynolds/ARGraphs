@@ -23,6 +23,7 @@
     self.sliceGutterWidth = 0.0;
     self.innerRadiusPercent = 0.4;
     self.animationType = ARSliceAnimationFan;
+    self.animationDuration = 0.6;
     CGFloat fillColors [] = {
         1.0, 1.0, 1.0, 0.8
     };
@@ -131,7 +132,7 @@
     self.mask = _maskLayer;
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    animation.duration = 0.6;
+    animation.duration = self.animationDuration;
     animation.fromValue = @0;
     animation.toValue = @1;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -148,7 +149,7 @@
         CGFloat offsetDegreesToStart = -(lastAngle + degrees) ;
         CAShapeLayer *slice = [self.sublayers objectAtIndex:x];
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-        animation.duration = 0.6;
+        animation.duration = self.animationDuration;
         animation.fromValue = [NSNumber numberWithFloat:DEGREES_TO_RADIANS(offsetDegreesToStart)];
         animation.toValue = [NSNumber numberWithFloat:DEGREES_TO_RADIANS(0)];
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -169,7 +170,7 @@
         CAShapeLayer *slice = [self.sublayers objectAtIndex:x];
         slice.transform = CATransform3DMakeScale(0, 0, 0);
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.scale"];
-        animation.duration = 0.6;
+        animation.duration = self.animationDuration;
         animation.fromValue = [NSValue valueWithCATransform3D:slice.transform];
         animation.toValue = [NSValue valueWithCATransform3D:CATransform3DIdentity];
         animation.beginTime = CACurrentMediaTime() + (x * 0.1);

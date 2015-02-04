@@ -49,7 +49,7 @@
 - (CABasicAnimation*)opacityAnimation
 {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.duration = 0.5;
+    animation.duration = self.animationDuration;
     animation.fromValue = @0;
     animation.toValue = @1;
     animation.removedOnCompletion = YES;

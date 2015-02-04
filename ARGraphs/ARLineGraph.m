@@ -254,6 +254,11 @@
     self.titleContainerView.rightConstraint.constant = insets.right;
     [self layoutIfNeeded];
 }
+- (void)setAnimationDuration:(CGFloat)animationDuration
+{
+    _animationDuration = animationDuration;
+    _pointsLayer.animationDuration = animationDuration;
+}
 
 #pragma mark - Getters
 

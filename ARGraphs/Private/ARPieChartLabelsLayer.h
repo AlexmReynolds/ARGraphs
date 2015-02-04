@@ -15,6 +15,8 @@
 @property (nonatomic, strong) NSArray *labelStrings;
 @property (nonatomic) CGFloat innerRadiusPercent;
 @property (nonatomic) BOOL interalLabels;
+@property (nonatomic) CGFloat animationDuration;
+
 
 @property (nonatomic) CGFloat topPadding;
 @property (nonatomic) CGFloat bottomPadding;

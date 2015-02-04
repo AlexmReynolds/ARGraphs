@@ -19,6 +19,7 @@
 @property (nonatomic) CGFloat bottomPadding;
 @property (nonatomic) CGFloat rightPadding;
 @property (nonatomic) CGFloat leftPadding;
+@property (nonatomic) CGFloat animationDuration;
 
 @property (nonatomic) CGColorRef fillBaseColor;
 

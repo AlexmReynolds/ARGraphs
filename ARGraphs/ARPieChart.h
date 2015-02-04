@@ -15,6 +15,10 @@
 @interface ARPieChart : UIView
 @property (nonatomic, weak) id <ARPieChartDataSource> dataSource;
 @property (nonatomic) ARSliceAnimation animationType;
+
+// The duration of the animation for showing the pie
+@property (nonatomic) CGFloat animationDuration UI_APPEARANCE_SELECTOR;
+
 @property (nonatomic, strong) UIColor *labelColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat sliceGutterWidth UI_APPEARANCE_SELECTOR;
 @property (nonatomic) CGFloat innerRadiusPercent UI_APPEARANCE_SELECTOR;

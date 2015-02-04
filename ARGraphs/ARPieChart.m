@@ -65,6 +65,7 @@
 - (void)applyDefaults
 {
     self.useBackgroundGradient = YES;
+    self.animationDuration = 0.6;
     self.labelColor = [UIColor whiteColor];
     self.tintColor = [UIColor colorWithRed:0.7 green:0.0 blue:0.0 alpha:1.0];
     self.insets = UIEdgeInsetsMake(8, 8, 8, 8);
@@ -123,6 +124,13 @@
     self.pieLayer.animationType = animationType;
 }
 
+- (void)setAnimationDuration:(CGFloat)animationDuration
+{
+    _animationDuration = animationDuration;
+    self.pieLayer.animationDuration = animationDuration;
+    self.labelsLayer.animationDuration = animationDuration;
+}
+
 - (void)reloadData
 {    
     _pieLayer.percentages = [self.dataPointUtility percentages];
@@ -165,7 +173,7 @@
 {
     [_pieLayer animate];
     _labelsLayer.opacity = 0.0;
-    [_labelsLayer performSelector:@selector(animate) withObject:nil afterDelay:0.5];
+    [_labelsLayer performSelector:@selector(animate) withObject:nil afterDelay:self.animationDuration];
 }
 
 @end

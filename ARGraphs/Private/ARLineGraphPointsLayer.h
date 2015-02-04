@@ -20,6 +20,7 @@
 
 @property (nonatomic) CGFloat dotRadius;
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) CGFloat animationDuration;
 
 @property (nonatomic) BOOL shouldFill;
 @property (nonatomic) BOOL shouldSmooth;

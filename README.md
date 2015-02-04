@@ -15,18 +15,38 @@ Fun graphs for iOS.
 All Charts respond to the Appearance selector so you can set App wide settings in App Did finish launching.
 
 ```objc
+	//Line Graph
+	[[ARLineGraph appearance] setUseBackgroundGradient:NO];
     [[ARLineGraph appearance] setLabelColor:[UIColor redColor]];
     [[ARLineGraph appearance] setTintColor:[UIColor blueColor]];
     [[ARLineGraph appearance] setLineColor:[UIColor redColor]];
     [[ARLineGraph appearance] setShowXLegend:YES];
     [[ARLineGraph appearance] setShowXLegendValues:NO];
+    [[ARLineGraph appearance] setShowYLegend:YES];
+    [[ARLineGraph appearance] setShowYLegendValues:YES];
+    [[ARLineGraph appearance] setNormalizeXValues:YES];
     [[ARLineGraph appearance] setShowDots:NO];
     [[ARLineGraph appearance] setShowMeanLine:NO];
-    [[ARLineGraph appearance] setUseBackgroundGradient:NO];
     [[ARLineGraph appearance] setShowMinMaxLines:NO];
-    
+    [[ARLineGraph appearance] setShouldFill:NO];
+    [[ARLineGraph appearance] setShouldSmooth:NO];
+    [[ARLineGraph appearance] setAnimationDuration:4.0];
+
+    //Pie Chart
     [[ARPieChart appearance] setUseBackgroundGradient:NO];
     [[ARPieChart appearance] setLabelColor:[UIColor redColor]];
+	[[ARPieChart appearance] setSliceGutterWidth:2.0];
+    [[ARPieChart appearance] setInnerRadiusPercent:0.4];
+    [[ARPieChart appearance] setInsets:UIEdgeInsetsMake(8, 8, 8, 8)];
+    [[ARPieChart appearance] setAnimationDuration:4.0];
+
+    //Circle Graph
+    [[ARCircleGraph appearance] setLabelColor:[UIColor redColor]];
+    [[ARCircleGraph appearance] setRingColor:[UIColor redColor]];
+    [[ARCircleGraph appearance] setMinColor:[UIColor yellowColor]];
+    [[ARCircleGraph appearance] setMaxColor:[UIColor redColor]];
+    [[ARCircleGraph appearance] setLineWidth:4.0];
+    [[ARCircleGraph appearance] setAnimationDuration:4.0];
 ```    
     
 ## ARLineGraph
@@ -104,3 +124,43 @@ You can customize the color of each slice by passing an array of CGColorRefs in 
         return @[(id)[UIColor redColor].CGColor, (id)[UIColor greenColor].CGColor]];
     }
 ```
+## ARCircleGraph
+ARCircleGraph represents only 1 piece of data and is numeric in nature. This is great for things like number of steps taken in a day or number of likes or number of views.
+### Customizing
+The color of the inner label can be set. It defaults to dark gray;
+ 
+ ```objc
+ circleGraph.labelColor = [UIColor greenColor];
+ ```
+ 
+The color of the ring used to express the percent of total can be colored by setting ringColor.
+ 
+ ```objc
+ circleGraph.ringColor = [UIColor greenColor];
+ ```
+ 
+The ring can also be colored by setting minColor and maxColor. This will take the percent you set and make the ring a color that percentage between min and max colors. Say your range is 0 to 100 miles an hour. You might set minColor to green and maxColor to red. At 80% the ring could be a mix of green red.
+ 
+ ```objc
+ circleGraph.minColor = [UIColor greenColor];
+ circleGraph.maxColor = [UIColor redColor];
+
+ ```
+
+The width of the ring is set via lineWidth. The view will resize the label to fit inside the ring width 
+ ```objc
+ circleGraph.lineWidth = 8.0;
+
+ ```
+ 
+ The value you want to show is set via the value property. If animating then it will animate from 0 to this value. If your value is large it is a good idea to set valueFormat so that you can have 100k represent 100,000 and make the animation less crazy
+ ```objc
+ circleGraph.value = 100.0;
+
+ ```
+ 
+ The value you want to set may be 100,000 so instead you can set a format so it would say 100 K when you set value to 100. 
+ ```objc
+ circleGraph.valueFormat = @"%.02f K";
+
+ ```

@@ -33,6 +33,7 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     self.rightPadding = 0;
     self.topPadding = 0;
     self.bottomPadding = 0;
+    self.animationDuration = 0.6;
     CGFloat fillColors [] = {
         1.0, 1.0, 1.0, 1.0
     };
@@ -54,7 +55,7 @@ static const NSInteger kSMOOTHING_MINIMUM = 20;
     self.mask = _maskLayer;
     
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
-    animation.duration = 0.6;
+    animation.duration = self.animationDuration;
     animation.fromValue = @0;
     animation.toValue = @1;
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];

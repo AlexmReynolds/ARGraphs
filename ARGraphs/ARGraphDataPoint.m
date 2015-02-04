@@ -10,11 +10,11 @@
 
 @implementation ARGraphDataPoint
 
-+ (instancetype)dataPointWithX:(NSInteger)x y:(NSInteger)y {
++ (instancetype)dataPointWithX:(CGFloat)x y:(CGFloat)y {
     return [[self alloc] initWithX:x y:y];
 }
 
-- (instancetype)initWithX:(NSInteger)xValue y:(NSInteger)yValue
+- (instancetype)initWithX:(CGFloat)xValue y:(CGFloat)yValue
 {
     self = [super init];
     self.xValue = xValue;
@@ -22,7 +22,7 @@
     return self;
 }
 
-- (instancetype)initWithY:(NSInteger)yValue
+- (instancetype)initWithY:(CGFloat)yValue
 {
     self = [super init];
     self.xValue = NSNotFound;

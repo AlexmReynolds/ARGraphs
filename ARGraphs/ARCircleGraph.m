@@ -39,11 +39,9 @@
 - (void)initialSetup
 {
     _ring = [[ARCircleRing alloc] init];
-    _ring.lineColor = [UIColor blueColor].CGColor;
     _ring.lineCap = kCALineCapRound;
     _ring.fillColor = [UIColor clearColor].CGColor;
-    _ring.maxColor = [UIColor redColor].CGColor;
-    _ring.minColor = [UIColor yellowColor].CGColor;
+
     [self.layer addSublayer:_ring];
     
     _valueLabel = [[ARCircleValueLabel alloc] init];
@@ -56,7 +54,16 @@
 {
     self.lineWidth = 8.0;
     self.valueFormat = @"%.0f";
-    self.animationDuration = 1.0;;
+    self.animationDuration = 1.0;
+    self.minColor = [UIColor blueColor];
+    self.maxColor = [UIColor redColor];
+    self.ringColor = [UIColor blueColor];
+
+}
+
+- (void)beginAnimationIn
+{
+    
 }
 
 #pragma mark - Setters
@@ -90,6 +97,27 @@
     _ring.animationDuration = animationDuration;
     _valueLabel.animationDuration = animationDuration;
 }
+
+- (void)setMinColor:(UIColor *)minColor
+{
+    _minColor = minColor;
+    _ring.minColor = minColor.CGColor;
+
+}
+
+- (void)setMaxColor:(UIColor *)maxColor
+{
+    _maxColor = maxColor;
+    _ring.maxColor = maxColor.CGColor;
+}
+
+- (void)setRingColor:(UIColor *)ringColor
+{
+    _ringColor = ringColor;
+    _ring.lineColor = ringColor.CGColor;
+}
+
+#pragma mark - Layout
 - (void)layoutSubviews
 {
     [super layoutSubviews];

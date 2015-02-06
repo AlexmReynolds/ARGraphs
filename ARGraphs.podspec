@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "ARGraphs"
-  s.version      = "0.0.9"
+  s.version      = "0.0.10"
   s.summary      = "Awesome HealthKit style iOS Charts"
 
   s.description  = <<-DESC
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.platform     = :ios, "8.0"
 
-  s.source       = { :git => "https://github.com/AlexmReynolds/ARGraphs.git", :tag => "0.0.9" }
+  s.source       = { :git => "https://github.com/AlexmReynolds/ARGraphs.git", :tag => "0.0.10" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

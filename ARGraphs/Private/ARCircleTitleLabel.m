@@ -14,7 +14,6 @@
     self = [super init];
     if(self){
         self.font = [UIFont fontWithName:@"Helvetica" size:22];
-        self.text = @"FARTS";
         self.textColor = [UIColor darkGrayColor];
         self.minimumScaleFactor = 0.5;
         self.adjustsFontSizeToFitWidth = YES;
@@ -30,6 +29,12 @@
     if(self.superview){
         [self createConstraints];
     }
+}
+
+- (void)setText:(NSString *)text
+{
+    [super setText:text];
+    [self sizeToFit];
 }
 
 - (void)createConstraints

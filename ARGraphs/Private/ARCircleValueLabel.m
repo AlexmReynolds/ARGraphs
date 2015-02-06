@@ -24,13 +24,11 @@
     self = [super init];
     if(self){
         self.font = [UIFont fontWithName:@"Helvetica" size:22];
-        self.text = @"FARTS";
         self.textColor = [UIColor darkGrayColor];
         self.minimumScaleFactor = 0.5;
         self.adjustsFontSizeToFitWidth = YES;
         self.textAlignment = NSTextAlignmentCenter;
         self.translatesAutoresizingMaskIntoConstraints = NO;
-        self.backgroundColor = [UIColor blueColor];
     }
     return self;
 }
@@ -59,6 +57,13 @@
     _bottom.constant = -lineWidth - padding;
     _top.constant = lineWidth + padding;
     [self.superview layoutIfNeeded];
+}
+
+- (void)setCurrentValue:(CGFloat)currentValue
+{
+    if(self.format == nil)
+        self.format = @"%f";
+    [self setTextValue:currentValue];
 }
 - (void)createConstraints
 {

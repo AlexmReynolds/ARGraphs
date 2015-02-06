@@ -15,4 +15,5 @@
 @property (nonatomic) CGColorRef minColor;
 @property (nonatomic) CGColorRef maxColor;
 
+- (void)animateToPercent:(CGFloat)percent;
 @end

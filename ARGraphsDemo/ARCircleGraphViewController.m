@@ -32,12 +32,12 @@
     self.graph.title = @"Farts";
     
     self.graph.value = 100;
+   [self.graph beginAnimationIn];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
 /*
 #pragma mark - Navigation
 

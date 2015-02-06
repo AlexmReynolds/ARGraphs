@@ -66,10 +66,12 @@
 
 - (void)beginAnimationIn
 {
-    
+    [_valueLabel countFromZeroTo:self.value];
+    [self.ring animateToPercent:self.percent];
 }
 
 #pragma mark - Setters
+
 - (void)setPercent:(CGFloat)percent
 {
     _percent = percent;
@@ -85,7 +87,7 @@
 - (void)setValue:(CGFloat)value
 {
     _value = value;
-    [_valueLabel countFromZeroTo:value];
+    _valueLabel.currentValue = value;
 }
 
 - (void)setValueFormat:(NSString *)valueFormat

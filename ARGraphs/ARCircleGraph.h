@@ -11,7 +11,9 @@ typedef NS_OPTIONS(NSInteger, ARCircleGraphTitlePosition){
     ARCircleGraphTitlePositionTop = 1,
     ARCircleGraphTitlePositionBottom
 };
+
 @interface ARCircleGraph : UIView
+
 // Percent of the ring to draw from 0.0 to 1.0
 @property (nonatomic) CGFloat percent;
 

@@ -67,6 +67,14 @@
 {
     _percent = percent;
     [self setThePercentColor];
+
+    self.strokeEnd = percent;
+    self.strokeColor = _percentColor;
+}
+
+- (void)animateToPercent:(CGFloat)percent
+{
+    _percent = percent;
     [self animatePercentage:percent];
 }
 

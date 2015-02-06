@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSLayoutConstraint *bottom;
 
 @property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) CGFloat currentValue;
 
 @property (nonatomic, strong) NSString *format;
 @property (nonatomic, assign) NSTimeInterval animationDuration;

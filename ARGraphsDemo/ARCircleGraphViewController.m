@@ -28,6 +28,9 @@
     self.graph.lineWidth = 4.0;
     self.graph.valueFormat = @"%.02f";
     self.graph.backgroundColor = [UIColor clearColor];
+    self.graph.labelColor = [UIColor redColor];
+    self.graph.title = @"Farts";
+    
     self.graph.value = 100;
 }
 - (void)didReceiveMemoryWarning {

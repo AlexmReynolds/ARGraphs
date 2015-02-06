@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+typedef NS_OPTIONS(NSInteger, ARCircleGraphTitlePosition){
+    ARCircleGraphTitlePositionTop = 1,
+    ARCircleGraphTitlePositionBottom
+};
 @interface ARCircleGraph : UIView
 // Percent of the ring to draw from 0.0 to 1.0
 @property (nonatomic) CGFloat percent;
@@ -17,6 +20,12 @@
 
 // Formatted string to use like @"%.02f K"
 @property (nonatomic, strong) NSString *valueFormat;
+
+// string for chart title"
+@property (nonatomic, strong) NSString *title;
+
+// This will put the title above or below the ring graph
+@property (nonatomic) ARCircleGraphTitlePosition titlePosition;
 
 // lineWidth of the percent ring. Changing this will inset the label
 @property (nonatomic) CGFloat lineWidth UI_APPEARANCE_SELECTOR;
@@ -35,6 +44,7 @@
 
 // Color to use for ring when percent is 0.0. Percentages between 0-1 will mix min max color
 @property (nonatomic) UIColor *maxColor UI_APPEARANCE_SELECTOR;
+
 
 /*!
  @abstract Animate the graph into view

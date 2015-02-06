@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface ARCircleValueLabel : UILabel
+
+@property (nonatomic, strong) NSLayoutConstraint *left;
+@property (nonatomic, strong) NSLayoutConstraint *right;
+@property (nonatomic, strong) NSLayoutConstraint *top;
+@property (nonatomic, strong) NSLayoutConstraint *bottom;
+
 @property (nonatomic) CGFloat lineWidth;
 
 @property (nonatomic, strong) NSString *format;

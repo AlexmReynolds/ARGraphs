@@ -8,7 +8,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 @import UIKit;
-@interface ARCircleRing : CAShapeLayer
+@interface ARCircleRingLayer : CAShapeLayer
 @property (nonatomic) CGFloat percent;
 @property (nonatomic) CGColorRef lineColor;
 @property (nonatomic) CGFloat animationDuration;

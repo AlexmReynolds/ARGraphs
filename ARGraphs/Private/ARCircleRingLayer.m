@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Alex Reynolds. All rights reserved.
 //
 
-#import "ARCircleRing.h"
+#import "ARCircleRingLayer.h"
 #import "ARHelpers.h"
 
-@interface ARCircleRing ()
+@interface ARCircleRingLayer ()
 @property (nonatomic) CGColorRef percentColor;
 @end
-@implementation ARCircleRing
+@implementation ARCircleRingLayer
 
 - (instancetype)init{
     self = [super init];
@@ -40,7 +40,7 @@
 - (CGMutablePathRef)circlePath
 {
     CGPoint center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
-    CGFloat radius = self.bounds.size.width/2 - self.lineWidth/2;
+    CGFloat radius = MIN(self.bounds.size.width/2, self.bounds.size.height/2) - self.lineWidth/2;
     
     CGMutablePathRef path = CGPathCreateMutable();
     CGPathAddArc(path, NULL, center.x, center.y, radius, -M_PI/2, 1.5 * M_PI, NO);

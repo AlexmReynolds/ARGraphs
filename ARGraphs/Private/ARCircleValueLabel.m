@@ -8,11 +8,6 @@
 
 #import "ARCircleValueLabel.h"
 @interface ARCircleValueLabel ()
-@property (nonatomic, strong) NSLayoutConstraint *left;
-@property (nonatomic, strong) NSLayoutConstraint *right;
-@property (nonatomic, strong) NSLayoutConstraint *top;
-@property (nonatomic, strong) NSLayoutConstraint *bottom;
-
 
 @property (nonatomic) CGFloat startingValue;
 @property (nonatomic) CGFloat destinationValue;
@@ -35,6 +30,7 @@
         self.adjustsFontSizeToFitWidth = YES;
         self.textAlignment = NSTextAlignmentCenter;
         self.translatesAutoresizingMaskIntoConstraints = NO;
+        self.backgroundColor = [UIColor blueColor];
     }
     return self;
 }
@@ -56,11 +52,12 @@
 
 - (void)setLineWidth:(CGFloat)lineWidth
 {
+    CGFloat padding = 8.0;
     _lineWidth = lineWidth;
-    _left.constant = lineWidth;
-    _right.constant = -lineWidth;
-    _bottom.constant = -lineWidth;
-    _top.constant = lineWidth;
+    _left.constant = lineWidth + padding;
+    _right.constant = -lineWidth - padding;
+    _bottom.constant = -lineWidth - padding;
+    _top.constant = lineWidth + padding;
     [self.superview layoutIfNeeded];
 }
 - (void)createConstraints

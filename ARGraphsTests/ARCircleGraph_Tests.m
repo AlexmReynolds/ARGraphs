@@ -69,13 +69,75 @@
     }];
 }
 
+#pragma mark - Defaults
+
+- (void)testDefaultGraphBackgroundColor
+{
+    UIColor *expected = [UIColor clearColor];
+    XCTAssertEqual(expected, sut.backgroundColor, @"graph background color was not clear");
+}
+- (void)testDefaultTitleColor
+{
+    UIColor *expected = [UIColor darkTextColor];
+    sut.titleColor = expected;
+    XCTAssertEqual(expected, [sut getTitleLabelForTests].textColor, @"title label color was not dark");
+    
+}
+
+- (void)testDefaultTitleBackgroundColor
+{
+    UIColor *expected = [UIColor clearColor];
+    XCTAssertEqual(expected, [sut getTitleLabelForTests].backgroundColor, @"title label background color was not clear");
+}
+
+- (void)testDefaultValueColor
+{
+    UIColor *expected = [UIColor whiteColor];
+    sut.valueColor = expected;
+    XCTAssertEqual(expected, [sut getValueLabelForTests].textColor, @"value label color was not white");
+}
+
+- (void)testDefaultValueBackgroundColor
+{
+    UIColor *expected = [UIColor clearColor];
+    XCTAssertEqual(expected, [sut getValueLabelForTests].backgroundColor, @"value label background color was not clear");
+}
+
+- (void)testDefaultRingColor
+{
+    UIColor *expected = [UIColor redColor];
+    sut.ringColor = expected;
+    UIColor *ringColor = [UIColor colorWithCGColor:[sut getRingForTests].strokeColor];
+    
+    XCTAssertTrue([expected isEqual:ringColor], @"ring color was not set");
+}
+- (void)testDefaultRingBackgorundColor
+{
+    UIColor *expected = [UIColor colorWithWhite:1.0 alpha:0.4];
+    UIColor *ringBackgroundColor = [UIColor colorWithCGColor:[sut getRingForTests].fillColor];
+    XCTAssertTrue([expected isEqual:ringBackgroundColor], @"ring background color was not set");
+}
+
+- (void)testDefaultTitlePosiiton
+{
+    XCTAssertTrue(sut.titlePosition == ARCircleGraphTitlePositionTop, @"Title position was defaulted to bottom");
+}
+
 #pragma mark - settings
 
-- (void)testSettingLabelColor
+- (void)testSettingTitleColor
 {
     UIColor *expected = [UIColor greenColor];
-    sut.labelColor = expected;
+    sut.titleColor = expected;
     XCTAssertEqual(expected, [sut getTitleLabelForTests].textColor, @"title label color was not set");
+    
+}
+
+- (void)testSettingValueColor
+{
+    UIColor *expected = [UIColor greenColor];
+    sut.valueColor = expected;
+    XCTAssertEqual(expected, [sut getValueLabelForTests].textColor, @"value label color was not set");
     
 }
 

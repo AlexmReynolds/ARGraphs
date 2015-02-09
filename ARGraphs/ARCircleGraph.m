@@ -39,9 +39,10 @@
 
 - (void)initialSetup
 {
+    self.backgroundColor = [UIColor clearColor];
     _ring = [[ARCircleRingLayer alloc] init];
     _ring.lineCap = kCALineCapRound;
-    _ring.fillColor = [UIColor clearColor].CGColor;
+    _ring.fillColor = [UIColor colorWithWhite:1.0 alpha:0.4].CGColor;
 
     [self.layer addSublayer:_ring];
     
@@ -57,6 +58,8 @@
     self.lineWidth = 8.0;
     self.valueFormat = @"%.0f";
     self.animationDuration = 1.0;
+    self.valueColor = [UIColor whiteColor];
+    self.titleColor = [UIColor darkTextColor];
     self.minColor = [UIColor blueColor];
     self.maxColor = [UIColor redColor];
     self.ringColor = [UIColor blueColor];
@@ -122,10 +125,17 @@
     _ring.lineColor = ringColor.CGColor;
 }
 
-- (void)setLabelColor:(UIColor *)labelColor
+- (void)setValueColor:(UIColor *)valueColor
 {
-    _labelColor = labelColor;
-    _titleLabel.textColor = labelColor;
+    _valueColor = valueColor;
+    _valueLabel.textColor = valueColor;
+}
+
+- (void)setTitleColor:(UIColor *)titleColor
+{
+    _titleColor = titleColor;
+    _titleLabel.textColor = titleColor;
+
 }
 
 - (void)setTitle:(NSString *)title

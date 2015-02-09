@@ -39,8 +39,10 @@ typedef NS_OPTIONS(NSInteger, ARCircleGraphTitlePosition){
 @property (nonatomic) UIColor *ringColor UI_APPEARANCE_SELECTOR;
 
 // Color to use for the inner label
-@property (nonatomic) UIColor *labelColor UI_APPEARANCE_SELECTOR;
+@property (nonatomic) UIColor *titleColor UI_APPEARANCE_SELECTOR;
 
+// Color to use for the inner label
+@property (nonatomic) UIColor *valueColor UI_APPEARANCE_SELECTOR;
 // Color to use for ring when percent is 1.0. Percentages between 0-1 will mix min max color
 @property (nonatomic) UIColor *minColor UI_APPEARANCE_SELECTOR;
 

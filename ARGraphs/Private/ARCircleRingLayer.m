@@ -18,7 +18,7 @@
 @property (nonatomic, strong) CAGradientLayer *rightGradient;
 @property (nonatomic, strong) CALayer *container;
 @property (nonatomic, strong) CALayer *background;
-
+@property (nonatomic, strong) CAShapeLayer *track;
 
 
 @end
@@ -31,8 +31,10 @@
     self.animationDuration = 0.5;
     self.lineWidth = 8.0;
     [self addSublayer:self.background];
+    [self addSublayer:self.track];
     [self addSublayer:self.container];
     self.container.mask = self.containerMaskLayer;
+
     [self.container addSublayer:self.leftGradient];
     [self.container addSublayer:self.rightGradient];
     
@@ -54,6 +56,15 @@
         _background = [CALayer layer];
     }
     return _background;
+}
+
+- (CAShapeLayer *)track
+{
+    if(_track == nil){
+        _track = [CAShapeLayer layer];
+        _track.fillColor = nil;
+    }
+    return _track;
 }
 - (CAGradientLayer *)leftGradient
 {
@@ -119,6 +130,7 @@
     CGColorRelease(self.lineColor);
     CGColorRelease(self.minColor);
     CGColorRelease(self.maxColor);
+    CGColorRelease(self.trackColor);
     CGColorRelease(midColor);
     
 }
@@ -149,11 +161,17 @@
 {
     _lineWidth = lineWidth;
     self.containerMaskLayer.lineWidth = lineWidth;
+    self.track.lineWidth = lineWidth;
 }
 
 - (void)setBackgroundColor:(CGColorRef)backgroundColor
 {
     self.background.backgroundColor = backgroundColor;
+}
+
+- (void)setTrackColor:(CGColorRef)trackColor
+{
+    self.track.strokeColor = trackColor;
 }
 - (void)setMaxColor:(CGColorRef)maxColor
 {
@@ -206,7 +224,7 @@
     CGMutablePathRef path = [self circlePath];
     self.containerMaskLayer.path = path;
     self.maskLayer.path = path;
-
+    self.track.path = path;
     CGPathRelease(path);
     
     CGMutablePathRef maskPath = [self backgroundMaskPath];

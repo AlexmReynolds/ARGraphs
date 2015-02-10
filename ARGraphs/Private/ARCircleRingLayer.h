@@ -12,6 +12,7 @@
 @property (nonatomic) CGFloat lineWidth;
 @property (nonatomic) CGFloat percent;
 @property (nonatomic) CGColorRef lineColor;
+@property (nonatomic) CGColorRef trackColor;
 @property (nonatomic) CGFloat animationDuration;
 @property (nonatomic) CGColorRef minColor;
 @property (nonatomic) CGColorRef maxColor;

@@ -113,11 +113,20 @@
 }
 - (void)testDefaultRingBackgorundColor
 {
-    UIColor *expected = [UIColor colorWithWhite:1.0 alpha:0.4];
+    UIColor *expected = [UIColor colorWithWhite:1.0 alpha:0.2];
     ARCircleRingLayer *ringLayer = [sut getRingForTests];
     CALayer *background = [ringLayer.sublayers firstObject];
     UIColor *ringBackgroundColor = [UIColor colorWithCGColor:background.backgroundColor];
     XCTAssertTrue([expected isEqual:ringBackgroundColor], @"ring background color was not set");
+}
+
+- (void)testDefaultTrackColor
+{
+    UIColor *expected = [UIColor colorWithWhite:0.2 alpha:0.4];
+    ARCircleRingLayer *ringLayer = [sut getRingForTests];
+    CAShapeLayer *background = [ringLayer.sublayers objectAtIndex:1];
+    UIColor *trackColor = [UIColor colorWithCGColor:background.strokeColor];
+    XCTAssertTrue([expected isEqual:trackColor], @"ring track color was not set");
 }
 
 - (void)testDefaultTitlePosiiton

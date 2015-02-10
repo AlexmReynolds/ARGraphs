@@ -30,6 +30,7 @@
     self.graph.backgroundColor = [UIColor clearColor];
     self.graph.titleColor = [UIColor redColor];
     self.graph.title = @"Farts";
+    self.graph.titleFont = [UIFont preferredFontForTextStyle:UIFontTextStyleCaption1];
     
     self.graph.value = 100;
    [self.graph beginAnimationIn];

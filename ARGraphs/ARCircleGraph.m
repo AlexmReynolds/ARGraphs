@@ -43,7 +43,7 @@
     self.backgroundColor = [UIColor clearColor];
     
     _ringLayer = [[ARCircleRingLayer alloc] init];
-    _ringLayer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.4].CGColor;
+    _ringLayer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.2].CGColor;
 
     [self.layer addSublayer:_ringLayer];
     
@@ -64,6 +64,7 @@
     self.minColor = [UIColor yellowColor];
     self.maxColor = [UIColor greenColor];
     self.titlePosition = ARCircleGraphTitlePositionTop;
+    self.trackColor = [UIColor colorWithWhite:0.2 alpha:0.4];
 
 }
 
@@ -136,7 +137,12 @@
 {
     _titleColor = titleColor;
     _titleLabel.textColor = titleColor;
+}
 
+- (void)setTrackColor:(UIColor *)trackColor
+{
+    _trackColor = trackColor;
+    self.ringLayer.trackColor = trackColor.CGColor;
 }
 
 - (void)setTitle:(NSString *)title
@@ -161,6 +167,12 @@
             [self needsUpdateConstraints];
             break;
     }
+}
+
+- (void)setTitleFont:(UIFont *)titleFont
+{
+    _titleFont = titleFont;
+    self.titleLabel.font = titleFont;
 }
 
 #pragma mark - Layout

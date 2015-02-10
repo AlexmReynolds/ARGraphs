@@ -49,6 +49,10 @@ typedef NS_OPTIONS(NSInteger, ARCircleGraphTitlePosition){
 // Color to use for ring when percent is 0.0. Percentages between 0-1 will mix min max color
 @property (nonatomic) UIColor *maxColor UI_APPEARANCE_SELECTOR;
 
+@property (nonatomic) UIColor *trackColor UI_APPEARANCE_SELECTOR;
+
+// titleFont will set the title labels font for more tweaking;
+@property (nonatomic) UIFont *titleFont UI_APPEARANCE_SELECTOR;
 
 /*!
  @abstract Animate the graph into view

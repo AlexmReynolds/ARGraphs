@@ -25,7 +25,7 @@
 {
     [super viewWillAppear:animated];
     self.graph.percent = 0.8;
-    self.graph.lineWidth = 4.0;
+    self.graph.lineWidth = 8.0;
     self.graph.valueFormat = @"%.02f";
     self.graph.backgroundColor = [UIColor clearColor];
     self.graph.titleColor = [UIColor redColor];

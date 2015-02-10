@@ -7,11 +7,12 @@
 //
 
 #import "ARCircleGraph.h"
-#import "ARCircleRingLayer.h"
 #import "ARCircleValueLabel.h"
 #import "ARCircleTitleLabel.h"
+#import "ARCircleRingLayer.h"
 @interface ARCircleGraph ()
-@property (nonatomic, strong) ARCircleRingLayer *ring;
+@property (nonatomic, strong) ARCircleRingLayer *ringLayer;
+
 @property (nonatomic, strong) ARCircleValueLabel *valueLabel;
 @property (nonatomic, strong) ARCircleTitleLabel *titleLabel;
 
@@ -40,11 +41,11 @@
 - (void)initialSetup
 {
     self.backgroundColor = [UIColor clearColor];
-    _ring = [[ARCircleRingLayer alloc] init];
-    _ring.lineCap = kCALineCapRound;
-    _ring.fillColor = [UIColor colorWithWhite:1.0 alpha:0.4].CGColor;
+    
+    _ringLayer = [[ARCircleRingLayer alloc] init];
+    _ringLayer.backgroundColor = [UIColor colorWithWhite:1.0 alpha:0.4].CGColor;
 
-    [self.layer addSublayer:_ring];
+    [self.layer addSublayer:_ringLayer];
     
     _valueLabel = [[ARCircleValueLabel alloc] init];
     _titleLabel = [[ARCircleTitleLabel alloc] init];
@@ -60,9 +61,8 @@
     self.animationDuration = 1.0;
     self.valueColor = [UIColor whiteColor];
     self.titleColor = [UIColor darkTextColor];
-    self.minColor = [UIColor blueColor];
-    self.maxColor = [UIColor redColor];
-    self.ringColor = [UIColor blueColor];
+    self.minColor = [UIColor yellowColor];
+    self.maxColor = [UIColor greenColor];
     self.titlePosition = ARCircleGraphTitlePositionTop;
 
 }
@@ -70,7 +70,7 @@
 - (void)beginAnimationIn
 {
     [_valueLabel countFromZeroTo:self.value];
-    [self.ring animateToPercent:self.percent];
+    [self.ringLayer animateToPercent:self.percent];
 }
 
 #pragma mark - Setters
@@ -78,13 +78,13 @@
 - (void)setPercent:(CGFloat)percent
 {
     _percent = percent;
-    self.ring.percent = percent;
+    self.ringLayer.percent = percent;
 }
 
 - (void)setLineWidth:(CGFloat)lineWidth
 {
     _lineWidth = lineWidth;
-    self.ring.lineWidth = lineWidth;
+    self.ringLayer.lineWidth = lineWidth;
     self.valueLabel.lineWidth = lineWidth;
 }
 - (void)setValue:(CGFloat)value
@@ -102,27 +102,28 @@
 - (void)setAnimationDuration:(CGFloat)animationDuration
 {
     _animationDuration = animationDuration;
-    _ring.animationDuration = animationDuration;
+    _ringLayer.animationDuration = animationDuration;
     _valueLabel.animationDuration = animationDuration;
 }
 
 - (void)setMinColor:(UIColor *)minColor
 {
     _minColor = minColor;
-    _ring.minColor = minColor.CGColor;
-
+    _ringLayer.minColor = minColor.CGColor;
 }
 
 - (void)setMaxColor:(UIColor *)maxColor
 {
     _maxColor = maxColor;
-    _ring.maxColor = maxColor.CGColor;
+    _ringLayer.maxColor = maxColor.CGColor;
 }
 
 - (void)setRingColor:(UIColor *)ringColor
 {
     _ringColor = ringColor;
-    _ring.lineColor = ringColor.CGColor;
+    _ringLayer.minColor = ringColor.CGColor;
+    _ringLayer.maxColor = ringColor.CGColor;
+
 }
 
 - (void)setValueColor:(UIColor *)valueColor
@@ -167,7 +168,7 @@
 {
     [super layoutSubviews];
     if(_title == nil || _title.length == 0){
-        _ring.frame = self.bounds;
+        _ringLayer.frame = self.bounds;
         _valueLabel.bottom.constant = 0;
     }else {
         CGRect frame = self.bounds;
@@ -184,8 +185,7 @@
 
                 break;
         }
-        _ring.frame = frame;
-
+        _ringLayer.frame = frame;
     }
 }
 

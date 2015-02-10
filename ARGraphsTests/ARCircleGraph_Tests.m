@@ -32,7 +32,7 @@
 
 - (ARCircleRingLayer *)getRingForTests
 {
-    return [self valueForKey:@"ring"];
+    return [self valueForKey:@"ringLayer"];
 }
 
 @end
@@ -107,14 +107,16 @@
 {
     UIColor *expected = [UIColor redColor];
     sut.ringColor = expected;
-    UIColor *ringColor = [UIColor colorWithCGColor:[sut getRingForTests].strokeColor];
+    UIColor *ringColor = [UIColor colorWithCGColor:[sut getRingForTests].minColor];
     
     XCTAssertTrue([expected isEqual:ringColor], @"ring color was not set");
 }
 - (void)testDefaultRingBackgorundColor
 {
     UIColor *expected = [UIColor colorWithWhite:1.0 alpha:0.4];
-    UIColor *ringBackgroundColor = [UIColor colorWithCGColor:[sut getRingForTests].fillColor];
+    ARCircleRingLayer *ringLayer = [sut getRingForTests];
+    CALayer *background = [ringLayer.sublayers firstObject];
+    UIColor *ringBackgroundColor = [UIColor colorWithCGColor:background.backgroundColor];
     XCTAssertTrue([expected isEqual:ringBackgroundColor], @"ring background color was not set");
 }
 
@@ -145,7 +147,7 @@
 {
     UIColor *expected = [UIColor purpleColor];
     sut.ringColor = expected;
-    UIColor *ringColor = [UIColor colorWithCGColor:[sut getRingForTests].strokeColor];
+    UIColor *ringColor = [UIColor colorWithCGColor:[sut getRingForTests].minColor];
 
     XCTAssertTrue([expected isEqual:ringColor], @"title label color was not set");
     
